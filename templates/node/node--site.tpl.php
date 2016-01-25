@@ -82,8 +82,8 @@
 
 <script type="text/javascript">
   // Pass variables to the site embed script running below.
-   var siteId = "<?php echo $node->nid ?>";
-   var siteUrl = "<?php echo $GLOBALS['base_url'] ?>/api/";
+   var site_id = "<?php echo $node->nid ?>";
+   var site_url = "<?php echo $GLOBALS['base_url'] ?>/api/";
 </script>
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>

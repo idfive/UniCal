@@ -398,7 +398,7 @@
 
       //Get site settings if not already loaded
       if(typeof service.cachedPromises.site === 'undefined') {
-        service.cachedPromises.site = siteService.getSite($window.siteId);
+        service.cachedPromises.site = siteService.getSite($window.site_id);
       }
 
       //Once site settings are loaded
@@ -442,7 +442,7 @@
 
       //Get site settings if not already loaded
       if(typeof service.cachedPromises.site === 'undefined') {
-        service.cachedPromises.site = siteService.getSite($window.siteId);
+        service.cachedPromises.site = siteService.getSite($window.site_id);
       }
 
       //Once site settings are loaded

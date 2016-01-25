@@ -17,7 +17,7 @@
 
     //Get Base URL
     function getBaseUrl() {
-      return $window.siteUrl.replace(/\/?$/, '/');
+      return $window.site_url.replace(/\/?$/, '/');
     };
     
     //Converts an array of strings into query string
