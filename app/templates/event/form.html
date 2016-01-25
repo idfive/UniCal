@@ -1,20 +1,20 @@
-<div class="idfive-calendar">
+<div class="unical-calendar">
 
-  <div class="idfive-calendar__events partial-column">
+  <div class="unical-calendar__events partial-column">
 
-    <div class="idfive-calendar__submit-form-back">
+    <div class="unical-calendar__submit-form-back">
       <!-- <back-link text="Back to Calendar"></back-link> -->
       <a href="/">Back to Calendar</a>
     </div>
 
-    <ol class="idfive-calendar__submit-form-progress">
-      <div class="idfive-calendar__submit-form-steps step-{{vm.page}}"></div>
+    <ol class="unical-calendar__submit-form-progress">
+      <div class="unical-calendar__submit-form-steps step-{{vm.page}}"></div>
       <li>Get Started</li>
       <li>Almost There</li>
       <li>Submit Event</li>
     </ol>
 
-    <div class="idfive-calendar__submit-form">
+    <div class="unical-calendar__submit-form">
       <section ng-show="vm.page == 1">
         <form ng-submit="vm.nextPage()" name="eventInfo">
           <h4>Event Information</h4>
@@ -22,11 +22,11 @@
           <input ng-model="vm.newEventData.label" name="label" placeholder="* Event Title" type="text" class="required" required />
           <textarea ng-model="vm.newEventData.body" name="body" placeholder="* Event Details" type="textarea" class="required" required></textarea>
           <p>Have an image? Please upload it now.</p>
-          <button ng-if="!vm.newEventData.image && !vm.imageName" type="file" ngf-select="vm.uploadImage($file, $invalidFiles)" accept="image/*" ngf-max-size="500KB" class="idfive-calendar__buttoon--image"><i class="fa fa-camera"></i> Add image</button>
-          <p ng-if="vm.imageValidationError || vm.imageUploadError" class="idfive-calendar__message--error">{{vm.imageValidationError.$error}} {{vm.imageValidationError.$errorParam}} {{vm.imageUploadError}}</p>
-          <p ng-if="vm.newEventData.image && vm.imageName" class="idfive-calendar__message--success">{{vm.imageName}}</p>
-          <div class="idfive-calendar__submit-form-controls">
-            <button ng-disabled="eventInfo.$invalid" type="submit" class="idfive-calendar__buttoon">Next</button>
+          <button ng-if="!vm.newEventData.image && !vm.imageName" type="file" ngf-select="vm.uploadImage($file, $invalidFiles)" accept="image/*" ngf-max-size="500KB" class="unical-calendar__buttoon--image"><i class="fa fa-camera"></i> Add image</button>
+          <p ng-if="vm.imageValidationError || vm.imageUploadError" class="unical-calendar__message--error">{{vm.imageValidationError.$error}} {{vm.imageValidationError.$errorParam}} {{vm.imageUploadError}}</p>
+          <p ng-if="vm.newEventData.image && vm.imageName" class="unical-calendar__message--success">{{vm.imageName}}</p>
+          <div class="unical-calendar__submit-form-controls">
+            <button ng-disabled="eventInfo.$invalid" type="submit" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
@@ -36,7 +36,7 @@
         <h4>Date and Time</h4>
         <p class="mini-text underline"><em>When is your event taking place?</em></p>
         <!-- Start: Validation messages -->
-        <div ng-if="!vm.customValidation.endDateAfterStartDate" class="idfive-calendar__error">
+        <div ng-if="!vm.customValidation.endDateAfterStartDate" class="unical-calendar__error">
         End date must be after start date
         </div>
         <!-- End: Validation messages -->
@@ -116,9 +116,9 @@
         <div ng-show="vm.recurringEventToggle">
           <textarea placeholder="Description of recurring dates e.g. Repeats every Friday at 9pm, except in March and April" ng-model="vm.newEventData.repeating_date_description"></textarea>
         </div>
-        <div class="idfive-calendar__submit-form-controls">
-          <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
-          <button ng-disabled="eventWhen.$invalid" class="idfive-calendar__buttoon" ng-click="vm.validateDates()">Next</button>
+        <div class="unical-calendar__submit-form-controls">
+          <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+          <button ng-disabled="eventWhen.$invalid" class="unical-calendar__buttoon" ng-click="vm.validateDates()">Next</button>
         </div>
       </form>
       </section>
@@ -128,7 +128,7 @@
           <h4>Location</h4>
           <p class="mini-text underline"><em>Where is your event being held? If you enter a complete street address, we’ll feature it on a Google Map.</em></p>
           <!-- Start: Validation Messages --->
-          <div ng-messages="eventWhere.venueWebsite.$error" ng-if="eventWhere.venueWebsite.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventWhere.venueWebsite.$error" ng-if="eventWhere.venueWebsite.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="url">Venue website is not valid. Must be full URL e.g. http://myvenuename.com</div>
           </div>
           <!-- End: Validation Messages --->
@@ -193,9 +193,9 @@
             </select>
             <input ng-model="vm.newEventData.address.postal_code" placeholder="Postal Code" type="text" class="form-col-4 last-col" />
           </div>
-          <div class="idfive-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
-            <button ng-disabled="eventWhere.$invalid" class="idfive-calendar__buttoon">Next</button>
+          <div class="unical-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <button ng-disabled="eventWhere.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
@@ -205,13 +205,13 @@
           <h4>Event Organizer Contact Information</h4>
           <p class="mini-text underline"><em>Who is sponsoring the event? Does this group have social media pages for Facebook and Twitter?</em></p>
           <!-- Start: Validation messages -->
-          <div ng-messages="eventOrganizer.organizerEmail.$error" ng-if="eventOrganizer.organizerEmail.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventOrganizer.organizerEmail.$error" ng-if="eventOrganizer.organizerEmail.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="email">Email is not valid</div>
           </div>
-          <div ng-messages="eventOrganizer.organizerFacebook.$error" ng-if="eventOrganizer.organizerFacebook.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventOrganizer.organizerFacebook.$error" ng-if="eventOrganizer.organizerFacebook.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="url">Facebook URL is not valid. Must be full URL e.g. https://facebook.com/username</div>
           </div>
-          <div ng-messages="eventOrganizer.organizerTwitter.$error" ng-if="eventOrganizer.organizerTwitter.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventOrganizer.organizerTwitter.$error" ng-if="eventOrganizer.organizerTwitter.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="url">Twitter URL is not valid. Must be full URL e.g. https://twitter.com/username</div>
           </div>
           <!-- End: Validation messages -->
@@ -222,9 +222,9 @@
           </div>
           <input ng-model="vm.newEventData.organizer_facebook.url" name="organizerFacebook" placeholder="Organizer Facebook URL:" type="url" http-prefix />
           <input ng-model="vm.newEventData.organizer_twitter.url" name="organizerTwitter" placeholder="Organizer Twitter URL:" type="url" http-prefix />
-          <div class="idfive-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
-            <button ng-disabled="eventOrganizer.$invalid" class="idfive-calendar__buttoon">Next</button>
+          <div class="unical-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <button ng-disabled="eventOrganizer.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
@@ -234,22 +234,22 @@
           <h4>Event Website(s)</h4>
           <p class="mini-text underline"><em>Is there a web page or Facebook / Twitter account dedicated to this event?</em></p>
           <!-- Start: Validation messages -->
-          <div ng-messages="eventWebsites.eventWebsite.$error" ng-if="eventWebsites.eventWebsite.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventWebsites.eventWebsite.$error" ng-if="eventWebsites.eventWebsite.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="url">Event URL is not valid. Must be full URL e.g. http://myevent.com</div>
           </div>
-          <div ng-messages="eventWebsites.eventFacebook.$error" ng-if="eventWebsites.eventFacebook.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventWebsites.eventFacebook.$error" ng-if="eventWebsites.eventFacebook.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="url">Facebook URL is not valid. Must be full URL e.g. https://facebook.com/username</div>
           </div>
-          <div ng-messages="eventWebsites.eventTwitter.$error" ng-if="eventWebsites.eventTwitter.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventWebsites.eventTwitter.$error" ng-if="eventWebsites.eventTwitter.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="url">Twitter URL is not valid. Must be full URL e.g. https://twitter.com/username</div>
           </div>
           <!-- End: Validation messages -->
           <input ng-model="vm.newEventData.event_website.url" name="eventWebsite" placeholder="Event URL:" type="url" http-prefix />
           <input ng-model="vm.newEventData.event_facebook.url" name="eventFacebook" placeholder="Event Facebook URL:" type="url" http-prefix />
           <input ng-model="vm.newEventData.event_twitter.url" name="eventTwitter" placeholder="Event Twitter URL:" type="url" http-prefix />
-          <div class="idfive-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
-            <button ng-disabled="eventWebsites.$invalid" class="idfive-calendar__buttoon">Next</button>
+          <div class="unical-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <button ng-disabled="eventWebsites.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
@@ -265,9 +265,9 @@
           <div>
             <textarea ng-model="vm.newEventData.cost" name="cost" placeholder="Cost Information"></textarea>
           </div>
-          <div class="idfive-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
-            <button ng-disabled="eventCost.$invalid" class="idfive-calendar__buttoon">Next</button>
+          <div class="unical-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <button ng-disabled="eventCost.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
@@ -277,10 +277,10 @@
           <h4>RSVP Information</h4>
           <p class="mini-text underline"><em>What do people have to do to indicate that they're attending this event? If there’s a website to purchase tickets, include it below.</em></p>
           <!-- Start: Validation messages -->
-          <div ng-messages="eventRsvp.rsvpEmail.$error" ng-if="eventRsvp.rsvpEmail.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventRsvp.rsvpEmail.$error" ng-if="eventRsvp.rsvpEmail.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="email">Email address is not valid</div>
           </div>
-          <div ng-messages="eventRsvp.rsvpUrl.$error" ng-if="eventRsvp.rsvpUrl.$touched" role="alert" class="idfive-calendar__error">
+          <div ng-messages="eventRsvp.rsvpUrl.$error" ng-if="eventRsvp.rsvpUrl.$touched" role="alert" class="unical-calendar__error">
             <div ng-message="url">Ticket URL is not valid. Must be full URL e.g. http://buytickets.com</div>
           </div>
           <!-- End: Validation messages -->
@@ -291,9 +291,9 @@
           </div>
           <p class="mini-text"><em>Url to purchase tickets (optional)</em></p>
           <input ng-model="vm.newEventData.rsvp_ticket.url" name="rsvpUrl" placeholder="URL" type="url" http-prefix />
-          <div class="idfive-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
-            <button ng-disabled="eventRsvp.$invalid" class="idfive-calendar__buttoon">Next</button>
+          <div class="unical-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <button ng-disabled="eventRsvp.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
@@ -317,9 +317,9 @@
               </label>
             </div>
           </div>
-          <div class="idfive-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" ng-show="vm.page > 1" class="idfive-calendar__buttoon">Back</a>
-            <button ng-disabled="!vm.taxonomyValidateSelected()" class="idfive-calendar__buttoon">Next</button>
+          <div class="unical-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" ng-show="vm.page > 1" class="unical-calendar__buttoon">Back</a>
+            <button ng-disabled="!vm.taxonomyValidateSelected()" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
@@ -333,9 +333,9 @@
             <input ng-model="vm.newEventData.submitter_phone" placeholder="* Phone" type="text" class="required form-col-2 first-col" required />
             <input ng-model="vm.newEventData.submitter_email" placeholder="* Email" type="email" class="required form-col-2 last-col" required />
           </div>
-          <div class="idfive-calendar__submit-form-controls">
-            <button ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</button>
-            <button ng-disabled="vm.submitted || eventContact.$invalid" class="idfive-calendar__buttoon idfive-calendar__submit-buttoon">Submit</button>
+          <div class="unical-calendar__submit-form-controls">
+            <button ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</button>
+            <button ng-disabled="vm.submitted || eventContact.$invalid" class="unical-calendar__buttoon unical-calendar__submit-buttoon">Submit</button>
           </div>
         </form>
       </section>

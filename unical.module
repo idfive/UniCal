@@ -50,7 +50,7 @@ function _unical_embed(){
   $nid = $node_path[2];
 
   $embed_code = htmlspecialchars('<link rel="stylesheet" href="' . $url . '/sites/all/modules/unical/assets/css/styles.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <div ng-app="calendar" class="idfive-calendar"><h1>Calendar of Events</h1><div ng-view></div></div><script>var siteUrl = "' . $url . '/api/";
+  <div ng-app="calendar" class="unical-calendar"><h1>Calendar of Events</h1><div ng-view></div></div><script>var siteUrl = "' . $url . '/api/";
   var siteId =' . $nid . ';</script><script src="http://dev.calendar.howard.edu/sites/all/modules/unical/app/build/unical.js"></script>');
 
   $embed_text = "

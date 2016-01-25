@@ -2,7 +2,7 @@
 // Buttoon
 // ========================================
 
-.idfive-calendar__buttoon {
+.unical-calendar__buttoon {
   display: inline-block;
   border: 0;
   margin-bottom: .275em;
@@ -22,7 +22,7 @@
 
 }
 
-.idfive-calendar__buttoon--full {
+.unical-calendar__buttoon--full {
   width: 100%;
   margin-bottom: 1em;
 
@@ -32,7 +32,7 @@
 
 }
 
-.idfive-calendar__buttoon--image {
+.unical-calendar__buttoon--image {
   position: relative;
   border: 0;
   outline: 0;
@@ -44,7 +44,7 @@
 // Event Pool
 // ========================================
 
-.idfive-calendar__event-pool {
+.unical-calendar__event-pool {
 
   @media (min-width: 400px) {
     float: left;
@@ -58,7 +58,7 @@
 // Clear Calendar
 // ========================================
 
-.idfive-calendar__clear-filters {
+.unical-calendar__clear-filters {
   display: block;
   padding-bottom: 1em;
   cursor: pointer;
@@ -75,7 +75,7 @@
 // Back Button
 // ========================================
 
-.idfive-calendar {
+.unical-calendar {
 
   #back_btn {
     display: block;
@@ -89,7 +89,7 @@
 // Add This Dropdown
 // ========================================
 
-.idfive-calendar {
+.unical-calendar {
 
   .addthis_toolbox {
     display: inline-block;

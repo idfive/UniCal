@@ -2,7 +2,7 @@
 // Search
 // ========================================
 
-.idfive-calendar__search {
+.unical-calendar__search {
   margin-bottom: 1em;
   padding: 1em;
   background: #eee;
@@ -15,7 +15,7 @@
 
 }
 
-  %idfive-calendar__search-control {
+  %unical-calendar__search-control {
     width: 100%;
     border: 0;
     padding: 1em;
@@ -25,23 +25,23 @@
     outline: 0;
   }
 
-  .idfive-calendar__search-term {
+  .unical-calendar__search-term {
     float: left;
     width: calc(100% - #{50 / 16 * 1rem});
 
     input {
-      @extend %idfive-calendar__search-control;
+      @extend %unical-calendar__search-control;
     }
 
   }
 
-  .idfive-calendar__search-action {
+  .unical-calendar__search-action {
     float: left;
     width: calc(#{50 / 16 * 1rem});
     text-align: center;
 
     button {
-      @extend %idfive-calendar__search-control;
+      @extend %unical-calendar__search-control;
       cursor: pointer;
       background: #ddd;
     }

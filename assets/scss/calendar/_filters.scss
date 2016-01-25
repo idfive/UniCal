@@ -2,7 +2,7 @@
 // Filters
 // ========================================
 
-.idfive-calendar__filters {
+.unical-calendar__filters {
 
   fieldset {
     border: 0;
@@ -15,7 +15,7 @@
   // Toggle display of filters
   // ----------------------------------------
 
-  .idfive-calendar__filters-toggle {
+  .unical-calendar__filters-toggle {
     border-top: 1px solid #eee;
     margin: 0;
 
@@ -50,7 +50,7 @@
   // Set of filters
   // ----------------------------------------
 
-  .idfive-calendar__filters {
+  .unical-calendar__filters {
     display: none;
 
     @media (min-width: 800px) {
@@ -67,7 +67,7 @@
       cursor: pointer;
     }
 
-    .idfive-calendar__filters {
+    .unical-calendar__filters {
       display: inherit;
     }
 
@@ -76,7 +76,7 @@
     // Custom Range filter
     // ----------------------------------------
 
-    .idfive-calendar__filters-custom-range {
+    .unical-calendar__filters-custom-range {
 
       input {
         width: 100%;
@@ -110,7 +110,7 @@
   // Selected filters
   // ----------------------------------------
 
-  .idfive-calendar__selectedfilter {
+  .unical-calendar__selectedfilter {
     margin-right: .5em;
     cursor: pointer;
   }
@@ -118,7 +118,7 @@
   // Main filter toggle
   // ----------------------------------------
 
-  #idfive-calendar__filters-toggle {
+  #unical-calendar__filters-toggle {
 
     @media (min-width: 800px) {
       display: none;
@@ -129,7 +129,7 @@
   // Main filters help text, if present
   // ----------------------------------------
 
-  .idfive-calendar__filters-help {
+  .unical-calendar__filters-help {
     margin-bottom: 1em;
     padding: 0 1em;
     font-size: 85%;

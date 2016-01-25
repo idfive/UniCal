@@ -4,7 +4,7 @@ var idfiveCalendarApiBehaviors = (function() {
   
   self.filterToggle = function() {
     
-    var el = document.getElementById('idfive-calendar__filters-toggle');
+    var el = document.getElementById('unical-calendar__filters-toggle');
   
     el.onclick = function() {
       var filtersEl = el.nextElementSibling;

@@ -2,7 +2,7 @@
 // Submit Event Progress
 // ========================================
 
-.idfive-calendar__submit-form-progress {
+.unical-calendar__submit-form-progress {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -25,7 +25,7 @@
 
 }
 
-  .idfive-calendar__submit-form-steps {
+  .unical-calendar__submit-form-steps {
     position: absolute;
     top: 0;
     left: 0;
@@ -48,7 +48,7 @@
 // Submit Event Form
 // ========================================
 
-.idfive-calendar__submit-form {
+.unical-calendar__submit-form {
 
   section {
     margin-bottom: 1em;
@@ -130,7 +130,7 @@
     // Validation messages
     // ----------------------------------------
 
-    .idfive-calendar__error {
+    .unical-calendar__error {
       color: #f00;
     }
 
@@ -153,7 +153,7 @@
   // Form Controls
   // ----------------------------------------
 
-  .idfive-calendar__submit-form-controls {
+  .unical-calendar__submit-form-controls {
 
     a,
     button {

@@ -2,7 +2,7 @@
 // Spotlight Events
 // ========================================
 
-@at-root .idfive-calendar__featured {
+@at-root .unical-calendar__featured {
   position: relative;
   display: none;
   overflow: hidden;
@@ -25,7 +25,7 @@
 
 }
 
-  @at-root .idfive-calendar__featured-inner {
+  @at-root .unical-calendar__featured-inner {
 
     @media (min-width: 1000px) {
       padding: 8em;
@@ -33,7 +33,7 @@
 
   }
 
-  @at-root .idfive-calendar__featured-text {
+  @at-root .unical-calendar__featured-text {
     padding: 1em;
     background: #000;
     color: #fff;
@@ -75,7 +75,7 @@
   position: relative;
   list-style: none;
 
-  .idfive-calendar__featured & {
+  .unical-calendar__featured & {
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;

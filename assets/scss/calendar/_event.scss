@@ -2,7 +2,7 @@
 // Event
 // ========================================
 
-.idfive-calendar__event {
+.unical-calendar__event {
   position: relative;
   border-top: 1px solid #eee;
   padding: 3em 0;
@@ -15,7 +15,7 @@
 
 }
 
-  .idfive-calendar__event-date {
+  .unical-calendar__event-date {
     position: absolute;
     top: 4em;
     left: 0;
@@ -35,11 +35,11 @@
 
   }
 
-  .idfive-calendar__event-main {
+  .unical-calendar__event-main {
     padding-left: 4em;
   }
 
-    .idfive-calendar__event-media {
+    .unical-calendar__event-media {
       margin-bottom: 1em;
       display: none;
 
@@ -60,9 +60,9 @@
 
     }
 
-    .idfive-calendar__event-content {}
+    .unical-calendar__event-content {}
 
-      .idfive-calendar__event-title {
+      .unical-calendar__event-title {
         margin: 0;
 
         a {
@@ -71,13 +71,13 @@
 
       }
 
-      .idfive-calendar__event-caption {}
+      .unical-calendar__event-caption {}
 
-      .idfive-calendar__event-links {
+      .unical-calendar__event-links {
         text-align: right;
       }
 
-      .idfive-calendar__event-taxonomy {
+      .unical-calendar__event-taxonomy {
         clear: both;
 
         ul {

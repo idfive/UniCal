@@ -2,7 +2,7 @@
 // Calendar Mini Block
 // ========================================
 
-.idfive-calendar__calendar {
+.unical-calendar__calendar {
   display: none;
   border: .15em solid #ddd;
 
@@ -16,19 +16,19 @@
 // Mini Block Controls
 // ========================================
 
-.idfive-calendar__calendar-controls {
+.unical-calendar__calendar-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-  %idfive-calendar__calendar-control {
+  %unical-calendar__calendar-control {
     padding: 1em;
     cursor: pointer;
   }
 
-  .idfive-calendar__calendar-previous-button {
-    @extend %idfive-calendar__calendar-control;
+  .unical-calendar__calendar-previous-button {
+    @extend %unical-calendar__calendar-control;
 
     &.disabled {
       visibility: hidden;
@@ -37,15 +37,15 @@
 
   .month {}
 
-  .idfive-calendar__calendar-next-button {
-    @extend %idfive-calendar__calendar-control;
+  .unical-calendar__calendar-next-button {
+    @extend %unical-calendar__calendar-control;
   }
 
 // ========================================
 // Mini Block Grid
 // ========================================
 
-.idfive-calendar__calendar-grid {
+.unical-calendar__calendar-grid {
   text-align: center;
 
   // Days of the week header

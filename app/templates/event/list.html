@@ -1,22 +1,22 @@
-<div class="idfive-calendar__aside">
-  <a class="idfive-calendar__buttoon idfive-calendar__buttoon--full" href="#/submit-event" ng-show="vm.siteSettings.allow_event_submit">Submit Event <i class="fa fa-calendar-plus-o"></i></a>
+<div class="unical-calendar__aside">
+  <a class="unical-calendar__buttoon unical-calendar__buttoon--full" href="#/submit-event" ng-show="vm.siteSettings.allow_event_submit">Submit Event <i class="fa fa-calendar-plus-o"></i></a>
   <!-- What -->
-  <div class="idfive-calendar__sidebar">
+  <div class="unical-calendar__sidebar">
 
-    <div class="idfive-calendar__calendar">
-      <tien-clndr class="idfive-calendar__calendar-block" tien-clndr-object="clndr" tien-clndr-events="vm.clndrEvents" tien-clndr-options="vm.clndrOptions">
-        <div class="idfive-calendar__calendar-controls">
-          <div class="idfive-calendar__calendar-previous-button" ng-class="{disabled: vm.isCurrentMonth(month, year) }" ng-click="vm.requestInProcess || clndr.back(); vm.getEventsByMonth(month, year);">
+    <div class="unical-calendar__calendar">
+      <tien-clndr class="unical-calendar__calendar-block" tien-clndr-object="clndr" tien-clndr-events="vm.clndrEvents" tien-clndr-options="vm.clndrOptions">
+        <div class="unical-calendar__calendar-controls">
+          <div class="unical-calendar__calendar-previous-button" ng-class="{disabled: vm.isCurrentMonth(month, year) }" ng-click="vm.requestInProcess || clndr.back(); vm.getEventsByMonth(month, year);">
             <i class="fa fa-angle-left"></i>
           </div>
           <div class="month">
             {{month}} {{year}}
           </div>
-          <div class="idfive-calendar__calendar-next-button" ng-click="vm.requestInProcess || clndr.forward(); vm.getEventsByMonth(month, year);">
+          <div class="unical-calendar__calendar-next-button" ng-click="vm.requestInProcess || clndr.forward(); vm.getEventsByMonth(month, year);">
             <i class="fa fa-angle-right"></i>
           </div>
         </div>
-        <div class="idfive-calendar__calendar-grid">
+        <div class="unical-calendar__calendar-grid">
           <div class="days-of-the-week">
             <div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
               {{day}}
@@ -40,20 +40,20 @@
 
 
 
-    <h2 class="idfive-calendar__filters-toggle +negative" id="idfive-calendar__filters-toggle"><label>Filter by</label></h2>
-    <form class="idfive-calendar__filters" action="" method="post">
-      <div ng-show="vm.siteSettings.text_above_filters" class="idfive-calendar__filters-help">{{vm.siteSettings.text_above_filters}}</div>
+    <h2 class="unical-calendar__filters-toggle +negative" id="unical-calendar__filters-toggle"><label>Filter by</label></h2>
+    <form class="unical-calendar__filters" action="" method="post">
+      <div ng-show="vm.siteSettings.text_above_filters" class="unical-calendar__filters-help">{{vm.siteSettings.text_above_filters}}</div>
       <section>
         <fieldset>
-          <h3 class="idfive-calendar__filters-toggle"><label>Date<input type="checkbox" ng-model="vm.filters.rangeExpanded"/></label></h3>
-          <div class="idfive-calendar__filters" ng-show="vm.filters.rangeExpanded">
+          <h3 class="unical-calendar__filters-toggle"><label>Date<input type="checkbox" ng-model="vm.filters.rangeExpanded"/></label></h3>
+          <div class="unical-calendar__filters" ng-show="vm.filters.rangeExpanded">
             <label><input type="radio" name="date-filter" value="all" ng-model="vm.filters.range" ng-click="vm.getEvents()"> All</label>
             <label><input type="radio" name="date-filter" value="today" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Today</label>
             <label><input type="radio" name="date-filter" value="tomorrow" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Tomorrow</label>
             <label><input type="radio" name="date-filter" value="week" ng-model="vm.filters.range" ng-click="vm.getEvents()"> This week</label>
             <label><input type="radio" name="date-filter" value="month" ng-model="vm.filters.range" ng-click="vm.getEvents()"> This month</label>
             <label><input type="radio" name="date-filter" value="custom" ng-model="vm.filters.range"> Custom range</label>
-            <div ng-show="vm.filters.range=='custom'" class="idfive-calendar__filters-custom-range">
+            <div ng-show="vm.filters.range=='custom'" class="unical-calendar__filters-custom-range">
               <label>
                 <input pikaday="vm.pikaday.clndrStartDate" ng-model="vm.filters.startDate" placeholder="From" />
               </label>
@@ -67,10 +67,10 @@
       </section>
       <section ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies" on-finish-render="vm.finishRenderFilters()">
         <fieldset ng-show="taxonomy.enabled">
-          <h3 class="idfive-calendar__filters-toggle">
+          <h3 class="unical-calendar__filters-toggle">
             <label>{{taxonomy.label}}<input type="checkbox" ng-model="vm.filters.taxonomies[taxonomyId].expanded"/></label>
           </h3>
-          <div class="idfive-calendar__filters" ng-show="vm.filters.taxonomies[taxonomyId].expanded">
+          <div class="unical-calendar__filters" ng-show="vm.filters.taxonomies[taxonomyId].expanded">
             <label ng-repeat="term in taxonomy.terms">
               <input type="checkbox" ng-model="vm.filters.taxonomies[taxonomyId].terms[term.id]" ng-click="vm.getEvents()"> {{term.label}}
             </label>
@@ -82,13 +82,13 @@
   </div>
 
 </div>
-<div class="idfive-calendar__events">
+<div class="unical-calendar__events">
   <div ng-show="vm.siteSettings.allow_featured_events">
-    <div class="idfive-calendar__featured" ng-show="vm.featuredEvents.length">
+    <div class="unical-calendar__featured" ng-show="vm.featuredEvents.length">
       <ul class="swift-slide">
         <li ng-repeat="event in vm.featuredEvents" style="background-image: url('{{event.image.image_styles.large}}');" on-finish-render="vm.finishRenderFeatured()">
-          <div class="idfive-calendar__featured-inner"></div>
-          <div class="idfive-calendar__featured-text">
+          <div class="unical-calendar__featured-inner"></div>
+          <div class="unical-calendar__featured-text">
             <h2>{{event.date[0].start_month}} {{event.date[0].start_day}}</h2>
             <h4><a href="#/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h4>
             <p><span ng-show="event.venue_name">{{event.venue_name}} |</span> {{event.date[0].start_time}}</p>
@@ -100,12 +100,12 @@
   <div class="arrangement">
 
     <!-- Search -->
-    <div class="arrangement-item idfive-calendar__search">
+    <div class="arrangement-item unical-calendar__search">
       <form class="search-form" name="vm.searchForm" ng-submit="vm.searchEvents()">
-        <div class="idfive-calendar__search-term">
+        <div class="unical-calendar__search-term">
           <input type="text" placeholder="Search events" name="searchTerm" ng-model="vm.searchTerm">
         </div>
-        <div class="idfive-calendar__search-action">
+        <div class="unical-calendar__search-action">
           <button type="submit"><i class="fa fa-search"></i></button>
         </div>
       </form>
@@ -113,7 +113,7 @@
 
     <!-- Currently filtering by: Range -->
     <span ng-if="vm.filters.range != 'all'">
-      <a class="idfive-calendar__selectedfilter" ng-model="vm.filters.range" ng-click="vm.filters.range = 'all'; vm.getEvents()">
+      <a class="unical-calendar__selectedfilter" ng-model="vm.filters.range" ng-click="vm.filters.range = 'all'; vm.getEvents()">
         <i class="fa fa-times-circle"></i> Date range:
         <span ng-switch="vm.filters.range">
           <span ng-switch-when="today">Today</span>
@@ -131,7 +131,7 @@
         <span ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies">
           <span ng-repeat="terms in taxonomy.terms">
             <span ng-if="terms.id == termId && vm.filters.taxonomies[taxonomyId].terms[termId]" ng-show="vm.taxonomies[taxonomyId].enabled">
-              <a class="idfive-calendar__selectedfilter" ng-model="vm.filters.taxonomies[taxonomyId].terms[termId]" ng-click="vm.filters.taxonomies[taxonomyId].terms[termId] = false; vm.getEvents()"><i class="fa fa-times-circle"></i> {{taxonomy.label}}: {{terms.label}}</a>
+              <a class="unical-calendar__selectedfilter" ng-model="vm.filters.taxonomies[taxonomyId].terms[termId]" ng-click="vm.filters.taxonomies[taxonomyId].terms[termId] = false; vm.getEvents()"><i class="fa fa-times-circle"></i> {{taxonomy.label}}: {{terms.label}}</a>
             </span>
           </span>
         </span>
@@ -141,38 +141,38 @@
     <!-- Count and clear all -->
     <div class="arrangement-item clearfix">
       <div class="clearfix">
-        <p class="idfive-calendar__event-pool">Showing <strong>{{vm.events.length}}</strong> of <strong>{{vm.eventsCount}}</strong> events</p>
-        <a class="idfive-calendar__clear-filters" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Reset filters</a>
+        <p class="unical-calendar__event-pool">Showing <strong>{{vm.events.length}}</strong> of <strong>{{vm.eventsCount}}</strong> events</p>
+        <a class="unical-calendar__clear-filters" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Reset filters</a>
       </div>
     </div>
   </div>
 
-  <div class="idfive-calendar__event" ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
-    <div class="idfive-calendar__event-date">
-      <span class="idfive-calendar__month">{{event.date[0].start_month}}</span>
-      <span class="idfive-calendar__day">{{event.date[0].start_day}}</span>
+  <div class="unical-calendar__event" ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
+    <div class="unical-calendar__event-date">
+      <span class="unical-calendar__month">{{event.date[0].start_month}}</span>
+      <span class="unical-calendar__day">{{event.date[0].start_day}}</span>
     </div>
-    <div class="idfive-calendar__event-main">
-      <div class="idfive-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">
+    <div class="unical-calendar__event-main">
+      <div class="unical-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">
         <img ng-if="event.image.image_styles.large" ng-src="{{event.image.image_styles.large}}" alt="{{event.image.alt}}">
         <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="">
       </div>
-      <div  class="idfive-calendar__event-content">
-        <h2 class="idfive-calendar__event-title"><a href="#/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
+      <div  class="unical-calendar__event-content">
+        <h2 class="unical-calendar__event-title"><a href="#/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
         <p><span ng-show="event.address.data.formatted_address">{{event.address.data.formatted_address}} |</span> {{event.date[0].start_time}} <span ng-if="event.date.length > 1">(Multiple Dates)</span></p>
-        <div class="idfive-calendar__event-caption" ng-if="event.body_trimmed && event.body_trimmed.length">
+        <div class="unical-calendar__event-caption" ng-if="event.body_trimmed && event.body_trimmed.length">
           <p>{{event.body_trimmed}}</p>
         </div>
 
-        <div  class="idfive-calendar__event-links">
+        <div  class="unical-calendar__event-links">
           <add-this></add-this>
-          <a class="idfive-calendar__buttoon" href="#/event/{{event.id}}/{{event.uri}}"><i class="fa fa-eye push-right"></i>View Event</a>
+          <a class="unical-calendar__buttoon" href="#/event/{{event.id}}/{{event.uri}}"><i class="fa fa-eye push-right"></i>View Event</a>
           <add-to-calendar></add-to-calendar>
         </div>
 
       </div>
     </div>
   </div>
-  <p><a ng-click="vm.getEventsNextPage()" ng-show="vm.events.length && vm.eventsCount > vm.events.length && vm.searchTerm == ''" class="idfive-calendar__buttoon">Load more events</a></p>
+  <p><a ng-click="vm.getEventsNextPage()" ng-show="vm.events.length && vm.eventsCount > vm.events.length && vm.searchTerm == ''" class="unical-calendar__buttoon">Load more events</a></p>
   <p ng-hide="vm.events.length">Sorry, no events were found that matched your criteria. <a href ng-click="vm.showAllEvents()">Show all events</a></p>
 </div>

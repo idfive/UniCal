@@ -2,12 +2,12 @@
 // Special Type Instances
 // ========================================
 
-[class*='idfive-calendar__message'] {
+[class*='unical-calendar__message'] {
   display: inline-block;
   margin: .5em 0;
 }
 
-.idfive-calendar__message--error {
+.unical-calendar__message--error {
   box-shadow: 0 .125rem 0 0 #f22;
 
   &:after {
@@ -16,7 +16,7 @@
 
 }
 
-.idfive-calendar__message--success {
+.unical-calendar__message--success {
   box-shadow: 0 .125rem 0 0 #2f2;
 
   &:after {
@@ -25,7 +25,7 @@
 
 }
 
-.idfive-calendar {
+.unical-calendar {
  
   .pre {
     white-space: pre-wrap;
