@@ -1,0 +1,116 @@
+<?php
+
+function _help($path, $arg)
+{
+  switch ($path)
+  {
+    case "admin/help#idfive_calendar_embed":
+    return '<p>' . t("Idfive calendar embed help page") . '</p>';
+    break;
+  }
+}
+
+function unical_embed_init()
+{
+  //Get API URL setting
+  $siteUrl = variable_get('idfive_calendar_embed_settings_site_url');
+  $siteId = variable_get('idfive_calendar_embed_settings_site_id');
+
+  //JS Variables
+  $settings = array(
+    'siteUrl' => $siteUrl,
+    'siteId' => $siteId
+  );
+  drupal_add_js(array('idfiveCalendarEmbed' => $settings), 'setting');
+
+  //Idfive Calendar API JS
+  drupal_add_js('//s7.addthis.com/js/300/addthis_widget.js', 'external', 'footer');
+  drupal_add_js($siteUrl . 'sites/all/modules/idfive_calendar_api/app/build/idfivecalendarapi.js', 'file', 'footer');
+
+  //CSS includes
+  drupal_add_css('http://fonts.googleapis.com/css?family=Open+Sans:400,700', 'external');
+  drupal_add_css('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', 'external');
+  drupal_add_css($siteUrl . 'sites/all/modules/idfive_calendar_api/assets/css/styles.css', 'external');
+}
+
+function unical_embed_menu()
+{
+  $items = array();
+
+  $items['calendar'] = array(
+    'title' => 'Calendar',
+    'page callback' => 'unical_embed_get',
+    'access arguments' => array('access content'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['admin/config/services/unical_embed'] = array(
+    'title' => 'Idfive calendar embed',
+    'description' => 'Configuration for UniCal embed',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('idfive_calendar_embed_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM
+  );
+
+  return $items;
+}
+
+function unical_embed_form($form, &$form_state)
+{
+  $form['some_text'] = array(
+    '#markup' => '
+    <p>This page allows you to define the settings that will control your rendering of the <a href="http://idfive.com">UniCal</a> custom Calendar. Your site administrator should provide you with the site URL of the mothership site, and your particular Site ID, which will do the work of pulling your custom configurations.</p>
+    <ul>
+    <li>Your calendar will now be viewable at <a href="/calendar">/calendar</a>.</li>
+    <li><a href="/admin/config/search/path/add">Add a local path alias</a> to change the default <a href="/calendar">/calendar</a> link, if you choose.</li>
+    </ul>
+    <p>Contact your site administrator (who gave you the Site ID) If further customizations are required.</p>
+    '
+  );
+
+  //General settings
+  $form['unical_embed_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Settings'
+  );
+
+  //URL of the API
+  $form['unical_embed_settings']['unical_embed_settings_site_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Site URL'),
+    '#default_value' => variable_get('unical_embed_settings_site_url', ''),
+    '#size' => 100,
+    '#maxlength' => 255,
+    '#description' => t('URL of main UniCal calendar website'),
+    '#required' => TRUE
+  );
+
+  //Site ID
+  $form['unical_embed_settings']['unical_embed_settings_site_id'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Site ID'),
+    '#default_value' => variable_get('unical_embed_settings_site_id', ''),
+    '#size' => 5,
+    '#maxlength' => 10,
+    '#description' => t('ID of the site node'),
+    '#required' => TRUE
+  );
+
+  return system_settings_form($form);
+}
+
+function unical_embed_theme()
+{
+  return array(
+    'unical_embed_calendar' => array(
+      'template' => 'calendar',
+    ),
+  );
+}
+
+function idfive_calendar_embed_get($page = 0)
+{
+  //Load the template
+  return theme('unical_embed_calendar');
+}
