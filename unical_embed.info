@@ -1,5 +1,0 @@
-name = UniCal Embed
-description = Allows events to be embedded from UniCal module, and API
-core = 7.x
-configure = admin/config/services/idfive_calendar_embed
-package = UniCal
