@@ -144,7 +144,7 @@
      *
      */
     function finishRenderFilters() {
-      $window.idfiveCalendarApiBehaviors.filterToggle();
+      $window.unicalApiBehaviors.filterToggle();
     }
 
     /*

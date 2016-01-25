@@ -1,6 +1,6 @@
 <?php
 
-class IdfiveCalendarApiEventsFields extends RestfulEntityBaseNode {
+class unicalApiEventsFields extends RestfulEntityBaseNode {
 
   protected $range = 1000; //Override by passing range in the API call, but cannot exceed this number
 

@@ -1,6 +1,6 @@
 <?php
 
-class IdfiveCalendarApiTaxonomyResource extends \RestfulEntityBaseTaxonomyTerm {
+class unicalApiTaxonomyResource extends \RestfulEntityBaseTaxonomyTerm {
 
   protected $range = 1000;
   

@@ -5,7 +5,7 @@
  * Contains \IdfiveCalendarEventsSearchResource.
  */
 
-class IdfiveCalendarApiEventsSearchResource extends \RestfulDataProviderSearchAPI implements \RestfulInterface {
+class unicalApiEventsSearchResource extends \RestfulDataProviderSearchAPI implements \RestfulInterface {
 
   /**
    * Overrides \RestfulBase::publicFieldsInfo().

@@ -1,8 +1,8 @@
 <?php
 
-require 'IdfiveCalendarApiEventsFields.class.php';
+require 'unicalApiEventsFields.class.php';
 
-class IdfiveCalendarApiEventsResource extends IdfiveCalendarApiEventsFields {
+class unicalApiEventsResource extends unicalApiEventsFields {
   
   /**
    * Overrides RestfulEntityBaseNode::publicFieldsInfo().

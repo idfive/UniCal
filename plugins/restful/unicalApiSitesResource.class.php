@@ -1,6 +1,6 @@
 <?php
 
-class IdfiveCalendarApiSitesResource extends RestfulEntityBaseNode {
+class unicalApiSitesResource extends RestfulEntityBaseNode {
 
   /**
    * Overrides RestfulEntityBaseNode::publicFieldsInfo().
