@@ -55,7 +55,7 @@ function _unical_embed(){
 
   $embed_text = "
   <h1>Embed/Install Instructions</h1>
-  <p>In addition to the individual site calendars being available on this site, they are also available for embedding either through the idfive_calendar_embed module for drupal sites, or by simply adding the code snippet at the bottom of the page.</p>
+  <p>In addition to the individual site calendars being available on this site, they are also available for embedding either through the unical_embed module for drupal sites, or by simply adding the code snippet at the bottom of the page.</p>
   <h3>Drupal Module:</h3>
   <p>Add the following to the modules settings page:</p>
     <ul>
