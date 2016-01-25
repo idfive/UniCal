@@ -28,7 +28,7 @@ function unical_menu() {
 
   $items['node/%node/calendar-site-settings-embed'] = array(
     'title' => 'Embed/Install Instructions',
-    'page callback' => '_unical_embed',
+    'page callback' => '_unical_client',
     'page arguments' => array(1),
     'access callback' => '_unical_check_tab_permission',
     'access arguments' => array(1),
@@ -42,7 +42,7 @@ function unical_menu() {
 /*
  * This shows the nifty embed code we made to site admins, and lets them know how to embed it elsewhwere.
  */
-function _unical_embed(){
+function _unical_client(){
   // Define site URL
   $url = $GLOBALS['base_url'];
   // Get nid from url, as we dont have access to $node
@@ -55,7 +55,7 @@ function _unical_embed(){
 
   $embed_text = "
   <h1>Embed/Install Instructions</h1>
-  <p>In addition to the individual site calendars being available on this site, they are also available for embedding either through the unical_embed module for drupal sites, or by simply adding the code snippet at the bottom of the page.</p>
+  <p>In addition to the individual site calendars being available on this site, they are also available for embedding either through the unical_client module for drupal sites, or by simply adding the code snippet at the bottom of the page.</p>
   <h3>Drupal Module:</h3>
   <p>Add the following to the modules settings page:</p>
     <ul>
