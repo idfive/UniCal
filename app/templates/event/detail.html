@@ -1,0 +1,117 @@
+<div ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
+  <div class="idfive-calendar__events">
+    <div class="idfive-calendar__event idfive-calendar__event--spotlight">
+      <div class="idfive-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">
+        <img ng-if="event.image.image_styles.large" ng-src="{{event.image.image_styles.large}}" alt="{{event.image.alt}}">
+        <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="">
+      </div>
+      <div class="idfive-calendar__event-content">
+        <h1 class="idfive-calendar__event-title">{{event.label}}</h1>
+        <p>
+          <span ng-if="event.date">{{event.date[0].start_date}}</span> <span ng-if="event.date[0].start_date != event.date[0].end_date"><em>to</em> {{event.date[0].end_date}}</span><br>
+          <span ng-if="event.date">{{event.date[0].start_time}} <span ng-if="event.date[0].start_unix != event.date[0].end_unix">- {{event.date[0].end_time}}</span><br>
+          <span ng-if="event.venue_name">
+            <span ng-switch="!!event.venue_url">
+              <a ng-switch-when="true" href="{{event.venue_url.url}}" target="_blank">{{event.venue_name}}</a>
+              <span ng-switch-default>{{event.venue_name}}</span>
+            </span><br>
+          </span>
+          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Get tickets</a>
+        </p>
+        <div ng-if="event.date.length > 1">
+          <p>This event has multiple dates:</p>
+          <ul ng-repeat="(key, date) in event.date">
+            <li>{{date.start_date}} ({{date.start_time}} - {{date.end_time}})</li>
+          </ul>
+        </div>
+
+        <ul ng-if="event.event_facebook || event.event_twitter" class="contact_social">
+          <li ng-if="event.event_facebook">
+            <a href="{{event.event_facebook.url}}" target="_blank"><i class="fa fa-facebook"></i></a>
+          </li>
+          <li ng-if="event.event_twitter">
+            <a href="{{event.event_twitter.url}}" target="_blank"><i class="fa fa-twitter"></i></a>
+          </li>
+        </ul>
+
+        <div class="idfive-calendar__event-body" ng-bind-html="event.body"></div>
+
+        <div  class="idfive-calendar__event-links">
+          <add-this></add-this>
+          <add-to-calendar></add-to-calendar>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="idfive-calendar__event-taxonomy">
+      <div ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies">
+        <div ng-show="taxonomy.enabled">
+          <h3 ng-show="event[taxonomyId]">{{taxonomy.label}}</h3>
+          <ul ng-show="event[taxonomyId]">
+            <li ng-repeat="taxonomyTid in event[taxonomyId]">
+              <span ng-repeat="eventTaxonomy in taxonomy.terms" ng-if="eventTaxonomy.id == taxonomyTid"><a href="#/" ng-click="vm.getEventsByTaxonomy(eventTaxonomy.id, taxonomyId)">{{eventTaxonomy.label}}</a></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="idfive-calendar__aside">
+    <div class="idfive-calendar__sidebar">
+      <section ng-if="event.venue_name || event.address.full_address">
+        <h3>Location</h3>
+        <div class="idfive-calendar__event-map" ng-if="event.address.full_address">
+          <iframe width="100%" height="300" frameborder="0" style="border:0" src="{{vm.getMapUrl(event.address.full_address)}}"></iframe>
+        </div>
+        <span ng-if="event.venue_name">
+          <span ng-switch="!!event.venue_url">
+            <a ng-switch-when="true" href="{{event.venue_url.url}}" target="_blank">{{event.venue_name}}</a>
+            <span ng-switch-default>{{event.venue_name}}</span>
+          </span><br>
+        </span>
+        <span ng-if="event.address.data.formatted_address">
+          {{event.address.data.formatted_address}}
+        </span>
+      </section>
+      <section ng-if="event.cost">
+        <h3>Cost</h3>
+        <h7 ng-if="event.free">Free Event</h7>
+        <p ng-bind-html="event.cost" class="pre"></p>
+      </section>
+      <section ng-if="event.rsvp_ticket.url || event.rsvp_phone || event.rsvp_email">
+        <h3>How to RSVP</h3>
+        <div ng-if="event.rsvp_how_to" ng-bind-html="event.rsvp_how_to.safe_value"></div>
+          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Buy tickets online</a>
+          <p ng-if="event.rsvp_phone || event.rsvp_email">
+            <span ng-if="event.rsvp_phone">Phone: {{event.rsvp_phone}}<br></span>
+            <span ng-if="event.rsvp_email">Email: <a href="mailto:{{event.rsvp_email}}">{{event.rsvp_email}}</a></span>
+          </p>
+      </section>
+      <section ng-if="event.organizer_name || event.organizer_phone || event.organizer_email">
+        <h3>Contact</h3>
+        <p>
+          <span ng-if="event.organizer_name">{{event.organizer_name}}<br></span>
+          <span ng-if="event.organizer_phone">Phone: {{event.organizer_phone}}<br></span>
+          <span ng-if="event.organizer_email">Email: <a href="mailto:{{event.organizer_email}}">{{event.organizer_email}}</a></span>
+        </p>
+
+        <a ng-if="event.event_website" href="{{event.event_website.url}}" target="_blank">{{event.event_website.url}}</a>
+
+        <ul ng-if="event.organizer_facebook || event.organizer_twitter" class="contact_social">
+          <li ng-if="event.organizer_facebook">
+            <a href="{{event.organizer_facebook.url}}" target="_blank"><i class="fa fa-facebook"></i></a>
+          </li>
+          <li ng-if="event.organizer_twitter">
+            <a href="{{event.organizer_twitter.url}}" target="_blank"><i class="fa fa-twitter"></i></a>
+          </li>
+        </ul>
+
+      </section>
+    </div>
+  </div>
+
+</div>

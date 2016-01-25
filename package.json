@@ -1,0 +1,30 @@
+{
+  "name": "Calendar",
+  "version": "0.1.0",
+  "description": "An AngularJS calendar application",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://nickrigby@bitbucket.org/idfivellc/idfive-calendar-api-module.git"
+  },
+  "author": "idfive",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.7.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-css-globbing": "^0.1.8",
+    "gulp-include": "^2.0.2",
+    "gulp-jshint": "^1.11.2",
+    "gulp-plumber": "^1.0.1",
+    "gulp-ruby-sass": "^0.7.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-plumber": "^1.0.1"
+  }
+}

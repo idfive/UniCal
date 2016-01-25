@@ -1,0 +1,180 @@
+// ========================================
+// Spotlight Events
+// ========================================
+
+@at-root .idfive-calendar__featured {
+  position: relative;
+  display: none;
+  overflow: hidden;
+  margin-bottom: 1em;
+
+  @media (min-width: 1000px) {
+    display: block;
+  }
+
+  article {
+    position: relative;
+    background-position: 50% 50%;
+    background-size: cover;
+
+    @media (min-width: 1000px) {
+      margin-right: 50%;
+    }
+
+  }
+
+}
+
+  @at-root .idfive-calendar__featured-inner {
+
+    @media (min-width: 1000px) {
+      padding: 8em;
+    }
+
+  }
+
+  @at-root .idfive-calendar__featured-text {
+    padding: 1em;
+    background: #000;
+    color: #fff;
+
+    @media (min-width: 1000px) {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      height: 100%;
+      width: 100%;
+    }
+
+    * {
+      color: inherit;
+    }
+
+    h2 {
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    h4 {}
+
+      a {
+        text-decoration: none;
+      }
+
+    p {}
+
+  }
+
+
+// ========================================
+// Spotlight Events Slideshow
+// ========================================
+
+.swift-slide {
+  position: relative;
+  list-style: none;
+
+  .idfive-calendar__featured & {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+
+  li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background-position: 50% 50%;
+    background-size: cover;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity .3s,
+      visibility .3s;
+
+    &.active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+    }
+
+  }
+
+  .controls {
+    position: absolute;
+    bottom: .5em;
+    right: .5em;
+    z-index: 200;
+
+    @at-root .swift-slide li:nth-child(1) ~ .controls {
+      display: none;
+    }
+
+    @at-root .swift-slide li:nth-child(2) ~ .controls {
+      display: block;
+    }
+
+    button {
+      display: inline-block;
+      border: 0;
+      background: none;
+      outline: 0;
+
+      &:before {
+        font-family: 'FontAwesome';
+        color: #fff;
+      }
+
+      &:first-child {
+
+        &:before {
+          content: '\f104';
+        }
+
+      }
+
+      &:last-child {
+
+        &:before {
+          content: '\f105';
+        }
+
+      }
+
+    }
+
+  }
+
+  .pager {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    z-index: 200;
+
+    span {
+      display: inline-block;
+      height: 1em;
+      width: 1em;
+      margin: .15em;
+      border: .15em solid #fff;
+      border-radius: 100%;
+
+      &:only-child {
+        display: none;
+      }
+
+      &:hover {
+        background: rgba(#fff, .5);
+      }
+
+      &.active {
+        background: #fff;
+      }
+
+    }
+
+  }
+
+}

@@ -1,0 +1,96 @@
+// ========================================
+// Pikalendar
+// ========================================
+
+.pika-single {
+
+  &[style*='top: auto'] {
+    display: none;
+  }
+
+}
+
+  .pika-lendar {
+    padding: 1em;
+    background: #fff;
+    box-shadow: 0 0 .5em 0 rgba(#000, .25);
+  }
+
+    .pika-title {}
+
+      .pika-label {
+        padding: .25em 0;
+
+        &:after {
+          clear: both;
+          content: '';
+          display: table;
+        }
+
+      }
+
+        .pika-prev {
+          border: 0;
+          padding: .75em 0;
+          cursor: pointer;
+          background: none;
+        }
+
+        .pika-next {
+          border: 0;
+          padding: .75em 0;
+          cursor: pointer;
+          background: none;
+        }
+
+        .pika-prev {
+          float: left;
+
+          &:before {
+            content: '< ';
+          }
+
+        }
+
+        .pika-next {
+          float: right;
+
+          &:after {
+            content: ' >';
+          }
+
+        }
+
+        .pika-select {
+          margin-left: .5em;
+        }
+
+      .pika-button {
+        border: 0;
+        background: none;
+      }
+
+    .pika-table {
+
+      th,
+      td {
+        padding: .25rem;
+      }
+
+      th {
+        border: 0;
+      }
+
+        abbr {
+          border-bottom: 0 !important;
+        }
+
+      td {}
+
+      .is-disabled {
+        opacity: .25;
+      }
+
+    }
+
+      .pika-day {}

@@ -1,0 +1,34 @@
+// ========================================
+// Special Type Instances
+// ========================================
+
+[class*='idfive-calendar__message'] {
+  display: inline-block;
+  margin: .5em 0;
+}
+
+.idfive-calendar__message--error {
+  box-shadow: 0 .125rem 0 0 #f22;
+
+  &:after {
+    content: ' - upload failed.';
+  }
+
+}
+
+.idfive-calendar__message--success {
+  box-shadow: 0 .125rem 0 0 #2f2;
+
+  &:after {
+    content: ' - upload successful!';
+  }
+
+}
+
+.idfive-calendar {
+ 
+  .pre {
+    white-space: pre-wrap;
+  }
+  
+}

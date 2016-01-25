@@ -1,0 +1,105 @@
+// ========================================
+// Event
+// ========================================
+
+.idfive-calendar__event {
+  position: relative;
+  border-top: 1px solid #eee;
+  padding: 3em 0;
+
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+
+}
+
+  .idfive-calendar__event-date {
+    position: absolute;
+    top: 4em;
+    left: 0;
+
+    span {
+      display: block;
+
+      &:first-child {
+        text-transform: uppercase;
+      }
+
+      &:last-child {
+        font-size: 170%;
+      }
+
+    }
+
+  }
+
+  .idfive-calendar__event-main {
+    padding-left: 4em;
+  }
+
+    .idfive-calendar__event-media {
+      margin-bottom: 1em;
+      display: none;
+
+      @media (min-width: 600px) {
+        display: block;
+      }
+
+      @media (min-width: 1000px) {
+        float: left;
+        width: 30%;
+        margin-right: 1em;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+    }
+
+    .idfive-calendar__event-content {}
+
+      .idfive-calendar__event-title {
+        margin: 0;
+
+        a {
+          text-decoration: none;
+        }
+
+      }
+
+      .idfive-calendar__event-caption {}
+
+      .idfive-calendar__event-links {
+        text-align: right;
+      }
+
+      .idfive-calendar__event-taxonomy {
+        clear: both;
+
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+
+          li {
+            display: inline-block;
+            margin-right: .25em;
+            margin-bottom: .25em;
+            border-radius: .25em;
+          }
+
+            a {
+              display: block;
+              border: 1px solid #ddd;
+              padding: .75em 1em;
+              text-decoration: none;
+              background: #eee;
+              color: inherit;
+            }
+
+      }

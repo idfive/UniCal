@@ -1,0 +1,9 @@
+name = UniCal
+description = Universal calendar application with API
+core = 7.x
+version = "7.x-0.1.2"
+dependencies[] = restful
+dependencies[] = restful_search_api
+dependencies[] = cors
+dependencies[] = jquery_update
+package = UniCal

@@ -1,0 +1,10 @@
+<div title="Add to Calendar" class="idfive-calendar__buttoon addthisevent">
+  <i class="fa fa-plus-circle push-right"></i>Add to Calendar
+  <span class="start">{{event.date[0].start_addto}}</span>
+  <span class="end">{{event.date[0].end_addto}}</span>
+  <span class="timezone">{{event.timezone ? event.timezone : event.date[0].timezone}}</span>
+  <span class="title">{{event.label}}</span>
+  <span class="description">{{event.body_trimmed}}</span>
+  <span class="location">{{event.address.data.formatted_address}}</span>
+  <span class="date_format">MM/DD/YYYY</span>
+</div>

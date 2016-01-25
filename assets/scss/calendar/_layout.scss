@@ -1,0 +1,81 @@
+ // ========================================
+// Calendar House
+// ========================================
+
+.idfive-calendar {
+
+  * {
+    box-sizing: border-box;
+  }
+
+}
+
+
+// ========================================
+// Calendar Main
+// ========================================
+
+.idfive-calendar__events {
+
+  @media (min-width: 800px) {
+    float: left;
+    width: 60%;
+    padding-right: 1.5em;
+  }
+
+  @media (min-width: 1000px) {
+    width: 70%;
+    padding-right: 3em;
+  }
+
+}
+
+
+// ========================================
+// Calendar Aside
+// ========================================
+
+.idfive-calendar__aside {
+
+  @media (min-width: 800px) {
+    float: right;
+    width: 40%;
+  }
+
+  @media (min-width: 1000px) {
+    width: 30%;
+  }
+
+}
+
+  // Calendar Side
+  // ----------------------------------------
+
+  .idfive-calendar__sidebar {
+    overflow: hidden;
+
+    > section {
+      border-bottom: 1px solid #ddd;
+      padding: 1em;
+    }
+
+  }
+
+
+// ========================================
+// Layout Tool
+// ========================================
+
+.idfive-calendar {
+
+  .partial-column {
+    float: none;
+    max-width: 50rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+}

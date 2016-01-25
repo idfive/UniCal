@@ -1,0 +1,138 @@
+// ========================================
+// Filters
+// ========================================
+
+.idfive-calendar__filters {
+
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
+  // Toggle display of filters
+  // ----------------------------------------
+
+  .idfive-calendar__filters-toggle {
+    border-top: 1px solid #eee;
+    margin: 0;
+
+    label {
+
+      &:after {
+        float: right;
+        content: '\f107';
+        font-family: 'FontAwesome';
+        font-weight: normal;
+      }
+
+    }
+
+      input {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+    &.\+negative {
+      border: 0;
+
+      label {
+        background: #000;
+        color: #fff;
+      }
+
+    }
+
+  }
+
+  // Set of filters
+  // ----------------------------------------
+
+  .idfive-calendar__filters {
+    display: none;
+
+    @media (min-width: 800px) {
+      display: block;
+    }
+
+    &.open {
+      display: block;
+    }
+
+    label {
+      display: block;
+      padding: .5em 1em;
+      cursor: pointer;
+    }
+
+    .idfive-calendar__filters {
+      display: inherit;
+    }
+
+  }
+
+    // Custom Range filter
+    // ----------------------------------------
+
+    .idfive-calendar__filters-custom-range {
+
+      input {
+        width: 100%;
+        margin: 0;
+        padding: 1em;
+      }
+
+      p {
+        margin: .5em 1em 0;
+        padding: 1em;
+        text-align: center;
+        background: #eee;
+        color: #ccc;
+
+        &:after {
+          margin-left: .5em;
+          content: '\f021';
+          font-family: 'FontAwesome';
+        }
+
+        &.enabled {
+          cursor: pointer;
+          background: #000;
+          color: #fff;
+        }
+
+      }
+
+    }
+
+  // Selected filters
+  // ----------------------------------------
+
+  .idfive-calendar__selectedfilter {
+    margin-right: .5em;
+    cursor: pointer;
+  }
+
+  // Main filter toggle
+  // ----------------------------------------
+
+  #idfive-calendar__filters-toggle {
+
+    @media (min-width: 800px) {
+      display: none;
+    }
+
+  }
+
+  // Main filters help text, if present
+  // ----------------------------------------
+
+  .idfive-calendar__filters-help {
+    margin-bottom: 1em;
+    padding: 0 1em;
+    font-size: 85%;
+    font-style: italic;
+    text-align: center;
+  }

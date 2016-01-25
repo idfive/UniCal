@@ -1,0 +1,353 @@
+<div class="idfive-calendar">
+
+  <div class="idfive-calendar__events partial-column">
+
+    <div class="idfive-calendar__submit-form-back">
+      <!-- <back-link text="Back to Calendar"></back-link> -->
+      <a href="/">Back to Calendar</a>
+    </div>
+
+    <ol class="idfive-calendar__submit-form-progress">
+      <div class="idfive-calendar__submit-form-steps step-{{vm.page}}"></div>
+      <li>Get Started</li>
+      <li>Almost There</li>
+      <li>Submit Event</li>
+    </ol>
+
+    <div class="idfive-calendar__submit-form">
+      <section ng-show="vm.page == 1">
+        <form ng-submit="vm.nextPage()" name="eventInfo">
+          <h4>Event Information</h4>
+          <p class="mini-text underline"><em>What is the name of your event? How would you describe it?</em></p>
+          <input ng-model="vm.newEventData.label" name="label" placeholder="* Event Title" type="text" class="required" required />
+          <textarea ng-model="vm.newEventData.body" name="body" placeholder="* Event Details" type="textarea" class="required" required></textarea>
+          <p>Have an image? Please upload it now.</p>
+          <button ng-if="!vm.newEventData.image && !vm.imageName" type="file" ngf-select="vm.uploadImage($file, $invalidFiles)" accept="image/*" ngf-max-size="500KB" class="idfive-calendar__buttoon--image"><i class="fa fa-camera"></i> Add image</button>
+          <p ng-if="vm.imageValidationError || vm.imageUploadError" class="idfive-calendar__message--error">{{vm.imageValidationError.$error}} {{vm.imageValidationError.$errorParam}} {{vm.imageUploadError}}</p>
+          <p ng-if="vm.newEventData.image && vm.imageName" class="idfive-calendar__message--success">{{vm.imageName}}</p>
+          <div class="idfive-calendar__submit-form-controls">
+            <button ng-disabled="eventInfo.$invalid" type="submit" class="idfive-calendar__buttoon">Next</button>
+          </div>
+        </form>
+      </section>
+
+      <section ng-show="vm.page == 2">
+        <form name="eventWhen" ng-submit="vm.customValidation.endDateAfterStartDate && vm.nextPage()">
+        <h4>Date and Time</h4>
+        <p class="mini-text underline"><em>When is your event taking place?</em></p>
+        <!-- Start: Validation messages -->
+        <div ng-if="!vm.customValidation.endDateAfterStartDate" class="idfive-calendar__error">
+        End date must be after start date
+        </div>
+        <!-- End: Validation messages -->
+        <div class="flex">
+          <label class="form-col-2 first-col">
+            <div class="">* Start Date</div>
+            <input pikaday="vm.pikaday.startDate" name="startDate" type="text" ng-model="vm.newEventDataRaw.startDate" required />
+          </label>
+          <label class="form-col-2 last-col">
+            <div class="">* Start Time</div>
+            <select name="startTimeHour" ng-model="vm.newEventDataRaw.startTime.hour" class="required" required>
+	           <option value="01">01</option>
+               <option value="02">02</option>
+               <option value="03">03</option>
+               <option value="04">04</option>
+               <option value="05">05</option>
+               <option value="06">06</option>
+               <option value="07">07</option>
+               <option value="08">08</option>
+               <option value="09">09</option>
+               <option value="10">10</option>
+               <option value="11">11</option>
+               <option value="12">12</option>
+            </select>
+
+            <select name="startTimeMinute" ng-model="vm.newEventDataRaw.startTime.minute" class="required" required>
+	           <option value="00">00</option>
+               <option value="15">15</option>
+               <option value="30">30</option>
+               <option value="45">45</option>
+            </select>
+
+            <select name="startTimeAMPM" ng-model="vm.newEventDataRaw.startTime.AMPM" class="required" required>
+	           <option value="AM">AM</option>
+               <option value="PM">PM</option>
+            </select>
+          </label>
+        </div>
+        <div class="flex">
+          <label class="form-col-2 first-col">
+            <div class="">* End Date</div>
+            <input pikaday="vm.pikaday.endDate" name="endDate" type="text" ng-model="vm.newEventDataRaw.endDate" required/>
+          </label>
+          <label class="form-col-2 last-col">
+            <div class="">* End Time</div>
+            <select name="startTimeHour" ng-model="vm.newEventDataRaw.endTime.hour" class="required" required>
+	           <option value="01">01</option>
+               <option value="02">02</option>
+               <option value="03">03</option>
+               <option value="04">04</option>
+               <option value="05">05</option>
+               <option value="06">06</option>
+               <option value="07">07</option>
+               <option value="08">08</option>
+               <option value="09">09</option>
+               <option value="10">10</option>
+               <option value="11">11</option>
+               <option value="12">12</option>
+            </select>
+
+            <select name="startTimeMinute" ng-model="vm.newEventDataRaw.endTime.minute" class="required" required>
+	           <option value="00">00</option>
+               <option value="15">15</option>
+               <option value="30">30</option>
+               <option value="45">45</option>
+            </select>
+
+            <select name="startTimeAMPM" ng-model="vm.newEventDataRaw.endTime.AMPM" class="required" required>
+	           <option value="AM">AM</option>
+               <option value="PM">PM</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          <input ng-model="vm.recurringEventToggle" type="checkbox" /> This is a recurring event
+        </label>
+        <div ng-show="vm.recurringEventToggle">
+          <textarea placeholder="Description of recurring dates e.g. Repeats every Friday at 9pm, except in March and April" ng-model="vm.newEventData.repeating_date_description"></textarea>
+        </div>
+        <div class="idfive-calendar__submit-form-controls">
+          <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
+          <button ng-disabled="eventWhen.$invalid" class="idfive-calendar__buttoon" ng-click="vm.validateDates()">Next</button>
+        </div>
+      </form>
+      </section>
+
+      <section ng-show="vm.page == 3">
+        <form name="eventWhere" ng-submit="vm.nextPage()">
+          <h4>Location</h4>
+          <p class="mini-text underline"><em>Where is your event being held? If you enter a complete street address, we’ll feature it on a Google Map.</em></p>
+          <!-- Start: Validation Messages --->
+          <div ng-messages="eventWhere.venueWebsite.$error" ng-if="eventWhere.venueWebsite.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="url">Venue website is not valid. Must be full URL e.g. http://myvenuename.com</div>
+          </div>
+          <!-- End: Validation Messages --->
+          <input ng-model="vm.newEventData.venue_name" name="venueName" placeholder="* Venue Name" type="text" class="required" required/>
+          <input ng-model="vm.newEventData.venue_url.url" name="venueWebsite" placeholder="Venue Website" type="url" http-prefix />
+          <input ng-model="vm.newEventData.address.thoroughfare" name="street" placeholder="Address" type="text" />
+          <div class="flex">
+            <input ng-model="vm.newEventData.address.locality" placeholder="City" type="text" class="form-col-2 first-col" />
+            <select ng-model="vm.newEventData.address.administrative_area" placeholder="State" name="State" class="form-col-4 middle-col">
+              <option value="">State</option>
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+            <input ng-model="vm.newEventData.address.postal_code" placeholder="Postal Code" type="text" class="form-col-4 last-col" />
+          </div>
+          <div class="idfive-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
+            <button ng-disabled="eventWhere.$invalid" class="idfive-calendar__buttoon">Next</button>
+          </div>
+        </form>
+      </section>
+
+      <section ng-show="vm.page == 4">
+        <form name="eventOrganizer" ng-submit="vm.nextPage()">
+          <h4>Event Organizer Contact Information</h4>
+          <p class="mini-text underline"><em>Who is sponsoring the event? Does this group have social media pages for Facebook and Twitter?</em></p>
+          <!-- Start: Validation messages -->
+          <div ng-messages="eventOrganizer.organizerEmail.$error" ng-if="eventOrganizer.organizerEmail.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="email">Email is not valid</div>
+          </div>
+          <div ng-messages="eventOrganizer.organizerFacebook.$error" ng-if="eventOrganizer.organizerFacebook.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="url">Facebook URL is not valid. Must be full URL e.g. https://facebook.com/username</div>
+          </div>
+          <div ng-messages="eventOrganizer.organizerTwitter.$error" ng-if="eventOrganizer.organizerTwitter.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="url">Twitter URL is not valid. Must be full URL e.g. https://twitter.com/username</div>
+          </div>
+          <!-- End: Validation messages -->
+          <input ng-model="vm.newEventData.organizer_name" name="organizerName" placeholder="* Organizer Name" type="text" class="required" required />
+          <div class="flex">
+            <input ng-model="vm.newEventData.organizer_phone"name="organizerPhone" placeholder="* Phone" type="text" class="required form-col-2 first-col" required />
+            <input ng-model="vm.newEventData.organizer_email" name="organizerEmail" placeholder="* Email" type="email" class="required form-col-2 last-col" required />
+          </div>
+          <input ng-model="vm.newEventData.organizer_facebook.url" name="organizerFacebook" placeholder="Organizer Facebook URL:" type="url" http-prefix />
+          <input ng-model="vm.newEventData.organizer_twitter.url" name="organizerTwitter" placeholder="Organizer Twitter URL:" type="url" http-prefix />
+          <div class="idfive-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
+            <button ng-disabled="eventOrganizer.$invalid" class="idfive-calendar__buttoon">Next</button>
+          </div>
+        </form>
+      </section>
+
+      <section ng-show="vm.page == 5">
+        <form name="eventWebsites" ng-submit="vm.nextPage()">
+          <h4>Event Website(s)</h4>
+          <p class="mini-text underline"><em>Is there a web page or Facebook / Twitter account dedicated to this event?</em></p>
+          <!-- Start: Validation messages -->
+          <div ng-messages="eventWebsites.eventWebsite.$error" ng-if="eventWebsites.eventWebsite.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="url">Event URL is not valid. Must be full URL e.g. http://myevent.com</div>
+          </div>
+          <div ng-messages="eventWebsites.eventFacebook.$error" ng-if="eventWebsites.eventFacebook.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="url">Facebook URL is not valid. Must be full URL e.g. https://facebook.com/username</div>
+          </div>
+          <div ng-messages="eventWebsites.eventTwitter.$error" ng-if="eventWebsites.eventTwitter.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="url">Twitter URL is not valid. Must be full URL e.g. https://twitter.com/username</div>
+          </div>
+          <!-- End: Validation messages -->
+          <input ng-model="vm.newEventData.event_website.url" name="eventWebsite" placeholder="Event URL:" type="url" http-prefix />
+          <input ng-model="vm.newEventData.event_facebook.url" name="eventFacebook" placeholder="Event Facebook URL:" type="url" http-prefix />
+          <input ng-model="vm.newEventData.event_twitter.url" name="eventTwitter" placeholder="Event Twitter URL:" type="url" http-prefix />
+          <div class="idfive-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
+            <button ng-disabled="eventWebsites.$invalid" class="idfive-calendar__buttoon">Next</button>
+          </div>
+        </form>
+      </section>
+
+      <section ng-show="vm.page == 6">
+        <form name="eventCost" ng-submit="vm.nextPage()">
+          <h4>Cost</h4>
+          <p class="mini-text underline"><em>How much do people pay to attend / participate? Be sure to list pricing for different groups, if applicable. E.g. $10 students; $15 faculty / staff; $20 general admission</em></p>
+          <label>
+            <input ng-model="vm.newEventData.free" name="free" type="checkbox" />
+            <span class="mini-text"><em>Free event?</em></span>
+          </label>
+          <div>
+            <textarea ng-model="vm.newEventData.cost" name="cost" placeholder="Cost Information"></textarea>
+          </div>
+          <div class="idfive-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
+            <button ng-disabled="eventCost.$invalid" class="idfive-calendar__buttoon">Next</button>
+          </div>
+        </form>
+      </section>
+
+      <section ng-show="vm.page == 7">
+        <form name="eventRsvp" ng-submit="vm.nextPage()">
+          <h4>RSVP Information</h4>
+          <p class="mini-text underline"><em>What do people have to do to indicate that they're attending this event? If there’s a website to purchase tickets, include it below.</em></p>
+          <!-- Start: Validation messages -->
+          <div ng-messages="eventRsvp.rsvpEmail.$error" ng-if="eventRsvp.rsvpEmail.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="email">Email address is not valid</div>
+          </div>
+          <div ng-messages="eventRsvp.rsvpUrl.$error" ng-if="eventRsvp.rsvpUrl.$touched" role="alert" class="idfive-calendar__error">
+            <div ng-message="url">Ticket URL is not valid. Must be full URL e.g. http://buytickets.com</div>
+          </div>
+          <!-- End: Validation messages -->
+          <input ng-model="vm.newEventData.rsvp_how_to.value" name="howToRsvp" placeholder="RSVP Details" type="textarea" />
+          <div class="flex">
+            <input ng-model="vm.newEventData.rsvp_phone" name="rsvpPhone" placeholder="Phone" type="text" class="form-col-2 first-col" />
+            <input ng-model="vm.newEventData.rsvp_email" name="rsvpEmail" placeholder="Email" type="email" class="form-col-2 last-col" />
+          </div>
+          <p class="mini-text"><em>Url to purchase tickets (optional)</em></p>
+          <input ng-model="vm.newEventData.rsvp_ticket.url" name="rsvpUrl" placeholder="URL" type="url" http-prefix />
+          <div class="idfive-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</a>
+            <button ng-disabled="eventRsvp.$invalid" class="idfive-calendar__buttoon">Next</button>
+          </div>
+        </form>
+      </section>
+
+      <section ng-show="vm.page == 8">
+        <form name="eventTax" ng-submit="vm.nextPage()">
+          <h4>Categories</h4>
+          <p class="mini-text underline">
+            <em ng-if="vm.hasPrecheckedTaxonomies()">
+              You are submitting an event to the {{vm.siteSettings.label}} calendar. Are there any additional tags that you would like to select? Some tags, based on the {{vm.siteSettings.label}} are already selected for you.
+            </em>
+            <em ng-if="!vm.hasPrecheckedTaxonomies()">
+              Where should this event appear on our calendars? Check all that apply (at least one must be selected).
+            </em>
+          </p>
+          <div ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies">
+            <div ng-show="taxonomy.enabled">
+              <h4>{{taxonomy.label}}</h4>
+              <label class="label-inline-2" ng-repeat="term in taxonomy.terms">
+                <input type="checkbox" ng-true-value="{{term.id}}" ng-false-value="" ng-model="vm.newEventData[taxonomyId][$index]" ng-checked="vm.isTermPrechecked(taxonomyId, term.id, $index)" ng-disabled="vm.isTermPrechecked(taxonomyId, term.id, $index)"> {{term.label}}
+              </label>
+            </div>
+          </div>
+          <div class="idfive-calendar__submit-form-controls">
+            <a ng-click="vm.prevPage()" ng-show="vm.page > 1" class="idfive-calendar__buttoon">Back</a>
+            <button ng-disabled="!vm.taxonomyValidateSelected()" class="idfive-calendar__buttoon">Next</button>
+          </div>
+        </form>
+      </section>
+
+      <section ng-show="vm.page == 9">
+        <form name="eventContact" ng-submit="vm.createEvent()">
+          <h4>Your Contact Information</h4>
+          <p class="mini-text underline"><em>What's your name and contact information? We'll only contact you if we have questions about this event.</em></p>
+          <input ng-model="vm.newEventData.submitter_name" placeholder="* Your Name" type="text" class="required" required />
+          <div class="flex">
+            <input ng-model="vm.newEventData.submitter_phone" placeholder="* Phone" type="text" class="required form-col-2 first-col" required />
+            <input ng-model="vm.newEventData.submitter_email" placeholder="* Email" type="email" class="required form-col-2 last-col" required />
+          </div>
+          <div class="idfive-calendar__submit-form-controls">
+            <button ng-click="vm.prevPage()" class="idfive-calendar__buttoon">Back</button>
+            <button ng-disabled="vm.submitted || eventContact.$invalid" class="idfive-calendar__buttoon idfive-calendar__submit-buttoon">Submit</button>
+          </div>
+        </form>
+      </section>
+
+      <section ng-show="vm.page == 10">
+        <p>Thank You for Submitting Your Event!</p>
+        <p>A moderator will review your event within two business days.</p>
+        <p>If it meets our guidelines [link], we will post it. If we have any questions, we will contact you during the review process.</p>
+        <p>Go back to our calendar [link].</p>
+      </section>
+    </div>
+
+  </div>
+
+</div>

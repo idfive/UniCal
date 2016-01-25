@@ -1,0 +1,93 @@
+<?php
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+ function unical_ctools_plugin_directory($module, $plugin) {
+   if ($module == 'restful') {
+     return 'plugins/' . $plugin;
+   }
+ }
+
+ function unical_theme($existing, $type, $theme, $path) {
+  return array(
+    'node__site' => array(
+      'render element' => 'content',
+      'base hook' => 'node',
+      'template' => 'node--site',
+      'path' => drupal_get_path('module', 'unical') . '/templates/node',
+    ),
+  );
+}
+
+
+/*
+ * Implementation of hook_menu(). Lets add a cool tab to the site nodes yall!
+ */
+function unical_menu() {
+  $items = array();
+
+  $items['node/%node/calendar-site-settings-embed'] = array(
+    'title' => 'Embed/Install Instructions',
+    'page callback' => '_unical_embed',
+    'page arguments' => array(1),
+    'access callback' => '_unical_check_tab_permission',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
+  );
+
+  return $items;
+}
+
+/*
+ * This shows the nifty embed code we made to site admins, and lets them know how to embed it elsewhwere.
+ */
+function _unical_embed(){
+  // Define site URL
+  $url = $GLOBALS['base_url'];
+  // Get nid from url, as we dont have access to $node
+  $node_path = explode('/', $_SERVER["REQUEST_URI"]);
+  $nid = $node_path[2];
+
+  $embed_code = htmlspecialchars('<link rel="stylesheet" href="' . $url . '/sites/all/modules/unical/assets/css/styles.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <div ng-app="calendar" class="idfive-calendar"><h1>Calendar of Events</h1><div ng-view></div></div><script>var siteUrl = "' . $url . '/api/";
+  var siteId =' . $nid . ';</script><script src="http://dev.calendar.howard.edu/sites/all/modules/unical/app/build/unical.js"></script>');
+
+  $embed_text = "
+  <h1>Embed/Install Instructions</h1>
+  <p>In addition to the individual site calendars being available on this site, they are also available for embedding either through the idfive_calendar_embed module for drupal sites, or by simply adding the code snippet at the bottom of the page.</p>
+  <h3>Drupal Module:</h3>
+  <p>Add the following to the modules settings page:</p>
+    <ul>
+      <li><strong>Site URL</strong>: " . $url . "/</li>
+      <li><strong>Site ID</strong>: " . $nid . "</li>
+    </ul>
+  <h3>Manual Embed Code:</h3>
+  <p>The following can be embedded on any relevant HTML page, regardless of the CMS/etc. This can be modified and seperated into more optimized areas of the site (head/footer/etc) if desired.</p>
+  <p>The main components needed are:</p>
+    <ul>
+      <li>Styles.css for the calendar.</li>
+      <li>Font awesome css (4.4)(eliminate if site is already using).</li>
+      <li>jquery > 1.10.2 (eliminate if site is already using).</li>
+      <li>Divs that will render the app.</li>
+      <li>JS variables to tell the calendar which site to use.</li>
+      <li>The main app JS.</li>
+    </ul>
+    <code> ". $embed_code ."</code>";
+
+return $embed_text;
+
+}
+
+/*
+ * Check whether to display "Settings/Embed" tab, ie, if its a site node, and you are an administrator.
+ */
+function _unical_check_tab_permission($node) {
+  global $user;
+  if ($node->type == 'site' && in_array('administrator', $user->roles)) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
+}

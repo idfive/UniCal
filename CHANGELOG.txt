@@ -1,0 +1,13 @@
+Version 0.1.0
+=============
+- Initial release
+
+Version 0.1.1
+=============
+- Add changelog
+
+Version 0.1.2
+=============
+- Remove debug button from event submit form
+- Remove "required" dependency from price description on event submit form
+- Remove hard-coded form submit URL

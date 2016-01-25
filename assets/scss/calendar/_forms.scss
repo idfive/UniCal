@@ -1,0 +1,170 @@
+// ========================================
+// Submit Event Progress
+// ========================================
+
+.idfive-calendar__submit-form-progress {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 96%;
+  margin: 1.5em 2%;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 600px) {
+    width: 84%;
+    margin-right: 8%;
+    margin-left: 8%;
+  }
+
+  li {
+    position: relative;
+    padding: .25em 1em;
+  }
+
+}
+
+  .idfive-calendar__submit-form-steps {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #eee;
+    transition: width .3s;
+
+    @for $i from 1 through 10 {
+
+      &.step-#{$i} {
+        width: 100 / 10 * $i * 1%;
+      }
+
+    }
+
+  }
+
+
+// ========================================
+// Submit Event Form
+// ========================================
+
+.idfive-calendar__submit-form {
+
+  section {
+    margin-bottom: 1em;
+    padding: 2em;
+    animation: scale-in 1s forwards;
+    background: #eee;
+  }
+
+    // Form Tools
+    // ----------------------------------------
+
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+      .first-col {
+        margin-right: 1%;
+      }
+
+      .middle-col {
+        margin-right: .5%;
+        margin-left: .5%;
+      }
+
+      .last-col {
+        margin-left: 1%;
+      }
+
+      .form-col-2 {
+        width: 49%;
+      }
+
+      .form-col-4 {
+        width: 24%;
+      }
+
+    // Form Inputs
+    // ----------------------------------------
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 0;
+      margin-bottom: 2%;
+      padding: 1em;
+
+      &::placeholder {
+        transition: color .3s;
+      }
+
+      &:focus::placeholder {
+        color: rgba(#000, .35);
+      }
+
+    }
+
+    select {
+      width: auto;
+    }
+
+    [type='checkbox'],
+    [type='submit'] {
+      width: auto;
+    }
+
+    .label-inline-2 {
+
+      @media(min-width: 800px) {
+        display: inline-block;
+        vertical-align: top;
+        width: 46%;
+        margin-right: 2%;
+      }
+
+    }
+
+    // Validation messages
+    // ----------------------------------------
+
+    .idfive-calendar__error {
+      color: #f00;
+    }
+
+}
+
+@keyframes scale-in {
+
+  0% {
+    opacity: 0;
+    transform: scale(.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+  // Form Controls
+  // ----------------------------------------
+
+  .idfive-calendar__submit-form-controls {
+
+    a,
+    button {
+
+      &[aria-disabled='true'] {
+        cursor: not-allowed;
+        opacity: .35;
+      }
+
+    }
+
+  }
+
+
