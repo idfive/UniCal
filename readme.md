@@ -7,6 +7,7 @@ This app/module is designed and maintained by IDFIVE. It serves a sortable list/
 - UniCal (unical): This module provides both the API, files, content types, and magic that provides everything.
 - UniCal Client (unical_client): This module allows you to embed a calendar in any drupal site, anywhere, that will read via REST to the install where a UniCal site exists.
 
+
 The idea here is that any enterprise/organization utilizing UniCal, will most likely need a "clean" drupal install to act as the MASTER, for serving events via REST to be consumed elsewhere. This module "may" be deployed on existing installs, but extensive testing against pre-existing modules/config will need to be done. READ: We haven't tested against your specific existing install, nor will we.
 
 It would be helpful to know a few basic principles we refer to:
