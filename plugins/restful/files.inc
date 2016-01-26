@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Defines Files REST endpoint.
+ */
+
 if (variable_get('restful_file_upload', FALSE)) {
   $plugin = array(
     'label' => t('File upload'),

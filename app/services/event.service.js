@@ -144,7 +144,7 @@
      *
      */
     function finishRenderFilters() {
-      $window.unicalApiBehaviors.filterToggle();
+      $window.UnicalApiBehaviors.filterToggle();
     }
 
     /*

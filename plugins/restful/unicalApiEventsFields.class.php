@@ -1,8 +1,17 @@
 <?php
 
-class unicalApiEventsFields extends RestfulEntityBaseNode {
+/**
+ * @file
+ * Defines events fields.
+ */
 
-  protected $range = 1000; //Override by passing range in the API call, but cannot exceed this number
+/**
+ * Extends base node.
+ */
+class UnicalApiEventsFields extends RestfulEntityBaseNode {
+
+  // Override by passing range in the API call, but cannot exceed this number.
+  protected $range = 1000;
 
   /**
    * Overrides RestfulEntityBaseNode::publicFieldsInfo().
@@ -55,19 +64,19 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
     $public_fields['uri'] = array(
       'property' => 'nid',
       'process_callbacks' => array(
-        array($this, 'processURI'),
+        array($this, 'processUri'),
       ),
     );
 
-    // Address -------------------------
+    // Address -------------------------.
     $public_fields['address'] = array(
       'property' => 'field_address',
       'process_callbacks' => array(
-        array($this, 'processAddress')
+        array($this, 'processAddress'),
       ),
     );
 
-    // Taxonomies ----------------------
+    // Taxonomies ----------------------.
     $public_fields['taxonomy_1'] = array(
       'property' => 'field_taxonomy_1',
       'sub_property' => 'tid',
@@ -98,7 +107,7 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
       'sub_property' => 'tid',
     );
 
-    // Venue --------------------------
+    // Venue --------------------------.
     $public_fields['venue_name'] = array(
       'property' => 'field_venue_name',
     );
@@ -107,7 +116,7 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
       'property' => 'field_venue_url',
     );
 
-    // Cost ----------------------------
+    // Cost ----------------------------.
     $public_fields['cost'] = array(
       'property' => 'field_cost',
     );
@@ -116,7 +125,7 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
       'property' => 'field_free_event',
     );
 
-    // RSVP ------------------------------
+    // RSVP ------------------------------.
     $public_fields['rsvp_ticket'] = array(
       'property' => 'field_ticket_url',
     );
@@ -133,7 +142,7 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
       'property' => 'field_rsvp_email',
     );
 
-    // Organizer Info ----------------------
+    // Organizer Info ----------------------.
     $public_fields['organizer_name'] = array(
       'property' => 'field_contact_name',
     );
@@ -158,7 +167,7 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
       'property' => 'field_same_as_submitter',
     );
 
-    // Submitter Info ----------------------
+    // Submitter Info ----------------------.
     $public_fields['submitter_name'] = array(
       'property' => 'field_submitter_name',
     );
@@ -171,7 +180,7 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
       'property' => 'field_submitter_email',
     );
 
-    // Social Media -----------------------
+    // Social Media -----------------------.
     $public_fields['event_website'] = array(
       'property' => 'field_contact_website',
     );
@@ -183,7 +192,7 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
       'property' => 'field_social_twitter',
     );
 
-    // Admin -----------------------
+    // Admin -----------------------.
     $public_fields['featured'] = array(
       'property' => 'field_featured',
     );
@@ -203,90 +212,110 @@ class unicalApiEventsFields extends RestfulEntityBaseNode {
     return $public_fields;
   }
 
-  public function defaultSortInfo()
-  {
+  /**
+   * Define the default sort.
+   */
+  public function defaultSortInfo() {
+
     return array('date' => 'ASC');
   }
 
-  public function processURI($id)
-  {
-    //Get Drupal path
-    $path = drupal_get_path_alias('node/'.$id);
+  /**
+   * Process the URI.
+   */
+  public function processUri($id) {
 
-    //If the path contains more than one part, get the last part
-    if(strpos($path, '/') !== false)
-    {
-        $parts = explode('/', $path);
-        $path = $parts[sizeof($parts)-1];
+    // Get Drupal path.
+    $path = drupal_get_path_alias('node/' . $id);
+
+    // If the path contains more than one part, get the last part.
+    if (strpos($path, '/') !== FALSE) {
+      $parts = explode('/', $path);
+      $path = $parts[sizeof($parts) - 1];
     }
 
-    //Return
+    // Return.
     return $path;
   }
 
-  public function processDate($data)
-  {
-    //Loop through each date
-    foreach($data as $key => $date) {
+  /**
+   * Process the Date.
+   */
+  public function processDate($data) {
 
-      //Get timestamps based on date as stored in DB (no timeszone conversion)
-      $unixStart = strtotime($data[$key]['value']);
-      $unixEnd = strtotime($data[$key]['value2']);
+    // Loop through each date.
+    foreach ($data as $key => $date) {
 
-      if($unixStart >= time()) { //If date is not in the past
+      // Get timestamps based on date as stored in DB (no timeszone conversion).
+      $unix_start = strtotime($data[$key]['value']);
+      $unix_end = strtotime($data[$key]['value2']);
 
-        //Get UNIX timestamp
-        $data[$key]['start_unix'] = $unixStart;
-        $data[$key]['end_unix'] = $unixEnd;
+      if ($unix_start >= time()) {
+        // If date is not in the past
+        // Get UNIX timestamp.
+        $data[$key]['start_unix'] = $unix_start;
+        $data[$key]['end_unix'] = $unix_end;
 
-        //Specific formats for event list display
-        $data[$key]['start_month'] = date('M', $unixStart);
-        $data[$key]['start_day'] = date('j', $unixStart);
-        $data[$key]['start_time'] = date('g:i A', $unixStart);
-        $data[$key]['end_time'] = date('g:i A', $unixEnd);
+        // Specific formats for event list display.
+        $data[$key]['start_month'] = date('M', $unix_start);
+        $data[$key]['start_day'] = date('j', $unix_start);
+        $data[$key]['start_time'] = date('g:i A', $unix_start);
+        $data[$key]['end_time'] = date('g:i A', $unix_end);
 
-        //Specific formats for event detail display
-        $data[$key]['start_date'] = date('F j, Y', $unixStart);
-        $data[$key]['end_date'] = date('F j, Y', $unixEnd);
+        // Specific formats for event detail display.
+        $data[$key]['start_date'] = date('F j, Y', $unix_start);
+        $data[$key]['end_date'] = date('F j, Y', $unix_end);
 
-        //Specific formats for "Add to Calendar" button (see https://addthisevent.com)
-        $data[$key]['start_addto'] = date('m/d/Y g:i A', $unixStart);
-        $data[$key]['end_addto'] = date('m/d/Y g:i A', $unixEnd);
+        // Specific formats for "Add to Calendar" button
+        // (see https://addthisevent.com)
+        $data[$key]['start_addto'] = date('m/d/Y g:i A', $unix_start);
+        $data[$key]['end_addto'] = date('m/d/Y g:i A', $unix_end);
 
-      } else { //Disregard this date, since it is past
-
+      }
+      else {
+        // Disregard this date, since it is past.
         unset($data[$key]);
 
       }
 
     }
 
-    //Return (and reset array values)
+    // Return (and reset array values).
     return $data = array_values($data);
   }
 
-  public function processClndrDate($data)
-  {
-    foreach($data as $key => $date) {
-      $unixStart = strtotime($data[$key]['value']);
+  /**
+   * Process the date for the clndr feature.
+   */
+  public function processClndrDate($data) {
 
-      if($unixStart >= time()) { //If date is not in the past
+    foreach ($data as $key => $date) {
+      $unix_start = strtotime($data[$key]['value']);
+
+      if ($unix_start >= time()) {
+        // If date is not in the past.
         return $data[$key]['value'];
       }
     }
   }
 
-  public function processAddress($data)
-  {
-    //Unserialize data so we have formatted address, longitude etc.
+  /**
+   * Process the Address.
+   */
+  public function processAddress($data) {
+
+    // Unserialize data so we have formatted address, longitude etc.
     $data['full_address'] = $data['thoroughfare'] . ', ' . $data['locality'] . ', ' . $data['administrative_area'] . ' ' . $data['postal_code'] . ' ' . $data['country'];
 
     return $data;
   }
 
-  public function processBody($data)
-  {
-    return text_summary(drupal_html_to_text($data, array('<strong>','<em>')), null, 250);
+  /**
+   * Process the Body.
+   */
+  public function processBody($data) {
+
+    return text_summary(drupal_html_to_text($data, array('<strong>', '<em>')), NULL, 250);
   }
 
 }

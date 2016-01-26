@@ -1,14 +1,23 @@
 <?php
 
-require 'unicalApiEventsFields.class.php';
+/**
+ * @file
+ * Defines events REST resource.
+ */
 
-class unicalApiEventsResource extends unicalApiEventsFields {
-  
+require 'UnicalApiEventsFields.class.php';
+
+/**
+ * Extend fields.
+ */
+class UnicalApiEventsResource extends UnicalApiEventsFields {
+
   /**
    * Overrides RestfulEntityBaseNode::publicFieldsInfo().
    */
   public function publicFieldsInfo() {
-    
+
     return parent::publicFieldsInfo();
-  }    
+  }
+
 }

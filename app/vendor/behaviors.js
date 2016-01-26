@@ -1,4 +1,4 @@
-var unicalApiBehaviors = (function() {
+var UnicalApiBehaviors = (function() {
   
   var self = {};
   

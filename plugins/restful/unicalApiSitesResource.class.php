@@ -1,6 +1,14 @@
 <?php
 
-class unicalApiSitesResource extends RestfulEntityBaseNode {
+/**
+ * @file
+ * Defines taxonomy REST resource.
+ */
+
+/**
+ * Extends base node.
+ */
+class UnicalApiSitesResource extends RestfulEntityBaseNode {
 
   /**
    * Overrides RestfulEntityBaseNode::publicFieldsInfo().
@@ -98,9 +106,9 @@ class unicalApiSitesResource extends RestfulEntityBaseNode {
       'property' => 'field_taxonomy_6',
       'sub_property' => 'tid',
     );
-    
+
     /* Add to Calendar Options to exclude */
-    
+
     $public_fields['add_to_calendar_exclude'] = array(
       'property' => 'field_add_to_calendar_exclude',
       'sub_property' => 'field_ate_id',
@@ -133,11 +141,12 @@ class unicalApiSitesResource extends RestfulEntityBaseNode {
       'property' => 'field_calendar_help_link',
       'sub_property' => 'url',
     );
-    
+
     $public_fields['main_calendar_site'] = array(
       'property' => 'field_main_calendar_site',
     );
 
     return $public_fields;
   }
+
 }
