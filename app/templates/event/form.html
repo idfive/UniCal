@@ -45,7 +45,7 @@
             <div class="">* Start Date</div>
             <input pikaday="vm.pikaday.startDate" name="startDate" type="text" ng-model="vm.newEventDataRaw.startDate" required />
           </label>
-          <label class="form-col-2 last-col">
+          <div class="form-col-2 last-col">
             <div class="">* Start Time</div>
             <select name="startTimeHour" ng-model="vm.newEventDataRaw.startTime.hour" class="required" required>
 	           <option value="01">01</option>
@@ -73,7 +73,7 @@
 	           <option value="AM">AM</option>
                <option value="PM">PM</option>
             </select>
-          </label>
+          </div>
         </div>
         <div class="flex">
           <label class="form-col-2 first-col">
