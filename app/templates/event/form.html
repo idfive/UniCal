@@ -80,7 +80,7 @@
             <div class="">* End Date</div>
             <input pikaday="vm.pikaday.endDate" name="endDate" type="text" ng-model="vm.newEventDataRaw.endDate" required/>
           </label>
-          <label class="form-col-2 last-col">
+          <div class="form-col-2 last-col">
             <div class="">* End Time</div>
             <select name="startTimeHour" ng-model="vm.newEventDataRaw.endTime.hour" class="required" required>
 	           <option value="01">01</option>
@@ -108,7 +108,7 @@
 	           <option value="AM">AM</option>
                <option value="PM">PM</option>
             </select>
-          </label>
+          </div>
         </div>
         <label>
           <input ng-model="vm.recurringEventToggle" type="checkbox" /> This is a recurring event
