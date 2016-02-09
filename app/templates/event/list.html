@@ -157,9 +157,16 @@
         <img ng-if="event.image.image_styles.large" ng-src="{{event.image.image_styles.large}}" alt="{{event.image.alt}}">
         <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="">
       </div>
-      <div  class="unical-calendar__event-content">
+      <div class="unical-calendar__event-content">
         <h2 class="unical-calendar__event-title"><a href="#/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
-        <p><span ng-show="event.address.data.formatted_address">{{event.address.data.formatted_address}} |</span> {{event.date[0].start_time}} <span ng-if="event.date.length > 1">(Multiple Dates)</span></p>
+        <p>
+          <span ng-show="event.address.data.formatted_address">{{event.address.data.formatted_address}} |</span>
+          <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '12:00 AM'">
+            <span ng-switch-when="true">All Day</span>
+            <span ng-switch-default>{{event.date[0].start_time}}</span>
+          </span>
+          <span ng-if="event.date.length > 1">(Multiple Dates)</span>
+		</p>
         <div class="unical-calendar__event-caption" ng-if="event.body_trimmed && event.body_trimmed.length">
           <p>{{event.body_trimmed}}</p>
         </div>

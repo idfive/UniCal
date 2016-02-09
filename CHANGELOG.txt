@@ -11,3 +11,7 @@ Version 0.1.2
 - Remove debug button from event submit form
 - Remove "required" dependency from price description on event submit form
 - Remove hard-coded form submit URL
+
+Version 0.1.3 - February 9, 2016
+================================
+- Display "All Day" text for all day events instead of time
