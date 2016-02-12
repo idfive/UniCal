@@ -28,9 +28,9 @@
           <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Get tickets</a>
         </p>
         <div ng-if="event.date.length > 1">
-          <p>This event has multiple dates:</p>
-          <ul ng-repeat="(key, date) in event.date">
-            <li>{{date.start_date}} ({{date.start_time}} - {{date.end_time}})</li>
+          <p>This event has multiple dates. <a href ng-click="showRepeatDates = !showRepeatDates">Show all dates</a></p>
+          <ul ng-show="showRepeatDates">
+            <li ng-repeat="(key, date) in event.date">{{date.start_date}} ({{date.start_time}} - {{date.end_time}})</li>
           </ul>
         </div>
 
@@ -108,7 +108,7 @@
           <span ng-if="event.organizer_email">Email: <a href="mailto:{{event.organizer_email}}">{{event.organizer_email}}</a></span>
         </p>
 
-        <a ng-if="event.event_website" href="{{event.event_website.url}}" target="_blank">{{event.event_website.url}}</a>
+        <a ng-if="event.event_website" href="{{event.event_website.url}}" target="_blank">Event website</a>
 
         <ul ng-if="event.organizer_facebook || event.organizer_twitter" class="contact_social">
           <li ng-if="event.organizer_facebook">
