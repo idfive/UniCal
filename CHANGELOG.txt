@@ -21,3 +21,7 @@ Version 0.1.4 - February 12, 2016
 - Add "back to calendar" link to detail page
 - Event website link now outputs as "Event website"
 - Show\hide repeating event dates
+
+Version 0.1.5 - February 15, 2016
+=================================
+- Text modification for image uploads
