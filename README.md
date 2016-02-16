@@ -80,7 +80,7 @@ UniCal Features module.
 TROUBLESHOOTING
 ---------------  
 * If the endpoint does not display, check the following:   - Is CORS set up?   
-- Have you added some test content?   
+-- Have you added some test content?   
 
 KNOWN CONFLICTS
 ---------------  
