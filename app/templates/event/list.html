@@ -160,7 +160,7 @@
       <div class="unical-calendar__event-content">
         <h2 class="unical-calendar__event-title"><a href="#/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
         <p>
-          <span ng-show="event.address.data.formatted_address">{{event.address.data.formatted_address}} |</span>
+          <span ng-show="event.venue_name">{{event.venue_name}} |</span>
           <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '12:00 AM'">
             <span ng-switch-when="true">All Day</span>
             <span ng-switch-default>{{event.date[0].start_time}}</span>

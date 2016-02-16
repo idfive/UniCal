@@ -82,9 +82,7 @@
             <span ng-switch-default>{{event.venue_name}}</span>
           </span><br>
         </span>
-        <span ng-if="event.address.data.formatted_address">
-          {{event.address.data.formatted_address}}
-        </span>
+        <span ng-if="event.address.full_address" ng-bind-html="event.address.full_address"></span>
       </section>
       <section ng-if="event.cost">
         <h3>Cost</h3>

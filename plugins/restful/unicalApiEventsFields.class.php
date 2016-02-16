@@ -304,9 +304,38 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
    */
   public function processAddress($data) {
 
-    // Unserialize data so we have formatted address, longitude etc.
-    $data['full_address'] = $data['thoroughfare'] . ', ' . $data['locality'] . ', ' . $data['administrative_area'] . ' ' . $data['postal_code'] . ' ' . $data['country'];
-
+    $data['full_address'] = '';
+    
+    if(!empty($data['thoroughfare'])) {
+      $data['full_address'] .= $data['thoroughfare'] . ', ';
+    }
+    
+    if(!empty($data['premise'])) {
+      $data['full_address'] .= $data['premise'] . ', ';
+    }
+    
+    if(!empty($data['locality'])) { //City
+      $data['full_address'] .= $data['locality'] . ' ';
+    }
+    
+    if(!empty($data['administrative_area'])) { //State
+      $data['full_address'] .= $data['administrative_area'] . ' ';
+    }
+    
+    if(!empty($data['postal_code'])) { //Zip
+      $data['full_address'] .= $data['postal_code'];
+    }
+    
+    if(!empty($data['country']) && $data['full_address'] !== '') {
+      $data['full_address'] .= ', ' . $data['country'];
+    }
+    
+    $dirty_strings = array(' , ', ',,');
+    $clean_strings = array(', ', ',');
+    
+    //Cleanup
+    $data['full_address'] = str_replace($dirty_strings, $clean_strings, $data['full_address']);
+    
     return $data;
   }
 
