@@ -86,8 +86,8 @@
   <div ng-show="vm.siteSettings.allow_featured_events">
     <div class="unical-calendar__featured" ng-show="vm.featuredEvents.length">
       <ul class="swift-slide">
-        <li ng-repeat="event in vm.featuredEvents" style="background-image: url('{{event.image.image_styles.large}}');" on-finish-render="vm.finishRenderFeatured()">
-          <div class="unical-calendar__featured-inner"></div>
+        <li ng-repeat="event in vm.featuredEvents" on-finish-render="vm.finishRenderFeatured()">
+          <div class="unical-calendar__featured-inner" style="background-image: url('{{event.image.image_styles.large}}');"></div>
           <div class="unical-calendar__featured-text">
             <h2>{{event.date[0].start_month}} {{event.date[0].start_day}}</h2>
             <h4><a href="#/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h4>
