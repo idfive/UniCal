@@ -82,6 +82,11 @@ TROUBLESHOOTING
 * If the endpoint does not display, check the following:   - Is CORS set up?   
 - Have you added some test content?   
 
+KNOWN CONFLICTS
+---------------  
+* Global Redirect Module. Affects the angular form submit. Will look into as time
+  allows.    
+
 API 1.0
 -------
 This entire application works via REST, so we need to have a pretty robust API.
@@ -142,7 +147,7 @@ defined in the UniCal Features Module.
 
 Event Content Type:
 * Defines events that show up on the calendar and throughout the API.
-* Each Event can be categorized within the taxonomies (1-6), and then subsequentlty
+* Each Event can be categorized within the taxonomies (1-6), and then subsequently
   filtered on the front end.  
 
 Site Content Type:
