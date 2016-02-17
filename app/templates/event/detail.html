@@ -2,6 +2,7 @@
   <a href="#/">Back to Calendar</a>
 </div>
 <div ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
+  <update-title title="{{event.label}} | {{vm.siteSettings.label}}"></update-title>
   <div class="unical-calendar__events">
     <div class="unical-calendar__event unical-calendar__event--spotlight">
       <div class="unical-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">

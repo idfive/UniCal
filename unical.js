@@ -13,6 +13,7 @@
 //=require app/vendor/angular-clndr.min.js
 //=require app/vendor/angular-pikaday.js
 //=require app/vendor/ng-file-upload-all.min.js
+//=require app/vendor/update-meta.min.js
 
 //App
 //=require app/app.js
