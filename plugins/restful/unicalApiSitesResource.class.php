@@ -145,6 +145,13 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
     $public_fields['main_calendar_site'] = array(
       'property' => 'field_main_calendar_site',
     );
+    
+    if (field_info_field('field_custom_text_above_sidebar')) {
+      $public_fields['text_above_sidebar'] = array(
+        'property' => 'field_custom_text_above_sidebar',
+        'sub_property' => 'value',
+      );
+    }
 
     return $public_fields;
   }
