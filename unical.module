@@ -137,3 +137,32 @@
       return FALSE;
     }
   }
+
+/**
+ * Expires dates in repeating events, so sort works on next date in series
+ *
+ */
+function _unical_expire_repeating_events() {
+  
+  $result = db_query(
+    'UPDATE {field_data_field_date} SET deleted = :deleted WHERE field_date_value < :datenow AND field_date_rrule != :rrule', array(
+      ':datenow' => date('Y-m-d H:i:s'),
+      ':rrule' => 'null',
+      ':deleted' => 1
+    )
+  );
+  
+  watchdog('unical', $result->rowCount() . ' repeating event dates were set to expired', array(), WATCHDOG_NOTICE);
+  
+}
+
+/**
+ * Cron hook
+ *
+ */
+function unical_cron() {
+  
+  //Don't implement yet
+  //_unical_expire_repeating_events();
+  
+}

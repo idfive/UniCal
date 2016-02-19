@@ -29,3 +29,7 @@ Version 0.1.5 - February 15, 2016
 Version 0.1.6 - February 18, 2016
 =================================
 - Add custom text area to show above sidebar
+
+Version 0.1.6 - February 19, 2016
+=================================
+- Add ability to expire repeting event dates
