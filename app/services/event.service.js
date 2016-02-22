@@ -70,7 +70,7 @@
      *
      */
     function createNewEvent(event) {
-      return $http.post(utilityService.getBaseUrl() + 'events/', service.newEventData);
+      return $http.post(utilityService.getBaseUrl() + 'events/', service.newEventData, { timeout: 10000 });
     }
 
     /*

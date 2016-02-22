@@ -5,9 +5,9 @@
     .module('calendar')
     .controller('eventSubmitController', eventSubmitController);
 
-  eventSubmitController.$inject = ['$routeParams', '$location', 'eventService', 'taxonomyService', 'utilityService', 'dateService', 'siteService', 'Upload'];
+  eventSubmitController.$inject = ['$routeParams', '$location', '$window', 'eventService', 'taxonomyService', 'utilityService', 'dateService', 'siteService', 'Upload'];
 
-  function eventSubmitController($routeParams, $location, eventService, taxonomyService, utilityService, dateService, siteService, Upload) {
+  function eventSubmitController($routeParams, $location, $window, eventService, taxonomyService, utilityService, dateService, siteService, Upload) {
 
     //Shortcut to scope
     var vm = this;
@@ -36,6 +36,9 @@
         vm.newEventDataRaw = eventService.newEventDataRaw;
         vm.page = 10;
         vm.submitted = false;
+      }, function(response) {
+        vm.submitted = false;
+        $window.alert('Sorry, there was a problem submitting your event.');
       });
     };
 
