@@ -37,3 +37,7 @@ Version 0.1.6 - February 19, 2016
 Version 0.1.7 - February 22, 2016
 =================================
 - Add error function and timeout to event submit
+
+Version 0.1.8 - February 23, 2016
+=================================
+- Show validation errors on final form step

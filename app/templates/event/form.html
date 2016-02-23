@@ -329,10 +329,15 @@
         <form name="eventContact" ng-submit="vm.createEvent()">
           <h4>Your Contact Information</h4>
           <p class="mini-text underline"><em>What's your name and contact information? We'll only contact you if we have questions about this event.</em></p>
-          <input ng-model="vm.newEventData.submitter_name" placeholder="* Your Name" type="text" class="required" required />
+          <!-- Start: Validation messages -->
+          <div ng-messages="eventContact.submitterEmail.$error" ng-if="eventContact.submitterEmail.$touched" role="alert" class="unical-calendar__error">
+            <div ng-message="email">Email address is not valid</div>
+          </div>
+          <!-- End: Validation messages -->
+          <input ng-model="vm.newEventData.submitter_name" name="submitterName" placeholder="* Your Name" type="text" class="required" required />
           <div class="flex">
-            <input ng-model="vm.newEventData.submitter_phone" placeholder="* Phone" type="text" class="required form-col-2 first-col" required />
-            <input ng-model="vm.newEventData.submitter_email" placeholder="* Email" type="email" class="required form-col-2 last-col" required />
+            <input ng-model="vm.newEventData.submitter_phone" name="submitterPhone" placeholder="* Phone" type="text" class="required form-col-2 first-col" required />
+            <input ng-model="vm.newEventData.submitter_email" name="submitterEmail" placeholder="* Email" type="email" class="required form-col-2 last-col" required />
           </div>
           <div class="unical-calendar__submit-form-controls">
             <button ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</button>
