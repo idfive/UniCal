@@ -26,7 +26,7 @@
               <span ng-switch-default>{{event.venue_name}}</span>
             </span><br>
           </span>
-          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Get tickets</a>
+          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Tickets and More Information</a>
         </p>
         <div ng-if="event.date.length > 1">
           <p>This event has multiple dates. <a href ng-click="showRepeatDates = !showRepeatDates">Show all dates</a></p>
@@ -93,7 +93,7 @@
       <section ng-if="event.rsvp_ticket.url || event.rsvp_phone || event.rsvp_email">
         <h3>How to RSVP</h3>
         <div ng-if="event.rsvp_how_to" ng-bind-html="event.rsvp_how_to.safe_value"></div>
-          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Buy tickets online</a>
+          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Tickets and More Information</a>
           <p ng-if="event.rsvp_phone || event.rsvp_email">
             <span ng-if="event.rsvp_phone">Phone: {{event.rsvp_phone}}<br></span>
             <span ng-if="event.rsvp_email">Email: <a href="mailto:{{event.rsvp_email}}">{{event.rsvp_email}}</a></span>
