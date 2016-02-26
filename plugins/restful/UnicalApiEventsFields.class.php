@@ -211,6 +211,41 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
 
     return $public_fields;
   }
+  
+  /**
+   * Formats a date into all the formats we need on front-end
+   */
+  private function formatDate($date) {
+
+    //To store the formats
+    $dateFormats = array();
+    
+    // Calculate UNIX timestamps
+    $unix_start = strtotime($date['value']);
+    $unix_end = strtotime($date['value2']);
+    
+    // Store UNIX timestamps
+    $dateFormats['start_unix'] = $unix_start;
+    $dateFormats['end_unix'] = $unix_end;
+
+    // Specific formats for event list display.
+    $dateFormats['start_month'] = date('M', $unix_start);
+    $dateFormats['start_day'] = date('j', $unix_start);
+    $dateFormats['start_time'] = date('g:i A', $unix_start);
+    $dateFormats['end_time'] = date('g:i A', $unix_end);
+
+    // Specific formats for event detail display.
+    $dateFormats['start_date'] = date('F j, Y', $unix_start);
+    $dateFormats['end_date'] = date('F j, Y', $unix_end);
+
+    // Specific formats for "Add to Calendar" button
+    // (see https://addthisevent.com)
+    $dateFormats['start_addto'] = date('m/d/Y g:i A', $unix_start);
+    $dateFormats['end_addto'] = date('m/d/Y g:i A', $unix_end);
+    
+    // Return formats
+    return $dateFormats;
+  }
 
   /**
    * Define the default sort.
@@ -243,45 +278,34 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
    */
   public function processDate($data) {
 
-    // Loop through each date.
-    foreach ($data as $key => $date) {
-
-      // Get timestamps based on date as stored in DB (no timeszone conversion).
-      $unix_start = strtotime($data[$key]['value']);
-      $unix_end = strtotime($data[$key]['value2']);
-
-      if ($unix_start >= time()) {
-        // If date is not in the past
-        // Get UNIX timestamp.
-        $data[$key]['start_unix'] = $unix_start;
-        $data[$key]['end_unix'] = $unix_end;
-
-        // Specific formats for event list display.
-        $data[$key]['start_month'] = date('M', $unix_start);
-        $data[$key]['start_day'] = date('j', $unix_start);
-        $data[$key]['start_time'] = date('g:i A', $unix_start);
-        $data[$key]['end_time'] = date('g:i A', $unix_end);
-
-        // Specific formats for event detail display.
-        $data[$key]['start_date'] = date('F j, Y', $unix_start);
-        $data[$key]['end_date'] = date('F j, Y', $unix_end);
-
-        // Specific formats for "Add to Calendar" button
-        // (see https://addthisevent.com)
-        $data[$key]['start_addto'] = date('m/d/Y g:i A', $unix_start);
-        $data[$key]['end_addto'] = date('m/d/Y g:i A', $unix_end);
-
+    // To store dates
+    $dates = array();
+    
+    // If this is a repeating event
+    if(sizeof($data) > 1) {
+      
+      // Loop through each date
+      foreach ($data as $date) {
+       
+        // Get formatted date
+        $formattedDate = $this->formatDate($date);
+        
+        // Ignore any dates that are passed 
+        if($formattedDate['start_unix'] >= time()) {
+          array_push($dates, $formattedDate);
+        }
+        
       }
-      else {
-        // Disregard this date, since it is past.
-        unset($data[$key]);
-
-      }
-
+      
+    } else {
+      
+      $formattedDate = $this->formatDate($data[0]);
+      array_push($dates, $formattedDate);
+      
     }
-
-    // Return (and reset array values).
-    return $data = array_values($data);
+    
+    // Return dates
+    return $dates;
   }
 
   /**
