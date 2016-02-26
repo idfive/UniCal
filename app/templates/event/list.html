@@ -126,7 +126,7 @@
         </span>
       </a>
     </span>
-    
+
     <!-- Currently filtering by: Taxonomies -->
     <span ng-repeat="taxonomyFilter in vm.filters.taxonomies">
       <span ng-repeat="(termId, value) in taxonomyFilter.terms">
@@ -160,7 +160,7 @@
         <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="">
       </div>
       <div class="unical-calendar__event-content">
-        <h2 class="unical-calendar__event-title"><a href="#/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
+        <h2 class="unical-calendar__event-title"><a href="/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
         <p>
           <span ng-show="event.venue_name">{{event.venue_name}} |</span>
           <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '12:00 AM'">
@@ -175,7 +175,7 @@
 
         <div  class="unical-calendar__event-links">
           <add-this></add-this>
-          <a class="unical-calendar__buttoon" href="#/event/{{event.id}}/{{event.uri}}"><i class="fa fa-eye push-right"></i>View Event</a>
+          <a class="unical-calendar__buttoon" href="/event/{{event.id}}/{{event.uri}}"><i class="fa fa-eye push-right"></i>View Event</a>
           <add-to-calendar></add-to-calendar>
         </div>
 

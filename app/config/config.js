@@ -5,7 +5,7 @@
     .module('calendar')
     .config(config);
 
-  function config($routeProvider, $sceDelegateProvider) {
+  function config($routeProvider, $locationProvider, $sceDelegateProvider) {
 
     //Routes
     $routeProvider
@@ -42,6 +42,8 @@
       .otherwise({
         redirectTo: '/'
       });
+
+    $locationProvider.html5Mode(true);
 
     //Whitelist URLs
     $sceDelegateProvider.resourceUrlWhitelist([

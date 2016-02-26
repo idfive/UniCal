@@ -71,11 +71,28 @@ INSTALLATION
 * Enable and set up UniCal Features to use the content types and taxonomies needed.
 * Check that the server is serving REST at the endpoints.
 * If serving across other sites/servers, be sure CORS is properly set up.  
+* Modify .htaccess file, as shown in configuration.
 
 CONFIGURATION
 -------------  
 The module has no menu or modifiable settings. You will need to configure the
 UniCal Features module.  
+
+### .htaccess modifications: ###
+
+Some modifications are neccesary to both re-route social bots the actual node
+page (php) of the main site, in order to scrape, and to allow use of non # urls.
+The following rules assume that your events are in the format /event/NID/TITLE,
+and be sure to modify YOUR_MAIN_INSTALL_URL with actual url of your main site, so
+that facebook bots/are redirected to the stock drupal node of the event.
+
+  # Allow social media crawlers to work by redirecting them to a server-rendered static version on the page
+  RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
+  RewriteRule event/(.*)/(.*) YOUR_MAIN_INSTALL_URL/node/$1 [P]
+
+  # Workaround to be able to use non # url in the calendar
+  RewriteCond %{HTTP_USER_AGENT} !(facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
+  RewriteRule event/(.*)/(.*) http://%{HTTP_HOST}/#%1/event/$1/$2 [NE,L]
 
 TROUBLESHOOTING
 ---------------  
