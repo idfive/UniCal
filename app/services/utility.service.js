@@ -28,8 +28,8 @@
     };
 
     // Share to Twitter
-    function shareTW(url, id, uri) {
-      window.open("https://twitter.com/home?status=" + url + "event/" + id + "/" + uri, "Twitter", "width=600, height=400, scrollbars=no");
+    function shareTW(title, url, id, uri) {
+      window.open("https://twitter.com/home?status=" + title + " " + url + "event/" + id + "/" + uri, "Twitter", "width=600, height=400, scrollbars=no");
     };
 
     //Converts an array of strings into query string

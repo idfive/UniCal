@@ -136,8 +136,8 @@
     };
 
     //Share to Twitter
-    vm.shareTW = function(url, id, uri) {
-      utilityService.shareTW(url, id, uri);
+    vm.shareTW = function(title, url, id, uri) {
+      utilityService.shareTW(title, url, id, uri);
     };
 
     //Init
