@@ -174,7 +174,7 @@ function unical_cron() {
  */
  function unical_preprocess_html(&$vars) {
    // Only on non admin paths
-   if (user_access('administer modules') && !path_is_admin(current_path())) {
+   if (!path_is_admin(current_path())) {
      $meta_fragment = array(
        '#type' => 'html_tag',
        '#tag' => 'base',
