@@ -211,7 +211,7 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
 
     return $public_fields;
   }
-  
+
   /**
    * Formats a date into all the formats we need on front-end
    */
@@ -219,11 +219,11 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
 
     //To store the formats
     $dateFormats = array();
-    
+
     // Calculate UNIX timestamps
     $unix_start = strtotime($date['value']);
     $unix_end = strtotime($date['value2']);
-    
+
     // Store UNIX timestamps
     $dateFormats['start_unix'] = $unix_start;
     $dateFormats['end_unix'] = $unix_end;
@@ -242,7 +242,7 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
     // (see https://addthisevent.com)
     $dateFormats['start_addto'] = date('m/d/Y g:i A', $unix_start);
     $dateFormats['end_addto'] = date('m/d/Y g:i A', $unix_end);
-    
+
     // Return formats
     return $dateFormats;
   }
@@ -280,30 +280,30 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
 
     // To store dates
     $dates = array();
-    
+
     // If this is a repeating event
     if(sizeof($data) > 1) {
-      
+
       // Loop through each date
       foreach ($data as $date) {
-       
+
         // Get formatted date
         $formattedDate = $this->formatDate($date);
-        
-        // Ignore any dates that are passed 
+
+        // Ignore any dates that are passed
         if($formattedDate['start_unix'] >= time()) {
           array_push($dates, $formattedDate);
         }
-        
+
       }
-      
+
     } else {
-      
+
       $formattedDate = $this->formatDate($data[0]);
       array_push($dates, $formattedDate);
-      
+
     }
-    
+
     // Return dates
     return $dates;
   }
@@ -329,37 +329,37 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
   public function processAddress($data) {
 
     $data['full_address'] = '';
-    
+
     if(!empty($data['thoroughfare'])) {
       $data['full_address'] .= $data['thoroughfare'] . ', ';
     }
-    
+
     if(!empty($data['premise'])) {
       $data['full_address'] .= $data['premise'] . ', ';
     }
-    
+
     if(!empty($data['locality'])) { //City
       $data['full_address'] .= $data['locality'] . ' ';
     }
-    
+
     if(!empty($data['administrative_area'])) { //State
       $data['full_address'] .= $data['administrative_area'] . ' ';
     }
-    
+
     if(!empty($data['postal_code'])) { //Zip
       $data['full_address'] .= $data['postal_code'];
     }
-    
+
     if(!empty($data['country']) && $data['full_address'] !== '') {
       $data['full_address'] .= ', ' . $data['country'];
     }
-    
+
     $dirty_strings = array(' , ', ',,');
     $clean_strings = array(', ', ',');
-    
+
     //Cleanup
     $data['full_address'] = str_replace($dirty_strings, $clean_strings, $data['full_address']);
-    
+
     return $data;
   }
 
