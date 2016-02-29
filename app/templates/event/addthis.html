@@ -1,3 +1,2 @@
-<div class="addthis_toolbox" addthis:services_compact="facebook,twitter,email,more" addthis:url="{{event.id}}/{{event.uri}}" addthis:title="{{event.label}}" addthis:description="got it">
-    <a id="share_btn" class="unical-calendar__buttoon addthis_button_compact" style="cursor:pointer"><i class="fa fa-share-alt push-right"></i>Share it</a>
-</div>
+<a class="unical-calendar__buttoon facebook" ng-click="vm.shareFB(vm.url, event.id, event.uri)"><i class="fa fa-facebook push-right"></i>Share to Facebook</a>
+<a class="unical-calendar__buttoon twitter" ng-click="vm.shareTW(vm.url, event.id, event.uri)"><i class="fa fa-twitter push-right"></i>Share to Twitter</a>

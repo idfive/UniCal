@@ -5,9 +5,9 @@
     .module('calendar')
     .controller('eventsListController', eventsListController);
 
-  eventsListController.$inject = ['$q', '$scope', 'eventService', 'taxonomyService', 'siteService', 'dateService', 'initialData'];
+  eventsListController.$inject = ['$q', '$scope', 'eventService', 'taxonomyService', 'siteService', 'dateService', 'initialData', 'utilityService'];
 
-  function eventsListController($q, $scope, eventService, taxonomyService, siteService, dateService, initialData) {
+  function eventsListController($q, $scope, eventService, taxonomyService, siteService, dateService, initialData, utilityService) {
 
     //Shortcut to scope
     var vm = this;
@@ -38,7 +38,7 @@
       //Let view know that the model was updated
       vm.filters = eventService.filters;
     };
-    
+
     //Clear search (happens after search has been executed)
     vm.clearSearch = function() {
       eventService.searchTerm = '';
@@ -96,7 +96,7 @@
           vm.featuredEvents = events.data;
         });
     };
-    
+
     //Returns true if month and year is the current month and year
     vm.isCurrentMonth = function(month, year) {
       return (month == dateService.dateMonthCurrent() && year == dateService.dateYearCurrent()) ? true : false;
@@ -128,6 +128,16 @@
     vm.showAllEvents = function() {
       vm.clearFilters();
       vm.getEvents();
+    };
+
+    //Share to Facebook
+    vm.shareFB = function(url, id, uri) {
+      utilityService.shareFB(url, id, uri);
+    };
+
+    //Share to Twitter
+    vm.shareTW = function(url, id, uri) {
+      utilityService.shareTW(url, id, uri);
     };
 
     //Init

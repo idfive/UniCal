@@ -5,9 +5,9 @@
     .module('calendar')
     .controller('eventsDetailController', eventsDetailController);
 
-  eventsDetailController.$inject = ['$routeParams', 'eventService', 'taxonomyService', 'siteService'];
+  eventsDetailController.$inject = ['$routeParams', 'eventService', 'taxonomyService', 'siteService', 'utilityService'];
 
-  function eventsDetailController($routeParams, eventService, taxonomyService, siteService) {
+  function eventsDetailController($routeParams, eventService, taxonomyService, siteService, utilityService) {
 
     //Shortcut to scope
     var vm = this;
@@ -15,7 +15,7 @@
     //Scope variables
     vm.siteSettings = siteService.settings;
     vm.taxonomies = taxonomyService.taxonomies;
-    vm.url = window.location.href;
+    vm.url = window.location.protocol+"//"+window.location.host + "/";
 
     //Get event
     vm.getEvent = function(id) {
@@ -36,6 +36,16 @@
 
     vm.finishRenderEvents = function() {
       eventService.finishRenderEvents();
+    };
+
+    //Share to Facebook
+    vm.shareFB = function(url, id, uri) {
+      utilityService.shareFB(url, id, uri);
+    };
+
+    //Share to Twitter
+    vm.shareTW = function(url, id, uri) {
+      utilityService.shareTW(url, id, uri);
     };
 
     //Init

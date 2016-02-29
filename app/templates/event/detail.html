@@ -1,16 +1,13 @@
 <div class="unical-calendar__submit-form-back">
-  <a href="#/">Back to Calendar</a>
+  <a href="{{vm.url}}">Back to Calendar</a>
 </div>
 <div ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
+
   <update-title title="{{event.label}} | {{vm.siteSettings.label}}"></update-title>
-  <update-meta property="og:type" content="website" /></update-meta>
-  <update-meta property="og:url" content="http://stg.calendar.howard.edu/" /></update-meta>
-  <update-meta property="og:title" content="Howard Events" /></update-meta>
-  <update-meta property="og:description" content="Events Calendar" /></update-meta>
-  <update-meta name="twitter:card" content="summary" /></update-meta>
-  <update-meta name="twitter:url" content="http://stg.calendar.howard.edu/" /></update-meta>
-  <update-meta name="twitter:title" content="Howard Events" /></update-meta>
-  <update-meta name="twitter:description" content="Events Calendar" /></update-meta>
+  <update-meta property="og:type" content="article" /></update-meta>
+  <update-meta property="og:url" content="{{vm.url}}event/{{event.id}}/{{event.uri}}" /></update-meta>
+  <update-meta property="og:title" content="{{event.label}} | {{vm.siteSettings.label}}" /></update-meta>
+  <update-meta property="og:description" content="{{event.body_trimmed}}" /></update-meta>
 
   <div class="unical-calendar__events">
     <div class="unical-calendar__event unical-calendar__event--spotlight">
@@ -132,4 +129,3 @@
   </div>
 
 </div>
-​
