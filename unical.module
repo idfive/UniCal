@@ -172,15 +172,17 @@ function unical_cron() {
  *
  * Add base tag to allow ng app tu use html5mode urls. (no #)
  */
-function unical_preprocess_html(&$vars) {
-  // Setup IE meta tag to force IE rendering mode
-  $meta_fragment = array(
-    '#type' => 'html_tag',
-    '#tag' => 'base',
-    '#attributes' => array(
-      'href' => '/'
-    )
-  );
-  // Add header meta tag for IE to head
-  drupal_add_html_head($meta_fragment, 'meta_fragment');
-}
+ function unical_preprocess_html(&$vars) {
+   // Only on non admin paths
+   if (user_access('administer modules') && !path_is_admin(current_path())) {
+     $meta_fragment = array(
+       '#type' => 'html_tag',
+       '#tag' => 'base',
+       '#attributes' => array(
+         'href' => '/'
+       )
+     );
+     // Add header meta tag for IE to head
+     drupal_add_html_head($meta_fragment, 'meta_fragment');
+   }
+ }
