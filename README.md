@@ -68,6 +68,8 @@ INSTALLATION
 * Install as you would normally install a contributed Drupal module. See:  
   https://drupal.org/documentation/install/modules-themes/modules-7 for further
   information.
+* UniCal module should be installed in sites/all/modules folder, or the embed
+  code for sites will need to be modified.
 * Enable and set up UniCal Features to use the content types and taxonomies needed.
 * Check that the server is serving REST at the endpoints.
 * If serving across other sites/servers, be sure CORS is properly set up.  
