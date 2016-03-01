@@ -111,7 +111,7 @@
   <h3>Manual Embed Code:</h3>
   <p>For manual embed, you will need to add code in two places:</p>
     <ul>
-      <li>Add the <base href="/"> tag into the <head> of the document. (needed to let the angular app run in html5mode)</li>
+      <li>Add the &#x3C;base href='/'&#x3E; tag into the &#x3C;head&#x3E; of the document. (needed to let the angular app run in html5mode)</li>
       <li>The embed code below where you wish the calendar to appear</li>
     </ul>
   <p>A NOTE ON SEO: If SEO/sharing is a priority, the .htaccess (or equivelant) will need to be modified on the client site. See help page for the UniCal module for more information/examples.</p>
