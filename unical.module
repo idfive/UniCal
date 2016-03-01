@@ -166,23 +166,3 @@ function unical_cron() {
   //_unical_expire_repeating_events();
 
 }
-
-/**
- * Preprocesses the wrapping HTML.
- *
- * Add base tag to allow ng app tu use html5mode urls. (no #)
- */
- function unical_preprocess_html(&$vars) {
-   // Only on non admin paths
-   if (!path_is_admin(current_path())) {
-     $meta_fragment = array(
-       '#type' => 'html_tag',
-       '#tag' => 'base',
-       '#attributes' => array(
-         'href' => '/'
-       )
-     );
-     // Add header meta tag for IE to head
-     drupal_add_html_head($meta_fragment, 'meta_fragment');
-   }
- }
