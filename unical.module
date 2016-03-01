@@ -109,6 +109,12 @@
       <li><strong>Site ID</strong>: " . $nid . "</li>
     </ul>
   <h3>Manual Embed Code:</h3>
+  <p>For manual embed, you will need to add code in two places:</p>
+    <ul>
+      <li>Add the <base href="/"> tag into the <head> of the document. (needed to let the angular app run in html5mode)</li>
+      <li>The embed code below where you wish the calendar to appear</li>
+    </ul>
+  <p>A NOTE ON SEO: If SEO/sharing is a priority, the .htaccess (or equivelant) will need to be modified on the client site. See help page for the UniCal module for more information/examples.</p>
   <p>The following can be embedded on any relevant HTML page, regardless of the CMS/etc. This can be modified and separated into more optimized areas of the site (head/footer/etc) if desired.</p>
   <p>The main components needed are:</p>
     <ul>
