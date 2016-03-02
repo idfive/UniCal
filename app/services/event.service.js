@@ -48,6 +48,7 @@
       },
       newEventDataRaw: {},
       newEventProgress: {},
+      processEventResults: processEventResults,
       resetFilterOptions: resetFilterOptions,
       searchTerm: ''
     };
@@ -200,8 +201,9 @@
 
       //Get the events
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
-        service.eventsList = service.eventsList.concat(response.data.data);
-        service.eventsCount = response.data.count;
+        var events = service.processEventResults(response.data.data);
+        service.eventsList = service.eventsList.concat(events);
+        service.eventsCount = events.length;
         return response.data;
       });
     }
@@ -322,7 +324,7 @@
         var start = dateService.dateNow(),
             end = dateService.dateMonthEnd();
       } else if (service.filters.range === 'custom') { //CUSTOM
-        var start = service.filters.startDate + ' 00:00:00',
+        var start = service.filters.startDate,
             end = service.filters.endDate + ' 23:59:59';
       }
 
@@ -331,7 +333,7 @@
       }
 
       if(end !== null) {
-        filters.push('&filter[date][value][1]='+ end +'&filter[date][operator][1]="<="');
+        filters.push('filter[date][value][1]='+ end +'&filter[date][operator][1]="<="');
       }
 
       //Returns query string
@@ -460,6 +462,25 @@
 
       });
 
+    }
+    
+    /*
+     * Function that runs after events are returned so we can do post processing
+     *
+     */
+    function processEventResults(events) {
+      
+      var processedResults = [];
+      
+      angular.forEach(events, function(event, index) {
+        // Remove events that have no date (cleans up repeating events that don't match the filter)
+        if(event.date.length) {
+          processedResults.push(event);
+        }
+      });
+      
+      return processedResults;
+      
     }
 
     /*

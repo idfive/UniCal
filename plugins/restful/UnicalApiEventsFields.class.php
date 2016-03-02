@@ -283,24 +283,55 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
 
     // If this is a repeating event
     if(sizeof($data) > 1) {
+      
+      //Get Request (so we can access filters)
+      $request = $this->getRequest();
 
       // Loop through each date
       foreach ($data as $date) {
 
         // Get formatted date
-        $formattedDate = $this->formatDate($date);
-
-        // Ignore any dates that are passed
-        if($formattedDate['start_unix'] >= time()) {
-          array_push($dates, $formattedDate);
+        $formatted_date = $this->formatDate($date);
+        
+        //Default from date is now
+        $from_date = time();
+        $to_date = false;
+        $exclude_date = false;
+        
+        // Check that we havea filter 
+        if(isset($request['filter']) && isset($request['filter']['date'])) {
+          
+          $filter_date = $request['filter']['date'];
+          
+          if(isset($filter_date['value'][0])) {
+            $from_date = strtotime($filter_date['value'][0]);
+          }
+          
+          if(isset($filter_date['value'][1])) {
+            $to_date = strtotime($filter_date['value'][1]);
+          }
         }
 
+        // Exclude any dates that do meet the start date criteria
+        if($formatted_date['start_unix'] < $from_date) {
+          $exclude_date = true;
+        }
+        
+        // Exclude any dates that do meet the end date criteria
+        if($to_date && $formatted_date['start_unix'] > $to_date) {
+          $exclude_date = true;
+        }
+        
+        // Push dates not marked to be excluded
+        if(!$exclude_date) {
+          array_push($dates, $formatted_date);
+        }
       }
 
     } else {
 
-      $formattedDate = $this->formatDate($data[0]);
-      array_push($dates, $formattedDate);
+      $formatted_date = $this->formatDate($data[0]);
+      array_push($dates, $formatted_date);
 
     }
 
