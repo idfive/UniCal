@@ -5,7 +5,7 @@
 <update-meta property="og:description" content="An events calendar." /></update-meta>
 
 <div class="unical-calendar__aside">
-  <a class="unical-calendar__buttoon unical-calendar__buttoon--full" href="/submit-event" ng-show="vm.siteSettings.allow_event_submit">Submit Event <i class="fa fa-calendar-plus-o"></i></a>
+  <a class="unical-calendar__buttoon unical-calendar__buttoon--full" href="submit-event" ng-show="vm.siteSettings.allow_event_submit">Submit Event <i class="fa fa-calendar-plus-o"></i></a>
   <div ng-show="vm.siteSettings.text_above_sidebar" ng-bind-html="vm.siteSettings.text_above_sidebar" class="unical-calendar__aside-text"></div>
   <!-- Sidebar -->
   <div class="unical-calendar__sidebar">
@@ -97,7 +97,7 @@
           <div class="unical-calendar__featured-inner" style="background-image: url('{{event.image.image_styles.large}}');"></div>
           <div class="unical-calendar__featured-text">
             <h2>{{event.date[0].start_month}} {{event.date[0].start_day}}</h2>
-            <h4><a href="/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h4>
+            <h4><a href="event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h4>
             <p><span ng-show="event.venue_name">{{event.venue_name}} |</span> {{event.date[0].start_time}}</p>
           </div>
         </li>
@@ -165,7 +165,7 @@
         <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="">
       </div>
       <div class="unical-calendar__event-content">
-        <h2 class="unical-calendar__event-title"><a href="/event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
+        <h2 class="unical-calendar__event-title"><a href="event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
         <p>
           <span ng-show="event.venue_name">{{event.venue_name}} |</span>
           <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '12:00 AM'">
@@ -180,7 +180,7 @@
 
         <div  class="unical-calendar__event-links">
           <add-this></add-this>
-          <a class="unical-calendar__buttoon" href="/event/{{event.id}}/{{event.uri}}"><i class="fa fa-eye push-right"></i>View Event</a>
+          <a class="unical-calendar__buttoon" href="event/{{event.id}}/{{event.uri}}"><i class="fa fa-eye push-right"></i>View Event</a>
           <add-to-calendar></add-to-calendar>
         </div>
 
