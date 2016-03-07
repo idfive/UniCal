@@ -12,14 +12,20 @@
     var service = {
       arrayToQueryString: arrayToQueryString,
       getBaseUrl: getBaseUrl,
+      getAddEventID: getAddEventID,
       shareFB: shareFB,
       shareTW: shareTW
     };
     return service;
 
-    //Get Base URL
+    // Get Base URL
     function getBaseUrl() {
       return $window.site_url.replace(/\/?$/, '/');
+    };
+
+    // Get Add Event ID
+    function getAddEventID() {
+      return $window.addevent_id;
     };
 
     // Share to Facebook

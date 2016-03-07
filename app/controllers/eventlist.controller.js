@@ -145,6 +145,11 @@
       vm.featuredEvents = vm.getFeaturedEvents();
     })();
 
+    addthisevent.settings({
+      css: false,
+      license: utilityService.getAddEventID(),
+    });
+
   }
 
 })();
