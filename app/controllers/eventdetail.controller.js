@@ -53,6 +53,11 @@
       vm.getEvent($routeParams.eventId);
     })();
 
+    addthisevent.settings({
+      css: false,
+      license: utilityService.getAddEventID(),
+    });
+
   }
 
 })();
