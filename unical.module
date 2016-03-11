@@ -147,28 +147,32 @@
 /**
  * Expires dates in repeating events, so sort works on next date in series
  *
+ * This work around is needed in order to properly sort events within the api. If
+ * this is not done, previously occuring events in the series will throw off the
+ * ordering of events, because it looks at all events in the series, ie, the date
+ * the first event in the series. Currently, this is set to run on CRON.
  */
 function _unical_expire_repeating_events() {
 
+  // field_date_value2 is the end date of the event, field_date_rrule indicates if it's a repeater.
   $result = db_query(
-    'UPDATE {field_data_field_date} SET deleted = :deleted WHERE field_date_value < :datenow AND field_date_rrule != :rrule', array(
+    'UPDATE {field_data_field_date} SET deleted = :deleted WHERE field_date_value2 < :datenow AND field_date_rrule != :rrule', array(
       ':datenow' => date('Y-m-d H:i:s'),
       ':rrule' => 'null',
       ':deleted' => 1
     )
   );
 
-  watchdog('unical', $result->rowCount() . ' repeating event dates were set to expired', array(), WATCHDOG_NOTICE);
+  watchdog('unical', $result->rowCount() . ' previously occurring repeating event dates were set to expired in the database by UniCal.', array(), WATCHDOG_NOTICE);
 
 }
 
 /**
- * Cron hook
+ * Implements hook_cron().
  *
  */
 function unical_cron() {
 
-  //Don't implement yet
-  //_unical_expire_repeating_events();
+  _unical_expire_repeating_events();
 
 }
