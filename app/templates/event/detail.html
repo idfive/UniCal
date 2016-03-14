@@ -19,7 +19,7 @@
         <h1 class="unical-calendar__event-title">{{event.label}}</h1>
         <p>
           <span ng-if="event.date">{{event.date[0].start_date}}</span> <span ng-if="event.date[0].start_date != event.date[0].end_date"><em>to</em> {{event.date[0].end_date}}</span><br>
-          <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '12:00 AM'">
+          <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '11:59 PM'">
             <span ng-switch-when="true">All Day</span>
             <span ng-switch-default>
               <span ng-if="event.date">{{event.date[0].start_time}} <span ng-if="event.date[0].start_unix != event.date[0].end_unix">- {{event.date[0].end_time}}</span>
@@ -38,7 +38,7 @@
           <p>This event has multiple dates. <a href ng-click="showRepeatDates = !showRepeatDates">Show all dates</a></p>
           <ul ng-show="showRepeatDates">
             <li ng-repeat="(key, date) in event.date">{{date.start_date}}
-              <span ng-switch="date.start_time === '12:00 AM' && date.end_time === '12:00 AM'">
+              <span ng-switch="date.start_time === '12:00 AM' && date.end_time === '11:59 PM'">
                 <span ng-switch-when="true"> (All Day)</span>
                 <span ng-switch-default>
                   <span ng-if="event.date"> ({{date.start_time}}<span ng-if="date.start_unix == date.end_unix">)</span> <span ng-if="date.start_unix != date.end_unix">- {{date.end_time}})</span>

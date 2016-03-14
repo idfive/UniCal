@@ -294,7 +294,9 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
         $formatted_date = $this->formatDate($date);
 
         //Default from date is now
+        // The from date passed to the filter
         $from_date = time();
+        // The to date passed to the filter
         $to_date = false;
         $exclude_date = false;
 
@@ -312,16 +314,15 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
           }
         }
 
-        // DEV NOTE: if no end date is specifically set in drupal, end_unix gets the same as start_unix.
-        // so by using end_unix, we cover both.
-        
-        // Exclude any dates that do meet the start date criteria
+        // Exclude any event dates that do meet the start date criteria. If the end date
+        // is less than the from date passed to the filter.
         if($formatted_date['end_unix'] < $from_date) {
           $exclude_date = true;
         }
 
-        // Exclude any dates that do meet the end date criteria
-        if($to_date && $formatted_date['end_unix'] > $to_date) {
+        // Exclude any event dates that do meet the end date criteria
+        // if there is an end date, and that date is greater than the to date passed in the filter
+        if($to_date && $formatted_date['end_unix']  > $to_date) {
           $exclude_date = true;
         }
 

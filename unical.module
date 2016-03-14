@@ -176,3 +176,17 @@ function unical_cron() {
   _unical_expire_repeating_events();
 
 }
+
+/**
+ * Implements hook_date_combo_validate_date_end_alter().
+ *
+ * This hook lets us set a custom end time (23:59:00) rather than the 00:00:00
+ * stock one that drupal date_all_day module does. See https://www.drupal.org/node/874322
+ * for more info on current "All Day" date setup stuff.
+ */
+function unical_date_combo_validate_date_end_alter(&$date, &$form_state, $context) {
+  // If this is an 'All day' value, set the end time to 11:59.
+  if (!empty($context['element']['#date_is_all_day'])) {
+    $date->setTime(23, 59, 0);
+  }
+}
