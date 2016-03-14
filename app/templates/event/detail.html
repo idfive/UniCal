@@ -37,7 +37,14 @@
         <div ng-if="event.date.length > 1">
           <p>This event has multiple dates. <a href ng-click="showRepeatDates = !showRepeatDates">Show all dates</a></p>
           <ul ng-show="showRepeatDates">
-            <li ng-repeat="(key, date) in event.date">{{date.start_date}} ({{date.start_time}} - {{date.end_time}})</li>
+            <li ng-repeat="(key, date) in event.date">{{date.start_date}}
+              <span ng-switch="date.start_time === '12:00 AM' && date.end_time === '12:00 AM'">
+                <span ng-switch-when="true"> (All Day)</span>
+                <span ng-switch-default>
+                  <span ng-if="event.date"> ({{date.start_time}}<span ng-if="date.start_unix == date.end_unix">)</span> <span ng-if="date.start_unix != date.end_unix">- {{date.end_time}})</span>
+                </span>
+              </span>
+            </li>
           </ul>
         </div>
 
