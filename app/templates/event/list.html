@@ -89,23 +89,30 @@
   </div>
 
 </div>
+
 <div class="unical-calendar__events">
   <div ng-show="vm.siteSettings.allow_featured_events">
     <div class="unical-calendar__featured" ng-show="vm.featuredEvents.length">
       <ul class="swift-slide">
         <li ng-repeat="event in vm.featuredEvents" on-finish-render="vm.finishRenderFeatured()">
-          <div class="unical-calendar__featured-inner" style="background-image: url('{{event.image.image_styles.large}}');"></div>
+          <div ng-if="event.image.image_styles.large" class="unical-calendar__featured-inner" style="background-image: url('{{event.image.image_styles.large}}');"></div>
+          <div ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" class="unical-calendar__featured-inner" style="background-image: url('{{vm.siteSettings.default_event_image.image_styles.large}}');"></div>
           <div class="unical-calendar__featured-text">
             <h2>{{event.date[0].start_month}} {{event.date[0].start_day}}</h2>
             <h4><a href="event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h4>
-            <p><span ng-show="event.venue_name">{{event.venue_name}} |</span> {{event.date[0].start_time}}</p>
+            <p><span ng-show="event.venue_name">{{event.venue_name}} |</span>
+              <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '11:59 PM'">
+                <span ng-switch-when="true">All Day</span>
+                <span ng-switch-default>{{event.date[0].start_time}}</span>
+              </span>
+            </p>
           </div>
         </li>
       </ul>
     </div>
   </div>
-  <div class="arrangement">
 
+  <div class="arrangement">
     <!-- Search -->
     <div class="arrangement-item unical-calendar__search">
       <form class="search-form" name="vm.searchForm" ng-submit="vm.searchEvents()">

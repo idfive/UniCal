@@ -114,7 +114,7 @@
       if(siteService.settings.help_link !== null) {
         jQuery('.addthisevent_dropdown').append('<span class="addtocalendar_help" onclick="location.reload();location.href=&apos;' + siteService.settings.help_link + '&apos;">View Calendar Help</span>');
       }
-      
+
       //Remove any excluded add to calendar options
       if(siteService.settings.add_to_calendar_exclude !== null) {
         for(var i=0;i<siteService.settings.add_to_calendar_exclude.length;i++) {
@@ -153,13 +153,13 @@
      *
      */
     function getClndrEvents() {
-      
+
       //Get filter string
       var filterString = this.getFilterString({
 		  range: 1000,
 		  fields: 'id,clndrDate',
 	  });
-      
+
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
         service.clndrList = response.data.data;
         return response.data;
@@ -301,7 +301,7 @@
           }
         });
       });
-      
+
       //If this is the main calendar site, exclude events that are set to be hidden from it
       if(siteService.settings.main_calendar_site) {
         filters.push('filter[exclude_from_main_calendar][value]=1&filter[exclude_from_main_calendar][operator]="!="');
@@ -357,9 +357,6 @@
 
       //Date
       filters.push('filter[featured]=1&filter[date][value][0]='+dateService.dateNow()+'&filter[date][operator][0]=">"');
-
-      //Featrued events must have an image
-      filters.push('filter[image][value][0]="null"&filter[image][operator][0]="!="');
 
       //Returns query string
       return utilityService.arrayToQueryString(filters);
@@ -463,24 +460,24 @@
       });
 
     }
-    
+
     /*
      * Function that runs after events are returned so we can do post processing
      *
      */
     function processEventResults(events) {
-      
+
       var processedResults = [];
-      
+
       angular.forEach(events, function(event, index) {
         // Remove events that have no date (cleans up repeating events that don't match the filter)
         if(event.date.length) {
           processedResults.push(event);
         }
       });
-      
+
       return processedResults;
-      
+
     }
 
     /*
