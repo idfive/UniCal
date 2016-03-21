@@ -94,6 +94,7 @@ that facebook bots/are redirected to the stock drupal node of the event.
 
   # Workaround to be able to use non # url in the calendar
   RewriteCond %{HTTP_USER_AGENT} !(facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
+  RewriteCond %{REQUEST_URI} !^/admin
   RewriteRule event/(.*)/(.*) http://%{HTTP_HOST}/#%1/event/$1/$2 [NE,L]
 
 TROUBLESHOOTING
