@@ -14,7 +14,7 @@
       cachedPromises: {},
       page: 1,
       nextPage: false,
-      range: 20,
+      range: 4,
       eventsCount: 0,
       eventsList: [],
       clndrList: [],
@@ -201,9 +201,9 @@
 
       //Get the events
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
+        service.eventsCount = response.data.count;
         var events = service.processEventResults(response.data.data);
         service.eventsList = service.eventsList.concat(events);
-        service.eventsCount = events.length;
         return response.data;
       });
     }
@@ -473,6 +473,9 @@
         // Remove events that have no date (cleans up repeating events that don't match the filter)
         if(event.date.length) {
           processedResults.push(event);
+        } else {
+          service.eventsCount = service.eventsCount -1;
+          console.log('hit');
         }
       });
 
