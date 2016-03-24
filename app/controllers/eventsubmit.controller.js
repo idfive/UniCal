@@ -24,6 +24,8 @@
     vm.taxonomies = taxonomyService.taxonomies;
     vm.siteSettings = siteService.settings;
 
+    console.log(vm.siteSettings.allow_users_to_choose_taxonomy_when_submitting);
+
     /*
      * Create the event
      *
@@ -46,9 +48,9 @@
      * Next page
      *
      */
-    vm.nextPage = function() {
+    vm.nextPage = function(numberPages) {
       vm.newEventProgress[vm.page] = true;
-      vm.page = vm.page + 1;
+      vm.page = vm.page + numberPages;
       $location.hash(vm.page);
     }
 
@@ -56,9 +58,9 @@
      * previous page
      *
      */
-    vm.prevPage = function() {
+    vm.prevPage = function(numberPages) {
       vm.newEventProgress[vm.page] = false;
-      vm.page = vm.page - 1;
+      vm.page = vm.page - numberPages;
       $location.hash(vm.page);
     }
 

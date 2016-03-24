@@ -116,40 +116,54 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
 
     /* General Settings */
 
+    // Allow users to submit events
     $public_fields['allow_event_submit'] = array(
       'property' => 'field_allow_event_submit',
     );
 
+    // Allow users to select taxonomies when submitting
+    $public_fields['allow_users_to_choose_taxonomy_when_submitting'] = array(
+      'property' => 'field_allow_users_to_choose_taxo',
+    );
+
+    // Allow featured events
     $public_fields['allow_featured_events'] = array(
       'property' => 'field_allow_featured_events',
     );
 
+    // The key for the google maps api
     $public_fields['google_maps_api_key'] = array(
       'property' => 'field_google_maps_api_key',
     );
 
+    // The default image for events in the calendar
     $public_fields['default_event_image'] = array(
       'property' => 'field_default_event_image',
       'image_styles' => array('large'),
     );
 
+    // The text that displays above filters
     $public_fields['text_above_filters'] = array(
       'property' => 'field_custom_text_above_filters',
     );
 
+    // Custom help link
     $public_fields['help_link'] = array(
       'property' => 'field_calendar_help_link',
       'sub_property' => 'url',
     );
 
+    // Is this a main calendar site?
     $public_fields['main_calendar_site'] = array(
       'property' => 'field_main_calendar_site',
     );
 
+    // The number of results per page
     $public_fields['number_results_per_page'] = array(
       'property' => 'field_number_results_per_page',
     );
 
+    // Custom text above sidebar
     if (field_info_field('field_custom_text_above_sidebar')) {
       $public_fields['text_above_sidebar'] = array(
         'property' => 'field_custom_text_above_sidebar',

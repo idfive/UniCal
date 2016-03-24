@@ -1262,7 +1262,7 @@ function unical_features_field_default_field_instances() {
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1292,7 +1292,7 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_buttons',
       'weight' => 13,
     ),
-    'workbench_access_field' => TRUE,
+    'workbench_access_field' => 1,
   );
 
   // Exported field_instance: 'node-event-field_taxonomy_2'.
@@ -1300,7 +1300,7 @@ function unical_features_field_default_field_instances() {
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1330,7 +1330,7 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_buttons',
       'weight' => 14,
     ),
-    'workbench_access_field' => TRUE,
+    'workbench_access_field' => 1,
   );
 
   // Exported field_instance: 'node-event-field_taxonomy_3'.
@@ -1338,7 +1338,7 @@ function unical_features_field_default_field_instances() {
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1368,7 +1368,7 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_buttons',
       'weight' => 12,
     ),
-    'workbench_access_field' => TRUE,
+    'workbench_access_field' => 1,
   );
 
   // Exported field_instance: 'node-event-field_taxonomy_4'.
@@ -1714,7 +1714,7 @@ function unical_features_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 65,
+      'weight' => 66,
     ),
     'workbench_access_field' => 0,
   );
@@ -1803,6 +1803,50 @@ function unical_features_field_default_field_instances() {
       ),
       'type' => 'options_onoff',
       'weight' => 62,
+    ),
+    'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance: 'node-site-field_allow_users_to_choose_taxo'.
+  $field_instances['node-site-field_allow_users_to_choose_taxo'] = array(
+    'bundle' => 'site',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Choose whether users can define taxonomies when submitting events from this calendar. IMPORTANT: If you deselect this, and have taxonomies defined as mandatory (for using within workbench/etc) Users will be unable to submit the form, unless 1 or more taxonomies are preselected above.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 29,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_allow_users_to_choose_taxo',
+    'label' => 'Allow users to choose taxonomy when submitting events',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 64,
     ),
     'workbench_access_field' => 0,
   );
@@ -2032,7 +2076,7 @@ function unical_features_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 64,
+      'weight' => 65,
     ),
     'workbench_access_field' => 0,
   );
@@ -2127,7 +2171,7 @@ function unical_features_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 66,
+      'weight' => 67,
     ),
     'workbench_access_field' => 0,
   );
@@ -2901,9 +2945,11 @@ function unical_features_field_default_field_instances() {
   t('Address');
   t('Allow Event Submit');
   t('Allow Featured Events');
+  t('Allow users to choose taxonomy when submitting events');
   t('Audience');
   t('Calendar Help Link');
   t('Category');
+  t('Choose whether users can define taxonomies when submitting events from this calendar. IMPORTANT: If you deselect this, and have taxonomies defined as mandatory (for using within workbench/etc) Users will be unable to submit the form, unless 1 or more taxonomies are preselected above.');
   t('Clone state (do not change)');
   t('Cost');
   t('Custom Text Above Filters');
@@ -2949,6 +2995,7 @@ function unical_features_field_default_field_instances() {
   t('Submitter Email');
   t('Submitter Name');
   t('Submitter Phone');
+  t('Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.');
   t('Taxonomy 4');
   t('Taxonomy 5');
   t('Taxonomy 6');

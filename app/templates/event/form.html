@@ -17,7 +17,7 @@
 
     <div class="unical-calendar__submit-form">
       <section ng-show="vm.page == 1">
-        <form ng-submit="vm.nextPage()" name="eventInfo">
+        <form ng-submit="vm.nextPage(1)" name="eventInfo">
           <h4>Event Information</h4>
           <p class="mini-text underline"><em>What is the name of your event? How would you describe it?</em></p>
           <input ng-model="vm.newEventData.label" name="label" placeholder="* Event Title" type="text" class="required" required />
@@ -33,7 +33,7 @@
       </section>
 
       <section ng-show="vm.page == 2">
-        <form name="eventWhen" ng-submit="vm.customValidation.endDateAfterStartDate && vm.nextPage()">
+        <form name="eventWhen" ng-submit="vm.customValidation.endDateAfterStartDate && vm.nextPage(1)">
         <h4>Date and Time</h4>
         <p class="mini-text underline"><em>When is your event taking place?</em></p>
         <!-- Start: Validation messages -->
@@ -118,14 +118,14 @@
           <textarea placeholder="Description of recurring dates e.g. Repeats every Friday at 9pm, except in March and April" ng-model="vm.newEventData.repeating_date_description"></textarea>
         </div>
         <div class="unical-calendar__submit-form-controls">
-          <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+          <a ng-click="vm.prevPage(1)" class="unical-calendar__buttoon">Back</a>
           <button ng-disabled="eventWhen.$invalid" class="unical-calendar__buttoon" ng-click="vm.validateDates()">Next</button>
         </div>
       </form>
       </section>
 
       <section ng-show="vm.page == 3">
-        <form name="eventWhere" ng-submit="vm.nextPage()">
+        <form name="eventWhere" ng-submit="vm.nextPage(1)">
           <h4>Location</h4>
           <p class="mini-text underline"><em>Where is your event being held? If you enter a complete street address, we’ll feature it on a Google Map.</em></p>
           <!-- Start: Validation Messages --->
@@ -195,14 +195,14 @@
             <input ng-model="vm.newEventData.address.postal_code" placeholder="Postal Code" type="text" class="form-col-4 last-col" />
           </div>
           <div class="unical-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <a ng-click="vm.prevPage(1)" class="unical-calendar__buttoon">Back</a>
             <button ng-disabled="eventWhere.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
 
       <section ng-show="vm.page == 4">
-        <form name="eventOrganizer" ng-submit="vm.nextPage()">
+        <form name="eventOrganizer" ng-submit="vm.nextPage(1)">
           <h4>Event Organizer Contact Information</h4>
           <p class="mini-text underline"><em>Who is sponsoring the event? Does this group have social media pages for Facebook and Twitter?</em></p>
           <!-- Start: Validation messages -->
@@ -224,14 +224,14 @@
           <input ng-model="vm.newEventData.organizer_facebook.url" name="organizerFacebook" placeholder="Organizer Facebook URL:" type="url" http-prefix />
           <input ng-model="vm.newEventData.organizer_twitter.url" name="organizerTwitter" placeholder="Organizer Twitter URL:" type="url" http-prefix />
           <div class="unical-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <a ng-click="vm.prevPage(1)" class="unical-calendar__buttoon">Back</a>
             <button ng-disabled="eventOrganizer.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
 
       <section ng-show="vm.page == 5">
-        <form name="eventWebsites" ng-submit="vm.nextPage()">
+        <form name="eventWebsites" ng-submit="vm.nextPage(1)">
           <h4>Event Website(s)</h4>
           <p class="mini-text underline"><em>Is there a web page or Facebook / Twitter account dedicated to this event?</em></p>
           <!-- Start: Validation messages -->
@@ -249,14 +249,14 @@
           <input ng-model="vm.newEventData.event_facebook.url" name="eventFacebook" placeholder="Event Facebook URL:" type="url" http-prefix />
           <input ng-model="vm.newEventData.event_twitter.url" name="eventTwitter" placeholder="Event Twitter URL:" type="url" http-prefix />
           <div class="unical-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <a ng-click="vm.prevPage(1)" class="unical-calendar__buttoon">Back</a>
             <button ng-disabled="eventWebsites.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
 
       <section ng-show="vm.page == 6">
-        <form name="eventCost" ng-submit="vm.nextPage()">
+        <form name="eventCost" ng-submit="vm.nextPage(1)">
           <h4>Cost</h4>
           <p class="mini-text underline"><em>How much do people pay to attend / participate? Be sure to list pricing for different groups, if applicable. E.g. $10 students; $15 faculty / staff; $20 general admission</em></p>
           <label>
@@ -267,14 +267,14 @@
             <textarea ng-model="vm.newEventData.cost" name="cost" placeholder="Cost Information"></textarea>
           </div>
           <div class="unical-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
+            <a ng-click="vm.prevPage(1)" class="unical-calendar__buttoon">Back</a>
             <button ng-disabled="eventCost.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
 
       <section ng-show="vm.page == 7">
-        <form name="eventRsvp" ng-submit="vm.nextPage()">
+        <form name="eventRsvp" ng-submit="vm.nextPage(1)">
           <h4>RSVP Information</h4>
           <p class="mini-text underline"><em>What do people have to do to indicate that they're attending this event? If there’s a website to purchase tickets, include it below.</em></p>
           <!-- Start: Validation messages -->
@@ -293,21 +293,22 @@
           <p class="mini-text"><em>Url to purchase tickets (optional)</em></p>
           <input ng-model="vm.newEventData.rsvp_ticket.url" name="rsvpUrl" placeholder="URL" type="url" http-prefix />
           <div class="unical-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</a>
-            <button ng-disabled="eventRsvp.$invalid" class="unical-calendar__buttoon">Next</button>
+            <a ng-click="vm.prevPage(1)" class="unical-calendar__buttoon">Back</a>
+            <button ng-show="vm.siteSettings.allow_users_to_choose_taxonomy_when_submitting" ng-disabled="eventRsvp.$invalid" class="unical-calendar__buttoon">Next</button>
+            <button ng-hide="vm.siteSettings.allow_users_to_choose_taxonomy_when_submitting" ng-click="vm.nextPage(2)" ng-disabled="eventRsvp.$invalid" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
       </section>
 
       <section ng-show="vm.page == 8">
-        <form name="eventTax" ng-submit="vm.nextPage()">
+        <form name="eventTax" ng-submit="vm.nextPage(1)">
           <h4>Categories</h4>
           <p class="mini-text underline">
             <em ng-if="vm.hasPrecheckedTaxonomies()">
-              You are submitting an event to the {{vm.siteSettings.label}} calendar. Are there any additional tags that you would like to select? Some tags, based on the {{vm.siteSettings.label}} are already selected for you. Please check only relevant items. Our moderators will review the listing prior to publication.
+              You are submitting an event to the {{vm.siteSettings.label}} calendar. Are there any additional tags that you would like to select? Some tags, based on the {{vm.siteSettings.label}} are already selected for you.
             </em>
             <em ng-if="!vm.hasPrecheckedTaxonomies()">
-              Where should this event appear on our calendars? Check all that apply (at least one must be selected). Please check only relevant items. Our moderators will review the listing prior to publication.
+              Where should this event appear on our calendars? Check all that apply (at least one must be selected).
             </em>
           </p>
           <div ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies">
@@ -319,7 +320,7 @@
             </div>
           </div>
           <div class="unical-calendar__submit-form-controls">
-            <a ng-click="vm.prevPage()" ng-show="vm.page > 1" class="unical-calendar__buttoon">Back</a>
+            <a ng-click="vm.prevPage(1)" ng-show="vm.page > 1" class="unical-calendar__buttoon">Back</a>
             <button ng-disabled="!vm.taxonomyValidateSelected()" class="unical-calendar__buttoon">Next</button>
           </div>
         </form>
@@ -340,7 +341,8 @@
             <input ng-model="vm.newEventData.submitter_email" name="submitterEmail" placeholder="* Email" type="email" class="required form-col-2 last-col" required />
           </div>
           <div class="unical-calendar__submit-form-controls">
-            <button ng-click="vm.prevPage()" class="unical-calendar__buttoon">Back</button>
+            <a ng-show="vm.siteSettings.allow_users_to_choose_taxonomy_when_submitting" ng-click="vm.prevPage(1)" class="unical-calendar__buttoon">Back</a>
+            <a ng-hide="vm.siteSettings.allow_users_to_choose_taxonomy_when_submitting" ng-click="vm.prevPage(2)" class="unical-calendar__buttoon">Back</a>
             <button ng-disabled="vm.submitted || eventContact.$invalid" class="unical-calendar__buttoon unical-calendar__submit-buttoon">Submit</button>
           </div>
         </form>

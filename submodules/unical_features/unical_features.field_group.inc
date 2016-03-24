@@ -355,6 +355,7 @@ function unical_features_field_group_info() {
       4 => 'field_add_to_calendar_exclude',
       5 => 'field_main_calendar_site',
       6 => 'field_number_results_per_page',
+      7 => 'field_allow_users_to_choose_taxo',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -446,12 +447,13 @@ function unical_features_field_group_info() {
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Taxonomies',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-taxonomies field-group-tab',
         'required_fields' => 1,
+        'classes' => 'group-taxonomies field-group-tab',
+        'description' => 'Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.',
       ),
+      'formatter' => 'closed',
     ),
   );
   $field_groups['group_taxonomies|node|event|form'] = $field_group;
