@@ -24,8 +24,6 @@
     vm.taxonomies = taxonomyService.taxonomies;
     vm.siteSettings = siteService.settings;
 
-    console.log(vm.siteSettings.allow_users_to_choose_taxonomy_when_submitting);
-
     /*
      * Create the event
      *
