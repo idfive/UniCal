@@ -14,7 +14,6 @@
       cachedPromises: {},
       page: 1,
       nextPage: false,
-      range: 4,
       eventsCount: 0,
       eventsList: [],
       clndrList: [],
@@ -277,7 +276,7 @@
       var defaultParams = {
         fields: 'id,label,date,image,uri,address,body_trimmed,clndrDate,timezone,venue_name',
         sort: 'date',
-        range: service.range
+        range: siteService.settings.number_results_per_page
       };
 
       //Vars
@@ -471,12 +470,9 @@
 
       angular.forEach(events, function(event, index) {
         // Remove events that have no date (cleans up repeating events that don't match the filter)
-        if(event.date.length) {
+        // NOTE: moved logic of checking empty date[] to custom formatter.
+        // keeping function in case further ajustments are needed.
           processedResults.push(event);
-        } else {
-          service.eventsCount = service.eventsCount -1;
-          console.log('hit');
-        }
       });
 
       return processedResults;

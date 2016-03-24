@@ -17,6 +17,7 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
    * Overrides RestfulEntityBaseNode::publicFieldsInfo().
    */
   public function publicFieldsInfo() {
+    $add = true;
 
     $public_fields = parent::publicFieldsInfo();
 
@@ -209,7 +210,8 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
       'property' => 'field_exclude_from_main_calendar',
     );
 
-    return $public_fields;
+      return $public_fields;
+
   }
 
   /**
@@ -318,12 +320,14 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
         // is less than the from date passed to the filter.
         if($formatted_date['end_unix'] < $from_date) {
           $exclude_date = true;
+          $add = false;
         }
 
         // Exclude any event dates that do meet the end date criteria
         // if there is an end date, and that date is greater than the to date passed in the filter
         if($to_date && $formatted_date['end_unix']  > $to_date) {
           $exclude_date = true;
+          $add = false;
         }
 
         // Push dates not marked to be excluded

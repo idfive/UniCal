@@ -18,4 +18,6 @@ $plugin = array(
     'render' => FALSE,
     'granularity' => DRUPAL_CACHE_PER_ROLE,
   ),
+  // Customize the output for events to unical formatter.
+  'formatter' => 'unical_json',
 );
