@@ -10,12 +10,12 @@
 function unical_features_taxonomy_default_vocabularies() {
   return array(
     'calendar_taxonomy_1' => array(
-      'name' => 'Location',
+      'name' => 'School / College',
       'machine_name' => 'calendar_taxonomy_1',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => -10,
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -33,12 +33,12 @@ function unical_features_taxonomy_default_vocabularies() {
       ),
     ),
     'calendar_taxonomy_2' => array(
-      'name' => 'Event Type',
+      'name' => 'Audience',
       'machine_name' => 'calendar_taxonomy_2',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => -9,
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -56,12 +56,12 @@ function unical_features_taxonomy_default_vocabularies() {
       ),
     ),
     'calendar_taxonomy_3' => array(
-      'name' => 'Department',
+      'name' => 'Category',
       'machine_name' => 'calendar_taxonomy_3',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => -8,
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -79,12 +79,12 @@ function unical_features_taxonomy_default_vocabularies() {
       ),
     ),
     'calendar_taxonomy_4' => array(
-      'name' => 'Category',
+      'name' => 'Calendar Taxonomy 4 (DO NOT DELETE)',
       'machine_name' => 'calendar_taxonomy_4',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => -7,
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -102,12 +102,12 @@ function unical_features_taxonomy_default_vocabularies() {
       ),
     ),
     'calendar_taxonomy_5' => array(
-      'name' => 'Audience',
+      'name' => 'Calendar Taxonomy 5 (DO NOT DELETE)',
       'machine_name' => 'calendar_taxonomy_5',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => -6,
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -125,12 +125,12 @@ function unical_features_taxonomy_default_vocabularies() {
       ),
     ),
     'calendar_taxonomy_6' => array(
-      'name' => 'Schools',
+      'name' => 'Calendar Taxonomy 6 (DO NOT DELETE)',
       'machine_name' => 'calendar_taxonomy_6',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => -5,
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

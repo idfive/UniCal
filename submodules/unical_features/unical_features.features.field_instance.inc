@@ -10,19 +10,19 @@
 function unical_features_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-event-body'
+  // Exported field_instance: 'node-event-body'.
   $field_instances['node-event-body'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'A shortened (200 character) version of this will also appear in the RSS feeds used throughout the UD main site.',
+    'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -53,9 +53,95 @@ function unical_features_field_default_field_instances() {
       'type' => 'text_textarea_with_summary',
       'weight' => 3,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_address'
+  // Exported field_instance: 'node-event-date_repeat_entity_clone_state'.
+  $field_instances['node-event-date_repeat_entity_clone_state'] = array(
+    'bundle' => 'event',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 34,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'date_repeat_entity_clone_state',
+    'label' => 'Clone state (do not change)',
+    'required' => FALSE,
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 31,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-date_repeat_entity_master_uuid'.
+  $field_instances['node-event-date_repeat_entity_master_uuid'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 33,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'date_repeat_entity_master_uuid',
+    'label' => 'Master UUID (do not change)',
+    'required' => FALSE,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 30,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_address'.
   $field_instances['node-event-field_address'] = array(
     'bundle' => 'event',
     'default_value' => array(
@@ -74,7 +160,7 @@ function unical_features_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -122,7 +208,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_contact_email'
+  // Exported field_instance: 'node-event-field_contact_email'.
   $field_instances['node-event-field_contact_email'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -134,7 +220,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'email',
         'settings' => array(),
         'type' => 'email_default',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -161,7 +247,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_contact_name'
+  // Exported field_instance: 'node-event-field_contact_name'.
   $field_instances['node-event-field_contact_name'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -173,7 +259,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -201,7 +287,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_contact_phone'
+  // Exported field_instance: 'node-event-field_contact_phone'.
   $field_instances['node-event-field_contact_phone'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -213,7 +299,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -241,7 +327,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_contact_website'
+  // Exported field_instance: 'node-event-field_contact_website'.
   $field_instances['node-event-field_contact_website'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -253,7 +339,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 21,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -298,7 +384,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_cost'
+  // Exported field_instance: 'node-event-field_cost'.
   $field_instances['node-event-field_cost'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -310,7 +396,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 30,
+        'weight' => 17,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -331,18 +417,19 @@ function unical_features_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 5,
       ),
-      'type' => 'text_textfield',
+      'type' => 'text_textarea',
       'weight' => 36,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_date'
+  // Exported field_instance: 'node-event-field_date'.
   $field_instances['node-event-field_date'] = array(
     'bundle' => 'event',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field controls dates. "All Day" events are modified in the unical module to enter into the db as starting at 12:00 AM, and ending at 11:59 PM. If you return to edit these events afterwards, please note that any events that do not start at 12:00 AM, and end at 11:59 PM WILL NOT display as "All Day" on the calendar.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -357,7 +444,7 @@ function unical_features_field_default_field_instances() {
           'show_repeat_rule' => 'show',
         ),
         'type' => 'date_default',
-        'weight' => 41,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -382,7 +469,7 @@ function unical_features_field_default_field_instances() {
       'module' => 'date',
       'settings' => array(
         'display_all_day' => 1,
-        'increment' => 15,
+        'increment' => 1,
         'input_format' => 'M j Y - g:i:sa',
         'input_format_custom' => '',
         'label_position' => 'above',
@@ -392,57 +479,12 @@ function unical_features_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 40,
+      'weight' => 5,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_ems_booking_id'
-  $field_instances['node-event-field_ems_booking_id'] = array(
-    'bundle' => 'event',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 43,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_ems_booking_id',
-    'label' => 'EMS Booking ID',
-    'required' => 0,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 32,
-    ),
-  );
-
-  // Exported field_instance: 'node-event-field_exclude_from_main_calendar'
+  // Exported field_instance: 'node-event-field_exclude_from_main_calendar'.
   $field_instances['node-event-field_exclude_from_main_calendar'] = array(
     'bundle' => 'event',
     'default_value' => array(
@@ -458,7 +500,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 45,
+        'weight' => 36,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -469,7 +511,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_exclude_from_main_calendar',
-    'label' => 'Exclude from main calendar',
+    'label' => 'Exclude from main calendar?',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -481,11 +523,12 @@ function unical_features_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 30,
+      'weight' => 33,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_featured'
+  // Exported field_instance: 'node-event-field_featured'.
   $field_instances['node-event-field_featured'] = array(
     'bundle' => 'event',
     'default_value' => array(
@@ -494,14 +537,13 @@ function unical_features_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field controls whether this event should show up in the "featured" events slider on calendar sites, if that feature is enabled.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'list',
+        'label' => 'hidden',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 24,
+        'type' => 'hidden',
+        'weight' => 16,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -512,7 +554,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_featured',
-    'label' => 'Featured event',
+    'label' => 'Feature throughout site',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -526,9 +568,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_onoff',
       'weight' => 28,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_free_event'
+  // Exported field_instance: 'node-event-field_free_event'.
   $field_instances['node-event-field_free_event'] = array(
     'bundle' => 'event',
     'default_value' => array(
@@ -540,11 +583,10 @@ function unical_features_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'list',
+        'label' => 'hidden',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 37,
+        'type' => 'hidden',
+        'weight' => 31,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -571,7 +613,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_how_to_rsvp'
+  // Exported field_instance: 'node-event-field_how_to_rsvp'.
   $field_instances['node-event-field_how_to_rsvp'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -583,7 +625,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 15,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -611,7 +653,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_image'
+  // Exported field_instance: 'node-event-field_image'.
   $field_instances['node-event-field_image'] = array(
     'bundle' => 'event',
     'deleted' => 0,
@@ -622,10 +664,10 @@ function unical_features_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'medium',
         ),
         'type' => 'image',
-        'weight' => 9,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -636,16 +678,16 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_image',
-    'label' => 'Image',
+    'label' => 'Event Image',
     'required' => 0,
     'settings' => array(
       'alt_field' => 1,
-      'default_image' => 0,
+      'default_image' => 301,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
+      'max_filesize' => '300 KB',
+      'max_resolution' => '500x280',
+      'min_resolution' => '500x280',
       'title_field' => 0,
       'user_register_form' => FALSE,
     ),
@@ -659,9 +701,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'image_image',
       'weight' => 10,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_organizer_facebook'
+  // Exported field_instance: 'node-event-field_organizer_facebook'.
   $field_instances['node-event-field_organizer_facebook'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -673,7 +716,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 35,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -718,7 +761,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_organizer_twitter'
+  // Exported field_instance: 'node-event-field_organizer_twitter'.
   $field_instances['node-event-field_organizer_twitter'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -730,7 +773,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 36,
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -775,7 +818,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_promote_in_feed'
+  // Exported field_instance: 'node-event-field_promote_in_feed'.
   $field_instances['node-event-field_promote_in_feed'] = array(
     'bundle' => 'event',
     'default_value' => array(
@@ -784,14 +827,13 @@ function unical_features_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field controls whether this event should show up in any external feeds you may have set up.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'list',
+        'label' => 'hidden',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 46,
+        'type' => 'hidden',
+        'weight' => 32,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -814,11 +856,12 @@ function unical_features_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 31,
+      'weight' => 29,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_repeating_date_description'
+  // Exported field_instance: 'node-event-field_repeating_date_description'.
   $field_instances['node-event-field_repeating_date_description'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -830,7 +873,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 44,
+        'weight' => 35,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -854,11 +897,12 @@ function unical_features_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 29,
+      'weight' => 32,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_rsvp_email'
+  // Exported field_instance: 'node-event-field_rsvp_email'.
   $field_instances['node-event-field_rsvp_email'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -870,7 +914,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'email',
         'settings' => array(),
         'type' => 'email_default',
-        'weight' => 17,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -897,7 +941,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_rsvp_phone'
+  // Exported field_instance: 'node-event-field_rsvp_phone'.
   $field_instances['node-event-field_rsvp_phone'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -909,7 +953,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 16,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -937,7 +981,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_same_as_submitter'
+  // Exported field_instance: 'node-event-field_same_as_submitter'.
   $field_instances['node-event-field_same_as_submitter'] = array(
     'bundle' => 'event',
     'default_value' => array(
@@ -953,7 +997,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 34,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -980,7 +1024,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_social_facebook'
+  // Exported field_instance: 'node-event-field_social_facebook'.
   $field_instances['node-event-field_social_facebook'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -992,7 +1036,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 22,
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1037,7 +1081,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_social_twitter'
+  // Exported field_instance: 'node-event-field_social_twitter'.
   $field_instances['node-event-field_social_twitter'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1049,7 +1093,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 23,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1094,7 +1138,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_submitter_email'
+  // Exported field_instance: 'node-event-field_submitter_email'.
   $field_instances['node-event-field_submitter_email'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1106,7 +1150,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'email',
         'settings' => array(),
         'type' => 'email_default',
-        'weight' => 33,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1133,7 +1177,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_submitter_name'
+  // Exported field_instance: 'node-event-field_submitter_name'.
   $field_instances['node-event-field_submitter_name'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1145,7 +1189,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 31,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1173,7 +1217,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_submitter_phone'
+  // Exported field_instance: 'node-event-field_submitter_phone'.
   $field_instances['node-event-field_submitter_phone'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1185,7 +1229,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 32,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1213,7 +1257,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_taxonomy_1'
+  // Exported field_instance: 'node-event-field_taxonomy_1'.
   $field_instances['node-event-field_taxonomy_1'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1225,7 +1269,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 27,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1236,7 +1280,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_taxonomy_1',
-    'label' => 'Location',
+    'label' => 'School/Department',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1251,7 +1295,7 @@ function unical_features_field_default_field_instances() {
     'workbench_access_field' => TRUE,
   );
 
-  // Exported field_instance: 'node-event-field_taxonomy_2'
+  // Exported field_instance: 'node-event-field_taxonomy_2'.
   $field_instances['node-event-field_taxonomy_2'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1263,7 +1307,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 29,
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1274,7 +1318,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_taxonomy_2',
-    'label' => 'Event Type',
+    'label' => 'Audience',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1286,11 +1330,49 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_buttons',
       'weight' => 14,
     ),
-    'workbench_access_field' => FALSE,
+    'workbench_access_field' => TRUE,
   );
 
-  // Exported field_instance: 'node-event-field_taxonomy_3'
+  // Exported field_instance: 'node-event-field_taxonomy_3'.
   $field_instances['node-event-field_taxonomy_3'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_3',
+    'label' => 'Category',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 12,
+    ),
+    'workbench_access_field' => TRUE,
+  );
+
+  // Exported field_instance: 'node-event-field_taxonomy_4'.
+  $field_instances['node-event-field_taxonomy_4'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1311,46 +1393,8 @@ function unical_features_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_taxonomy_3',
-    'label' => 'Department',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 12,
-    ),
-    'workbench_access_field' => FALSE,
-  );
-
-  // Exported field_instance: 'node-event-field_taxonomy_4'
-  $field_instances['node-event-field_taxonomy_4'] = array(
-    'bundle' => 'event',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 38,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
     'field_name' => 'field_taxonomy_4',
-    'label' => 'Category',
+    'label' => 'Taxonomy 4',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1362,9 +1406,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_buttons',
       'weight' => 37,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_taxonomy_5'
+  // Exported field_instance: 'node-event-field_taxonomy_5'.
   $field_instances['node-event-field_taxonomy_5'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1376,7 +1421,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 39,
+        'weight' => 29,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1387,7 +1432,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_taxonomy_5',
-    'label' => 'Audience',
+    'label' => 'Taxonomy 5',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1399,9 +1444,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_buttons',
       'weight' => 38,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_taxonomy_6'
+  // Exported field_instance: 'node-event-field_taxonomy_6'.
   $field_instances['node-event-field_taxonomy_6'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1413,7 +1459,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 40,
+        'weight' => 30,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1424,7 +1470,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_taxonomy_6',
-    'label' => 'Schools',
+    'label' => 'Taxonomy 6',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1436,14 +1482,15 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_buttons',
       'weight' => 39,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_ticket_url'
+  // Exported field_instance: 'node-event-field_ticket_url'.
   $field_instances['node-event-field_ticket_url'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Tickets & More Information',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1478,10 +1525,10 @@ function unical_features_field_default_field_instances() {
       ),
       'enable_tokens' => 1,
       'rel_remove' => 'default',
-      'title' => 'value',
+      'title' => 'none',
       'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
-      'title_value' => 'Tickets & More Information',
+      'title_value' => '',
       'url' => 0,
       'user_register_form' => FALSE,
       'validate_url' => 1,
@@ -1495,12 +1542,12 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_timezone'
+  // Exported field_instance: 'node-event-field_timezone'.
   $field_instances['node-event-field_timezone'] = array(
     'bundle' => 'event',
     'default_value' => array(
       0 => array(
-        'value' => 'America/Chicago',
+        'value' => 'America/New_York',
       ),
     ),
     'deleted' => 0,
@@ -1511,7 +1558,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'tzfield',
         'settings' => array(),
         'type' => 'tzfield_default',
-        'weight' => 42,
+        'weight' => 27,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1532,11 +1579,12 @@ function unical_features_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 41,
+      'weight' => 6,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event-field_venue_name'
+  // Exported field_instance: 'node-event-field_venue_name'.
   $field_instances['node-event-field_venue_name'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1548,7 +1596,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 13,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1576,7 +1624,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_venue_url'
+  // Exported field_instance: 'node-event-field_venue_url'.
   $field_instances['node-event-field_venue_url'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -1588,7 +1636,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 14,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1633,19 +1681,19 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_add_to_calendar_exclude'
+  // Exported field_instance: 'node-site-field_add_to_calendar_exclude'.
   $field_instances['node-site-field_add_to_calendar_exclude'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Exclude specific services from the "add to calendar" dropdown.',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 23,
+        'weight' => 25,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1666,11 +1714,12 @@ function unical_features_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 68,
+      'weight' => 65,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_allow_event_submit'
+  // Exported field_instance: 'node-site-field_allow_event_submit'.
   $field_instances['node-site-field_allow_event_submit'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -1709,11 +1758,12 @@ function unical_features_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 66,
+      'weight' => 63,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_allow_featured_events'
+  // Exported field_instance: 'node-site-field_allow_featured_events'.
   $field_instances['node-site-field_allow_featured_events'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -1729,7 +1779,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 25,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1752,16 +1802,17 @@ function unical_features_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 65,
+      'weight' => 62,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_calendar_help_link'
+  // Exported field_instance: 'node-site-field_calendar_help_link'.
   $field_instances['node-site-field_calendar_help_link'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'If you wish to add a link to a page that contains help for the "add to calendar" function, do so here. Link will display along with the add to calendar popup options.',
+    'description' => 'If you wish to add a link to a page that contains help for the calendar function, do so here. Link will display along with the add to calendar popup.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1809,23 +1860,24 @@ function unical_features_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 62,
+      'weight' => 68,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_custom_text_above_filters'
+  // Exported field_instance: 'node-site-field_custom_text_above_filters'.
   $field_instances['node-site-field_custom_text_above_filters'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'If you wish to add custom text that will appear above the filters, on the calendar landing page, do so here. Leaving this blank will result in no text being displayed.',
     'display' => array(
       'default' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 21,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1849,11 +1901,53 @@ function unical_features_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 61,
+      'weight' => 67,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_default_event_image'
+  // Exported field_instance: 'node-site-field_custom_text_above_sidebar'.
+  $field_instances['node-site-field_custom_text_above_sidebar'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 27,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_custom_text_above_sidebar',
+    'label' => 'Custom Text Above Sidebar',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 66,
+    ),
+    'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance: 'node-site-field_default_event_image'.
   $field_instances['node-site-field_default_event_image'] = array(
     'bundle' => 'site',
     'deleted' => 0,
@@ -1879,7 +1973,7 @@ function unical_features_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_default_event_image',
     'label' => 'Default Event Image',
-    'required' => 0,
+    'required' => FALSE,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -1892,23 +1986,22 @@ function unical_features_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
       'module' => 'image',
       'settings' => array(
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 64,
+      'weight' => 61,
     ),
   );
 
-  // Exported field_instance: 'node-site-field_google_maps_api_key'
+  // Exported field_instance: 'node-site-field_google_maps_api_key'.
   $field_instances['node-site-field_google_maps_api_key'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'A Google API key must be entered for Maps to display on the event detail page. To obtain a key, visit https://developers.google.com/maps/documentation/staticmaps/',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1939,11 +2032,12 @@ function unical_features_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 67,
+      'weight' => 64,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_main_calendar_site'
+  // Exported field_instance: 'node-site-field_main_calendar_site'.
   $field_instances['node-site-field_main_calendar_site'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -1959,7 +2053,7 @@ function unical_features_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 24,
+        'weight' => 26,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1982,11 +2076,63 @@ function unical_features_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 63,
+      'weight' => 60,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_1'
+  // Exported field_instance: 'node-site-field_number_results_per_page'.
+  $field_instances['node-site-field_number_results_per_page'] = array(
+    'bundle' => 'site',
+    'default_value' => array(
+      0 => array(
+        'value' => 20,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Please choose the number of events should appear on each mage, before the "load more" button appears.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 28,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_number_results_per_page',
+    'label' => 'Number results per page',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 66,
+    ),
+    'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_1'.
   $field_instances['node-site-field_taxonomy_1'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2023,7 +2169,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_1_enabled'
+  // Exported field_instance: 'node-site-field_taxonomy_1_enabled'.
   $field_instances['node-site-field_taxonomy_1_enabled'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -2064,9 +2210,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_onoff',
       'weight' => 46,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_1_label'
+  // Exported field_instance: 'node-site-field_taxonomy_1_label'.
   $field_instances['node-site-field_taxonomy_1_label'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2106,7 +2253,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_2'
+  // Exported field_instance: 'node-site-field_taxonomy_2'.
   $field_instances['node-site-field_taxonomy_2'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2143,7 +2290,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_2_enabled'
+  // Exported field_instance: 'node-site-field_taxonomy_2_enabled'.
   $field_instances['node-site-field_taxonomy_2_enabled'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -2184,9 +2331,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_onoff',
       'weight' => 44,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_2_label'
+  // Exported field_instance: 'node-site-field_taxonomy_2_label'.
   $field_instances['node-site-field_taxonomy_2_label'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2226,7 +2374,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_3'
+  // Exported field_instance: 'node-site-field_taxonomy_3'.
   $field_instances['node-site-field_taxonomy_3'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2263,7 +2411,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_3_enabled'
+  // Exported field_instance: 'node-site-field_taxonomy_3_enabled'.
   $field_instances['node-site-field_taxonomy_3_enabled'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -2304,9 +2452,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_onoff',
       'weight' => 49,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_3_label'
+  // Exported field_instance: 'node-site-field_taxonomy_3_label'.
   $field_instances['node-site-field_taxonomy_3_label'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2346,7 +2495,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_4'
+  // Exported field_instance: 'node-site-field_taxonomy_4'.
   $field_instances['node-site-field_taxonomy_4'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2383,7 +2532,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_4_enabled'
+  // Exported field_instance: 'node-site-field_taxonomy_4_enabled'.
   $field_instances['node-site-field_taxonomy_4_enabled'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -2424,9 +2573,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_onoff',
       'weight' => 52,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_4_label'
+  // Exported field_instance: 'node-site-field_taxonomy_4_label'.
   $field_instances['node-site-field_taxonomy_4_label'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2466,7 +2616,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_5'
+  // Exported field_instance: 'node-site-field_taxonomy_5'.
   $field_instances['node-site-field_taxonomy_5'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2503,7 +2653,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_5_enabled'
+  // Exported field_instance: 'node-site-field_taxonomy_5_enabled'.
   $field_instances['node-site-field_taxonomy_5_enabled'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -2544,9 +2694,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_onoff',
       'weight' => 55,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_5_label'
+  // Exported field_instance: 'node-site-field_taxonomy_5_label'.
   $field_instances['node-site-field_taxonomy_5_label'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2586,7 +2737,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_6'
+  // Exported field_instance: 'node-site-field_taxonomy_6'.
   $field_instances['node-site-field_taxonomy_6'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2623,7 +2774,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_6_enabled'
+  // Exported field_instance: 'node-site-field_taxonomy_6_enabled'.
   $field_instances['node-site-field_taxonomy_6_enabled'] = array(
     'bundle' => 'site',
     'default_value' => array(
@@ -2664,9 +2815,10 @@ function unical_features_field_default_field_instances() {
       'type' => 'options_onoff',
       'weight' => 11,
     ),
+    'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-site-field_taxonomy_6_label'
+  // Exported field_instance: 'node-site-field_taxonomy_6_label'.
   $field_instances['node-site-field_taxonomy_6_label'] = array(
     'bundle' => 'site',
     'default_value' => NULL,
@@ -2706,7 +2858,7 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-calendar_taxonomy_7-field_ate_id'
+  // Exported field_instance: 'taxonomy_term-calendar_taxonomy_7-field_ate_id'.
   $field_instances['taxonomy_term-calendar_taxonomy_7-field_ate_id'] = array(
     'bundle' => 'calendar_taxonomy_7',
     'default_value' => NULL,
@@ -2743,7 +2895,7 @@ function unical_features_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('A shortened (200 character) version of this will also appear in the RSS feeds used throughout the UD main site.');
+  t('A Google API key must be entered for Maps to display on the event detail page. To obtain a key, visit https://developers.google.com/maps/documentation/staticmaps/');
   t('ATE ID');
   t('Add to Calendar Services to Exclude');
   t('Address');
@@ -2752,28 +2904,28 @@ function unical_features_field_default_field_instances() {
   t('Audience');
   t('Calendar Help Link');
   t('Category');
+  t('Clone state (do not change)');
   t('Cost');
   t('Custom Text Above Filters');
+  t('Custom Text Above Sidebar');
   t('Date');
   t('Default Event Image');
-  t('Department');
-  t('EMS Booking ID');
   t('Event Description');
   t('Event Facebook');
+  t('Event Image');
   t('Event Twitter');
-  t('Event Type');
   t('Event Website');
-  t('Exclude from main calendar');
-  t('Exclude specific services from the "add to calendar" dropdown.');
-  t('Featured event');
+  t('Exclude from main calendar?');
+  t('Feature throughout site');
   t('Free Event');
   t('Google Maps API Key');
   t('How to RSVP');
-  t('If you wish to add a link to a page that contains help for the "add to calendar" function, do so here. Link will display along with the add to calendar popup options.');
-  t('Image');
+  t('If you wish to add a link to a page that contains help for the calendar function, do so here. Link will display along with the add to calendar popup.');
+  t('If you wish to add custom text that will appear above the filters, on the calendar landing page, do so here. Leaving this blank will result in no text being displayed.');
   t('Label');
-  t('Location');
   t('Main Calendar Site?');
+  t('Master UUID (do not change)');
+  t('Number results per page');
   t('Organizer Email');
   t('Organizer Facebook');
   t('Organizer Name');
@@ -2786,18 +2938,24 @@ function unical_features_field_default_field_instances() {
   t('Please add the full URL to a relevant Facebook page.');
   t('Please add the full URL to a relevant Twitter page.');
   t('Please add the name of the venue, if applicable.');
+  t('Please choose the number of events should appear on each mage, before the "load more" button appears.');
   t('Pre-filter by');
   t('Promote in feed');
   t('RSVP Email');
   t('RSVP Phone');
   t('Repeating date description');
   t('Same as Event Submitter');
-  t('Schools');
+  t('School/Department');
   t('Submitter Email');
   t('Submitter Name');
   t('Submitter Phone');
+  t('Taxonomy 4');
+  t('Taxonomy 5');
+  t('Taxonomy 6');
+  t('This field controls dates. "All Day" events are modified in the unical module to enter into the db as starting at 12:00 AM, and ending at 11:59 PM. If you return to edit these events afterwards, please note that any events that do not start at 12:00 AM, and end at 11:59 PM WILL NOT display as "All Day" on the calendar.');
+  t('This field controls whether this event should show up in any external feeds you may have set up.');
+  t('This field controls whether this event should show up in the "featured" events slider on calendar sites, if that feature is enabled.');
   t('Ticket URL');
-  t('Tickets & More Information');
   t('Timezone');
   t('Venue Name');
   t('Venue URL');

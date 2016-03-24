@@ -21,7 +21,7 @@ function unical_features_node_info() {
     'event' => array(
       'name' => t('Event'),
       'base' => 'node_content',
-      'description' => t('An event that will appear on the calendar'),
+      'description' => '',
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -31,7 +31,7 @@ function unical_features_node_info() {
       'base' => 'node_content',
       'description' => t('A site is a website that is allowed to interface with the Calendar API'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Site Name'),
       'help' => '',
     ),
   );

@@ -10,7 +10,7 @@
 function unical_features_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -19,6 +19,9 @@ function unical_features_field_default_field_bases() {
       0 => 'node',
     ),
     'field_name' => 'body',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -31,13 +34,62 @@ function unical_features_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_add_to_calendar_exclude'
+  // Exported field_base: 'date_repeat_entity_clone_state'.
+  $field_bases['date_repeat_entity_clone_state'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'date_repeat_entity_clone_state',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'date_repeat_entity_master_uuid'.
+  $field_bases['date_repeat_entity_master_uuid'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'date_repeat_entity_master_uuid',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_add_to_calendar_exclude'.
   $field_bases['field_add_to_calendar_exclude'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_add_to_calendar_exclude',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -57,7 +109,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_address'
+  // Exported field_base: 'field_address'.
   $field_bases['field_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -72,7 +124,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_allow_event_submit'
+  // Exported field_base: 'field_allow_event_submit'.
   $field_bases['field_allow_event_submit'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -97,7 +149,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_allow_featured_events'
+  // Exported field_base: 'field_allow_featured_events'.
   $field_bases['field_allow_featured_events'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -122,7 +174,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_ate_id'
+  // Exported field_base: 'field_ate_id'.
   $field_bases['field_ate_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -146,7 +198,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_calendar_help_link'
+  // Exported field_base: 'field_calendar_help_link'.
   $field_bases['field_calendar_help_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -175,7 +227,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_contact_email'
+  // Exported field_base: 'field_contact_email'.
   $field_bases['field_contact_email'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -190,7 +242,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_contact_name'
+  // Exported field_base: 'field_contact_name'.
   $field_bases['field_contact_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -211,7 +263,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_contact_phone'
+  // Exported field_base: 'field_contact_phone'.
   $field_bases['field_contact_phone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -232,7 +284,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_contact_website'
+  // Exported field_base: 'field_contact_website'.
   $field_bases['field_contact_website'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -261,7 +313,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_cost'
+  // Exported field_base: 'field_cost'.
   $field_bases['field_cost'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -275,20 +327,21 @@ function unical_features_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
+    'settings' => array(),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_custom_text_above_filters'
+  // Exported field_base: 'field_custom_text_above_filters'.
   $field_bases['field_custom_text_above_filters'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_custom_text_above_filters',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -301,13 +354,38 @@ function unical_features_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_date'
+  // Exported field_base: 'field_custom_text_above_sidebar'.
+  $field_bases['field_custom_text_above_sidebar'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_custom_text_above_sidebar',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_date'.
   $field_bases['field_date'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_date',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'date',
@@ -324,14 +402,14 @@ function unical_features_field_default_field_bases() {
       ),
       'repeat' => 1,
       'timezone_db' => '',
-      'todate' => 'required',
+      'todate' => 'optional',
       'tz_handling' => 'none',
     ),
     'translatable' => 0,
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_default_event_image'
+  // Exported field_base: 'field_default_event_image'.
   $field_bases['field_default_event_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -353,28 +431,16 @@ function unical_features_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_ems_booking_id'
-  $field_bases['field_ems_booking_id'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_ems_booking_id',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'number',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'number_integer',
-  );
-
-  // Exported field_base: 'field_exclude_from_main_calendar'
+  // Exported field_base: 'field_exclude_from_main_calendar'.
   $field_bases['field_exclude_from_main_calendar'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_exclude_from_main_calendar',
+    'field_permissions' => array(
+      'type' => 1,
+    ),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -393,7 +459,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_featured'
+  // Exported field_base: 'field_featured'.
   $field_bases['field_featured'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -421,7 +487,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_free_event'
+  // Exported field_base: 'field_free_event'.
   $field_bases['field_free_event'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -446,7 +512,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_google_maps_api_key'
+  // Exported field_base: 'field_google_maps_api_key'.
   $field_bases['field_google_maps_api_key'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -467,7 +533,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_how_to_rsvp'
+  // Exported field_base: 'field_how_to_rsvp'.
   $field_bases['field_how_to_rsvp'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -486,13 +552,16 @@ function unical_features_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_image'
+  // Exported field_base: 'field_image'.
   $field_bases['field_image'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_image',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -508,13 +577,16 @@ function unical_features_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_main_calendar_site'
+  // Exported field_base: 'field_main_calendar_site'.
   $field_bases['field_main_calendar_site'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_main_calendar_site',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -533,7 +605,25 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_organizer_facebook'
+  // Exported field_base: 'field_number_results_per_page'.
+  $field_bases['field_number_results_per_page'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_number_results_per_page',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'number_integer',
+  );
+
+  // Exported field_base: 'field_organizer_facebook'.
   $field_bases['field_organizer_facebook'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -562,7 +652,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_organizer_twitter'
+  // Exported field_base: 'field_organizer_twitter'.
   $field_bases['field_organizer_twitter'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -591,13 +681,16 @@ function unical_features_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_promote_in_feed'
+  // Exported field_base: 'field_promote_in_feed'.
   $field_bases['field_promote_in_feed'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_promote_in_feed',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -616,13 +709,16 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_repeating_date_description'
+  // Exported field_base: 'field_repeating_date_description'.
   $field_bases['field_repeating_date_description'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_repeating_date_description',
+    'field_permissions' => array(
+      'type' => 1,
+    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -635,7 +731,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_rsvp_email'
+  // Exported field_base: 'field_rsvp_email'.
   $field_bases['field_rsvp_email'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -650,7 +746,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_rsvp_phone'
+  // Exported field_base: 'field_rsvp_phone'.
   $field_bases['field_rsvp_phone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -671,7 +767,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_same_as_submitter'
+  // Exported field_base: 'field_same_as_submitter'.
   $field_bases['field_same_as_submitter'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -696,7 +792,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_social_facebook'
+  // Exported field_base: 'field_social_facebook'.
   $field_bases['field_social_facebook'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -725,7 +821,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_social_twitter'
+  // Exported field_base: 'field_social_twitter'.
   $field_bases['field_social_twitter'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -754,7 +850,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_submitter_email'
+  // Exported field_base: 'field_submitter_email'.
   $field_bases['field_submitter_email'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -769,7 +865,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_submitter_name'
+  // Exported field_base: 'field_submitter_name'.
   $field_bases['field_submitter_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -790,7 +886,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_submitter_phone'
+  // Exported field_base: 'field_submitter_phone'.
   $field_bases['field_submitter_phone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -811,7 +907,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_taxonomy_1'
+  // Exported field_base: 'field_taxonomy_1'.
   $field_bases['field_taxonomy_1'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -840,7 +936,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_taxonomy_1_enabled'
+  // Exported field_base: 'field_taxonomy_1_enabled'.
   $field_bases['field_taxonomy_1_enabled'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -865,7 +961,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_taxonomy_1_label'
+  // Exported field_base: 'field_taxonomy_1_label'.
   $field_bases['field_taxonomy_1_label'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -886,7 +982,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_taxonomy_2'
+  // Exported field_base: 'field_taxonomy_2'.
   $field_bases['field_taxonomy_2'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -915,7 +1011,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_taxonomy_2_enabled'
+  // Exported field_base: 'field_taxonomy_2_enabled'.
   $field_bases['field_taxonomy_2_enabled'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -940,7 +1036,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_taxonomy_2_label'
+  // Exported field_base: 'field_taxonomy_2_label'.
   $field_bases['field_taxonomy_2_label'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -961,7 +1057,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_taxonomy_3'
+  // Exported field_base: 'field_taxonomy_3'.
   $field_bases['field_taxonomy_3'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -990,7 +1086,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_taxonomy_3_enabled'
+  // Exported field_base: 'field_taxonomy_3_enabled'.
   $field_bases['field_taxonomy_3_enabled'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1015,7 +1111,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_taxonomy_3_label'
+  // Exported field_base: 'field_taxonomy_3_label'.
   $field_bases['field_taxonomy_3_label'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1036,7 +1132,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_taxonomy_4'
+  // Exported field_base: 'field_taxonomy_4'.
   $field_bases['field_taxonomy_4'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1062,7 +1158,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_taxonomy_4_enabled'
+  // Exported field_base: 'field_taxonomy_4_enabled'.
   $field_bases['field_taxonomy_4_enabled'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1087,7 +1183,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_taxonomy_4_label'
+  // Exported field_base: 'field_taxonomy_4_label'.
   $field_bases['field_taxonomy_4_label'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1108,10 +1204,10 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_taxonomy_5'
+  // Exported field_base: 'field_taxonomy_5'.
   $field_bases['field_taxonomy_5'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_taxonomy_5',
@@ -1134,7 +1230,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_taxonomy_5_enabled'
+  // Exported field_base: 'field_taxonomy_5_enabled'.
   $field_bases['field_taxonomy_5_enabled'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1159,7 +1255,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_taxonomy_5_label'
+  // Exported field_base: 'field_taxonomy_5_label'.
   $field_bases['field_taxonomy_5_label'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1180,7 +1276,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_taxonomy_6'
+  // Exported field_base: 'field_taxonomy_6'.
   $field_bases['field_taxonomy_6'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1206,7 +1302,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_taxonomy_6_enabled'
+  // Exported field_base: 'field_taxonomy_6_enabled'.
   $field_bases['field_taxonomy_6_enabled'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1231,7 +1327,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_taxonomy_6_label'
+  // Exported field_base: 'field_taxonomy_6_label'.
   $field_bases['field_taxonomy_6_label'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1252,7 +1348,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ticket_url'
+  // Exported field_base: 'field_ticket_url'.
   $field_bases['field_ticket_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1281,7 +1377,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_timezone'
+  // Exported field_base: 'field_timezone'.
   $field_bases['field_timezone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1716,7 +1812,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'tzfield',
   );
 
-  // Exported field_base: 'field_venue_name'
+  // Exported field_base: 'field_venue_name'.
   $field_bases['field_venue_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1737,7 +1833,7 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_venue_url'
+  // Exported field_base: 'field_venue_url'.
   $field_bases['field_venue_url'] = array(
     'active' => 1,
     'cardinality' => 1,
