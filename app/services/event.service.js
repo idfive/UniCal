@@ -156,7 +156,7 @@
       //Get filter string
       var filterString = this.getFilterString({
 		  range: 1000,
-		  fields: 'id,clndrDate',
+		  fields: 'id,clndrDate,date',
 	  });
 
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
