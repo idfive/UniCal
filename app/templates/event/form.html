@@ -304,10 +304,10 @@
           <h4>Categories</h4>
           <p class="mini-text underline">
             <em ng-if="vm.hasPrecheckedTaxonomies()">
-              You are submitting an event to the {{vm.siteSettings.label}} calendar. Are there any additional tags that you would like to select? Some tags, based on the {{vm.siteSettings.label}} are already selected for you.
+              You are submitting an event to the {{vm.siteSettings.label}} calendar. Are there any additional tags that you would like to select? Some tags, based on the {{vm.siteSettings.label}} are already selected for you. Please check only relevant items. Our moderators will review the listing prior to publication.
             </em>
             <em ng-if="!vm.hasPrecheckedTaxonomies()">
-              Where should this event appear on our calendars? Check all that apply (at least one must be selected).
+              Where should this event appear on our calendars? Check all that apply (at least one must be selected). Please check only relevant items. Our moderators will review the listing prior to publication.
             </em>
           </p>
           <div ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies">
