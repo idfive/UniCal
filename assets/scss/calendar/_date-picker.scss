@@ -4,7 +4,7 @@
 
 .pika-single {
 
-  &[style*='top: auto'] {
+  &.is-hidden {
     display: none;
   }
 
