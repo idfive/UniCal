@@ -24,6 +24,7 @@
     vm.taxonomies = taxonomyService.taxonomies;
     vm.siteSettings = siteService.settings;
 
+
     /*
      * Create the event
      *
@@ -32,8 +33,17 @@
       vm.submitted = true;
       vm.processDataRaw();
       eventService.createNewEvent().then(function() {
-        vm.newEventData = eventService.newEventData;
-        vm.newEventDataRaw = eventService.newEventDataRaw;
+        // Reset the events service
+        eventService.newEventData = {
+          date: [{
+            value: '',
+            value2: ''
+          }],
+          address: {
+            country: "US"
+          }
+        };
+        eventService.newEventDataRaw = {};
         vm.page = 10;
         vm.submitted = false;
       }, function(response) {
