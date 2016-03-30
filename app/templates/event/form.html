@@ -24,6 +24,7 @@
           <textarea ng-model="vm.newEventData.body" name="body" placeholder="* Event Details" type="textarea" class="required" required></textarea>
           <p>Have an image? <em>.gif, .jpg, or .png file formats accepted (500kb max file size)</em></p>
           <button ng-if="!vm.newEventData.image && !vm.imageName" type="file" ngf-select="vm.uploadImage($file, $invalidFiles)" accept="image/*" ngf-max-size="500KB" class="unical-calendar__buttoon--image"><i class="fa fa-camera"></i> Add image</button>
+          <button ng-if="vm.newEventData.image && vm.imageName" ng-click="vm.clearImage()"class="unical-calendar__buttoon--image"><i class="fa fa-close"></i> Remove image</button>
           <p ng-if="vm.imageValidationError || vm.imageUploadError" class="unical-calendar__message--error">{{vm.imageValidationError.$error}} {{vm.imageValidationError.$errorParam}} {{vm.imageUploadError}}</p>
           <p ng-if="vm.newEventData.image && vm.imageName" class="unical-calendar__message--success">{{vm.imageName}}</p>
           <div class="unical-calendar__submit-form-controls">

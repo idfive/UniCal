@@ -148,6 +148,7 @@
      * Upload image
      *
      */
+
     vm.uploadImage = function(image, errors) {
 
       //Any validation errors are caught here
@@ -166,11 +167,15 @@
           vm.imageName = data.label;
         }, function(response) {
           if(response.status > 0) {
-            console.log(response);
             vm.imageUploadError = response.status + ': ' + response.data;
           }
         });
       }
+    }
+
+    vm.clearImage = function() {
+      vm.newEventData.image = undefined;
+      vm.imageName = '';
     }
 
     /*
