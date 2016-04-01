@@ -5,7 +5,7 @@
     .module('calendar')
     .config(config);
 
-  function config($routeProvider, $locationProvider, $sceDelegateProvider) {
+  function config($routeProvider, $locationProvider, $sceDelegateProvider, $httpProvider) {
 
     //Routes
     $routeProvider
@@ -43,9 +43,13 @@
         redirectTo: '/'
       });
 
+    // For providing clean url's
     $locationProvider.html5Mode(true);
 
-    //Whitelist URLs
+    // For loading spinner
+    $httpProvider.interceptors.push('interceptorService');
+
+    // Whitelist URLs
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
       'https://www.google.com/maps/embed/**',

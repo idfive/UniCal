@@ -92,4 +92,4 @@ gulp.task('watch', function() {
 // Default 'gulp' task
 // ========================================
 
-gulp.task('default', ['compile-templates', 'compile-js', 'watch']);
+gulp.task('default', ['compile-templates', 'compile-sass', 'compile-js', 'watch']);

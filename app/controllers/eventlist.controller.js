@@ -31,6 +31,7 @@
     vm.taxonomies = taxonomyService.taxonomies;
     vm.url = window.location.href;
 
+
     //Clear filters
     vm.clearFilters = function() {
       //Clear filters
