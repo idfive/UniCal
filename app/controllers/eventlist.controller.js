@@ -30,6 +30,7 @@
     vm.siteSettings = siteService.settings;
     vm.taxonomies = taxonomyService.taxonomies;
     vm.url = window.location.href;
+    vm.today = dateService.dateNow();
 
 
     //Clear filters

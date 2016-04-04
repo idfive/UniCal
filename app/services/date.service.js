@@ -1,19 +1,20 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('calendar')
     .factory('dateService', dateService);
-  
+
   dateService.$inject = [];
-  
+
   function dateService() {
 
     var _defaultDateFormat = 'YYYY-MM-DD';
-    
+
     var service = {
       createDrupalDateFromPieces: createDrupalDateFromPieces,
       dateNow: dateNow,
+      dateNowUnix: dateNowUnix,
       dateTodayStart: dateTodayStart,
       dateTodayEnd: dateTodayEnd,
       dateTomorrowStart: dateTomorrowStart,
@@ -26,7 +27,7 @@
       dateYearCurrent: dateYearCurrent
     };
     return service;
-    
+
     /*
      * Get date-time in correct format for Drupal
      *
@@ -39,16 +40,25 @@
       //Return date in 24-hour format
       return moment(dateTime);
     }
-    
+
     /*
      * Date right now (Don't get minutes so we can cache better)
      *
      */
     function dateNow(dateFormat) {
       dateFormat = dateFormat || _defaultDateFormat;
-      return moment().format(_defaultDateFormat + ' HH') + ':00:00'; 
+      return moment().format(_defaultDateFormat + ' HH') + ':00:00';
     }
-    
+
+    /*
+     * Date right now in unix
+     *
+     */
+    function dateNowUnix() {
+      return moment().unix();
+    }
+
+
     /*
      * Date at the start of today
      *
@@ -57,7 +67,7 @@
       dateFormat = dateFormat || _defaultDateFormat;
       return moment().format(_defaultDateFormat) + ' 00:00:00';
     }
-    
+
     /*
      * Date at the end of today
      *
@@ -66,7 +76,7 @@
       dateFormat = dateFormat || _defaultDateFormat;
       return moment().format(_defaultDateFormat) + ' 23:59:59';
     }
-    
+
     /*
      * Date at the start of tomorrow
      *
@@ -75,7 +85,7 @@
       dateFormat = dateFormat || _defaultDateFormat;
       return moment().add(1, 'days').format(_defaultDateFormat) + ' 00:00:00';
     }
-    
+
     /*
      * Date at the end of tomorrow
      *
@@ -84,7 +94,7 @@
       dateFormat = dateFormat || _defaultDateFormat;
       return moment().add(1, 'days').format(_defaultDateFormat) + ' 23:59:59';
     }
-    
+
     /*
      * Date at the start of the week
      *
@@ -93,7 +103,7 @@
       dateFormat = dateFormat || _defaultDateFormat;
       return moment().startOf('week').format(_defaultDateFormat + ' HH:mm:ss');
     }
-    
+
     /*
      * Date at the end of the week
      *
@@ -102,7 +112,7 @@
       dateFormat = dateFormat || _defaultDateFormat;
       return moment().endOf('week').format(_defaultDateFormat + ' HH:mm:ss');
     }
-    
+
     /*
      * Date at the start of the month
      *
@@ -111,7 +121,7 @@
       dateFormat = dateFormat || _defaultDateFormat;
       return moment().startOf('month').format(_defaultDateFormat + ' HH:mm:ss');
     }
-    
+
     /*
      * Date at the end of the month
      *
@@ -120,7 +130,7 @@
       dateFormat = dateFormat || _defaultDateFormat;
       return moment().endOf('month').format(_defaultDateFormat + ' HH:mm:ss');
     }
-    
+
     /*
      * Returns current month as full name
      *
@@ -129,7 +139,7 @@
       dateFormat = dateFormat || 'MMMM';
       return moment().format(dateFormat);
     }
-    
+
     /*
      * Returns current year as four digit year
      *
@@ -140,5 +150,5 @@
     }
 
   };
-  
+
 })();

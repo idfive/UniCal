@@ -1,7 +1,10 @@
-<div class="unical-calendar__submit-form-back">
-  <a href="./">Back to Calendar</a>
-</div>
+
 <div ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
+
+  <div class="unical-calendar__submit-form-back">
+    <a ng-show="event.date[0].end_unix >= vm.today" href="./">Back to Calendar</a>
+    <a ng-show="event.date[0].end_unix <= vm.today" href="./archive">Back to Archive</a>
+  </div>
 
   <update-title title="{{event.label}} | {{vm.siteSettings.label}}"></update-title>
   <update-meta property="og:type" content="article" /></update-meta>

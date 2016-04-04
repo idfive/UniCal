@@ -1,56 +1,17 @@
 <div class="loading loadingAsync">Loading...</div>
-<update-title title="{{vm.siteSettings.label}}"></update-title>
+<update-title title="{{vm.siteSettings.label}} Events Archive"></update-title>
 <update-meta property="og:type" content="website" /></update-meta>
 <update-meta property="og:url" content="{{vm.url}}" /></update-meta>
 <update-meta property="og:title" content="{{vm.siteSettings.label}}" /></update-meta>
-<update-meta property="og:description" content="An events calendar." /></update-meta>
-
+<update-meta property="og:description" content="An events calendar archive." /></update-meta>
+<h2>Events Archive Page</h2>
 <div class="unical-calendar__aside">
-  <a class="unical-calendar__buttoon unical-calendar__buttoon--full" href="submit-event" ng-show="vm.siteSettings.allow_event_submit">Submit Event <i class="fa fa-calendar-plus-o"></i></a>
-  <div ng-show="vm.siteSettings.text_above_sidebar" ng-bind-html="vm.siteSettings.text_above_sidebar" class="unical-calendar__aside-text"></div>
   <!-- Sidebar -->
   <div class="unical-calendar__sidebar">
     <ul>
-      <li>Calendar</li>
-      <li><a href="archive">Archive</a></li>
+      <li><a href="./">Calendar</a></li>
+      <li>Archive</li>
     </ul>
-    <div class="unical-calendar__calendar">
-      <tien-clndr class="unical-calendar__calendar-block" tien-clndr-object="clndr" tien-clndr-events="vm.clndrEvents" tien-clndr-options="vm.clndrOptions">
-        <div class="unical-calendar__calendar-controls">
-          <div class="unical-calendar__calendar-previous-button" ng-class="{disabled: vm.isCurrentMonth(month, year) }" ng-click="vm.requestInProcess || clndr.back(); vm.getEventsByMonth(month, year);">
-            <i class="fa fa-angle-left"></i>
-          </div>
-          <div class="month">
-            {{month}} {{year}}
-          </div>
-          <div class="unical-calendar__calendar-next-button" ng-click="vm.requestInProcess || clndr.forward(); vm.getEventsByMonth(month, year);">
-            <i class="fa fa-angle-right"></i>
-          </div>
-        </div>
-        <div class="unical-calendar__calendar-grid">
-          <div class="days-of-the-week">
-            <div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
-              {{day}}
-            </div>
-          </div>
-          <div class="days">
-            <div class="{{day.classes}}" ng-repeat="day in days">
-            <!-- give it an indicator of events present -->
-            <div class="event-indicator" ng-click="vm.requestInProcess || vm.getEventsByDate(day.events)" ng-if="day.events.length">
-              {{day.day}}
-            </div>
-            <!-- else render without -->
-            <div ng-if="!day.events.length">
-              {{day.day}}
-            </div>
-            </div>
-          </div>
-        </div>
-      </tien-clndr>
-    </div>
-
-
-
     <h2 class="unical-calendar__filters-toggle +negative" id="unical-calendar__filters-toggle"><label>Filter by</label></h2>
     <form class="unical-calendar__filters" action="" method="post">
       <div ng-show="vm.siteSettings.text_above_filters" class="unical-calendar__filters-help">{{vm.siteSettings.text_above_filters}}</div>
@@ -58,18 +19,14 @@
         <fieldset>
           <h3 class="unical-calendar__filters-toggle"><label>Date<input type="checkbox" ng-model="vm.filters.rangeExpanded"/></label></h3>
           <div class="unical-calendar__filters" ng-show="vm.filters.rangeExpanded">
-            <label><input type="radio" name="date-filter" value="all" ng-model="vm.filters.range" ng-click="vm.getEvents()"> All</label>
-            <label><input type="radio" name="date-filter" value="today" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Today</label>
-            <label><input type="radio" name="date-filter" value="tomorrow" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Tomorrow</label>
-            <label><input type="radio" name="date-filter" value="week" ng-model="vm.filters.range" ng-click="vm.getEvents()"> This week</label>
-            <label><input type="radio" name="date-filter" value="month" ng-model="vm.filters.range" ng-click="vm.getEvents()"> This month</label>
+            <label><input type="radio" name="date-filter" value="archived" ng-model="vm.filters.range" ng-click="vm.getEvents()"> All Archived</label>
             <label><input type="radio" name="date-filter" value="custom" ng-model="vm.filters.range"> Custom range</label>
             <div ng-show="vm.filters.range=='custom'" class="unical-calendar__filters-custom-range">
               <label>
-                <input pikaday="vm.pikaday.clndrStartDate" min-date="{{vm.today}}" ng-model="vm.filters.startDate" placeholder="From" />
+                <input pikaday="vm.pikaday.startDate" ng-model="vm.filters.startDate" placeholder="From" />
               </label>
               <label>
-                <input pikaday="vm.pikaday.clndrEndDate" min-date="{{vm.today}}" ng-model="vm.filters.endDate" placeholder="To" />
+                <input pikaday="vm.pikaday.endDate" ng-model="vm.filters.endDate" placeholder="To" />
               </label>
               <p ng-click="vm.getEvents()" ng-class="{enabled: vm.filters.startDate && vm.filters.endDate }">Update</p>
             </div>
@@ -95,33 +52,13 @@
 </div>
 
 <div class="unical-calendar__events">
-  <div ng-show="vm.siteSettings.allow_featured_events">
-    <div class="unical-calendar__featured" ng-show="vm.featuredEvents.length">
-      <ul class="swift-slide">
-        <li ng-repeat="event in vm.featuredEvents" on-finish-render="vm.finishRenderFeatured()">
-          <div ng-if="event.image.image_styles.large" class="unical-calendar__featured-inner" style="background-image: url('{{event.image.image_styles.large}}');"></div>
-          <div ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" class="unical-calendar__featured-inner" style="background-image: url('{{vm.siteSettings.default_event_image.image_styles.large}}');"></div>
-          <div class="unical-calendar__featured-text">
-            <h2>{{event.date[0].start_month}} {{event.date[0].start_day}}</h2>
-            <h4><a href="event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h4>
-            <p><span ng-show="event.venue_name">{{event.venue_name}} |</span>
-              <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '11:59 PM'">
-                <span ng-switch-when="true">All Day</span>
-                <span ng-switch-default>{{event.date[0].start_time}}</span>
-              </span>
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 
   <div class="arrangement">
     <!-- Search -->
     <div class="arrangement-item unical-calendar__search">
       <form class="search-form" name="vm.searchForm" ng-submit="vm.searchEvents()">
         <div class="unical-calendar__search-term">
-          <input type="text" placeholder="Search events" name="searchTerm" ng-model="vm.searchTerm">
+          <input type="text" placeholder="Search archived events" name="searchTerm" ng-model="vm.searchTerm">
         </div>
         <div class="unical-calendar__search-action">
           <button type="submit"><i class="fa fa-search"></i></button>
@@ -130,14 +67,10 @@
     </div>
 
     <!-- Currently filtering by: Range -->
-    <span ng-if="vm.filters.range != 'all'">
-      <a class="unical-calendar__selectedfilter" ng-model="vm.filters.range" ng-click="vm.filters.range = 'all'; vm.getEvents()">
+    <span ng-if="vm.filters.range != 'archived'">
+      <a class="unical-calendar__selectedfilter" ng-model="vm.filters.range" ng-click="vm.filters.range = 'archived'; vm.getEvents()">
         <i class="fa fa-times-circle"></i> Date range:
         <span ng-switch="vm.filters.range">
-          <span ng-switch-when="today">Today</span>
-          <span ng-switch-when="tomorrow">Tomorrow</span>
-          <span ng-switch-when="week">This week</span>
-          <span ng-switch-when="month">This month</span>
           <span ng-switch-when="custom">{{vm.filters.startDate}} to {{vm.filters.endDate}}</span>
         </span>
       </a>
@@ -166,10 +99,6 @@
   </div>
 
   <div class="unical-calendar__event" ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
-    <div class="unical-calendar__event-date">
-      <span class="unical-calendar__month">{{event.date[0].start_month}}</span>
-      <span class="unical-calendar__day">{{event.date[0].start_day}}</span>
-    </div>
     <div class="unical-calendar__event-main">
       <div class="unical-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">
         <img ng-if="event.image.image_styles.large" ng-src="{{event.image.image_styles.large}}" alt="{{event.image.alt}}">
@@ -180,8 +109,8 @@
         <p>
           <span ng-show="event.venue_name">{{event.venue_name}} |</span>
           <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '11:59 PM'">
-            <span ng-switch-when="true">All Day</span>
-            <span ng-switch-default>{{event.date[0].start_time}}</span>
+            <span ng-switch-when="true">All Day {{event.date[0].start_date}}</span>
+            <span ng-switch-default>{{event.date[0].start_time}} {{event.date[0].start_date}}</span>
           </span>
           <span ng-if="event.date.length > 1">(Multiple Dates)</span>
 		</p>
@@ -190,9 +119,7 @@
         </div>
 
         <div  class="unical-calendar__event-links">
-          <add-this></add-this>
           <a class="unical-calendar__buttoon" href="event/{{event.id}}/{{event.uri}}"><i class="fa fa-eye push-right"></i>View Event</a>
-          <add-to-calendar></add-to-calendar>
         </div>
 
       </div>
