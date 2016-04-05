@@ -162,7 +162,7 @@
       //Default params
       var defaultParams = {
         fields: 'id,label,date,image,uri,address,body_trimmed,clndrDate,timezone,venue_name',
-        sort: 'date',
+        sort: '-date',
         range: siteService.settings.number_results_per_page
       };
 

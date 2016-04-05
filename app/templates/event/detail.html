@@ -62,7 +62,7 @@
 
         <div class="unical-calendar__event-body" ng-bind-html="event.body"></div>
 
-        <div  class="unical-calendar__event-links">
+        <div ng-show="event.date[0].end_unix >= vm.today" class="unical-calendar__event-links">
           <add-this></add-this>
           <add-to-calendar></add-to-calendar>
         </div>
