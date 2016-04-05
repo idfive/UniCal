@@ -62,6 +62,12 @@ RECOMMENDED MODULES
 * Markdown filter (https://www.drupal.org/project/markdown): When enabled, this
   module displays the UniCal project's README.md Help will be rendered with
   markdown, on the help page.  
+* Features (https://www.drupal.org/project/features): This module is necessary if you wish  
+  to create the content types, and taxonomies needed to set up the site initially.
+  If desired, this can be turned off after initial setup, hence reccomended, and not
+  required by UniCal.
+* Feeds (https://www.drupal.org/project/feeds): This module is necessary to run the various
+  importers provided, or to add your own custom importer.
 
 INSTALLATION
 ------------  
@@ -71,6 +77,7 @@ INSTALLATION
 * UniCal module should be installed in sites/all/modules folder, or the embed
   code for sites will need to be modified.
 * Enable and set up UniCal Features to use the content types and taxonomies needed.
+* If desired, enable and set up UniCal Feeds, if you wish to utilize the iCal importer.
 * Check that the server is serving REST at the endpoints.
 * If serving across other sites/servers, be sure CORS is properly set up.  
 * Modify .htaccess file, as shown in configuration.

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the UniCal Feeds feature.
+ */
+
+include_once 'unical_feeds.features.inc';
