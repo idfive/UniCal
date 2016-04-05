@@ -16,13 +16,13 @@
     vm.eventsCount = archiveService.eventsCount;
     vm.events = archiveService.eventsList;
     vm.filters = archiveService.filters;
-    vm.filters.range = 'archived';
     vm.searchTerm = archiveService.searchTerm;
     vm.requestInProcess = false;
     vm.selectedTaxonomies = taxonomyService.selectedTaxonomies;
     vm.siteSettings = siteService.settings;
     vm.taxonomies = taxonomyService.taxonomies;
     vm.url = window.location.href;
+    vm.today = dateService.dateNow();
 
 
     //Clear filters

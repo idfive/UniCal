@@ -17,7 +17,9 @@
       eventsCount: 0,
       eventsList: [],
       clearFilters: clearFilters,
-      filters: {},
+      filters: {
+        renge: 'archived'
+      },
       filterSearchResults: filterSearchResults,
       finishRenderEvents: finishRenderEvents,
       finishRenderFilters: finishRenderFilters,

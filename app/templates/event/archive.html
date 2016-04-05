@@ -26,10 +26,10 @@
             <label><input type="radio" name="date-filter" value="custom" ng-model="vm.filters.range"> Custom range</label>
             <div ng-show="vm.filters.range=='custom'" class="unical-calendar__filters-custom-range">
               <label>
-                <input pikaday="vm.pikaday.startDate" ng-model="vm.filters.startDate" placeholder="From" />
+                <input pikaday="vm.pikaday.startDate" max-date="{{vm.today}}" ng-model="vm.filters.startDate" placeholder="From" />
               </label>
               <label>
-                <input pikaday="vm.pikaday.endDate" ng-model="vm.filters.endDate" placeholder="To" />
+                <input pikaday="vm.pikaday.endDate" max-date="{{vm.today}}" ng-model="vm.filters.endDate" placeholder="To" />
               </label>
               <p ng-click="vm.getEvents()" ng-class="{enabled: vm.filters.startDate && vm.filters.endDate }">Update</p>
             </div>
