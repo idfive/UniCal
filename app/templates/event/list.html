@@ -8,12 +8,16 @@
 <div class="unical-calendar__aside">
   <a class="unical-calendar__buttoon unical-calendar__buttoon--full" href="submit-event" ng-show="vm.siteSettings.allow_event_submit">Submit Event <i class="fa fa-calendar-plus-o"></i></a>
   <div ng-show="vm.siteSettings.text_above_sidebar" ng-bind-html="vm.siteSettings.text_above_sidebar" class="unical-calendar__aside-text"></div>
+
+  <!-- Archive link, if present -->
+  <ul ng-show="vm.siteSettings.allow_archive" class="unical-calendar__archive-menu">
+    <li class="activeView">Calendar</li>
+    <li><a href="archive">Archive</a></li>
+  </ul>
+
   <!-- Sidebar -->
   <div class="unical-calendar__sidebar">
-    <ul>
-      <li>Calendar</li>
-      <li><a href="archive">Archive</a></li>
-    </ul>
+
     <div class="unical-calendar__calendar">
       <tien-clndr class="unical-calendar__calendar-block" tien-clndr-object="clndr" tien-clndr-events="vm.clndrEvents" tien-clndr-options="vm.clndrOptions">
         <div class="unical-calendar__calendar-controls">

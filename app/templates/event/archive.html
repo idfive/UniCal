@@ -5,13 +5,16 @@
 <update-meta property="og:title" content="{{vm.siteSettings.label}}" /></update-meta>
 <update-meta property="og:description" content="An events calendar archive." /></update-meta>
 <h2>Events Archive Page</h2>
-<div class="unical-calendar__aside">
+<div class="unical-calendar__aside unical-calendar__archive">
+
+  <!-- Archive link, if present -->
+  <ul ng-show="vm.siteSettings.allow_archive" class="unical-calendar__archive-menu">
+    <li><a href="./">Calendar</a></li>
+    <li class="activeView">Archive</li>
+  </ul>
+
   <!-- Sidebar -->
   <div class="unical-calendar__sidebar">
-    <ul>
-      <li><a href="./">Calendar</a></li>
-      <li>Archive</li>
-    </ul>
     <h2 class="unical-calendar__filters-toggle +negative" id="unical-calendar__filters-toggle"><label>Filter by</label></h2>
     <form class="unical-calendar__filters" action="" method="post">
       <div ng-show="vm.siteSettings.text_above_filters" class="unical-calendar__filters-help">{{vm.siteSettings.text_above_filters}}</div>
@@ -99,7 +102,7 @@
   </div>
 
   <div class="unical-calendar__event" ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
-    <div class="unical-calendar__event-main">
+    <div class="unical-calendar__event-main unical-calendar__event-main__archive">
       <div class="unical-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">
         <img ng-if="event.image.image_styles.large" ng-src="{{event.image.image_styles.large}}" alt="{{event.image.alt}}">
         <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="">

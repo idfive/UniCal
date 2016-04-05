@@ -2,8 +2,8 @@
 <div ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
 
   <div class="unical-calendar__submit-form-back">
-    <a ng-show="event.date[0].end_unix >= vm.today" href="./">Back to Calendar</a>
-    <a ng-show="event.date[0].end_unix <= vm.today" href="./archive">Back to Archive</a>
+    <a ng-show="event.date[0].end_unix >= vm.today || vm.siteSettings.allow_archive == false" href="./">Back to Calendar</a>
+    <a ng-show="event.date[0].end_unix <= vm.today && vm.siteSettings.allow_archive == true" href="./archive">Back to Archive</a>
   </div>
 
   <update-title title="{{event.label}} | {{vm.siteSettings.label}}"></update-title>
