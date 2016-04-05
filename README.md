@@ -50,7 +50,6 @@ The basic process:
 REQUIREMENTS
 ------------  
 This module requires the following modules:   
-* UniCal Features (TBD)  
 * RESTful (https://www.drupal.org/project/restful)  
 * CORS (https://www.drupal.org/project/cors)  
 * jQuery Update(https://www.drupal.org/project/jquery_update)  
@@ -108,6 +107,21 @@ that facebook bots/are redirected to the stock drupal node of the event.
   RewriteCond %{REQUEST_URI} !^/admin
   RewriteRule event/(.*)/(.*) http://%{HTTP_HOST}/#%1/event/$1/$2 [NE,L]
 
+FEEDS
+---------------  
+UniCal is fully compatible with the Feeds module (https://www.drupal.org/project/feeds)
+So any number of custom event importers are possible. UniCal comes with a default iCal
+feed importer, that you may use by enabling the unical_feeds module.
+ * Enable unical_feeds, and its dependencies.
+    * NOTE: The iCalcreator library v2.20.2 is required for date_ical.
+      Please see the project documentation for that module for more.
+ * The Feed settings can now be edited (if needed) at /admin/structure/feeds/unical_ical_importer
+ * Importing can now be done from /import/unical_ical_importer
+
+ Any number of options can be configured on this, or any custom importer, such as
+ scheduling, file upload, etc. See the Feeds module documentation for more advanced
+ use cases.
+
 TROUBLESHOOTING
 ---------------  
 * If the endpoint does not display, check the following:   - Is CORS set up?   
@@ -117,6 +131,7 @@ KNOWN CONFLICTS
 ---------------  
 * Global Redirect Module. Affects the angular form submit. Will look into as time
   allows.    
+* Workbench Module. Can affect Feeds importers, depending on settings.
 
 API 1.0
 -------
