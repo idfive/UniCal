@@ -77,7 +77,11 @@ INSTALLATION
 * UniCal module should be installed in sites/all/modules folder, or the embed
   code for sites will need to be modified.
 * Enable and set up UniCal Features to use the content types and taxonomies needed.
+  This module has its own dependencies, but can be turned off once Content Types,
+  Taxonomies, etc are created.
 * If desired, enable and set up UniCal Feeds, if you wish to utilize the iCal importer.
+  This module has its own dependencies, but provides a basis for feeds support that
+  can be extended via stock, and custom importers based around the feeds module.
 * Check that the server is serving REST at the endpoints.
 * If serving across other sites/servers, be sure CORS is properly set up.  
 * Modify .htaccess file, as shown in configuration.
