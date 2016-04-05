@@ -3,6 +3,8 @@
 // ========================================
 
 .pika-single {
+  
+  z-index: 1000;
 
   &.is-hidden {
     display: none;
