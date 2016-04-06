@@ -131,6 +131,11 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
       'property' => 'field_allow_featured_events',
     );
 
+    // Allow archives
+    $public_fields['allow_archive'] = array(
+      'property' => 'field_allow_archive',
+    );
+
     // The key for the google maps api
     $public_fields['google_maps_api_key'] = array(
       'property' => 'field_google_maps_api_key',
@@ -150,6 +155,12 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
     // Custom help link
     $public_fields['help_link'] = array(
       'property' => 'field_calendar_help_link',
+      'sub_property' => 'url',
+    );
+
+    // Custom help link for image
+    $public_fields['help_link_image'] = array(
+      'property' => 'field_calendar_image_help_link',
       'sub_property' => 'url',
     );
 

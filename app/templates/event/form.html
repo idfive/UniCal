@@ -22,7 +22,7 @@
           <p class="mini-text underline"><em>What is the name of your event? How would you describe it?</em></p>
           <input ng-model="vm.newEventData.label" name="label" placeholder="* Event Title" type="text" class="required" required />
           <textarea ng-model="vm.newEventData.body" name="body" placeholder="* Event Details" type="textarea" class="required" required></textarea>
-          <p>Have an image? <em>.gif, .jpg, or .png file formats accepted (500kb max file size)</em></p>
+          <p>Have an image? <em>.gif, .jpg, or .png file formats accepted (500kb max file size)<span ng-if="vm.siteSettings.help_link_image"> <a href="{{vm.siteSettings.help_link_image}}" target="_blank">Learn More</a></span>.</em></p>
           <button ng-if="!vm.newEventData.image && !vm.imageName" type="file" ngf-select="vm.uploadImage($file, $invalidFiles)" accept="image/*" ngf-max-size="500KB" class="unical-calendar__buttoon--image"><i class="fa fa-camera"></i> Add image</button>
           <button ng-if="vm.newEventData.image && vm.imageName" ng-click="vm.clearImage()"class="unical-calendar__buttoon--image"><i class="fa fa-close"></i> Remove image</button>
           <p ng-if="vm.imageValidationError || vm.imageUploadError" class="unical-calendar__message--error">{{vm.imageValidationError.$error}} {{vm.imageValidationError.$errorParam}} {{vm.imageUploadError}}</p>
