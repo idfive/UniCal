@@ -96,7 +96,7 @@
     <div class="arrangement-item clearfix">
       <div class="clearfix">
         <p class="unical-calendar__event-pool">Showing <strong>{{vm.events.length}}</strong> of <strong>{{vm.eventsCount}}</strong> events</p>
-        <a class="unical-calendar__clear-filters" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Reset filters</a>
+        <a class="unical-calendar__clear-filters" ng-show="vm.filtersReset" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Reset filters</a>
       </div>
     </div>
   </div>

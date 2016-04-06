@@ -16,6 +16,7 @@
     vm.eventsCount = archiveService.eventsCount;
     vm.events = archiveService.eventsList;
     vm.filters = archiveService.filters;
+    vm.filtersReset = false;
     vm.searchTerm = archiveService.searchTerm;
     vm.requestInProcess = false;
     vm.selectedTaxonomies = taxonomyService.selectedTaxonomies;
@@ -31,6 +32,8 @@
       archiveService.clearFilters();
       //Let view know that the model was updated
       vm.filters = archiveService.filters;
+      // Reset the filtersRest flag, by setting this flag for modelUpdated()
+      vm.clearFiltersHit = true;
     };
 
     //Clear search (happens after search has been executed)
@@ -73,8 +76,15 @@
       vm.currentMonth = archiveService.currentMonth;
       vm.eventsCount = archiveService.eventsCount;
       vm.events = archiveService.eventsList;
-      console.log(vm.events);
       vm.requestInProcess = false;
+      // Show hide the filters reset button, depending on if vm.clearFilters() was run
+      if(vm.clearFiltersHit === true || vm.initialPageLoad !== true) {
+        vm.filtersReset = false;
+        vm.clearFiltersHit = false;
+        vm.initialPageLoad = true;
+      } else {
+        vm.filtersReset = true;
+      }
     };
 
     //Search events
