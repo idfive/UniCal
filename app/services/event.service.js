@@ -111,7 +111,7 @@
 
       //Append the help link to the Calendar button, if present
       if(siteService.settings.help_link !== null) {
-        jQuery('.addthisevent_dropdown').append('<span class="addtocalendar_help" onclick="location.reload();location.href=&apos;' + siteService.settings.help_link + '&apos;">View Calendar Help</span>');
+        jQuery('.addthisevent_dropdown').append('<span class="addtocalendar_help" onclick="window.open(&apos;' + siteService.settings.help_link + '&apos;);">View Calendar Help</span>');
       }
 
       //Remove any excluded add to calendar options
