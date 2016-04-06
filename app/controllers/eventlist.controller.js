@@ -24,12 +24,14 @@
     vm.eventsCount = eventService.eventsCount;
     vm.events = eventService.eventsList;
     vm.filters = eventService.filters;
+    vm.filtersReset = false;
     vm.searchTerm = eventService.searchTerm;
     vm.requestInProcess = false;
     vm.selectedTaxonomies = taxonomyService.selectedTaxonomies;
     vm.siteSettings = siteService.settings;
     vm.taxonomies = taxonomyService.taxonomies;
     vm.url = window.location.href;
+    vm.today = dateService.dateNow();
 
 
     //Clear filters
@@ -38,6 +40,8 @@
       eventService.clearFilters();
       //Let view know that the model was updated
       vm.filters = eventService.filters;
+      // Reset the filtersRest flag, by setting this flag for modelUpdated()
+      vm.clearFiltersHit = true;
     };
 
     //Clear search (happens after search has been executed)
@@ -110,6 +114,15 @@
       vm.eventsCount = eventService.eventsCount;
       vm.events = eventService.eventsList;
       vm.requestInProcess = false;
+
+      // Show hide the filters reset button, depending on if vm.clearFilters() was run
+      if(vm.clearFiltersHit === true) {
+        vm.filtersReset = false;
+        vm.clearFiltersHit = false;
+      } else {
+        vm.filtersReset = true;
+      }
+
     };
 
     //Search events
