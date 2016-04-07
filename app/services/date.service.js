@@ -15,6 +15,10 @@
       createDrupalDateFromPieces: createDrupalDateFromPieces,
       dateNow: dateNow,
       dateNowUnix: dateNowUnix,
+      dateWeekArchiveStart: dateWeekArchiveStart,
+      dateMonthArchiveStart: dateMonthArchiveStart,
+      dateSixMonthsArchiveStart: dateSixMonthsArchiveStart,
+      dateYearArchiveStart: dateYearArchiveStart,
       dateTodayStart: dateTodayStart,
       dateTodayEnd: dateTodayEnd,
       dateTomorrowStart: dateTomorrowStart,
@@ -56,6 +60,42 @@
      */
     function dateNowUnix() {
       return moment().unix();
+    }
+
+    /*
+    * Date a week ago, for archive
+    *
+    */
+    function dateWeekArchiveStart(dateFormat) {
+      dateFormat = dateFormat || _defaultDateFormat;
+      return moment().subtract(7, 'days').format(_defaultDateFormat + ' HH') + ':00:00';
+    }
+
+    /*
+    * Date a month ago, for archive
+    *
+    */
+    function dateMonthArchiveStart(dateFormat) {
+      dateFormat = dateFormat || _defaultDateFormat;
+      return moment().subtract(1, 'months').format(_defaultDateFormat + ' HH') + ':00:00';
+    }
+
+    /*
+    * Date six months ago, for archive
+    *
+    */
+    function dateSixMonthsArchiveStart(dateFormat) {
+      dateFormat = dateFormat || _defaultDateFormat;
+      return moment().subtract(6, 'months').format(_defaultDateFormat + ' HH') + ':00:00';
+    }
+
+    /*
+    * Date a year ago, for archive
+    *
+    */
+    function dateYearArchiveStart(dateFormat) {
+      dateFormat = dateFormat || _defaultDateFormat;
+      return moment().subtract(1, 'years').format(_defaultDateFormat + ' HH') + ':00:00';
     }
 
 

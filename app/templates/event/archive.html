@@ -23,6 +23,10 @@
           <h3 class="unical-calendar__filters-toggle"><label>Date<input type="checkbox" ng-model="vm.filters.rangeExpanded"/></label></h3>
           <div class="unical-calendar__filters" ng-show="vm.filters.rangeExpanded">
             <label><input type="radio" name="date-filter" value="archived" ng-model="vm.filters.range" ng-click="vm.getEvents()"> All Archived</label>
+            <label><input type="radio" name="date-filter" value="past_week" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Past Week</label>
+            <label><input type="radio" name="date-filter" value="past_month" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Past Month</label>
+            <label><input type="radio" name="date-filter" value="past_six_months" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Past Six Months</label>
+            <label><input type="radio" name="date-filter" value="past_year" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Past Year</label>
             <label><input type="radio" name="date-filter" value="custom" ng-model="vm.filters.range"> Custom range</label>
             <div ng-show="vm.filters.range=='custom'" class="unical-calendar__filters-custom-range">
               <label>
@@ -75,6 +79,10 @@
         <i class="fa fa-times-circle"></i> Date range:
         <span ng-switch="vm.filters.range">
           <span ng-switch-when="custom">{{vm.filters.startDate}} to {{vm.filters.endDate}}</span>
+          <span ng-switch-when="past_week">Past Week</span>
+          <span ng-switch-when="past_month">Past Month</span>
+          <span ng-switch-when="past_six_months">Past Six Months</span>
+          <span ng-switch-when="past_year">Past Year</span>
         </span>
       </a>
     </span>

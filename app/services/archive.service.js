@@ -196,10 +196,22 @@
       }
 
       //Date range
-      if(service.filters.range === 'archived') { //All BEFORE TODAY
+      if(service.filters.range === 'archived') { //All Before Today
         var start = null,
             end = dateService.dateNow();
-      } else if (service.filters.range === 'custom') { //CUSTOM
+      } else if (service.filters.range === 'past_week') { //Past Week
+        var start = dateService.dateWeekArchiveStart(),
+            end = dateService.dateNow();
+      } else if (service.filters.range === 'past_month') { //Past Month
+        var start = dateService.dateMonthArchiveStart(),
+            end = dateService.dateNow();
+      } else if (service.filters.range === 'past_six_months') { //Past Six Months
+        var start = dateService.dateSixMonthsArchiveStart(),
+            end = dateService.dateNow();
+      } else if (service.filters.range === 'past_year') { //Past Year
+        var start = dateService.dateYearArchiveStart(),
+            end = dateService.dateNow();
+      } else if (service.filters.range === 'custom') { //Custom
         var start = service.filters.startDate,
             end = service.filters.endDate + ' 23:59:59';
       }
