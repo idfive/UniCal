@@ -117,62 +117,84 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
     /* General Settings */
 
     // Allow users to submit events
-    $public_fields['allow_event_submit'] = array(
-      'property' => 'field_allow_event_submit',
-    );
+    if (field_info_field('field_allow_event_submit')) {
+      $public_fields['allow_event_submit'] = array(
+        'property' => 'field_allow_event_submit',
+      );
+    }
 
     // Allow users to select taxonomies when submitting
-    $public_fields['allow_users_to_choose_taxonomy_when_submitting'] = array(
-      'property' => 'field_allow_users_to_choose_taxo',
-    );
+    if (field_info_field('field_allow_users_to_choose_taxo')) {
+      $public_fields['allow_users_to_choose_taxonomy_when_submitting'] = array(
+        'property' => 'field_allow_users_to_choose_taxo',
+      );
+    }
 
     // Allow featured events
-    $public_fields['allow_featured_events'] = array(
-      'property' => 'field_allow_featured_events',
-    );
+    if (field_info_field('field_allow_featured_events')) {
+      $public_fields['allow_featured_events'] = array(
+        'property' => 'field_allow_featured_events',
+      );
+    }
 
     // Allow archives
-    $public_fields['allow_archive'] = array(
-      'property' => 'field_allow_archive',
-    );
+    if (field_info_field('field_allow_archive')) {
+      $public_fields['allow_archive'] = array(
+        'property' => 'field_allow_archive',
+      );
+    }
 
     // The key for the google maps api
-    $public_fields['google_maps_api_key'] = array(
-      'property' => 'field_google_maps_api_key',
-    );
+    if (field_info_field('field_google_maps_api_key')) {
+      $public_fields['google_maps_api_key'] = array(
+        'property' => 'field_google_maps_api_key',
+      );
+    }
 
     // The default image for events in the calendar
-    $public_fields['default_event_image'] = array(
-      'property' => 'field_default_event_image',
-      'image_styles' => array('large'),
-    );
+    if (field_info_field('field_default_event_image')) {
+      $public_fields['default_event_image'] = array(
+        'property' => 'field_default_event_image',
+        'image_styles' => array('large'),
+      );
+    }
 
     // The text that displays above filters
-    $public_fields['text_above_filters'] = array(
-      'property' => 'field_custom_text_above_filters',
-    );
+    if (field_info_field('field_custom_text_above_filters')) {
+      $public_fields['text_above_filters'] = array(
+        'property' => 'field_custom_text_above_filters',
+      );
+    }
 
     // Custom help link
-    $public_fields['help_link'] = array(
-      'property' => 'field_calendar_help_link',
-      'sub_property' => 'url',
-    );
+    if (field_info_field('field_calendar_help_link')) {
+      $public_fields['help_link'] = array(
+        'property' => 'field_calendar_help_link',
+        'sub_property' => 'url',
+      );
+    }
 
     // Custom help link for image
-    $public_fields['help_link_image'] = array(
-      'property' => 'field_calendar_image_help_link',
-      'sub_property' => 'url',
-    );
+    if (field_info_field('field_calendar_image_help_link')) {
+      $public_fields['help_link_image'] = array(
+        'property' => 'field_calendar_image_help_link',
+        'sub_property' => 'url',
+      );
+    }
 
     // Is this a main calendar site?
-    $public_fields['main_calendar_site'] = array(
-      'property' => 'field_main_calendar_site',
-    );
+    if (field_info_field('field_main_calendar_site')) {
+      $public_fields['main_calendar_site'] = array(
+        'property' => 'field_main_calendar_site',
+      );
+    }
 
     // The number of results per page
-    $public_fields['number_results_per_page'] = array(
-      'property' => 'field_number_results_per_page',
-    );
+    if (field_info_field('field_number_results_per_page')) {
+      $public_fields['number_results_per_page'] = array(
+        'property' => 'field_number_results_per_page',
+      );
+    }
 
     // Custom text above sidebar
     if (field_info_field('field_custom_text_above_sidebar')) {
