@@ -5,15 +5,15 @@
 <update-meta property="og:title" content="{{vm.siteSettings.label}}" /></update-meta>
 <update-meta property="og:description" content="An events calendar." /></update-meta>
 
+<!-- Archive link, if present -->
+<div ng-show="vm.siteSettings.allow_archive" class="unical-calendar__submit-form-back">
+  <a href="archive" class="archive">View Archive</a>
+</div>
+
 <div class="unical-calendar__aside">
   <a class="unical-calendar__buttoon unical-calendar__buttoon--full" href="submit-event" ng-show="vm.siteSettings.allow_event_submit">Submit Event <i class="fa fa-calendar-plus-o"></i></a>
   <div ng-show="vm.siteSettings.text_above_sidebar" ng-bind-html="vm.siteSettings.text_above_sidebar" class="unical-calendar__aside-text"></div>
 
-  <!-- Archive link, if present -->
-  <ul ng-show="vm.siteSettings.allow_archive" class="unical-calendar__archive-menu">
-    <li class="activeView">Calendar</li>
-    <li><a href="archive">Archive</a></li>
-  </ul>
 
   <!-- Sidebar -->
   <div class="unical-calendar__sidebar">
@@ -164,7 +164,7 @@
     <div class="arrangement-item clearfix">
       <div class="clearfix">
         <p class="unical-calendar__event-pool">Showing <strong>{{vm.events.length}}</strong> of <strong>{{vm.eventsCount}}</strong> events</p>
-        <a class="unical-calendar__clear-filters" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Reset filters</a>
+        <a class="unical-calendar__clear-filters" ng-show="vm.filtersReset" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Reset filters</a>
       </div>
     </div>
   </div>
@@ -204,4 +204,5 @@
   </div>
   <p><a ng-click="vm.getEventsNextPage()" ng-show="vm.events.length && vm.eventsCount > vm.events.length && vm.searchTerm == ''" class="unical-calendar__buttoon">Load more events</a></p>
   <p ng-hide="vm.events.length">Sorry, no events were found that matched your criteria. <a href ng-click="vm.showAllEvents()">Show all events</a></p>
+
 </div>
