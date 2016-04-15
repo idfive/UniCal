@@ -188,9 +188,9 @@
           </span>
           <span ng-if="event.date.length > 1">(Multiple Dates)</span>
 		</p>
-        <div class="unical-calendar__event-caption" ng-if="event.body_trimmed && event.body_trimmed.length">
-          <div ng-if="event.summary !== ''" ng-bind-html="event.summary">present</div>
-          <p ng-if="event.summary == ''">{{event.body_trimmed}}</p>
+        <div class="unical-calendar__event-caption">
+          <div ng-if="event.summary !== ''" ng-bind-html="event.summary">{{event.summary}}</div>
+          <p ng-if="event.summary == '' && event.body_trimmed && event.body_trimmed.length">{{event.body_trimmed}}</p>
         </div>
 
         <div  class="unical-calendar__event-links">
