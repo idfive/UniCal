@@ -5,12 +5,13 @@
 <update-meta property="og:title" content="{{vm.siteSettings.label}}" /></update-meta>
 <update-meta property="og:description" content="An events calendar archive." /></update-meta>
 <h2 class="archive">Archived Events</h2>
-<div class="unical-calendar__aside unical-calendar__archive">
 
-  <!-- Archive link, if present -->
-  <div ng-show="vm.siteSettings.allow_archive" class="unical-calendar__submit-form-back">
-    <a href="./">Back to Calendar</a>
-  </div>
+<!-- Back to Calendar link -->
+<div class="unical-calendar__submit-form-back">
+  <a href="./">Back to Calendar</a>
+</div>
+
+<div class="unical-calendar__aside unical-calendar__archive">
 
   <!-- Sidebar -->
   <div class="unical-calendar__sidebar">
