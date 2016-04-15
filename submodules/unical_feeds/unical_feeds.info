@@ -1,0 +1,11 @@
+name = UniCal Feeds
+description = This module creates content types/taxonomies/etc for the unical module.
+core = 7.x
+package = UniCal
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = date_ical
+dependencies[] = feeds
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:2
+features[feeds_importer][] = unical_ical_importer

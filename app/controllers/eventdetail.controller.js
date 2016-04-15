@@ -5,9 +5,9 @@
     .module('calendar')
     .controller('eventsDetailController', eventsDetailController);
 
-  eventsDetailController.$inject = ['$routeParams', 'eventService', 'taxonomyService', 'siteService', 'utilityService'];
+  eventsDetailController.$inject = ['$routeParams', 'eventService', 'taxonomyService', 'siteService', 'utilityService', 'dateService'];
 
-  function eventsDetailController($routeParams, eventService, taxonomyService, siteService, utilityService) {
+  function eventsDetailController($routeParams, eventService, taxonomyService, siteService, utilityService, dateService) {
 
     //Shortcut to scope
     var vm = this;
@@ -16,6 +16,7 @@
     vm.siteSettings = siteService.settings;
     vm.taxonomies = taxonomyService.taxonomies;
     vm.url = window.location.protocol+"//"+window.location.host + "/";
+    vm.today = dateService.dateNowUnix();
 
     //Get event
     vm.getEvent = function(id) {

@@ -19,3 +19,29 @@
   }
 
 }
+
+// ========================================
+// Archive menu
+// ========================================
+
+.unical-calendar__archive-menu {
+  list-style-type: none;
+  padding: 0px;
+  margin-bottom: -1px;
+
+  li {
+    display: inline-block;
+    &.activeView {
+      padding: 1em;
+      background: #f9f9f9;
+      border-top: 1px solid #ebebeb;
+      border-left: 1px solid #ebebeb;
+      border-right: 1px solid #ebebeb;
+    }
+    a {
+      text-decoration: none;
+      background: #fff;
+      padding: 1em;
+    }
+  }
+}

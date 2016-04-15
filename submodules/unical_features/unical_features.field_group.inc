@@ -356,6 +356,7 @@ function unical_features_field_group_info() {
       5 => 'field_main_calendar_site',
       6 => 'field_number_results_per_page',
       7 => 'field_allow_users_to_choose_taxo',
+      8 => 'field_allow_archive',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

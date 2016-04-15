@@ -39,6 +39,16 @@
           }
         }
       })
+      .when('/archive', {
+        templateUrl: 'templates/event/archive.html',
+        controller: 'eventsArchiveController',
+        controllerAs: 'vm',
+        resolve: {
+          initialData: function(archiveService) {
+            return archiveService.initEventsList();
+          }
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });

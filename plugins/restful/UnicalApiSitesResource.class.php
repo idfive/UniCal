@@ -144,6 +144,11 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
       );
     }
 
+    // Allow archives
+    $public_fields['allow_archive'] = array(
+      'property' => 'field_allow_archive',
+    );
+
     // The key for the google maps api
     if (field_info_field('field_google_maps_api_key')) {
       $public_fields['google_maps_api_key'] = array(

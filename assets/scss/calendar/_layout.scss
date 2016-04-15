@@ -1,12 +1,12 @@
- // ========================================
+// ========================================
 // Calendar House
 // ========================================
 
 .unical-calendar {
 
-  * {
-    box-sizing: border-box;
-  }
+ * {
+   box-sizing: border-box;
+ }
 
 }
 
@@ -17,16 +17,16 @@
 
 .unical-calendar__events {
 
-  @media (min-width: 800px) {
-    float: left;
-    width: 60%;
-    padding-right: 1.5em;
-  }
+ @media (min-width: 800px) {
+   float: left;
+   width: 60%;
+   padding-right: 1.5em;
+ }
 
-  @media (min-width: 1000px) {
-    width: 70%;
-    padding-right: 3em;
-  }
+ @media (min-width: 1000px) {
+   width: 70%;
+   padding-right: 3em;
+ }
 
 }
 
@@ -37,29 +37,29 @@
 
 .unical-calendar__aside {
 
-  @media (min-width: 800px) {
-    float: right;
-    width: 40%;
-  }
+ @media (min-width: 800px) {
+   float: right;
+   width: 40%;
+ }
 
-  @media (min-width: 1000px) {
-    width: 30%;
-  }
+ @media (min-width: 1000px) {
+   width: 30%;
+ }
 
 }
 
-  // Calendar Side
-  // ----------------------------------------
+ // Calendar Side
+ // ----------------------------------------
 
-  .unical-calendar__sidebar {
-    overflow: hidden;
+ .unical-calendar__sidebar {
+   overflow: hidden;
 
-    > section {
-      border-bottom: 1px solid #ddd;
-      padding: 1em;
-    }
+   > section {
+     border-bottom: 1px solid #ddd;
+     padding: 1em;
+   }
 
-  }
+ }
 
 
 // ========================================
@@ -68,14 +68,14 @@
 
 .unical-calendar {
 
-  .partial-column {
-    float: none;
-    max-width: 50rem;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-right: 0;
-    padding-left: 0;
-  }
+ .partial-column {
+   float: none;
+   max-width: 50rem;
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   padding-right: 0;
+   padding-left: 0;
+ }
 
 }

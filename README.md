@@ -50,7 +50,6 @@ The basic process:
 REQUIREMENTS
 ------------  
 This module requires the following modules:   
-* UniCal Features (TBD)  
 * RESTful (https://www.drupal.org/project/restful)  
 * CORS (https://www.drupal.org/project/cors)  
 * jQuery Update(https://www.drupal.org/project/jquery_update)  
@@ -62,6 +61,12 @@ RECOMMENDED MODULES
 * Markdown filter (https://www.drupal.org/project/markdown): When enabled, this
   module displays the UniCal project's README.md Help will be rendered with
   markdown, on the help page.  
+* Features (https://www.drupal.org/project/features): This module is necessary if you wish  
+  to create the content types, and taxonomies needed to set up the site initially.
+  If desired, this can be turned off after initial setup, hence reccomended, and not
+  required by UniCal.
+* Feeds (https://www.drupal.org/project/feeds): This module is necessary to run the various
+  importers provided, or to add your own custom importer.
 
 INSTALLATION
 ------------  
@@ -71,6 +76,11 @@ INSTALLATION
 * UniCal module should be installed in sites/all/modules folder, or the embed
   code for sites will need to be modified.
 * Enable and set up UniCal Features to use the content types and taxonomies needed.
+  This module has its own dependencies, but can be turned off once Content Types,
+  Taxonomies, etc are created.
+* If desired, enable and set up UniCal Feeds, if you wish to utilize the iCal importer.
+  This module has its own dependencies, but provides a basis for feeds support that
+  can be extended via stock, and custom importers based around the feeds module.
 * Check that the server is serving REST at the endpoints.
 * If serving across other sites/servers, be sure CORS is properly set up.  
 * Modify .htaccess file, as shown in configuration.
@@ -97,6 +107,21 @@ that facebook bots/are redirected to the stock drupal node of the event.
   RewriteCond %{REQUEST_URI} !^/admin
   RewriteRule event/(.*)/(.*) http://%{HTTP_HOST}/#%1/event/$1/$2 [NE,L]
 
+FEEDS
+---------------  
+UniCal is fully compatible with the Feeds module (https://www.drupal.org/project/feeds)
+So any number of custom event importers are possible. UniCal comes with a default iCal
+feed importer, that you may use by enabling the unical_feeds module.
+ * Enable unical_feeds, and its dependencies.
+    * NOTE: The iCalcreator library v2.20.2 is required for date_ical.
+      Please see the project documentation for that module for more.
+ * The Feed settings can now be edited (if needed) at /admin/structure/feeds/unical_ical_importer
+ * Importing can now be done from /import/unical_ical_importer
+
+ Any number of options can be configured on this, or any custom importer, such as
+ scheduling, file upload, etc. See the Feeds module documentation for more advanced
+ use cases.
+
 TROUBLESHOOTING
 ---------------  
 * If the endpoint does not display, check the following:   - Is CORS set up?   
@@ -106,6 +131,7 @@ KNOWN CONFLICTS
 ---------------  
 * Global Redirect Module. Affects the angular form submit. Will look into as time
   allows.    
+* Workbench Module. Can affect Feeds importers, depending on settings.
 
 API 1.0
 -------

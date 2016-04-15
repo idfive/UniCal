@@ -1,0 +1,137 @@
+<div class="loading loadingAsync">Loading...</div>
+<update-title title="{{vm.siteSettings.label}} Events Archive"></update-title>
+<update-meta property="og:type" content="website" /></update-meta>
+<update-meta property="og:url" content="{{vm.url}}" /></update-meta>
+<update-meta property="og:title" content="{{vm.siteSettings.label}}" /></update-meta>
+<update-meta property="og:description" content="An events calendar archive." /></update-meta>
+<h2 class="archive">Archived Events</h2>
+<div class="unical-calendar__aside unical-calendar__archive">
+
+  <!-- Archive link, if present -->
+  <ul ng-show="vm.siteSettings.allow_archive" class="unical-calendar__archive-menu">
+    <li><a href="./">Calendar</a></li>
+    <li class="activeView">Archive</li>
+  </ul>
+
+  <!-- Sidebar -->
+  <div class="unical-calendar__sidebar">
+    <h2 class="unical-calendar__filters-toggle +negative" id="unical-calendar__filters-toggle"><label>Filter by</label></h2>
+    <form class="unical-calendar__filters" action="" method="post">
+      <div ng-show="vm.siteSettings.text_above_filters" class="unical-calendar__filters-help">{{vm.siteSettings.text_above_filters}}</div>
+      <section>
+        <fieldset>
+          <h3 class="unical-calendar__filters-toggle"><label>Date<input type="checkbox" ng-model="vm.filters.rangeExpanded"/></label></h3>
+          <div class="unical-calendar__filters" ng-show="vm.filters.rangeExpanded">
+            <label><input type="radio" name="date-filter" value="archived" ng-model="vm.filters.range" ng-click="vm.getEvents()"> All Archived</label>
+            <label><input type="radio" name="date-filter" value="past_week" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Past Week</label>
+            <label><input type="radio" name="date-filter" value="past_month" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Past Month</label>
+            <label><input type="radio" name="date-filter" value="past_six_months" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Past Six Months</label>
+            <label><input type="radio" name="date-filter" value="past_year" ng-model="vm.filters.range" ng-click="vm.getEvents()"> Past Year</label>
+            <label><input type="radio" name="date-filter" value="custom" ng-model="vm.filters.range"> Custom range</label>
+            <div ng-show="vm.filters.range=='custom'" class="unical-calendar__filters-custom-range">
+              <label>
+                <input pikaday="vm.pikaday.startDate" max-date="{{vm.today}}" ng-model="vm.filters.startDate" placeholder="From" />
+              </label>
+              <label>
+                <input pikaday="vm.pikaday.endDate" max-date="{{vm.today}}" ng-model="vm.filters.endDate" placeholder="To" />
+              </label>
+              <p ng-click="vm.getEvents()" ng-class="{enabled: vm.filters.startDate && vm.filters.endDate }">Update</p>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+      <section ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies" on-finish-render="vm.finishRenderFilters()">
+        <fieldset ng-show="taxonomy.enabled">
+          <h3 class="unical-calendar__filters-toggle">
+            <label>{{taxonomy.label}}<input type="checkbox" ng-model="vm.filters.taxonomies[taxonomyId].expanded"/></label>
+          </h3>
+          <div class="unical-calendar__filters" ng-show="vm.filters.taxonomies[taxonomyId].expanded">
+            <label ng-repeat="term in taxonomy.terms">
+              <input type="checkbox" ng-model="vm.filters.taxonomies[taxonomyId].terms[term.id]" ng-click="vm.getEvents()"> {{term.label}}
+            </label>
+          </div>
+        </fieldset>
+      </section>
+    </form>
+
+  </div>
+
+</div>
+
+<div class="unical-calendar__events">
+
+  <div class="arrangement">
+    <!-- Search -->
+    <div class="arrangement-item unical-calendar__search">
+      <form class="search-form" name="vm.searchForm" ng-submit="vm.searchEvents()">
+        <div class="unical-calendar__search-term">
+          <input type="text" placeholder="Search archived events" name="searchTerm" ng-model="vm.searchTerm">
+        </div>
+        <div class="unical-calendar__search-action">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Currently filtering by: Range -->
+    <span ng-if="vm.filters.range != 'archived'">
+      <a class="unical-calendar__selectedfilter" ng-model="vm.filters.range" ng-click="vm.filters.range = 'archived'; vm.getEvents()">
+        <i class="fa fa-times-circle"></i> Date range:
+        <span ng-switch="vm.filters.range">
+          <span ng-switch-when="custom">{{vm.filters.startDate}} to {{vm.filters.endDate}}</span>
+          <span ng-switch-when="past_week">Past Week</span>
+          <span ng-switch-when="past_month">Past Month</span>
+          <span ng-switch-when="past_six_months">Past Six Months</span>
+          <span ng-switch-when="past_year">Past Year</span>
+        </span>
+      </a>
+    </span>
+
+    <!-- Currently filtering by: Taxonomies -->
+    <span ng-repeat="taxonomyFilter in vm.filters.taxonomies">
+      <span ng-repeat="(termId, value) in taxonomyFilter.terms">
+        <span ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies">
+          <span ng-repeat="terms in taxonomy.terms">
+            <span ng-if="terms.id == termId && vm.filters.taxonomies[taxonomyId].terms[termId]" ng-show="vm.taxonomies[taxonomyId].enabled">
+              <a class="unical-calendar__selectedfilter" ng-model="vm.filters.taxonomies[taxonomyId].terms[termId]" ng-click="vm.filters.taxonomies[taxonomyId].terms[termId] = false; vm.getEvents()"><i class="fa fa-times-circle"></i> {{taxonomy.label}}: {{terms.label}}</a>
+            </span>
+          </span>
+        </span>
+      </span>
+    </span>
+
+    <!-- Count and clear all -->
+    <div class="arrangement-item clearfix">
+      <div class="clearfix">
+        <p class="unical-calendar__event-pool">Showing <strong>{{vm.events.length}}</strong> of <strong>{{vm.eventsCount}}</strong> events</p>
+        <a class="unical-calendar__clear-filters" ng-show="vm.filtersReset" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Reset filters</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="unical-calendar__event" ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
+    <div class="unical-calendar__event-main unical-calendar__event-main__archive">
+      <div class="unical-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">
+        <img ng-if="event.image.image_styles.large" ng-src="{{event.image.image_styles.large}}" alt="{{event.image.alt}}">
+        <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="">
+      </div>
+      <div class="unical-calendar__event-content">
+        <h2 class="unical-calendar__event-title"><a href="event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
+        <p>
+          <span ng-show="event.venue_name">{{event.venue_name}} |</span>
+          <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '11:59 PM'">
+            <span ng-switch-when="true">All Day {{event.date[0].start_date}}</span>
+            <span ng-switch-default>{{event.date[0].start_time}} {{event.date[0].start_date}}</span>
+          </span>
+          <span ng-if="event.date.length > 1">(Multiple Dates)</span>
+		</p>
+        <div class="unical-calendar__event-caption" ng-if="event.body_trimmed && event.body_trimmed.length">
+          <p>{{event.body_trimmed}}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <p><a ng-click="vm.getEventsNextPage()" ng-show="vm.events.length && vm.eventsCount > vm.events.length && vm.searchTerm == ''" class="unical-calendar__buttoon">Load more events</a></p>
+  <p ng-hide="vm.events.length">Sorry, no events were found that matched your criteria. <a href ng-click="vm.showAllEvents()">Show all events</a></p>
+</div>
