@@ -8,10 +8,9 @@
 <div class="unical-calendar__aside unical-calendar__archive">
 
   <!-- Archive link, if present -->
-  <ul ng-show="vm.siteSettings.allow_archive" class="unical-calendar__archive-menu">
-    <li><a href="./">Calendar</a></li>
-    <li class="activeView">Archive</li>
-  </ul>
+  <div ng-show="vm.siteSettings.allow_archive" class="unical-calendar__submit-form-back">
+    <a href="./">Back to Calendar</a>
+  </div>
 
   <!-- Sidebar -->
   <div class="unical-calendar__sidebar">
