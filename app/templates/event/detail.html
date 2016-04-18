@@ -77,7 +77,7 @@
           <h3 ng-show="event[taxonomyId]">{{taxonomy.label}}</h3>
           <ul ng-show="event[taxonomyId]">
             <li ng-repeat="taxonomyTid in event[taxonomyId]">
-              <span ng-repeat="eventTaxonomy in taxonomy.terms" ng-if="eventTaxonomy.id == taxonomyTid"><a href="#/" ng-click="vm.getEventsByTaxonomy(eventTaxonomy.id, taxonomyId)">{{eventTaxonomy.label}}</a></span>
+              <span ng-repeat="eventTaxonomy in taxonomy.terms" ng-if="eventTaxonomy.id == taxonomyTid"><a href="./" ng-click="vm.getEventsByTaxonomy(eventTaxonomy.id, taxonomyId)">{{eventTaxonomy.label}}</a></span>
             </li>
           </ul>
         </div>
