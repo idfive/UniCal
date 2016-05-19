@@ -73,6 +73,8 @@
 
 .swift-slide {
   position: relative;
+  margin: 0;
+  padding: 0;
   list-style: none;
 
   .unical-calendar__featured & {
@@ -85,6 +87,8 @@
     position: absolute;
     top: 0;
     left: 0;
+    padding: 0;
+    margin: 0;
     width: 50%;
     background-position: 50% 50%;
     background-size: cover;
