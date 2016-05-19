@@ -27,7 +27,7 @@
 
   .unical-calendar__search-term {
     float: left;
-    width: calc(100% - #{50 / 16 * 1rem});
+    width: calc(100% - #{50 / 16 * 1em});
 
     input {
       @extend %unical-calendar__search-control;
@@ -37,7 +37,7 @@
 
   .unical-calendar__search-action {
     float: left;
-    width: calc(#{50 / 16 * 1rem});
+    width: calc(#{50 / 16 * 1em});
     text-align: center;
 
     button {

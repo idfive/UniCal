@@ -8,7 +8,7 @@
 }
 
 .unical-calendar__message--error {
-  box-shadow: 0 .125rem 0 0 #f22;
+  box-shadow: 0 .125em 0 0 #f22;
 
   &:after {
     content: ' - upload failed.';
@@ -17,7 +17,7 @@
 }
 
 .unical-calendar__message--success {
-  box-shadow: 0 .125rem 0 0 #2f2;
+  box-shadow: 0 .125em 0 0 #2f2;
 
   &:after {
     content: ' - upload successful!';
