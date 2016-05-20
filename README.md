@@ -2,18 +2,25 @@ INTRODUCTION
 ------------  
 UniCal stands for either Universal Calendar or University Calendar. Dealer’s
 choice. It is an Angular.js-based events calendar application, based on the
-headless/decoupled Drupal approach, and the COPE principle.  
+headless/decoupled Drupal approach, and the COPE principle.  For more information
+see the project homepage at http://unical.idfive.com.
 
 This app/module is collaboratively designed and maintained by idfive and Howard
 University. It serves a sortable list/calendar of events that can be embedded as
 a page in third-party CLIENT site(s) as either a native Drupal module, or simply
 via JS/HTML embed code.
 
-The UniCal system consists of two modules:  
+The complete UniCal system consists of the following:  
 
 * UniCal (unical): This module provides the API, files, content types, and magic
   that generates everything.
-* UniCal Client (unical_client): This module allows you to embed a calendar in
+* Unical Features (unical_features): This sub module is included with UniCal, and its 
+  function is to provide initial content type/taxonomy setup.
+* Unical Feeds (unical_feeds): This sub module is included with UniCal, and its 
+  function is to provide initial feed setup/etc if you would like touse UniCal in conjunction 
+  with the feeds module.
+* UniCal Client (unical_client): This module is it's own project, and available for download at  
+  (https://github.com/idfive/UniCal-Client) This module allows you to embed a calendar in
   any Drupal site, anywhere, that will read via REST to the install where a
   UniCal site exists.  
 
@@ -49,32 +56,41 @@ The basic process:
 
 REQUIREMENTS
 ------------  
-This module requires the following modules:   
-* RESTful (https://www.drupal.org/project/restful)  
+The UniCal module requires the following modules:   
+* RESTful (https://www.drupal.org/project/restful) IMPORTANT: Use version 7.x-1.6
 * CORS (https://www.drupal.org/project/cors)  
-* jQuery Update(https://www.drupal.org/project/jquery_update)  
+* jQuery Update (https://www.drupal.org/project/jquery_update)  
+* UniCal Client (https://github.com/idfive/UniCal-Client)
+
+The Unical Features module requires the following modules to create the site and 
+event content types:
+* Features (https://www.drupal.org/project/features)
+* Date (https://www.drupal.org/project/date)
+* Address Field (https://www.drupal.org/project/addressfield)
+* Email (https://www.drupal.org/project/email)
+* Field Group (https://www.drupal.org/project/field_group)
+* Link (https://www.drupal.org/project/link)
+* Time Zone Field (https://www.drupal.org/project/tzfield)
+
+The UniCal Feeds module requires the following, to set up automated event feed ingestion:
+* Features (https://www.drupal.org/project/features)
+* ctools (https://www.drupal.org/project/ctools)
+* Feeds (https://www.drupal.org/project/feeds)
+* Date iCal (https://www.drupal.org/project/date_ical)
 
 RECOMMENDED MODULES
 -------------------   
-* UniCal Client (https://www.drupal.org/sandbox/rogerseyebyte/2653140): When
-  enabled, this module allows the display of Sites in separate installs.  
 * Markdown filter (https://www.drupal.org/project/markdown): When enabled, this
   module displays the UniCal project's README.md Help will be rendered with
   markdown, on the help page.  
-* Features (https://www.drupal.org/project/features): This module is necessary if you wish  
-  to create the content types, and taxonomies needed to set up the site initially.
-  If desired, this can be turned off after initial setup, hence reccomended, and not
-  required by UniCal.
-* Feeds (https://www.drupal.org/project/feeds): This module is necessary to run the various
-  importers provided, or to add your own custom importer.
 
 INSTALLATION
 ------------  
 * Install as you would normally install a contributed Drupal module. See:  
   https://drupal.org/documentation/install/modules-themes/modules-7 for further
   information.
-* UniCal module should be installed in sites/all/modules folder, or the embed
-  code for sites will need to be modified.
+* UniCal module should be installed in sites/all/modules folder, or the JS embed
+  code for sites will need to be modified, to use a different path.
 * Enable and set up UniCal Features to use the content types and taxonomies needed.
   This module has its own dependencies, but can be turned off once Content Types,
   Taxonomies, etc are created.
@@ -87,20 +103,25 @@ INSTALLATION
 
 CONFIGURATION
 -------------  
-The module has no menu or modifiable settings. You will need to configure the
+The module has no menu or modifiable settings. You will however, need to configure the
 UniCal Features module.  
+
+You will need to modify your .htaccess (or make a similar mod on non apache servers) 
+In order to be able to go directly to non-hashbang url's in the app. This is because 
+we are using html5 mode in the angular application, 
 
 ### .htaccess modifications: ###
 
 Some modifications are neccesary to both re-route social bots the actual node
-page (php) of the main site, in order to scrape, and to allow use of non # urls.
-The following rules assume that your events are in the format /event/NID/TITLE,
-and be sure to modify YOUR_MAIN_INSTALL_URL with actual url of your main site, so
-that facebook bots/are redirected to the stock drupal node of the event.
+page (php) of the main site, in order for bots to be able to scrape event information, and another 
+to allow use of non-hashbang urls. The second is neccesary to tell/trick drupal into not looking for 
+a page at that path, but rather redirect to the calendar, and let it take the url from there. Neccesary 
+in order to go directly to an event page/etc. The following rules assume that your events are in the 
+standard UniCal format of /event/NID/TITLE.
 
   # Allow social media crawlers to work by redirecting them to a server-rendered static version on the page
   RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
-  RewriteRule event/(.*)/(.*) YOUR_MAIN_INSTALL_URL/node/$1 [P]
+  RewriteRule event/(.*)/(.*) %{HTTP_HOST}/node/$1 [P]
 
   # Workaround to be able to use non # url in the calendar
   RewriteCond %{HTTP_USER_AGENT} !(facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
@@ -131,7 +152,8 @@ KNOWN CONFLICTS
 ---------------  
 * Global Redirect Module. Affects the angular form submit. Will look into as time
   allows.    
-* Workbench Module. Can affect Feeds importers, depending on settings.
+* Workbench Module. Can affect Feeds importers, depending on settings. May need to 
+  be temporarily disabled to import, as a workaround.
 
 API 1.0
 -------
@@ -188,7 +210,7 @@ Additional Filter Fields:
 
 CONTENT TYPES
 -------------
-We employ two different Content Types for UniCal: Events and Sites. These will be
+We employ two different Content Types for UniCal: Events and Sites. These are
 defined in the UniCal Features Module.  
 
 Event Content Type:
