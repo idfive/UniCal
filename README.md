@@ -25,7 +25,7 @@ The complete UniCal system consists of the following:
   UniCal site exists.  
 * UniCal Styles (unical_styles): This module is it's own project, and available for download at    
   (https://github.com/idfive/UniCal-Styles) This module allows you to customize the calendar css,
-  and have them available to all client sites.
+  and have them available to all client sites that choose to reference it.
 
 The idea is that any enterprise/organization utilizing UniCal will most likely
 need a "clean" Drupal install to act as the MASTER, serving events via REST to
@@ -87,7 +87,8 @@ RECOMMENDED MODULES
   module displays the UniCal project's README.md Help will be rendered with
   markdown, on the help page.  
 * UniCal Styles (https://github.com/idfive/UniCal-Styles) This module allows you
-  to customize the calendar css, and have them available to all client sites
+  to customize the calendar css, and have them available to all client sites that
+  reference it, letting you set global styles for all your SITE calendars.
 
 INSTALLATION
 ------------  
@@ -152,6 +153,28 @@ TROUBLESHOOTING
 ---------------  
 * If the endpoint does not display, check the following:   - Is CORS set up?   
 -- Have you added some test content?   
+
+SEO/SOCIAL SHARING
+---------------
+See the .htaccess modifications above in configuration. The general idea, is to
+serve the php version of the page to social share scrapers/etc, and to search
+bots that cannot yet scrape angular rendered pages. So that social sharers/etc
+actually scrape /node/123 (which returns content via php) rather than /event/123/event-name,
+which renders the event via js, and is at the moment not fully compatable with
+facebook, twitter, etc.
+
+The event detail page supports posting the following meta information to the
+rendered js pages, to aid in search/rendering/etc:
+- title
+- og:type (Article for detail, Website for list)
+- og:url
+- og:title
+- og:description
+
+STYLING
+---------------
+To avoid overwrite upon module update, and to make styles available to all CLIENT SITES,
+all custom styles should be enacted in the unical_styles module. (https://github.com/idfive/UniCal-Styles)
 
 KNOWN CONFLICTS
 ---------------  
@@ -250,6 +273,7 @@ DEVELOPMENT
 * DEV dependencies:
 -- npm
 -- gulp  
+
 Development setup steps:
 * git clone
 * cd your.new.folder
