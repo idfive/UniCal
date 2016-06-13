@@ -95,7 +95,7 @@
     $node_path = explode('/', $_SERVER["REQUEST_URI"]);
     $nid = $node_path[2];
 
-    $embed_code = htmlspecialchars('<link rel="stylesheet" href="' . $url . '/sites/all/modules/unical/assets/css/styles.css"><link rel="stylesheet" href="' . $url . '/sites/all/modules/unical_styles/styles.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    $embed_code = htmlspecialchars('<link rel="stylesheet" href="' . $url . '/sites/all/modules/unical/assets/css/styles.css"><link rel="stylesheet" href="' . $url . '/sites/all/modules/unical_styles/style.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <div ng-app="calendar" class="unical-calendar"><h1>Calendar of Events</h1><div ng-view></div></div><script>var site_url = "' . $url . '/api/";
   var site_id =' . $nid . ';</script><script src="' . $url . '/sites/all/modules/unical/app/build/unical.js"></script>');
 
@@ -119,7 +119,7 @@
   <p>The main components needed are:</p>
     <ul>
       <li>Stock styles.css for the calendar.</li>
-      <li>Custom styles.css for the calendar. (remove this if not using unical_styles module on MASTER)</li>
+      <li>Custom style.css for the calendar. (remove this if not using unical_styles module on MASTER)</li>
       <li>Font awesome css (4.4)(eliminate if site is already using).</li>
       <li>jquery > 1.10.2 (eliminate if site is already using).</li>
       <li>Divs that will render the app.</li>
