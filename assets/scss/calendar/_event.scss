@@ -108,3 +108,27 @@
             }
 
       }
+
+      .unical-calendar__event-date-multiple-wrapper {
+        overflow: scroll;
+        margin-bottom: 20px;
+        margin-top: 20px;
+          .unical-calendar__event-date-multiple-list {
+            list-style-position: inside;
+            margin-top: 0px;
+            font-size: .8em;
+
+            @media (min-width: 600px) {
+              -webkit-column-count: 2; /* Chrome, Safari, Opera */
+              -moz-column-count: 2; /* Firefox */
+              column-count: 2;
+            }
+
+            @media (min-width: 1200px) {
+              -webkit-column-count: 3; /* Chrome, Safari, Opera */
+              -moz-column-count: 3; /* Firefox */
+              column-count: 3;
+            }
+          }
+
+      }
