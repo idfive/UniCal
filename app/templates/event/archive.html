@@ -30,9 +30,11 @@
             <label><input type="radio" name="date-filter" value="custom" ng-model="vm.filters.range"> Custom range</label>
             <div ng-show="vm.filters.range=='custom'" class="unical-calendar__filters-custom-range">
               <label>
+                <span class="label-hidden">From</span>
                 <input pikaday="vm.pikaday.startDate" max-date="{{vm.today}}" ng-model="vm.filters.startDate" placeholder="From" />
               </label>
               <label>
+                <span class="label-hidden">To</span>
                 <input pikaday="vm.pikaday.endDate" max-date="{{vm.today}}" ng-model="vm.filters.endDate" placeholder="To" />
               </label>
               <p ng-click="vm.getEvents()" ng-class="{enabled: vm.filters.startDate && vm.filters.endDate }">Update</p>
@@ -65,10 +67,13 @@
     <div class="arrangement-item unical-calendar__search">
       <form class="search-form" name="vm.searchForm" ng-submit="vm.searchEvents()">
         <div class="unical-calendar__search-term">
-          <input type="text" placeholder="Search archived events" name="searchTerm" ng-model="vm.searchTerm">
+          <label for="searchTerm">
+            <span class="screen-reader-text">Search</span>
+            <input type="text" placeholder="Search archived events" name="searchTerm" id="searchTerm" ng-model="vm.searchTerm">
+          </label>
         </div>
         <div class="unical-calendar__search-action">
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <button type="submit"><i class="fa fa-search"></i><span class="screen-reader-text">Submit</span></button>
         </div>
       </form>
     </div>
@@ -113,7 +118,7 @@
     <div class="unical-calendar__event-main unical-calendar__event-main__archive">
       <div class="unical-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">
         <img ng-if="event.image.image_styles.large" ng-src="{{event.image.image_styles.large}}" alt="{{event.image.alt}}">
-        <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="">
+        <img ng-if="vm.siteSettings.default_event_image.image_styles.large && !event.image.image_styles.large" ng-src="{{vm.siteSettings.default_event_image.image_styles.large}}" alt="Default event image">
       </div>
       <div class="unical-calendar__event-content">
         <h2 class="unical-calendar__event-title"><a href="event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
