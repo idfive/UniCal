@@ -41,16 +41,18 @@ var swiftSlide = (function() {
 
     //Create controls
     if(parameters.showPrevNext) {
-      
+
       //start the auto slider
       self.slider = setInterval(self.nextSlide, 5000);
 
       // Create previous control
       self.els.prev = document.createElement('button');
+      self.els.prev.innerHTML = '<span class="screen-reader-text">Previous</span>';
       self.els.prev.addEventListener('click', self.clearIntervalprevious, false);
 
       // Create next control
       self.els.next = document.createElement('button');
+      self.els.next.innerHTML = '<span class="screen-reader-text">Next</span>';
       self.els.next.addEventListener('click', self.clearIntervalnext, false);
 
       // Append controls to the controller
