@@ -18,7 +18,7 @@
       eventsList: [],
       clearFilters: clearFilters,
       filters: {
-        renge: 'archived'
+        range: 'archived'
       },
       filterSearchResults: filterSearchResults,
       finishRenderEvents: finishRenderEvents,
