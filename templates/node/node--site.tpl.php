@@ -79,7 +79,7 @@
  * <?php print $node->field_taxonomy_1_enabled['und'][0]['value']; ?>
  */
 ?>
-
+<base href="<?php print $_SERVER['REQUEST_URI'] ?>">
 <script type="text/javascript">
   // Pass variables to the site embed script running below.
    var site_id = "<?php echo $node->nid ?>";
