@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function unical_features_field_group_info() {
-  $field_groups = array();
+  $export = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -23,12 +23,12 @@ function unical_features_field_group_info() {
     'label' => 'Admin Settings',
     'weight' => '44',
     'children' => array(
-      0 => 'field_featured',
+      0 => 'date_repeat_entity_clone_state',
       1 => 'date_repeat_entity_master_uuid',
-      2 => 'date_repeat_entity_clone_state',
-      3 => 'field_promote_in_feed',
-      4 => 'field_repeating_date_description',
-      5 => 'field_exclude_from_main_calendar',
+      2 => 'field_exclude_from_main_calendar',
+      3 => 'field_featured',
+      4 => 'field_promote_in_feed',
+      5 => 'field_repeating_date_description',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -40,7 +40,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_admin|node|event|form'] = $field_group;
+  $export['group_admin|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -53,7 +53,7 @@ function unical_features_field_group_info() {
   $field_group->parent_name = 'group_taxonomies';
   $field_group->data = array(
     'label' => 'Audience',
-    'weight' => '46',
+    'weight' => '45',
     'children' => array(
       0 => 'field_taxonomy_2',
     ),
@@ -68,7 +68,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_audience|node|event|form'] = $field_group;
+  $export['group_audience|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -81,7 +81,7 @@ function unical_features_field_group_info() {
   $field_group->parent_name = 'group_taxonomies';
   $field_group->data = array(
     'label' => 'Category',
-    'weight' => '45',
+    'weight' => '46',
     'children' => array(
       0 => 'field_taxonomy_3',
     ),
@@ -96,7 +96,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_category|node|event|form'] = $field_group;
+  $export['group_category|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -111,12 +111,12 @@ function unical_features_field_group_info() {
     'label' => 'Event Contact Info',
     'weight' => '40',
     'children' => array(
-      0 => 'field_contact_name',
-      1 => 'field_contact_phone',
-      2 => 'field_contact_email',
-      3 => 'field_same_as_submitter',
-      4 => 'field_organizer_facebook',
-      5 => 'field_organizer_twitter',
+      0 => 'field_contact_email',
+      1 => 'field_contact_name',
+      2 => 'field_contact_phone',
+      3 => 'field_organizer_facebook',
+      4 => 'field_organizer_twitter',
+      5 => 'field_same_as_submitter',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -129,7 +129,7 @@ function unical_features_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $field_groups['group_contact|node|event|form'] = $field_group;
+  $export['group_contact|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -144,8 +144,8 @@ function unical_features_field_group_info() {
     'label' => 'Cost',
     'weight' => '38',
     'children' => array(
-      0 => 'field_free_event',
-      1 => 'field_cost',
+      0 => 'field_cost',
+      1 => 'field_free_event',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -157,7 +157,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_cost|node|event|form'] = $field_group;
+  $export['group_cost|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -185,7 +185,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_date|node|event|form'] = $field_group;
+  $export['group_date|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -213,7 +213,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_department|node|event|form'] = $field_group;
+  $export['group_department|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -226,18 +226,17 @@ function unical_features_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'General',
-    'weight' => '14',
+    'weight' => '3',
     'children' => array(
-      0 => 'group_location',
-      1 => 'group_venue',
-      2 => 'group_rsvp',
-      3 => 'group_contact',
-      4 => 'group_date',
-      5 => 'group_cost',
+      0 => 'group_admin',
+      1 => 'group_contact',
+      2 => 'group_cost',
+      3 => 'group_date',
+      4 => 'group_location',
+      5 => 'group_rsvp',
       6 => 'group_social_media',
-      7 => 'group_admin',
-      8 => 'group_submitter',
-      9 => 'group_taxonomies',
+      7 => 'group_submitter',
+      8 => 'group_venue',
     ),
     'format_type' => 'tabs',
     'format_settings' => array(
@@ -247,7 +246,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_general|node|event|form'] = $field_group;
+  $export['group_general|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -276,7 +275,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_help_text|node|site|form'] = $field_group;
+  $export['group_help_text|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -303,7 +302,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_location|node|event|form'] = $field_group;
+  $export['group_location|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -318,10 +317,10 @@ function unical_features_field_group_info() {
     'label' => 'RSVP',
     'weight' => '39',
     'children' => array(
-      0 => 'field_ticket_url',
-      1 => 'field_how_to_rsvp',
+      0 => 'field_how_to_rsvp',
+      1 => 'field_rsvp_email',
       2 => 'field_rsvp_phone',
-      3 => 'field_rsvp_email',
+      3 => 'field_ticket_url',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -333,7 +332,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_rsvp|node|event|form'] = $field_group;
+  $export['group_rsvp|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -348,15 +347,15 @@ function unical_features_field_group_info() {
     'label' => 'Site Specific Settings',
     'weight' => '3',
     'children' => array(
-      0 => 'field_allow_event_submit',
-      1 => 'field_google_maps_api_key',
-      2 => 'field_default_event_image',
+      0 => 'field_add_to_calendar_exclude',
+      1 => 'field_allow_archive',
+      2 => 'field_allow_event_submit',
       3 => 'field_allow_featured_events',
-      4 => 'field_add_to_calendar_exclude',
-      5 => 'field_main_calendar_site',
-      6 => 'field_number_results_per_page',
-      7 => 'field_allow_users_to_choose_taxo',
-      8 => 'field_allow_archive',
+      4 => 'field_allow_users_to_choose_taxo',
+      5 => 'field_default_event_image',
+      6 => 'field_google_maps_api_key',
+      7 => 'field_main_calendar_site',
+      8 => 'field_number_results_per_page',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -368,7 +367,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_site_specific|node|site|form'] = $field_group;
+  $export['group_site_specific|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -397,7 +396,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_social_media|node|event|form'] = $field_group;
+  $export['group_social_media|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -412,9 +411,9 @@ function unical_features_field_group_info() {
     'label' => 'Submitter Contact Info',
     'weight' => '41',
     'children' => array(
-      0 => 'field_submitter_name',
-      1 => 'field_submitter_phone',
-      2 => 'field_submitter_email',
+      0 => 'field_submitter_email',
+      1 => 'field_submitter_name',
+      2 => 'field_submitter_phone',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -426,7 +425,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_submitter|node|event|form'] = $field_group;
+  $export['group_submitter|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -436,28 +435,25 @@ function unical_features_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_general';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Taxonomies',
-    'weight' => '43',
+    'weight' => '4',
     'children' => array(
-      0 => 'group_category',
-      1 => 'group_audience',
+      0 => 'group_audience',
+      1 => 'group_category',
       2 => 'group_department',
       3 => 'group_unused_taxonomies',
     ),
-    'format_type' => 'tab',
+    'format_type' => 'htabs',
     'format_settings' => array(
-      'label' => 'Taxonomies',
+      'formatter' => '',
       'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => 'group-taxonomies field-group-tab',
-        'description' => 'Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.',
+        'classes' => '',
       ),
-      'formatter' => 'closed',
     ),
   );
-  $field_groups['group_taxonomies|node|event|form'] = $field_group;
+  $export['group_taxonomies|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -472,12 +468,16 @@ function unical_features_field_group_info() {
     'label' => 'Taxonomies',
     'weight' => '1',
     'children' => array(
-      0 => 'group_taxonomy_1',
-      1 => 'group_taxonomy_2',
-      2 => 'group_taxonomy_3',
-      3 => 'group_taxonomy_4',
-      4 => 'group_taxonomy_5',
-      5 => 'group_taxonomy_6',
+      0 => 'group_taxonomy_10',
+      1 => 'group_taxonomy_1',
+      2 => 'group_taxonomy_2',
+      3 => 'group_taxonomy_3',
+      4 => 'group_taxonomy_4',
+      5 => 'group_taxonomy_5',
+      6 => 'group_taxonomy_6',
+      7 => 'group_taxonomy_8',
+      8 => 'group_taxonomy_9',
+      9 => 'group_taxonomy_11',
     ),
     'format_type' => 'tabs',
     'format_settings' => array(
@@ -487,7 +487,65 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_taxonomies|node|site|form'] = $field_group;
+  $export['group_taxonomies|node|site|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_taxonomy_10|node|site|form';
+  $field_group->group_name = 'group_taxonomy_10';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'site';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_taxonomies';
+  $field_group->data = array(
+    'label' => 'Taxonomy 10',
+    'weight' => '13',
+    'children' => array(
+      0 => 'field_taxonomy_10_enabled',
+      1 => 'field_taxonomy_10_label',
+      2 => 'field_taxonomy_10',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-taxonomy-10 field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_taxonomy_10|node|site|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_taxonomy_11|node|site|form';
+  $field_group->group_name = 'group_taxonomy_11';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'site';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_taxonomies';
+  $field_group->data = array(
+    'label' => 'Taxonomy 11',
+    'weight' => '14',
+    'children' => array(
+      0 => 'field_taxonomy_11_enabled',
+      1 => 'field_taxonomy_11_label',
+      2 => 'field_taxonomy_11',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-taxonomy-11 field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_taxonomy_11|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -499,7 +557,7 @@ function unical_features_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_taxonomies';
   $field_group->data = array(
-    'label' => 'School',
+    'label' => 'Taxonomy 1',
     'weight' => '5',
     'children' => array(
       0 => 'field_taxonomy_1',
@@ -508,7 +566,7 @@ function unical_features_field_group_info() {
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'label' => 'School',
+      'label' => 'Taxonomy 1',
       'instance_settings' => array(
         'required_fields' => 1,
         'classes' => '',
@@ -517,7 +575,7 @@ function unical_features_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $field_groups['group_taxonomy_1|node|site|form'] = $field_group;
+  $export['group_taxonomy_1|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -529,7 +587,7 @@ function unical_features_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_taxonomies';
   $field_group->data = array(
-    'label' => 'Audience',
+    'label' => 'Taxonomy 2',
     'weight' => '6',
     'children' => array(
       0 => 'field_taxonomy_2',
@@ -538,7 +596,7 @@ function unical_features_field_group_info() {
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'label' => 'Audience',
+      'label' => 'Taxonomy 2',
       'instance_settings' => array(
         'required_fields' => 1,
         'classes' => '',
@@ -547,7 +605,7 @@ function unical_features_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $field_groups['group_taxonomy_2|node|site|form'] = $field_group;
+  $export['group_taxonomy_2|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -559,7 +617,7 @@ function unical_features_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_taxonomies';
   $field_group->data = array(
-    'label' => 'Category',
+    'label' => 'Taxonomy 3',
     'weight' => '7',
     'children' => array(
       0 => 'field_taxonomy_3',
@@ -568,7 +626,7 @@ function unical_features_field_group_info() {
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'label' => 'Category',
+      'label' => 'Taxonomy 3',
       'instance_settings' => array(
         'required_fields' => 1,
         'classes' => 'group-taxonomy-3 field-group-tab',
@@ -577,7 +635,7 @@ function unical_features_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $field_groups['group_taxonomy_3|node|site|form'] = $field_group;
+  $export['group_taxonomy_3|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -607,7 +665,7 @@ function unical_features_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $field_groups['group_taxonomy_4|node|site|form'] = $field_group;
+  $export['group_taxonomy_4|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -637,7 +695,7 @@ function unical_features_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $field_groups['group_taxonomy_5|node|site|form'] = $field_group;
+  $export['group_taxonomy_5|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -667,7 +725,65 @@ function unical_features_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $field_groups['group_taxonomy_6|node|site|form'] = $field_group;
+  $export['group_taxonomy_6|node|site|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_taxonomy_8|node|site|form';
+  $field_group->group_name = 'group_taxonomy_8';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'site';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_taxonomies';
+  $field_group->data = array(
+    'label' => 'Taxonomy 8',
+    'weight' => '11',
+    'children' => array(
+      0 => 'field_taxonomy_8_enabled',
+      1 => 'field_taxonomy_8_label',
+      2 => 'field_taxonomy_8',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-taxonomy-8 field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_taxonomy_8|node|site|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_taxonomy_9|node|site|form';
+  $field_group->group_name = 'group_taxonomy_9';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'site';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_taxonomies';
+  $field_group->data = array(
+    'label' => 'Taxonomy 9',
+    'weight' => '12',
+    'children' => array(
+      0 => 'field_taxonomy_9_enabled',
+      1 => 'field_taxonomy_9_label',
+      2 => 'field_taxonomy_9',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-taxonomy-9 field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_taxonomy_9|node|site|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -685,6 +801,9 @@ function unical_features_field_group_info() {
       0 => 'field_taxonomy_4',
       1 => 'field_taxonomy_5',
       2 => 'field_taxonomy_6',
+      3 => 'field_taxonomy_8',
+      4 => 'field_taxonomy_9',
+      5 => 'field_taxonomy_10',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -697,7 +816,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_unused_taxonomies|node|event|form'] = $field_group;
+  $export['group_unused_taxonomies|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -725,31 +844,7 @@ function unical_features_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_venue|node|event|form'] = $field_group;
+  $export['group_venue|node|event|form'] = $field_group;
 
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('Admin Settings');
-  t('Audience');
-  t('Category');
-  t('Cost');
-  t('Date/Time');
-  t('Event Contact Info');
-  t('General');
-  t('Help Text');
-  t('Location');
-  t('RSVP');
-  t('School');
-  t('School/Department');
-  t('Site Specific Settings');
-  t('Social Media');
-  t('Submitter Contact Info');
-  t('Taxonomies');
-  t('Taxonomy 4');
-  t('Taxonomy 5');
-  t('Taxonomy 6');
-  t('Unused taxonomies');
-  t('Venue Information');
-
-  return $field_groups;
+  return $export;
 }

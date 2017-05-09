@@ -18,101 +18,191 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
     $public_fields = parent::publicFieldsInfo();
 
     /* Taxonomy 1 */
-
-    $public_fields['taxonomy_1_enabled'] = array(
-      'property' => 'field_taxonomy_1_enabled',
-    );
-
-    $public_fields['taxonomy_1_label'] = array(
-      'property' => 'field_taxonomy_1_label',
-    );
-
-    $public_fields['taxonomy_1_selected'] = array(
-      'property' => 'field_taxonomy_1',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_1_enabled')) {
+      $public_fields['taxonomy_1_enabled'] = array(
+        'property' => 'field_taxonomy_1_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_1_label')) {
+      $public_fields['taxonomy_1_label'] = array(
+        'property' => 'field_taxonomy_1_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_1')) {
+      $public_fields['taxonomy_1_selected'] = array(
+        'property' => 'field_taxonomy_1',
+        'sub_property' => 'tid',
+      );
+    }
 
     /* Taxonomy 2 */
-
-    $public_fields['taxonomy_2_enabled'] = array(
-      'property' => 'field_taxonomy_2_enabled',
-    );
-
-    $public_fields['taxonomy_2_label'] = array(
-      'property' => 'field_taxonomy_2_label',
-    );
-
-    $public_fields['taxonomy_2_selected'] = array(
-      'property' => 'field_taxonomy_2',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_2_enabled')) {
+      $public_fields['taxonomy_2_enabled'] = array(
+        'property' => 'field_taxonomy_2_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_2_label')) {
+      $public_fields['taxonomy_2_label'] = array(
+        'property' => 'field_taxonomy_2_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_2')) {
+      $public_fields['taxonomy_2_selected'] = array(
+        'property' => 'field_taxonomy_2',
+        'sub_property' => 'tid',
+      );
+    }
 
     /* Taxonomy 3 */
-
-    $public_fields['taxonomy_3_enabled'] = array(
-      'property' => 'field_taxonomy_3_enabled',
-    );
-
-    $public_fields['taxonomy_3_label'] = array(
-      'property' => 'field_taxonomy_3_label',
-    );
-
-    $public_fields['taxonomy_3_selected'] = array(
-      'property' => 'field_taxonomy_3',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_3_enabled')) {
+      $public_fields['taxonomy_3_enabled'] = array(
+        'property' => 'field_taxonomy_3_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_3_label')) {
+      $public_fields['taxonomy_3_label'] = array(
+        'property' => 'field_taxonomy_3_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_3')) {
+      $public_fields['taxonomy_3_selected'] = array(
+        'property' => 'field_taxonomy_3',
+        'sub_property' => 'tid',
+      );
+    }
 
     /* Taxonomy 4 */
-
-    $public_fields['taxonomy_4_enabled'] = array(
-      'property' => 'field_taxonomy_4_enabled',
-    );
-
-    $public_fields['taxonomy_4_label'] = array(
-      'property' => 'field_taxonomy_4_label',
-    );
-
-    $public_fields['taxonomy_4_selected'] = array(
-      'property' => 'field_taxonomy_4',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_4_enabled')) {
+      $public_fields['taxonomy_4_enabled'] = array(
+        'property' => 'field_taxonomy_4_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_4_label')) {
+      $public_fields['taxonomy_4_label'] = array(
+        'property' => 'field_taxonomy_4_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_4')) {
+      $public_fields['taxonomy_4_selected'] = array(
+        'property' => 'field_taxonomy_4',
+        'sub_property' => 'tid',
+      );
+    }
 
     /* Taxonomy 5 */
-
-    $public_fields['taxonomy_5_enabled'] = array(
-      'property' => 'field_taxonomy_5_enabled',
-    );
-
-    $public_fields['taxonomy_5_label'] = array(
-      'property' => 'field_taxonomy_5_label',
-    );
-
-    $public_fields['taxonomy_5_selected'] = array(
-      'property' => 'field_taxonomy_5',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_5_enabled')) {
+      $public_fields['taxonomy_5_enabled'] = array(
+        'property' => 'field_taxonomy_5_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_5_label')) {
+      $public_fields['taxonomy_5_label'] = array(
+        'property' => 'field_taxonomy_5_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_5')) {
+      $public_fields['taxonomy_5_selected'] = array(
+        'property' => 'field_taxonomy_5',
+        'sub_property' => 'tid',
+      );
+    }
 
     /* Taxonomy 6 */
+    if (field_info_field('field_taxonomy_6_enabled')) {
+      $public_fields['taxonomy_6_enabled'] = array(
+        'property' => 'field_taxonomy_6_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_6_label')) {
+      $public_fields['taxonomy_6_label'] = array(
+        'property' => 'field_taxonomy_6_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_6')) {
+      $public_fields['taxonomy_6_selected'] = array(
+        'property' => 'field_taxonomy_6',
+        'sub_property' => 'tid',
+      );
+    }
+    /* Taxonomy 8 */
+    if (field_info_field('field_taxonomy_8_enabled')) {
+      $public_fields['taxonomy_8_enabled'] = array(
+        'property' => 'field_taxonomy_8_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_8_label')) {
+      $public_fields['taxonomy_8_label'] = array(
+        'property' => 'field_taxonomy_8_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_8')) {
+      $public_fields['taxonomy_8_selected'] = array(
+        'property' => 'field_taxonomy_8',
+        'sub_property' => 'tid',
+      );
+    }
 
-    $public_fields['taxonomy_6_enabled'] = array(
-      'property' => 'field_taxonomy_6_enabled',
-    );
+    /* Taxonomy 9 */
+    if (field_info_field('field_taxonomy_9_enabled')) {
+      $public_fields['taxonomy_9_enabled'] = array(
+        'property' => 'field_taxonomy_9_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_9_label')) {
+      $public_fields['taxonomy_9_label'] = array(
+        'property' => 'field_taxonomy_9_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_9')) {
+      $public_fields['taxonomy_9_selected'] = array(
+        'property' => 'field_taxonomy_9',
+        'sub_property' => 'tid',
+      );
+    }
 
-    $public_fields['taxonomy_6_label'] = array(
-      'property' => 'field_taxonomy_6_label',
-    );
+    /* Taxonomy 10 */
+    if (field_info_field('field_taxonomy_10_enabled')) {
+      $public_fields['taxonomy_10_enabled'] = array(
+        'property' => 'field_taxonomy_10_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_10_label')) {
+      $public_fields['taxonomy_10_label'] = array(
+        'property' => 'field_taxonomy_10_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_10')) {
+      $public_fields['taxonomy_10_selected'] = array(
+        'property' => 'field_taxonomy_10',
+        'sub_property' => 'tid',
+      );
+    }
 
-    $public_fields['taxonomy_6_selected'] = array(
-      'property' => 'field_taxonomy_6',
-      'sub_property' => 'tid',
-    );
+    /* Taxonomy 11 */
+    if (field_info_field('field_taxonomy_11_enabled')) {
+      $public_fields['taxonomy_11_enabled'] = array(
+        'property' => 'field_taxonomy_11_enabled',
+      );
+    }
+    if (field_info_field('field_taxonomy_11_label')) {
+      $public_fields['taxonomy_11_label'] = array(
+        'property' => 'field_taxonomy_11_label',
+      );
+    }
+    if (field_info_field('field_taxonomy_11')) {
+      $public_fields['taxonomy_11_selected'] = array(
+        'property' => 'field_taxonomy_11',
+        'sub_property' => 'tid',
+      );
+    }
 
     /* Add to Calendar Options to exclude */
-
-    $public_fields['add_to_calendar_exclude'] = array(
-      'property' => 'field_add_to_calendar_exclude',
-      'sub_property' => 'field_ate_id',
-    );
+    if (field_info_field('field_add_to_calendar_exclude')) {
+      $public_fields['add_to_calendar_exclude'] = array(
+        'property' => 'field_add_to_calendar_exclude',
+        'sub_property' => 'field_ate_id',
+      );
+    }
 
     /* General Settings */
 
@@ -143,11 +233,6 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'property' => 'field_allow_archive',
       );
     }
-
-    // Allow archives
-    $public_fields['allow_archive'] = array(
-      'property' => 'field_allow_archive',
-    );
 
     // The key for the google maps api
     if (field_info_field('field_google_maps_api_key')) {
