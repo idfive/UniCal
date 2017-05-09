@@ -17,8 +17,8 @@ The complete UniCal system consists of the following:
 * Unical Features (unical_features): This sub module is included with UniCal, and its
   function is to provide initial content type/taxonomy setup.
 * Unical Feeds (unical_feeds): This sub module is included with UniCal, and its
-  function is to provide initial feed setup/etc if you would like touse UniCal in conjunction
-  with the feeds module.
+  function is to provide initial feed setup/etc if you would like to use UniCal in
+  conjunction with the feeds module.
 * UniCal Client (unical_client): This module is it's own project, and available for download at  
   (https://github.com/idfive/UniCal-Client) This module allows you to embed a calendar in
   any Drupal site, anywhere, that will read via REST to the install where a
@@ -74,6 +74,8 @@ event content types:
 * Field Group (https://www.drupal.org/project/field_group)
 * Link (https://www.drupal.org/project/link)
 * Time Zone Field (https://www.drupal.org/project/tzfield)
+* UUID (https://www.drupal.org/project/uuid)
+* UUID Features (https://www.drupal.org/project/uuid_features)
 
 The UniCal Feeds module requires the following, to set up automated event feed ingestion:
 * Features (https://www.drupal.org/project/features)
@@ -118,10 +120,10 @@ we are using html5 mode in the angular application,
 
 ### .htaccess modifications: ###
 
-Some modifications are neccesary to both re-route social bots the actual node
+Some modifications are necessary to both re-route social bots the actual node
 page (php) of the main site, in order for bots to be able to scrape event information, and another
-to allow use of non-hashbang urls. The second is neccesary to tell/trick drupal into not looking for
-a page at that path, but rather redirect to the calendar, and let it take the url from there. Neccesary
+to allow use of non-hashbang urls. The second is necessary to tell/trick drupal into not looking for
+a page at that path, but rather redirect to the calendar, and let it take the url from there. Necessary
 in order to go directly to an event page/etc. The following rules assume that your events are in the
 standard UniCal format of /event/NID/TITLE.
 
@@ -160,7 +162,7 @@ See the .htaccess modifications above in configuration. The general idea, is to
 serve the php version of the page to social share scrapers/etc, and to search
 bots that cannot yet scrape angular rendered pages. So that social sharers/etc
 actually scrape /node/123 (which returns content via php) rather than /event/123/event-name,
-which renders the event via js, and is at the moment not fully compatable with
+which renders the event via js, and is at the moment not fully compatible with
 facebook, twitter, etc.
 
 The event detail page supports posting the following meta information to the
@@ -182,6 +184,8 @@ KNOWN CONFLICTS
   allows.    
 * Workbench Module. Can affect Feeds importers, depending on settings. May need to
   be temporarily disabled to import, as a workaround.
+* AdvAgg Module. Moving all inline js to the bottom of the page can break the client/embed,
+  as its settings potentially can be called before drupal.js.
 
 API 1.0
 -------
@@ -260,8 +264,21 @@ Site Content Type:
 
 TAXONOMIES
 ----------
-UniCal uses 6 predefined taxonomies (taxonomy_1 through taxonomy_6). These can
-eventually be renamed/etc, as long as THE MACHINE NAME STAYS THE SAME.  
+UniCal uses 11 predefined taxonomies (machine names calendar_taxonomy_1 through calendar_taxonomy_11).
+These can eventually be renamed/etc, as long as THE MACHINE NAME STAYS THE SAME. One taxonomy
+(calendar_taxonomy_7) is predefined as a list to show/hide "Add To Calendar" Links.
+* calendar_taxonomy_1 through calendar_taxonomy_6, and calendar_taxonomy_8 through
+  calendar_taxonomy_11 are custom "event category taxonomies". These titles/etc can
+  be changed, as long as THE MACHINE NAME STAYS THE SAME. Also, these can also be deleted,
+  if needed. Essentially, this gives you the use of up to 10 custom event taxonomies.
+* calendar_taxonomy_7 is the add to calendar taxonomy, which should not be modified.
+  This taxonomy is called for in the SITE, and relies on field_ate_id to remove unwanted "Add This Event" options. We have added these into the features, but for reference, here they are
+  in the format of Name | ATE ID:
+  * Apple iCal | appleical
+  * Google (Online) | google
+  * Outlook | outlook
+  * Outlook (Online) | outlookcom
+  * Yahoo (Online) | yahoo
 
 WORKBENCH
 ---------

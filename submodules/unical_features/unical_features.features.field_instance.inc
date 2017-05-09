@@ -51,7 +51,7 @@ function unical_features_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 1,
     ),
     'workbench_access_field' => 0,
   );
@@ -428,6 +428,7 @@ function unical_features_field_default_field_instances() {
   // Exported field_instance: 'node-event-field_date'.
   $field_instances['node-event-field_date'] = array(
     'bundle' => 'event',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => 'This field controls dates. "All Day" events are modified in the unical module to enter into the db as starting at 12:00 AM, and ending at 11:59 PM. If you return to edit these events afterwards, please note that any events that do not start at 12:00 AM, and end at 11:59 PM WILL NOT display as "All Day" on the calendar.',
     'display' => array(
@@ -478,7 +479,7 @@ function unical_features_field_default_field_instances() {
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
-      'type' => 'date_popup',
+      'type' => 'date_select',
       'weight' => 5,
     ),
     'workbench_access_field' => 0,
@@ -699,7 +700,7 @@ function unical_features_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 10,
+      'weight' => 2,
     ),
     'workbench_access_field' => 0,
   );
@@ -1295,6 +1296,43 @@ function unical_features_field_default_field_instances() {
     'workbench_access_field' => 1,
   );
 
+  // Exported field_instance: 'node-event-field_taxonomy_10'.
+  $field_instances['node-event-field_taxonomy_10'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 39,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_10',
+    'label' => 'Taxonomy 10',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 42,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_taxonomy_2'.
   $field_instances['node-event-field_taxonomy_2'] = array(
     'bundle' => 'event',
@@ -1483,6 +1521,80 @@ function unical_features_field_default_field_instances() {
       'weight' => 39,
     ),
     'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance: 'node-event-field_taxonomy_8'.
+  $field_instances['node-event-field_taxonomy_8'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 37,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_8',
+    'label' => 'Taxonomy 8',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 40,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_taxonomy_9'.
+  $field_instances['node-event-field_taxonomy_9'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 38,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_9',
+    'label' => 'Taxonomy 9',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 41,
+    ),
   );
 
   // Exported field_instance: 'node-event-field_ticket_url'.
@@ -2257,6 +2369,246 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-site-field_taxonomy_10'.
+  $field_instances['node-site-field_taxonomy_10'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 39,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_10',
+    'label' => 'Pre-filter by',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 73,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_10_enabled'.
+  $field_instances['node-site-field_taxonomy_10_enabled'] = array(
+    'bundle' => 'site',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 33,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_10_enabled',
+    'label' => 'Visible on front-end',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 71,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_10_label'.
+  $field_instances['node-site-field_taxonomy_10_label'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 36,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_10_label',
+    'label' => 'Label',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 72,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_11'.
+  $field_instances['node-site-field_taxonomy_11'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 43,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_11',
+    'label' => 'Pre-filter by',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 76,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_11_enabled'.
+  $field_instances['node-site-field_taxonomy_11_enabled'] = array(
+    'bundle' => 'site',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 41,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_11_enabled',
+    'label' => 'Visible on front-end',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 74,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_11_label'.
+  $field_instances['node-site-field_taxonomy_11_label'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 42,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_11_label',
+    'label' => 'Label',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 75,
+    ),
+  );
+
   // Exported field_instance: 'node-site-field_taxonomy_1_enabled'.
   $field_instances['node-site-field_taxonomy_1_enabled'] = array(
     'bundle' => 'site',
@@ -2946,6 +3298,246 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-site-field_taxonomy_8'.
+  $field_instances['node-site-field_taxonomy_8'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 40,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_8',
+    'label' => 'Pre-filter by',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 71,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_8_enabled'.
+  $field_instances['node-site-field_taxonomy_8_enabled'] = array(
+    'bundle' => 'site',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 31,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_8_enabled',
+    'label' => 'Visible on front-end',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 69,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_8_label'.
+  $field_instances['node-site-field_taxonomy_8_label'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 34,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_8_label',
+    'label' => 'Label',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 70,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_9'.
+  $field_instances['node-site-field_taxonomy_9'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 38,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_9',
+    'label' => 'Pre-filter by',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 72,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_9_enabled'.
+  $field_instances['node-site-field_taxonomy_9_enabled'] = array(
+    'bundle' => 'site',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 32,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_9_enabled',
+    'label' => 'Visible on front-end',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 70,
+    ),
+  );
+
+  // Exported field_instance: 'node-site-field_taxonomy_9_label'.
+  $field_instances['node-site-field_taxonomy_9_label'] = array(
+    'bundle' => 'site',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 35,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_9_label',
+    'label' => 'Label',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 71,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-calendar_taxonomy_7-field_ate_id'.
   $field_instances['taxonomy_term-calendar_taxonomy_7-field_ate_id'] = array(
     'bundle' => 'calendar_taxonomy_7',
@@ -3041,9 +3633,12 @@ function unical_features_field_default_field_instances() {
   t('Submitter Name');
   t('Submitter Phone');
   t('Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.');
+  t('Taxonomy 10');
   t('Taxonomy 4');
   t('Taxonomy 5');
   t('Taxonomy 6');
+  t('Taxonomy 8');
+  t('Taxonomy 9');
   t('This field controls dates. "All Day" events are modified in the unical module to enter into the db as starting at 12:00 AM, and ending at 11:59 PM. If you return to edit these events afterwards, please note that any events that do not start at 12:00 AM, and end at 11:59 PM WILL NOT display as "All Day" on the calendar.');
   t('This field controls whether this event should show up in any external feeds you may have set up.');
   t('This field controls whether this event should show up in the "featured" events slider on calendar sites, if that feature is enabled.');
