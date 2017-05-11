@@ -70,43 +70,85 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
     );
 
     // Address -------------------------.
-    $public_fields['address'] = array(
-      'property' => 'field_address',
-      'process_callbacks' => array(
-        array($this, 'processAddress'),
-      ),
-    );
+    if (field_info_field('field_address')) {
+      $public_fields['address'] = array(
+        'property' => 'field_address',
+        'process_callbacks' => array(
+          array($this, 'processAddress'),
+        ),
+      );
+    }
 
     // Taxonomies ----------------------.
-    $public_fields['taxonomy_1'] = array(
-      'property' => 'field_taxonomy_1',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_1')) {
+      $public_fields['taxonomy_1'] = array(
+        'property' => 'field_taxonomy_1',
+        'sub_property' => 'tid',
+      );
+    }
 
-    $public_fields['taxonomy_2'] = array(
-      'property' => 'field_taxonomy_2',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_2')) {
+      $public_fields['taxonomy_2'] = array(
+        'property' => 'field_taxonomy_2',
+        'sub_property' => 'tid',
+      );
+    }
 
-    $public_fields['taxonomy_3'] = array(
-      'property' => 'field_taxonomy_3',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_3')) {
+      $public_fields['taxonomy_3'] = array(
+        'property' => 'field_taxonomy_3',
+        'sub_property' => 'tid',
+      );
+    }
 
-    $public_fields['taxonomy_4'] = array(
-      'property' => 'field_taxonomy_4',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_4')) {
+      $public_fields['taxonomy_4'] = array(
+        'property' => 'field_taxonomy_4',
+        'sub_property' => 'tid',
+      );
+    }
 
-    $public_fields['taxonomy_5'] = array(
-      'property' => 'field_taxonomy_5',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_5')) {
+      $public_fields['taxonomy_5'] = array(
+        'property' => 'field_taxonomy_5',
+        'sub_property' => 'tid',
+      );
+    }
 
-    $public_fields['taxonomy_6'] = array(
-      'property' => 'field_taxonomy_6',
-      'sub_property' => 'tid',
-    );
+    if (field_info_field('field_taxonomy_6')) {
+      $public_fields['taxonomy_6'] = array(
+        'property' => 'field_taxonomy_6',
+        'sub_property' => 'tid',
+      );
+    }
+
+    if (field_info_field('field_taxonomy_8')) {
+      $public_fields['taxonomy_8'] = array(
+        'property' => 'field_taxonomy_8',
+        'sub_property' => 'tid',
+      );
+    }
+
+    if (field_info_field('field_taxonomy_9')) {
+      $public_fields['taxonomy_9'] = array(
+        'property' => 'field_taxonomy_9',
+        'sub_property' => 'tid',
+      );
+    }
+
+    if (field_info_field('field_taxonomy_10')) {
+      $public_fields['taxonomy_10'] = array(
+        'property' => 'field_taxonomy_10',
+        'sub_property' => 'tid',
+      );
+    }
+
+    if (field_info_field('field_taxonomy_11')) {
+      $public_fields['taxonomy_11'] = array(
+        'property' => 'field_taxonomy_11',
+        'sub_property' => 'tid',
+      );
+    }
 
     // Venue --------------------------.
     $public_fields['venue_name'] = array(
