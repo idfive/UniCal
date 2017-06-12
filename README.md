@@ -61,6 +61,8 @@ REQUIREMENTS
 ------------  
 The UniCal module requires the following modules:   
 * RESTful (https://www.drupal.org/project/restful) IMPORTANT: Use version 7.x-1.6
+* RESTful Search API (https://www.drupal.org/project/restful_search_api)
+* Search API (https://www.drupal.org/project/search_api)
 * CORS (https://www.drupal.org/project/cors)  
 * jQuery Update (https://www.drupal.org/project/jquery_update)  
 * UniCal Client (https://github.com/idfive/UniCal-Client)
@@ -150,6 +152,11 @@ feed importer, that you may use by enabling the unical_feeds module.
  Any number of options can be configured on this, or any custom importer, such as
  scheduling, file upload, etc. See the Feeds module documentation for more advanced
  use cases.
+ 
+SEARCH
+---------------  
+* Create an index of node type event (events_index) with your chosen search api server. Enable title and body fields on the index.
+* This is now available via REST at /api/eventsearch/YOUR_TERM. This is what powers the events search box.
 
 TROUBLESHOOTING
 ---------------  
@@ -200,7 +207,7 @@ to branch this to the 2x version . . . if anyone is feeling feisty.
 * The API returns events from the MASTER via JSON.
 * You may use an HTTP OPTIONS request to the endpoint, to see things like
   taxonomy terms, fields, etc.
-* See available endpoints at: http://your.site/api
+* See all available endpoints at: http://your.site/api
 * EXAMPLE: Events Endpoint: http://your.site/api/events
 * Use these endpoints for other fun stuff too!  
 
