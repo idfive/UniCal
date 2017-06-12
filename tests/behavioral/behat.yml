@@ -1,0 +1,20 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+      paths: [ %paths.base%/features/common ]
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://dev.calendar.howard.edu
+      goutte: ~
+      selenium2:
+        browser: "chrome"
+        wd_host: http://127.0.0.1:4444/wd/hub
+        capabilities: { "platform": "MAC", "browser": "chrome", "version": "" }
+    Drupal\DrupalExtension:
+      blackbox: ~

@@ -1,0 +1,17 @@
+{
+  "require": {
+    "drupal/drupal-extension": "~3.0",
+    "behat/behat": "*",
+    "behat/mink-extension": "*",
+    "behat/mink-goutte-driver": "*",
+    "behat/mink-zombie-driver": "*",
+    "behat/mink-selenium2-driver": "*",
+    "facebook/webdriver": "dev-master",
+    "guzzlehttp/guzzle": "*",
+    "se/selenium-server-standalone": "^3.4",
+    "enm1989/chromedriver": "^2.30"
+},
+  "config": {
+    "bin-dir": "bin/"
+  }
+}
