@@ -5,9 +5,9 @@
     .module('calendar')
     .factory('eventService', eventService);
 
-  eventService.$inject = ['$http', '$window', '$q', 'utilityService', 'taxonomyService', 'siteService', 'dateService'];
+  eventService.$inject = ['$http', '$window', '$q', 'utilityService', 'taxonomyService', 'siteService', 'dateService', '$route', '$location'];
 
-  function eventService($http, $window, $q, utilityService, taxonomyService, siteService, dateService) {
+  function eventService($http, $window, $q, utilityService, taxonomyService, siteService, dateService, $route, $location) {
 
     //Service setup
     var service = {
@@ -49,7 +49,8 @@
       newEventProgress: {},
       processEventResults: processEventResults,
       resetFilterOptions: resetFilterOptions,
-      searchTerm: ''
+      searchTerm: '',
+      setFiltersFromUrl: setFiltersFromUrl
     };
 
     return service;
@@ -128,7 +129,7 @@
     }
 
     /*
-     * Code to execute when finished rendering events
+     * Code to execute when finished rendering featured events
      *
      */
     function finishRenderFeatured() {
@@ -178,6 +179,8 @@
      *
      */
     function getEvents() {
+
+      console.log(service.filters.taxonomies);
 
       //Get filter string
       var filterString = this.getFilterString();
@@ -405,6 +408,7 @@
         //Get selected taxonomies
         if(typeof service.cachedPromises.selectedTaxonomies === 'undefined') {
           service.resetFilterOptions();
+          service.setFiltersFromUrl();
           service.cachedPromises.selectedTaxonomies = { processed: true };
         }
 
@@ -492,6 +496,27 @@
         endDate: null
       };
     }
+
+    /*
+     * Set filters from URL parameters
+     *
+     */
+    function setFiltersFromUrl() {
+
+      // Loop through each parameter in the URL to set filters
+      angular.forEach($route.current.params, function(paramVal, paramKey) {
+
+        angular.forEach(paramVal, function(Val) {
+          service.filters.taxonomies[paramKey]['terms'][Val] = true;
+        });
+
+        // Unset URL parameter
+        $location.search(paramKey, null).replace();
+
+      });
+
+    }
+
 
   };
 

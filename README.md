@@ -152,7 +152,7 @@ feed importer, that you may use by enabling the unical_feeds module.
  Any number of options can be configured on this, or any custom importer, such as
  scheduling, file upload, etc. See the Feeds module documentation for more advanced
  use cases.
- 
+
 SEARCH
 ---------------  
 * Create an index of node type event (events_index) with your chosen search api server. Enable title and body fields on the index.
@@ -246,6 +246,15 @@ Additional Filter Fields:
   usually on a homepage/etc.
 * see /plugins/restful/TYPE.class files for field definitions in the API.  
 
+PRE-POPULATING RESULTS
+----------------------
+Taxonomies may be pre-populated on a page by passing parameters through the url.
+To do this, pass the following:
+* Pass the taxonomy_machine_name
+* Pass the TID of the term you wish.
+
+For example, http://your.site/calendar?taxonomy_1=1&taxonomy_2=2 would pre-populate
+taxonomy_1 with TID 1, and pre-populate taxonomy_2 with TID 2.
 
 CONTENT TYPES
 -------------
