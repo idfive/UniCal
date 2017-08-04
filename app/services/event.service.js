@@ -506,9 +506,7 @@
       // Loop through each parameter in the URL to set filters
       angular.forEach($route.current.params, function(paramVal, paramKey) {
 
-        angular.forEach(paramVal, function(Val) {
-          service.filters.taxonomies[paramKey]['terms'][Val] = true;
-        });
+        service.filters.taxonomies[paramKey]['terms'][paramVal] = true;
 
         // Unset URL parameter
         $location.search(paramKey, null).replace();
