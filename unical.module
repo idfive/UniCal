@@ -146,14 +146,24 @@
   }
 
 /**
- * Expires dates in repeating events, so sort works on next date in series
+ * Expires dates in standard repeating events, so sort works on next date in series.
  *
  * This work around is needed in order to properly sort events within the api. If
  * this is not done, previously occuring events in the series will throw off the
  * ordering of events, because it looks at all events in the series, ie, the date
  * the first event in the series. Currently, this is set to run on CRON.
+ *
+ * If the "Date Repeat Entity" module is used, we do not want this to run however.
  */
 function _unical_expire_repeating_events() {
+
+  // If this install uses the date_repeat_entity module, we should not run this function.
+  // TODO: Make this a settings option?
+
+  if(module_exists('date_repeat_entity')) {
+    watchdog('unical', 'date_repeat_entity module is enabled, skipping repeating event cleanup by UniCal.', array(), WATCHDOG_NOTICE);
+    return;
+  }
 
   // field_date_value2 is the end date of the event, field_date_rrule indicates if it's a repeater.
   $result = db_query(

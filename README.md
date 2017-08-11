@@ -1,5 +1,5 @@
 INTRODUCTION
-------------  
+============  
 UniCal stands for either Universal Calendar or University Calendar. Dealer’s
 choice. It is an Angular.js-based events calendar application, based on the
 headless/decoupled Drupal approach, and the COPE principle.  For more information
@@ -112,16 +112,16 @@ INSTALLATION
 * Modify .htaccess file, as shown in configuration.
 
 CONFIGURATION
--------------  
+=============  
 The module has no menu or modifiable settings. You will however, need to configure the
-UniCal Features module.  
+UniCal Features module, and search api endpoint.  
 
 You will need to modify your .htaccess (or make a similar mod on non apache servers)
 In order to be able to go directly to non-hashbang url's in the app. This is because
 we are using html5 mode in the angular application,
 
-### .htaccess modifications: ###
-
+.htaccess MODS:
+--------------
 Some modifications are necessary to both re-route social bots the actual node
 page (php) of the main site, in order for bots to be able to scrape event information, and another
 to allow use of non-hashbang urls. The second is necessary to tell/trick drupal into not looking for
@@ -138,52 +138,23 @@ standard UniCal format of /event/NID/TITLE.
   RewriteCond %{REQUEST_URI} !^/admin
   RewriteRule event/(.*)/(.*) http://%{HTTP_HOST}/#%1/event/$1/$2 [NE,L]
 
-FEEDS
----------------  
-UniCal is fully compatible with the Feeds module (https://www.drupal.org/project/feeds)
-So any number of custom event importers are possible. UniCal comes with a default iCal
-feed importer, that you may use by enabling the unical_feeds module.
- * Enable unical_feeds, and its dependencies.
-    * NOTE: The iCalcreator library v2.20.2 is required for date_ical.
-      Please see the project documentation for that module for more.
- * The Feed settings can now be edited (if needed) at /admin/structure/feeds/unical_ical_importer
- * Importing can now be done from /import/unical_ical_importer
 
- Any number of options can be configured on this, or any custom importer, such as
- scheduling, file upload, etc. See the Feeds module documentation for more advanced
- use cases.
-
-SEARCH
+SEARCH API SETUP
 ---------------  
 * Create an index of node type event (events_index) with your chosen search api server. Enable title and body fields on the index.
 * This is now available via REST at /api/eventsearch/YOUR_TERM. This is what powers the events search box.
+
+GENERAL INFO
+===============
+
+CRON
+---------------
+UniCal adds a cron job to remove past repeating events from single nodes, which happens on standard cron run. If you are using Date Repeat Entity Module to make repeated dates individual nodes, this should be skipped. This fix has been hardcoded for now, but roadmap plans include a settings option to run unical cron or not.
 
 TROUBLESHOOTING
 ---------------  
 * If the endpoint does not display, check the following:   - Is CORS set up?   
 -- Have you added some test content?   
-
-SEO/SOCIAL SHARING
----------------
-See the .htaccess modifications above in configuration. The general idea, is to
-serve the php version of the page to social share scrapers/etc, and to search
-bots that cannot yet scrape angular rendered pages. So that social sharers/etc
-actually scrape /node/123 (which returns content via php) rather than /event/123/event-name,
-which renders the event via js, and is at the moment not fully compatible with
-facebook, twitter, etc.
-
-The event detail page supports posting the following meta information to the
-rendered js pages, to aid in search/rendering/etc:
-- title
-- og:type (Article for detail, Website for list)
-- og:url
-- og:title
-- og:description
-
-STYLING
----------------
-To avoid overwrite upon module update, and to make styles available to all CLIENT SITES,
-all custom styles should be enacted in the unical_styles module. (https://github.com/idfive/UniCal-Styles)
 
 KNOWN CONFLICTS
 ---------------  
@@ -193,6 +164,9 @@ KNOWN CONFLICTS
   be temporarily disabled to import, as a workaround.
 * AdvAgg Module. Moving all inline js to the bottom of the page can break the client/embed,
   as its settings potentially can be called before drupal.js.
+* Date Repeat Entity Module. Requires unical cron function for standard events to be skipped.
+  This fix has been hardcoded for now, but roadmap plans include a settings option to
+  run unical cron or not.
 
 API 1.0
 -------
@@ -246,16 +220,6 @@ Additional Filter Fields:
   usually on a homepage/etc.
 * see /plugins/restful/TYPE.class files for field definitions in the API.  
 
-PRE-POPULATING RESULTS
-----------------------
-Taxonomies may be pre-populated on a page by passing parameters through the url.
-To do this, pass the following:
-* Pass the taxonomy_machine_name
-* Pass the TID of the term you wish.
-
-For example, http://your.site/calendar?taxonomy_1=1&taxonomy_2=2 would pre-populate
-taxonomy_1 with TID 1, and pre-populate taxonomy_2 with TID 2.
-
 CONTENT TYPES
 -------------
 We employ two different Content Types for UniCal: Events and Sites. These are
@@ -296,13 +260,63 @@ These can eventually be renamed/etc, as long as THE MACHINE NAME STAYS THE SAME.
   * Outlook (Online) | outlookcom
   * Yahoo (Online) | yahoo
 
+Extending UniCal
+=========
+
+PRE-POPULATING RESULTS
+----------------------
+Taxonomies may be pre-populated on a page by passing parameters through the url.
+To do this, pass the following:
+* Pass the taxonomy_machine_name
+* Pass the TID of the term you wish.
+
+For example, http://your.site/calendar?taxonomy_1=1&taxonomy_2=2 would pre-populate
+taxonomy_1 with TID 1, and pre-populate taxonomy_2 with TID 2.
+
 WORKBENCH
 ---------
 - Workbench. This setup can utilize the workbench module to make sections/etc
   available to admins, and to ease the approval/moderation process.  
 
+STYLING
+---------
+To avoid overwrite upon module update, and to make styles available to all CLIENT SITES,
+all custom styles should be enacted in the unical_styles module. (https://github.com/idfive/UniCal-Styles)
+
+SEO/SOCIAL SHARING
+---------
+See the .htaccess modifications above in configuration. The general idea, is to
+serve the php version of the page to social share scrapers/etc, and to search
+bots that cannot yet scrape angular rendered pages. So that social sharers/etc
+actually scrape /node/123 (which returns content via php) rather than /event/123/event-name,
+which renders the event via js, and is at the moment not fully compatible with
+facebook, twitter, etc.
+
+The event detail page supports posting the following meta information to the
+rendered js pages, to aid in search/rendering/etc:
+- title
+- og:type (Article for detail, Website for list)
+- og:url
+- og:title
+- og:description
+
+FEEDS
+---------------  
+UniCal is fully compatible with the Feeds module (https://www.drupal.org/project/feeds)
+So any number of custom event importers are possible. UniCal comes with a default iCal
+feed importer, that you may use by enabling the unical_feeds module.
+ * Enable unical_feeds, and its dependencies.
+    * NOTE: The iCalcreator library v2.20.2 is required for date_ical.
+      Please see the project documentation for that module for more.
+ * The Feed settings can now be edited (if needed) at /admin/structure/feeds/unical_ical_importer
+ * Importing can now be done from /import/unical_ical_importer
+
+ Any number of options can be configured on this, or any custom importer, such as
+ scheduling, file upload, etc. See the Feeds module documentation for more advanced
+ use cases.
+
 DEVELOPMENT
------------
+=========
 * DEV dependencies:
 -- npm
 -- gulp  
