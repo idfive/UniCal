@@ -129,6 +129,7 @@ a page at that path, but rather redirect to the calendar, and let it take the ur
 in order to go directly to an event page/etc. The following rules assume that your events are in the
 standard UniCal format of /event/NID/TITLE.
 
+  ```
   # Allow social media crawlers to work by redirecting them to a server-rendered static version on the page
   RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
   RewriteRule event/(.*)/(.*) %{HTTP_HOST}/node/$1 [P]
@@ -137,7 +138,7 @@ standard UniCal format of /event/NID/TITLE.
   RewriteCond %{HTTP_USER_AGENT} !(facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
   RewriteCond %{REQUEST_URI} !^/admin
   RewriteRule event/(.*)/(.*) http://%{HTTP_HOST}/#%1/event/$1/$2 [NE,L]
-
+  ```
 
 SEARCH API SETUP
 ---------------  
