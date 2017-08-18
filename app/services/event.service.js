@@ -78,27 +78,32 @@
      * Filter search results
      *
      */
-    function filterSearchResults(results) {
+     function filterSearchResults(results) {
 
-      var filteredResults = [];
+       var filteredResults = [];
 
-      angular.forEach(results, function(result, index) {
-        var excludeCount = 0;
-        if(result.date[0].start_unix < moment().unix()) { //Removes past events
-          excludeCount++;
-        }
-        if(siteService.settings.main_calendar_site) { //Removes excluded events (if this is the main calendar)
-          if(result.exclude_from_main_calendar == 1) {
-            excludeCount++;
-          }
-        }
-        if(excludeCount <= 0) { //If exclude count is 0 or less, this event can be shown
-          filteredResults.push(result);
-        }
-      });
+       angular.forEach(results, function(result, index) {
+         var excludeCount = 0;
+         if(result.date[0]) {
+           if(result.date[0].end_unix < moment().unix()) { //Removes past events
+             excludeCount++;
+           }
+         }
+         if(!result.date[0]) { //Removes past events where repeating dates have been removed via cron
+           excludeCount++;
+         }
+         if(siteService.settings.main_calendar_site) { //Removes excluded events (if this is the main calendar)
+           if(result.exclude_from_main_calendar == 1) {
+             excludeCount++;
+           }
+         }
+         if(excludeCount <= 0) { //If exclude count is 0 or less, this event can be shown
+           filteredResults.push(result);
+         }
+       });
 
-      return filteredResults;
-    }
+       return filteredResults;
+     }
 
     /*
      * Code to execute when finished rendering events
