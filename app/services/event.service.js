@@ -131,6 +131,14 @@
       if(typeof $window.addthis !== 'undefined') {
         addthis.toolbox('.addthis_toolbox');
       }
+
+      //Look for any external eventsRendered JS hooks defined.
+      if (typeof UniCal.eventsRendered === "function") {
+        UniCal.eventsRendered();
+      };
+
+      //Hide loading screen
+      hideLoading();
     }
 
     /*
@@ -138,11 +146,18 @@
      *
      */
     function finishRenderFeatured() {
+
+      //Init slider
       $window.swiftSlide.init({
         container: '.swift-slide',
         elements: 'li',
         showPrevNext: true
       });
+
+      //Look for any external eventsFeaturedRendered JS hooks defined.
+      if (typeof UniCal.eventsFeaturedRendered === "function") {
+        UniCal.eventsFeaturedRendered();
+      };
     }
 
     /*
@@ -402,6 +417,14 @@
      */
     function initEventsList() {
 
+      //Show loading screen
+      showLoading();
+
+      //Look for any external eventsListInitialized JS hooks defined.
+      if (typeof UniCal.eventsListInitialized === "function") {
+        UniCal.eventsListInitialized();
+      };
+
       //Get site settings if not already loaded
       if(typeof service.cachedPromises.site === 'undefined') {
         service.cachedPromises.site = siteService.getSite($window.site_id);
@@ -446,6 +469,14 @@
      *
      */
     function initEventDetail() {
+
+      //Show loading screen
+      showLoading();
+
+      //Look for any external eventsListInitialized JS hooks defined.
+      if (typeof UniCal.eventDetailInitialized === "function") {
+        UniCal.eventDetailInitialized();
+      };
 
       //Get site settings if not already loaded
       if(typeof service.cachedPromises.site === 'undefined') {
@@ -520,6 +551,29 @@
 
     }
 
+    /*
+     * Show the loading div.
+     * A custom loading div may overwrite this by adding a div with the ID
+     * "unical-calendar-loading" Somewhere in your HTML markup. If that div exists
+     * the function will hide/show it, rather than create one.
+     *
+     */
+    function showLoading() {
+      if(jQuery("#unical-calendar-loading").length == 0) {
+        var loader = jQuery("<div>", {id: "unical-calendar-loading", "class": "loading"});
+        jQuery("body").append(loader);
+      } else {
+        jQuery('#unical-calendar-loading').show();
+      }
+    }
+
+    /*
+     * Hide the loading div.
+     *
+     */
+    function hideLoading() {
+      jQuery('#unical-calendar-loading').hide();
+    }
 
   };
 

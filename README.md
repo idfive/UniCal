@@ -274,6 +274,36 @@ To do this, pass the following:
 For example, http://your.site/calendar?taxonomy_1=1&taxonomy_2=2 would pre-populate
 taxonomy_1 with TID 1, and pre-populate taxonomy_2 with TID 2.
 
+CUSTOM LOADING SCREEN
+---------------------
+By default a div with the parameters of <div id="unical-calendar-loading" class="loading">
+gets added to the application when loading the events list, or individual events. You may override
+this, by adding your own div with the ID of "unical-calendar-loading", and styling as desired.
+The JS would then hide/show that div instead. The class "loading" on the stock div is what
+gives it the moving circle and overlay. Note that this class is still used when filtering events.
+
+HOOKS
+-----
+Several JS hooks are available for hooking custom JS functions into UniCal events.
+To use these, add var UniCal into your own custom JS, which is called before unical.js.
+
+The following hooks are available, with more to be added as needed:
+* eventsRendered : Fires after the list of events renders on the list template, and the individual event fires on the detail template.
+* eventsFeaturedRendered : Fires after the list of featured events renders on the list template.
+* eventsListInitialized : Fires when the list template initializes.
+* eventDetailInitialized : Fires when the detail template initializes.
+
+Example:
+
+  ```
+  var UniCal = ({
+    eventsRendered: function() {console.log('eventsRendered')},
+    eventsFeaturedRendered: function() { console.log('eventsFeaturedRendered') },
+    eventsListInitialized: function() {console.log('eventsListInitialized')},
+    eventDetailInitialized: function() { console.log('eventDetailInitialized')}
+  });
+  ```
+
 WORKBENCH
 ---------
 - Workbench. This setup can utilize the workbench module to make sections/etc
