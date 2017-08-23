@@ -132,6 +132,7 @@
           vm.clearSearch();
           vm.clearFilters();
           vm.modelUpdated();
+          vm.filtersReset = true;
         });
       } else {
         vm.getEvents();
