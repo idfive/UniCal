@@ -117,25 +117,29 @@
             <span ng-if="event.rsvp_email">Email: <a href="mailto:{{event.rsvp_email}}">{{event.rsvp_email}}</a></span>
           </p>
       </section>
-      <section ng-if="event.organizer_name || event.organizer_phone || event.organizer_email">
-        <h3>Contact</h3>
-        <p>
-          <span ng-if="event.organizer_name">{{event.organizer_name}}<br></span>
-          <span ng-if="event.organizer_phone">Phone: {{event.organizer_phone}}<br></span>
-          <span ng-if="event.organizer_email">Email: <a href="mailto:{{event.organizer_email}}">{{event.organizer_email}}</a></span>
-        </p>
+      <section ng-if="event.organizer_name || event.organizer_phone || event.organizer_email || event.event_website || event.organizer_facebook || event.organizer_twitter">
+        <h3>Organization</h3>
+        <div ng-if="event.organizer_name || event.organizer_phone || event.organizer_email">
+          <h4>Contact</h4>
+          <p>
+            <span ng-if="event.organizer_name">{{event.organizer_name}}<br></span>
+            <span ng-if="event.organizer_phone">Phone: {{event.organizer_phone}}<br></span>
+            <span ng-if="event.organizer_email">Email: <a href="mailto:{{event.organizer_email}}">{{event.organizer_email}}</a></span>
+          </p>
+        </div>
+        <div ng-if="event.event_website || event.organizer_facebook || event.organizer_twitter">
+          <h4>Web</h4>
+          <a ng-if="event.event_website" href="{{event.event_website.url}}" target="_blank">Event website</a>
 
-        <a ng-if="event.event_website" href="{{event.event_website.url}}" target="_blank">Event website</a>
-
-        <ul ng-if="event.organizer_facebook || event.organizer_twitter" class="contact_social">
-          <li ng-if="event.organizer_facebook">
-            <a href="{{event.organizer_facebook.url}}" target="_blank"><i class="fa fa-facebook"></i></a>
-          </li>
-          <li ng-if="event.organizer_twitter">
-            <a href="{{event.organizer_twitter.url}}" target="_blank"><i class="fa fa-twitter"></i></a>
-          </li>
-        </ul>
-
+          <ul ng-if="event.organizer_facebook || event.organizer_twitter" class="contact_social">
+            <li ng-if="event.organizer_facebook">
+              <a href="{{event.organizer_facebook.url}}" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li ng-if="event.organizer_twitter">
+              <a href="{{event.organizer_twitter.url}}" target="_blank"><i class="fa fa-twitter"></i></a>
+            </li>
+          </ul>
+        </div>
       </section>
     </div>
     <!-- Show edit event button -->
