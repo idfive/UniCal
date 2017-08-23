@@ -220,3 +220,20 @@
   font-style: italic;
   text-align: center;
 }
+
+// ========================================
+// Event Detail Edit
+// ========================================
+
+.detailedit {
+  display: none;
+  font-size: 80%;
+  font-style: italic;
+  text-align: center;
+}
+
+.unical-event-editor {
+  .detailedit {
+    display: block;
+  }
+}

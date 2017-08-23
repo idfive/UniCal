@@ -44,12 +44,23 @@
  }
 
  /**
+  * Implements hook_preprocess_html().
+  */
+  function unical_preprocess_html(&$vars) {
+    // If the user has permissions to edit events, add a class to the body.
+    // We then show an edit button on the JS detail page to help with editing for admins.
+    if(user_access('edit any event content')) {
+      $vars['classes_array'][] = 'unical-event-editor';
+    }
+  }
+
+ /**
   * Implements hook_ctools_plugin_directory().
   */
   function unical_ctools_plugin_directory($module, $plugin) {
-  if ($module == 'restful') {
-    return 'plugins/' . $plugin;
-  }
+    if ($module == 'restful') {
+      return 'plugins/' . $plugin;
+    }
   }
 
   /**
