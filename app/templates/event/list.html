@@ -81,7 +81,7 @@
           </div>
         </fieldset>
       </section>
-      <section ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies" on-finish-render="vm.finishRenderFilters()">
+      <section ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies| toArray | orderBy: 'weight'" on-finish-render="vm.finishRenderFilters()">
         <fieldset ng-show="taxonomy.enabled">
           <h3 class="unical-calendar__filters-toggle">
             <label>{{taxonomy.label}}<input type="checkbox" ng-model="vm.filters.taxonomies[taxonomyId].expanded"/></label>

@@ -34,6 +34,9 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_1_weight'] = array(
+      'callback' => array($this, 'getTaxonomyOneWeight'),
+    );
 
     /* Taxonomy 2 */
     if (field_info_field('field_taxonomy_2_enabled')) {
@@ -52,6 +55,9 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_2_weight'] = array(
+      'callback' => array($this, 'getTaxonomyTwoWeight'),
+    );
 
     /* Taxonomy 3 */
     if (field_info_field('field_taxonomy_3_enabled')) {
@@ -70,6 +76,10 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_3_weight'] = array(
+      'callback' => array($this, 'getTaxonomyThreeWeight'),
+    );
+
 
     /* Taxonomy 4 */
     if (field_info_field('field_taxonomy_4_enabled')) {
@@ -88,6 +98,9 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_4_weight'] = array(
+      'callback' => array($this, 'getTaxonomyFourWeight'),
+    );
 
     /* Taxonomy 5 */
     if (field_info_field('field_taxonomy_5_enabled')) {
@@ -106,6 +119,10 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_5_weight'] = array(
+      'callback' => array($this, 'getTaxonomyFiveWeight'),
+    );
+
 
     /* Taxonomy 6 */
     if (field_info_field('field_taxonomy_6_enabled')) {
@@ -124,6 +141,10 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_6_weight'] = array(
+      'callback' => array($this, 'getTaxonomySixWeight'),
+    );
+
     /* Taxonomy 8 */
     if (field_info_field('field_taxonomy_8_enabled')) {
       $public_fields['taxonomy_8_enabled'] = array(
@@ -141,6 +162,10 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_8_weight'] = array(
+      'callback' => array($this, 'getTaxonomyEightWeight'),
+    );
+
 
     /* Taxonomy 9 */
     if (field_info_field('field_taxonomy_9_enabled')) {
@@ -159,6 +184,10 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_9_weight'] = array(
+      'callback' => array($this, 'getTaxonomyNineWeight'),
+    );
+
 
     /* Taxonomy 10 */
     if (field_info_field('field_taxonomy_10_enabled')) {
@@ -177,6 +206,10 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_10_weight'] = array(
+      'callback' => array($this, 'getTaxonomyTenWeight'),
+    );
+
 
     /* Taxonomy 11 */
     if (field_info_field('field_taxonomy_11_enabled')) {
@@ -195,6 +228,10 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
         'sub_property' => 'tid',
       );
     }
+    $public_fields['taxonomy_11_weight'] = array(
+      'callback' => array($this, 'getTaxonomyElevenWeight'),
+    );
+
 
     /* Add to Calendar Options to exclude */
     if (field_info_field('field_add_to_calendar_exclude')) {
@@ -295,6 +332,56 @@ class UnicalApiSitesResource extends RestfulEntityBaseNode {
     }
 
     return $public_fields;
+  }
+
+  protected function getTaxonomyOneWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_1');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomyTwoWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_2');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomyThreeWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_3');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomyFourWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_4');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomyFiveWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_5');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomySixWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_6');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomyEightWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_8');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomyNineWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_9');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomyTenWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_10');
+    return $voc->weight;
+  }
+
+  protected function getTaxonomyElevenWeight() {
+    $voc = taxonomy_vocabulary_machine_name_load('calendar_taxonomy_11');
+    return $voc->weight;
   }
 
 }

@@ -50,6 +50,7 @@
         //Create vars that can be used as keys
         var taxonomyLabel = taxonomy + '_label';
         var taxonomyEnabled = taxonomy + '_enabled';
+        var taxonomyWeight = taxonomy + '_weight';
 
         _promises.push(
             service.single(taxonomy).then(
@@ -59,7 +60,8 @@
                   service.taxonomies[taxonomy] = {
                     terms: data.data.data,
                     label: siteService.settings[taxonomyLabel] || taxonomy,
-                    enabled: siteService.settings[taxonomyEnabled]
+                    enabled: siteService.settings[taxonomyEnabled],
+                    weight: Number(siteService.settings[taxonomyWeight])
                   };
                 }
               },
