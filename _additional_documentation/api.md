@@ -117,9 +117,10 @@ Sites:
 id: node id
 label: node Title
 self: REST endpoint for individual site
-taxonomy_1_enabled through taxonomy_6_enabled: boolean, whether or not each specific taxonomy is enabled for this site/calendar
-taxonomy_1_label through taxonomy_6_label: The label you want to give that taxonomy
-taxonomy_1_selected through taxonomy_6_selected: object of term ID's that should be preselected
+taxonomy_1_enabled through taxonomy_11_enabled: boolean, whether or not each specific taxonomy is enabled for this site/calendar
+taxonomy_1_label through taxonomy_11_label: The label you want to give that taxonomy
+taxonomy_1_selected through taxonomy_11_selected: object of term ID's that should be preselected
+taxonomy_1_weight through taxonomy_11_weight: The vocabularies weight, for ordering of filters
 add_to_calendar_exclude: boolean, whether or not to exclude the add to calendar feature
 allow_event_submit: boolean, to allow the event submit form or not
 allow_users_to_choose_taxonomy_when_submitting: boolean, whether or not to allow users to choose categories when submitting
