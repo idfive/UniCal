@@ -89,6 +89,7 @@ venue_name: Name of venue
 venue_url: url link to venue
 cost: cost, in USD
 free: boolean, if free event or not
+rsvp_text: Custom text for "How to RSVP"
 rsvp_ticket: external ticket URL
 rsvp_how_to: text on how to rsvp
 rsvp_phone: phone number to call to rsvp

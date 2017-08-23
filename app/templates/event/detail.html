@@ -103,13 +103,13 @@
         </span>
         <span ng-if="event.address.full_address" ng-bind-html="event.address.full_address"></span>
       </section>
-      <section ng-if="event.cost">
+      <section ng-if="event.cost || event.free">
         <h3>Cost</h3>
         <h7 ng-if="event.free">Free Event</h7>
-        <p ng-bind-html="event.cost" class="pre"></p>
+        <p ng-if="event.cost" ng-bind-html="event.cost" class="pre"></p>
       </section>
       <section ng-if="event.rsvp_ticket.url || event.rsvp_phone || event.rsvp_email || event.rsvp_how_to">
-        <h3>How to RSVP</h3>
+        <h3>{{event.rsvp_text || 'How to RSVP'}}</h3>
         <div ng-if="event.rsvp_how_to" ng-bind-html="event.rsvp_how_to.safe_value"></div>
           <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Tickets and More Information</a>
           <p ng-if="event.rsvp_phone || event.rsvp_email">

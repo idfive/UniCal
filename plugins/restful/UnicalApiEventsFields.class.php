@@ -169,6 +169,12 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
     );
 
     // RSVP ------------------------------.
+    if (field_info_field('field_rsvp_text')) {
+      $public_fields['rsvp_text'] = array(
+        'property' => 'field_rsvp_text',
+      );
+    }
+
     $public_fields['rsvp_ticket'] = array(
       'property' => 'field_ticket_url',
     );
