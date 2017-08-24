@@ -1,3 +1,22 @@
+Version 1.6 (2017-08-24)
+=============
+- bugify 11289: Pull in vocabulary weight into the ordering of uncial filters. Order of filters in uncial list, and archive views now order by weight of the associated vocabulary.
+- bugify 11189: Make the RSVP text customizable.
+- bugify 11060: Add loading animation. Added loading animation, as well as ability to override load screen. Also added hooks for any custom JS to fire on uncial events.
+- bugify 11186: Add “edit this event” button to events, for admin users. Now shows “edit this event” in sidebar of detail page to users with “edit any event content” permissions.
+- bugify 11145: Add button to clear search. Simply set the reset filters button to show when searching.
+- bugify 11187: Separate out contact between individual and web.
+- bugify 11190: Allow zoom specificity on location map.
+- bugify 11188: Allow lat/lng as option for location map.
+
+new fields added:
+
+event CT
+- field_rsvp_text
+- field_map_zoom
+- field_map_center_lat
+- field_map_center_lng
+
 Version 1.2 (2017-05-09)
 =============
 - Add taxonomies to unical, giving a total of 10 editable taxonomies per install.

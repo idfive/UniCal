@@ -84,6 +84,9 @@ clndrDate: object of dates, if it should be added to mini calendar
 timezone: timezone;
 uri: the slug the angular app should use for this event
 address: object with street address
+map_zoom: Zoom level of google map
+map_center_lat: Latitude of map center, for address override
+map_center_lng: Longitude of map center, for address override
 taxonomy_1 through taxonomy_6: object with the ID's of any terms for each vocabulary
 venue_name: Name of venue
 venue_url: url link to venue
