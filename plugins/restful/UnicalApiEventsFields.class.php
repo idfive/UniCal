@@ -79,6 +79,25 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
       );
     }
 
+    // Map Settings -------------------------.
+    if (field_info_field('field_map_zoom')) {
+      $public_fields['map_zoom'] = array(
+        'property' => 'field_map_zoom',
+      );
+    }
+
+    if (field_info_field('field_map_center_lat')) {
+      $public_fields['map_center_lat'] = array(
+        'property' => 'field_map_center_lat',
+      );
+    }
+
+    if (field_info_field('field_map_center_lng')) {
+      $public_fields['map_center_lng'] = array(
+        'property' => 'field_map_center_lng',
+      );
+    }
+
     // Taxonomies ----------------------.
     if (field_info_field('field_taxonomy_1')) {
       $public_fields['taxonomy_1'] = array(

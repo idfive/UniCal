@@ -31,8 +31,17 @@
       eventService.getEventsByTaxonomy(tid, taxonomy);
     };
 
-    vm.getMapUrl = function(address) {
-      return 'https://www.google.com/maps/embed/v1/place?key='+siteService.settings.google_maps_api_key+'&q='+encodeURI(address)+'&zoom=10&maptype=roadmap';
+    vm.getMapUrl = function(address, zoom, lat, lng) {
+      //Default zoom of 10 if not specified.
+      if (zoom == null){
+        zoom = 10;
+      }
+      //return street address, or via lat/lng if specified.
+      if (lat == null || lng == null){
+        return 'https://www.google.com/maps/embed/v1/place?key='+siteService.settings.google_maps_api_key+'&q='+encodeURI(address)+'&zoom='+zoom+'&maptype=roadmap';
+      } else {
+        return 'https://www.google.com/maps/embed/v1/place?key='+siteService.settings.google_maps_api_key+'&q='+lat+','+lng+'&zoom='+zoom+'&maptype=roadmap';
+      }
     };
 
     vm.finishRenderEvents = function() {

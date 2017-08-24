@@ -276,7 +276,10 @@ taxonomy_1 with TID 1, and pre-populate taxonomy_2 with TID 2.
 
 CUSTOM LOADING SCREEN
 ---------------------
-By default a div with the parameters of <div id="unical-calendar-loading" class="loading">
+By default a div with the parameters of
+  ```
+  <div id="unical-calendar-loading" class="loading">
+  ```
 gets added to the application when loading the events list, or individual events. You may override
 this, by adding your own div with the ID of "unical-calendar-loading", and styling as desired.
 The JS would then hide/show that div instead. The class "loading" on the stock div is what
