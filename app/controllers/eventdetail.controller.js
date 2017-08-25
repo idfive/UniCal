@@ -23,7 +23,6 @@
       eventService.getEvent(id)
         .success(function(events) {
           vm.events = events.data;
-          console.log(vm.events);
         });
     };
 

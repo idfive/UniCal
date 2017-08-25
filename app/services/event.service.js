@@ -203,8 +203,6 @@
      */
     function getEvents() {
 
-      console.log(service.filters.taxonomies);
-
       //Get filter string
       var filterString = this.getFilterString();
 
