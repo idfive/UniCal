@@ -33,15 +33,16 @@
 
     vm.getMapUrl = function(address, zoom, lat, lng) {
       //Default zoom of 10 if not specified.
-      if (zoom == null){
-        zoom = 10;
-      }
+      zoom = zoom || 10;
+      lat = lat || false;
+      lng = lng || false;
+
       //return street address, or via lat/lng if specified.
-      if (lat == null || lng == null){
-        return 'https://www.google.com/maps/embed/v1/place?key='+siteService.settings.google_maps_api_key+'&q='+encodeURI(address)+'&zoom='+zoom+'&maptype=roadmap';
-      } else {
+      if (lat && lng) {
         return 'https://www.google.com/maps/embed/v1/place?key='+siteService.settings.google_maps_api_key+'&q='+lat+','+lng+'&zoom='+zoom+'&maptype=roadmap';
       }
+
+      return 'https://www.google.com/maps/embed/v1/place?key='+siteService.settings.google_maps_api_key+'&q='+encodeURI(address)+'&zoom='+zoom+'&maptype=roadmap';
     };
 
     vm.finishRenderEvents = function() {

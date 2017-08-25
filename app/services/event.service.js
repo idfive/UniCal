@@ -9,6 +9,9 @@
 
   function eventService($http, $window, $q, utilityService, taxonomyService, siteService, dateService, $route, $location) {
 
+    //Check for external hooks, or set null.
+    window.UniCal = window.UniCal || [];
+
     //Service setup
     var service = {
       cachedPromises: {},
@@ -133,8 +136,8 @@
       }
 
       //Look for any external eventsRendered JS hooks defined.
-      if (typeof UniCal.eventsRendered === "function") {
-        UniCal.eventsRendered();
+      if (window.UniCal && typeof window.UniCal.eventsRendered === "function") {
+        window.UniCal.eventsRendered();
       };
 
       //Hide loading screen
@@ -155,8 +158,8 @@
       });
 
       //Look for any external eventsFeaturedRendered JS hooks defined.
-      if (typeof UniCal.eventsFeaturedRendered === "function") {
-        UniCal.eventsFeaturedRendered();
+      if (window.UniCal && typeof window.UniCal.eventsFeaturedRendered === "function") {
+        window.UniCal.eventsFeaturedRendered();
       };
     }
 
@@ -421,8 +424,8 @@
       showLoading();
 
       //Look for any external eventsListInitialized JS hooks defined.
-      if (typeof UniCal.eventsListInitialized === "function") {
-        UniCal.eventsListInitialized();
+      if (window.UniCal && typeof window.UniCal.eventsListInitialized === "function") {
+        window.UniCal.eventsListInitialized();
       };
 
       //Get site settings if not already loaded
@@ -474,8 +477,8 @@
       showLoading();
 
       //Look for any external eventsListInitialized JS hooks defined.
-      if (typeof UniCal.eventDetailInitialized === "function") {
-        UniCal.eventDetailInitialized();
+      if (window.UniCal && typeof window.UniCal.eventDetailInitialized === "function") {
+        window.UniCal.eventDetailInitialized();
       };
 
       //Get site settings if not already loaded
