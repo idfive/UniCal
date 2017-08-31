@@ -58,6 +58,7 @@
               function(data) {
                 if(data.data.count > 0) {
                   service.taxonomies[taxonomy] = {
+                    id: taxonomy,
                     terms: data.data.data,
                     label: siteService.settings[taxonomyLabel] || taxonomy,
                     enabled: siteService.settings[taxonomyEnabled],

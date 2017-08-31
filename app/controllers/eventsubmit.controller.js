@@ -24,6 +24,8 @@
     vm.taxonomies = taxonomyService.taxonomies;
     vm.siteSettings = siteService.settings;
 
+    //Hide loading screen
+    utilityService.hideLoading();
 
     /*
      * Create the event

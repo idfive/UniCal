@@ -33,7 +33,6 @@
     vm.url = window.location.href;
     vm.today = dateService.dateNow();
 
-
     //Clear filters
     vm.clearFilters = function() {
       //Clear filters
@@ -42,10 +41,12 @@
       vm.filters = eventService.filters;
       // Reset the filtersRest flag, by setting this flag for modelUpdated()
       vm.clearFiltersHit = true;
+
     };
 
     //Clear search (happens after search has been executed)
     vm.clearSearch = function() {
+      vm.priorSearchTerm = vm.searchTerm;
       eventService.searchTerm = '';
       vm.searchForm.$setPristine();
       vm.searchForm.$setUntouched();
@@ -109,6 +110,7 @@
 
     //Let view know that the model was updated
     vm.modelUpdated = function() {
+      vm.clearSearch();
       vm.searchTerm = eventService.searchTerm;
       vm.currentMonth = eventService.currentMonth;
       vm.eventsCount = eventService.eventsCount;
@@ -132,7 +134,6 @@
           vm.clearSearch();
           vm.clearFilters();
           vm.modelUpdated();
-          vm.filtersReset = true;
         });
       } else {
         vm.getEvents();
