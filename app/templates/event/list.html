@@ -81,14 +81,14 @@
           </div>
         </fieldset>
       </section>
-      <section ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies| toArray | orderBy: 'weight'" on-finish-render="vm.finishRenderFilters()">
+      <section ng-repeat="taxonomy in vm.taxonomies| toArray | orderBy: 'weight'" on-finish-render="vm.finishRenderFilters()">
         <fieldset ng-show="taxonomy.enabled">
           <h3 class="unical-calendar__filters-toggle">
-            <label>{{taxonomy.label}}<input type="checkbox" ng-model="vm.filters.taxonomies[taxonomyId].expanded"/></label>
+            <label>{{taxonomy.label}}<input type="checkbox" ng-model="vm.filters.taxonomies[taxonomy.id].expanded"/></label>
           </h3>
-          <div class="unical-calendar__filters" ng-show="vm.filters.taxonomies[taxonomyId].expanded">
+          <div class="unical-calendar__filters" ng-show="vm.filters.taxonomies[taxonomy.id].expanded">
             <label ng-repeat="term in taxonomy.terms">
-              <input type="checkbox" ng-model="vm.filters.taxonomies[taxonomyId].terms[term.id]" ng-click="vm.getEvents()"> {{term.label}}
+              <input type="checkbox" ng-model="vm.filters.taxonomies[taxonomy.id].terms[term.id]" ng-click="vm.getEvents()"> {{term.label}}
             </label>
           </div>
         </fieldset>
@@ -137,6 +137,13 @@
       </form>
     </div>
 
+    <!-- Currently searching by: Search Term -->
+
+    <span ng-show="vm.priorSearchTerm">
+      <a class="unical-calendar__selectedfilter" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Searching by: {{vm.priorSearchTerm}}</a>
+    </span>
+
+
     <!-- Currently filtering by: Range -->
     <span ng-if="vm.filters.range != 'all'">
       <a class="unical-calendar__selectedfilter" ng-model="vm.filters.range" ng-click="vm.filters.range = 'all'; vm.getEvents()">
@@ -169,6 +176,7 @@
       <div class="clearfix">
         <p class="unical-calendar__event-pool">Showing <strong>{{vm.events.length}}</strong> of <strong>{{vm.eventsCount}}</strong> events</p>
         <a class="unical-calendar__clear-filters" ng-show="vm.filtersReset" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Reset filters</a>
+        <a class="unical-calendar__clear-filters" ng-show="vm.priorSearchTerm" ng-click="vm.showAllEvents()"><i class="fa fa-times-circle"></i> Clear Search</a>
       </div>
     </div>
   </div>
@@ -192,7 +200,7 @@
             <span ng-switch-default>{{event.date[0].start_time}}</span>
           </span>
           <span ng-if="event.date.length > 1">(Multiple Dates)</span>
-		</p>
+		    </p>
         <div class="unical-calendar__event-caption">
           <div ng-if="event.summary !== ''" ng-bind-html="event.summary">{{event.summary}}</div>
           <p ng-if="event.summary == '' && event.body_trimmed && event.body_trimmed.length">{{event.body_trimmed}}</p>

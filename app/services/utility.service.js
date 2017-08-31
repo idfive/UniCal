@@ -14,7 +14,9 @@
       getBaseUrl: getBaseUrl,
       getAddEventID: getAddEventID,
       shareFB: shareFB,
-      shareTW: shareTW
+      shareTW: shareTW,
+      showLoading: showLoading,
+      hideLoading: hideLoading
     };
     return service;
 
@@ -53,6 +55,30 @@
       return str.substring(0, str.length -1);
 
     };
+
+    /*
+     * Show the loading div.
+     * A custom loading div may overwrite this by adding a div with the ID
+     * "unical-calendar-loading" Somewhere in your HTML markup. If that div exists
+     * the function will hide/show it, rather than create one.
+     *
+     */
+    function showLoading() {
+      if(jQuery("#unical-calendar-loading").length == 0) {
+        var loader = jQuery("<div>", {id: "unical-calendar-loading", "class": "loading"});
+        jQuery("body").append(loader);
+      } else {
+        jQuery('#unical-calendar-loading').show();
+      }
+    }
+
+    /*
+     * Hide the loading div.
+     *
+     */
+    function hideLoading() {
+      jQuery('#unical-calendar-loading').hide();
+    }
 
   };
 
