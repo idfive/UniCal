@@ -92,7 +92,7 @@
     <div class="unical-calendar__sidebar">
       <section ng-if="event.venue_name || event.address.full_address || event.map_center_lat || event.map_center_lng">
         <h3>Location</h3>
-        <div class="unical-calendar__event-map" ng-if="event.address.full_address">
+        <div class="unical-calendar__event-map" ng-if="event.address.full_address || event.map_center_lat || event.map_center_lng">
           <iframe width="100%" height="300" frameborder="0" style="border:0" src="{{vm.getMapUrl(event.address.full_address, event.map_zoom, event.map_center_lat, event.map_center_lng)}}"></iframe>
         </div>
         <span ng-if="event.venue_name">
