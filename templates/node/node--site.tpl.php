@@ -99,7 +99,7 @@
 
   <?php print render($title_suffix); ?>
 
-<div ng-app="calendar" class="unical-calendar"><h1><?php print $title ?></h1><div ng-view></div></div>
+<div ng-app="calendar" class="unical-calendar"><h1><?php print $title ?></h1><div ng-view autoscroll="true"></div></div>
 
   <div class="content clearfix"<?php print $content_attributes; ?>>
     <?php
