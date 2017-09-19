@@ -153,12 +153,18 @@ class UnicalApiEventsSearchResource extends \RestfulDataProviderSearchAPI implem
    * Process the URI.
    */
   public function processUri($id) {
+
+    // Get Drupal path.
     $path = drupal_get_path_alias('node/' . $id);
+    // Remove special chars
+    $path = preg_replace("/(™|®|©|&trade;|&reg;|&copy;|&#8482;|&#174;|&#169;)/", "", $path);
+
     // If the path contains more than one part, get the last part.
     if (strpos($path, '/') !== FALSE) {
       $parts = explode('/', $path);
       $path = $parts[sizeof($parts) - 1];
     }
+    
     return $path;
   }
 
