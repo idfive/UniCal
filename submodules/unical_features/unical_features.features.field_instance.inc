@@ -1333,6 +1333,43 @@ function unical_features_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event-field_taxonomy_11'.
+  $field_instances['node-event-field_taxonomy_11'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 39,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_taxonomy_11',
+    'label' => 'Taxonomy 11',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 42,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_taxonomy_2'.
   $field_instances['node-event-field_taxonomy_2'] = array(
     'bundle' => 'event',
