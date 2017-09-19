@@ -650,7 +650,7 @@ function unical_features_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 18,
+      'weight' => 13,
     ),
   );
 
@@ -703,6 +703,136 @@ function unical_features_field_default_field_instances() {
       'weight' => 2,
     ),
     'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance: 'node-event-field_map_center_lat'.
+  $field_instances['node-event-field_map_center_lat'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'If you wish to add a location by latitude/longitude, add latitude here.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 41,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_map_center_lat',
+    'label' => 'Map Center Lat',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_map_center_lng'.
+  $field_instances['node-event-field_map_center_lng'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'If you wish to add a location by latitude/longitude, add longitude here.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 42,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_map_center_lng',
+    'label' => 'Map Center Lng',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_map_zoom'.
+  $field_instances['node-event-field_map_zoom'] = array(
+    'bundle' => 'event',
+    'default_value' => array(
+      0 => array(
+        'value' => 10,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'zoom sets the initial zoom level of the map. Accepted values range from 0 (the whole world) to 21 (individual buildings). The upper limit can vary depending on the map data available at the selected location. Default zoom is 10.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 40,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_map_zoom',
+    'label' => 'Map Zoom',
+    'required' => 0,
+    'settings' => array(
+      'max' => 21,
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 7,
+    ),
   );
 
   // Exported field_instance: 'node-event-field_organizer_facebook'.
@@ -938,7 +1068,7 @@ function unical_features_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 20,
+      'weight' => 16,
     ),
   );
 
@@ -978,7 +1108,51 @@ function unical_features_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 19,
+      'weight' => 15,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_rsvp_text'.
+  $field_instances['node-event-field_rsvp_text'] = array(
+    'bundle' => 'event',
+    'default_value' => array(
+      0 => array(
+        'value' => 'How to RSVP',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'By default, this says "How to RSVP". If that is not applicable to this event, you may edit here.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 43,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_rsvp_text',
+    'label' => 'RSVP Text',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 12,
     ),
   );
 
@@ -1263,7 +1437,7 @@ function unical_features_field_default_field_instances() {
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.',
+    'description' => 'Tags events with vocabulary terms.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1281,7 +1455,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_taxonomy_1',
-    'label' => 'School/Department',
+    'label' => 'Taxonomy 1',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1329,7 +1503,7 @@ function unical_features_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 42,
+      'weight' => 55,
     ),
   );
 
@@ -1366,7 +1540,7 @@ function unical_features_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 42,
+      'weight' => 43,
     ),
   );
 
@@ -1375,7 +1549,7 @@ function unical_features_field_default_field_instances() {
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.',
+    'description' => 'Tags events with vocabulary terms.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1393,7 +1567,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_taxonomy_2',
-    'label' => 'Audience',
+    'label' => 'Taxonomy 2',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1413,7 +1587,7 @@ function unical_features_field_default_field_instances() {
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.',
+    'description' => 'Tags events with vocabulary terms.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1431,7 +1605,7 @@ function unical_features_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_taxonomy_3',
-    'label' => 'Category',
+    'label' => 'Taxonomy 3',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1441,7 +1615,7 @@ function unical_features_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 12,
+      'weight' => 59,
     ),
     'workbench_access_field' => 1,
   );
@@ -1479,7 +1653,7 @@ function unical_features_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 37,
+      'weight' => 57,
     ),
     'workbench_access_field' => 0,
   );
@@ -1687,7 +1861,7 @@ function unical_features_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 17,
+      'weight' => 14,
     ),
   );
 
@@ -3620,9 +3794,8 @@ function unical_features_field_default_field_instances() {
   t('Allow Event Submit');
   t('Allow Featured Events');
   t('Allow Users to Choose Taxonomy When Submitting Events');
-  t('Audience');
+  t('By default, this says "How to RSVP". If that is not applicable to this event, you may edit here.');
   t('Calendar Help Link');
-  t('Category');
   t('Choose whether users can define taxonomies when submitting events from this calendar. IMPORTANT: If you deselect this, and have taxonomies defined as mandatory (for using within workbench/etc) Users will be unable to submit the form, unless 1 or more taxonomy terms are preselected above.');
   t('Clone state (do not change)');
   t('Cost');
@@ -3641,9 +3814,14 @@ function unical_features_field_default_field_instances() {
   t('Google Maps API Key');
   t('How to RSVP');
   t('If you wish to add a link to a page that contains help for the calendar function, do so here. Link will display along with the add to calendar popup.');
+  t('If you wish to add a location by latitude/longitude, add latitude here.');
+  t('If you wish to add a location by latitude/longitude, add longitude here.');
   t('If you wish to add custom text that will appear above the filters, on the calendar landing page, do so here. Leaving this blank will result in no text being displayed.');
   t('Label');
   t('Main Calendar Site?');
+  t('Map Center Lat');
+  t('Map Center Lng');
+  t('Map Zoom');
   t('Master UUID (do not change)');
   t('Number results per page');
   t('Organizer Email');
@@ -3663,14 +3841,18 @@ function unical_features_field_default_field_instances() {
   t('Promote in feed');
   t('RSVP Email');
   t('RSVP Phone');
+  t('RSVP Text');
   t('Repeating date description');
   t('Same as Event Submitter');
-  t('School/Department');
   t('Submitter Email');
   t('Submitter Name');
   t('Submitter Phone');
-  t('Tags associate events to a variety of Howard calendars. Uncheck any irrelevant tags.');
+  t('Tags events with vocabulary terms.');
+  t('Taxonomy 1');
   t('Taxonomy 10');
+  t('Taxonomy 11');
+  t('Taxonomy 2');
+  t('Taxonomy 3');
   t('Taxonomy 4');
   t('Taxonomy 5');
   t('Taxonomy 6');
@@ -3684,6 +3866,7 @@ function unical_features_field_default_field_instances() {
   t('Venue Name');
   t('Venue URL');
   t('Visible on front-end');
+  t('zoom sets the initial zoom level of the map. Accepted values range from 0 (the whole world) to 21 (individual buildings). The upper limit can vary depending on the map data available at the selected location. Default zoom is 10.');
 
   return $field_instances;
 }
