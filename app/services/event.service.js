@@ -227,6 +227,7 @@
         service.eventsCount = response.data.count;
         var events = service.processEventResults(response.data.data);
         service.eventsList = service.eventsList.concat(events);
+        console.log(response.data);
         return response.data;
       });
     }
@@ -298,7 +299,7 @@
 
       //Default params
       var defaultParams = {
-        fields: 'id,label,date,image,uri,address,body_trimmed,summary,clndrDate,timezone,venue_name',
+        fields: 'id,label,date.start_month,date.start_day,image.image_styles.large,image.alt,uri,body_trimmed,summary,clndrDate,timezone,venue_name',
         sort: 'date',
         range: siteService.settings.number_results_per_page
       };
@@ -400,8 +401,9 @@
 
       //Run the search
       return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr).then(function(response) {
+
         //Filter search results
-        var results = filterSearchResults(response.data.data);
+        var results = filterSearchResults(response.data.data[0]);
 
         //Update service vars
         service.eventsList = results;

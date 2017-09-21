@@ -183,7 +183,7 @@
 
   <div class="unical-calendar__event" ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
     <div class="unical-calendar__event-date">
-      <span class="unical-calendar__month">{{event.date[0].start_month}}</span>
+      <span class="unical-calendar__month">{{event.date[0].start_month}}{{event.date.start_month}}</span>
       <span class="unical-calendar__day">{{event.date[0].start_day}}</span>
     </div>
     <div class="unical-calendar__event-main">
