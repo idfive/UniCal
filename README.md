@@ -60,7 +60,7 @@ The basic process:
 REQUIREMENTS
 ------------  
 The UniCal module requires the following modules:   
-* RESTful (https://www.drupal.org/project/restful) IMPORTANT: Use version 7.x-1.6
+* RESTful (https://www.drupal.org/project/restful) 2.x
 * RESTful Search API (https://www.drupal.org/project/restful_search_api)
 * Search API (https://www.drupal.org/project/search_api)
 * CORS (https://www.drupal.org/project/cors)  
@@ -142,7 +142,7 @@ standard UniCal format of /event/NID/TITLE.
 
 SEARCH API SETUP
 ---------------  
-* Create an index of node type event (events_index) with your chosen search api server. Enable title and body fields on the index.
+* Create an index of node type event (events_index) with your chosen search api server. Enable title and body fields on the index. This is created by default if using unical_features.
 * This is now available via REST at /api/eventsearch/YOUR_TERM. This is what powers the events search box.
 
 GENERAL INFO
@@ -173,8 +173,7 @@ API 1.0
 -------
 This entire application works via REST, so we need to have a pretty robust API.
 We based this on the RESTful module by gizra/et al, because, well, we like it.
-It is based off the 1x version of the RESTful module. Patches will be accepted
-to branch this to the 2x version . . . if anyone is feeling feisty.
+
 * Uses the RESTful module
 * Defines all endpoints in /plugins/restful
 * A reference of the API base we used to build this:
@@ -201,7 +200,7 @@ Options/filters:
   request.  
 * fields: Use this to reduce which fields are returned via JSON, if
   needed/wanted. E.g., http://your.site/api/events?fields=id,label returns just
-  the ID and Label.  
+  the ID and Label. It is worth noting that any field that contains an array, will need the specifics added, ie, fields=image.image_styles.large,image.alt
 * sort: by default it is ascending, but it can be prefixed by a - for DESC. You
   can use most fields returned for this. E.g., http://your.site/api/events?sort=label
   returns results sorted alphabetically by label, while

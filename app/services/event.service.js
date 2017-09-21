@@ -374,7 +374,7 @@
           range = 3;
 
       //Fields
-      filters.push('fields=id,label,venue_name,date,uri,image');
+      filters.push('fields=id,label,venue_name,date.start_month,date.start_day,date.start_time,date.end_time,uri,image.image_styles.large,image.alt');
 
       //Range
       filters.push('range='+range);

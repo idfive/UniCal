@@ -22,7 +22,7 @@ Used UniCal endpoints:
 * Events: Main events endpoint, sample: http://staging.idfive.com/calendar/api/events
 * Sites: Gives available sites. Individual sites control what info/etc gets displayed, sample: http://staging.idfive.com/calendar/api/sites
 * Event Search: Runs simple event search. This will eventually (likely) replace the Events endpoint, sample: http://staging.idfive.com/calendar/api/eventsearch/%20 (NOTE: the "%20" is simply a blank placeholder for a term)
-* Taxonomies 1-6: These are separate endpoints for each taxonomy, to pull terms/etc for filtering, sample: http://staging.idfive.com/calendar/api/taxonomy_1 (NOTE: change endpoint to taxonomy_2, taxonomy_3, etc).
+* Taxonomies 1-11: These are separate endpoints for each taxonomy, to pull terms/etc for filtering, sample: http://staging.idfive.com/calendar/api/taxonomy_1 (NOTE: change endpoint to taxonomy_2, taxonomy_3, etc).
 
 Available for custom applications, but not really used stock:
 * CSRF token: CURRENTLY NOT IN PRODUCTION USE. There to authenticate against drupal, if needed, for custom builds.
@@ -45,7 +45,7 @@ Options/filters:
   request.  
 * fields: Use this to reduce which fields are returned via JSON, if
   needed/wanted. E.g., http://your.site/api/events?fields=id,label returns just
-  the ID and Label.  
+  the ID and Label. It is worth noting that any field that contains an array, will need the specifics added, ie, fields=image.image_styles.large,image.alt
 * sort: by default it is ascending, but it can be prefixed by a - for DESC. You
   can use most fields returned for this. E.g., http://your.site/api/events?sort=label
   returns results sorted alphabetically by label, while

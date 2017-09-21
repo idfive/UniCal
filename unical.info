@@ -7,5 +7,4 @@ dependencies[] = cors
 dependencies[] = jquery_update
 dependencies[] = unical_client
 package = UniCal
-
 registry_autoload[] = PSR-4
