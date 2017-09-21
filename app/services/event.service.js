@@ -227,7 +227,6 @@
         service.eventsCount = response.data.count;
         var events = service.processEventResults(response.data.data);
         service.eventsList = service.eventsList.concat(events);
-        console.log(response.data);
         return response.data;
       });
     }
