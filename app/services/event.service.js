@@ -140,8 +140,6 @@
         window.UniCal.eventsRendered();
       };
 
-      //Hide loading screen
-      utilityService.hideLoading();
     }
 
     /*
@@ -227,6 +225,8 @@
         service.eventsCount = response.data.count;
         var events = service.processEventResults(response.data.data);
         service.eventsList = service.eventsList.concat(events);
+        //Hide loading screen
+        utilityService.hideLoading();
         return response.data;
       });
     }
