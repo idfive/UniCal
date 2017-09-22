@@ -298,7 +298,7 @@
 
       //Default params
       var defaultParams = {
-        fields: 'id,label,date.start_month,date.start_day,image.image_styles.large,image.alt,uri,body_trimmed,summary,clndrDate,timezone,venue_name',
+        fields: 'id,label,date.start_month,date.start_day,date.start_time,date.end_time,image.image_styles.large,image.alt,uri,body_trimmed,summary,clndrDate,timezone,venue_name',
         sort: 'date',
         range: siteService.settings.number_results_per_page
       };
