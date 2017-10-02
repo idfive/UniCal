@@ -45,6 +45,14 @@ class UnicalApiEventsSearchResource extends \RestfulDataProviderSearchAPI implem
       ),
     );
 
+    $public_fields['summary'] = array(
+      'property' => 'body',
+      'sub_property' => 'summary',
+      'process_callbacks' => array(
+        array($this, 'processSummary'),
+      ),
+    );
+
     $public_fields['image'] = array(
       'property' => 'field_image',
       'image_styles' => array('thumbnail', 'medium', 'large'),
@@ -95,8 +103,14 @@ class UnicalApiEventsSearchResource extends \RestfulDataProviderSearchAPI implem
    * Process the Body.
    */
   public function processBody($data) {
-
     return text_summary(drupal_html_to_text($data['und'][0]['value'], array('<strong>', '<em>')), NULL, 250);
+  }
+
+  /**
+   * Process the Summary.
+   */
+  public function processSummary($data) {
+    return $data['und'][0]['value'];
   }
 
   /**
@@ -164,7 +178,7 @@ class UnicalApiEventsSearchResource extends \RestfulDataProviderSearchAPI implem
       $parts = explode('/', $path);
       $path = $parts[sizeof($parts) - 1];
     }
-    
+
     return $path;
   }
 
