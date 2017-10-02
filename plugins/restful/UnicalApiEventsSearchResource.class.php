@@ -110,7 +110,7 @@ class UnicalApiEventsSearchResource extends \RestfulDataProviderSearchAPI implem
    * Process the Summary.
    */
   public function processSummary($data) {
-    return $data['und'][0]['summary'];
+    return drupal_html_to_text($data['und'][0]['summary'], array('<strong>', '<em>'), NULL, 250);
   }
 
   /**
