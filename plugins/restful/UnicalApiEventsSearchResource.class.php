@@ -110,7 +110,7 @@ class UnicalApiEventsSearchResource extends \RestfulDataProviderSearchAPI implem
    * Process the Summary.
    */
   public function processSummary($data) {
-    return $data['und'][0]['value'];
+    return $data['und'][0]['summary'];
   }
 
   /**
