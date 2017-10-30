@@ -7,7 +7,7 @@
 
   function toArray() {
     return function(obj) {
-      const result = [];
+      var result = [];
       angular.forEach(obj, function(val) {
         result.push(val);
       });
