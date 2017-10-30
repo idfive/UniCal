@@ -140,8 +140,6 @@
         window.UniCal.eventsRendered();
       };
 
-      //Hide loading screen
-      utilityService.hideLoading();
     }
 
     /*
@@ -227,6 +225,8 @@
         service.eventsCount = response.data.count;
         var events = service.processEventResults(response.data.data);
         service.eventsList = service.eventsList.concat(events);
+        //Hide loading screen
+        utilityService.hideLoading();
         return response.data;
       });
     }
@@ -298,7 +298,7 @@
 
       //Default params
       var defaultParams = {
-        fields: 'id,label,date.start_month,date.start_day,image.image_styles.large,image.alt,uri,body_trimmed,summary,clndrDate,timezone,venue_name',
+        //fields: 'id,label,date.start_month,date.start_day,date.start_time,date.end_time,image.image_styles.large,image.alt,uri,body_trimmed,summary,clndrDate,timezone,venue_name',
         sort: 'date',
         range: siteService.settings.number_results_per_page
       };
