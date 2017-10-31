@@ -140,6 +140,9 @@
         window.UniCal.eventsRendered();
       };
 
+      //Hide loading screen
+      utilityService.hideLoading();
+      
     }
 
     /*
