@@ -111,7 +111,7 @@
       <section ng-if="event.rsvp_ticket.url || event.rsvp_phone || event.rsvp_email || event.rsvp_how_to">
         <h3>{{event.rsvp_text || 'How to RSVP'}}</h3>
         <div ng-if="event.rsvp_how_to" ng-bind-html="event.rsvp_how_to.safe_value"></div>
-          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Tickets and More Information</a>
+          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">{{event.rsvp_ticket.title || 'More Information'}}</a>
           <p ng-if="event.rsvp_phone || event.rsvp_email">
             <span ng-if="event.rsvp_phone">Phone: {{event.rsvp_phone}}<br></span>
             <span ng-if="event.rsvp_email">Email: <a href="mailto:{{event.rsvp_email}}">{{event.rsvp_email}}</a></span>
