@@ -386,9 +386,9 @@ use Drupal\restful\Plugin\resource\ResourceNode;
         $exclude_date = false;
 
         // Check that we have a filter
-        if(isset($request['filter']) && isset($request['filter']['date'])) {
+        if(isset($request->filter) && isset($request->filter->date)) {
 
-          $filter_date = $request['filter']['date'];
+          $filter_date = $request->filter->date;
 
           if(isset($filter_date['value'][0])) {
             $from_date = strtotime($filter_date['value'][0]);
