@@ -35,7 +35,7 @@
               <span ng-switch-default>{{event.venue_name}}</span>
             </span><br>
           </span>
-          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">Tickets and More Information</a>
+          <a ng-if="event.rsvp_ticket" href="{{event.rsvp_ticket.url}}" target="_blank">{{event.rsvp_ticket.title || 'More Information'}}</a>
         </p>
         <div ng-if="event.date.length > 1">
           <p>This event has multiple dates. <a href ng-click="showRepeatDates = !showRepeatDates; vm.multipleDates()" class="unical-calendar__event-date-multiple-trigger"><span ng-hide="showRepeatDates">Show all dates</span><span ng-show="showRepeatDates">Hide all dates</span></a></p>
