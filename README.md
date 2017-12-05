@@ -260,6 +260,8 @@ These can eventually be renamed/etc, as long as THE MACHINE NAME STAYS THE SAME.
   calendar_taxonomy_11 are custom "event category taxonomies". These titles/etc can
   be changed, as long as THE MACHINE NAME STAYS THE SAME. Also, these can also be deleted,
   if needed. Essentially, this gives you the use of up to 10 custom event taxonomies.
+* Taxonomies can include a "Hide From Submission field (field_hide_from_submission)" that if checked,
+  will hide that particular term in the UniCal submission form.
 * calendar_taxonomy_7 is the add to calendar taxonomy, which should not be modified.
   This taxonomy is called for in the SITE, and relies on field_ate_id to remove unwanted "Add This Event" options. We have added these into the features, but for reference, here they are
   in the format of Name | ATE ID:

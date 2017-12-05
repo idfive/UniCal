@@ -37,6 +37,13 @@ class Taxonomy_9 extends ResourceEntity implements ResourceInterface {
 
     $public_fields = parent::publicFields();
 
+    // Hide from submit form or not -------------------------.
+    if (field_info_field('field_hide_from_submission')) {
+      $public_fields['hidden_for_submit'] = array(
+        'property' => 'field_hide_from_submission',
+      );
+    }
+
     return $public_fields;
   }
 
