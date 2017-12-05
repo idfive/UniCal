@@ -159,5 +159,6 @@ Taxonomies:
 (http://staging.idfive.com/calendar/api/taxonomy_1, http://staging.idfive.com/calendar/api/taxonomy_2, etc)
 
 id: drupal TID
+hidden_from_submit: boolean, determines if hidden from submission form or not
 label: term name
 self: REST url to individual term

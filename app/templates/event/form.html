@@ -315,7 +315,7 @@
           <div ng-repeat="(taxonomyId, taxonomy) in vm.taxonomies">
             <div ng-show="taxonomy.enabled">
               <h4>{{taxonomy.label}}</h4>
-              <label class="label-inline-2" ng-repeat="term in taxonomy.terms">
+              <label class="label-inline-2" ng-repeat="term in taxonomy.terms" ng-if="term.hidden_for_submit !== true">
                 <input type="checkbox" ng-true-value="{{term.id}}" ng-false-value="" ng-model="vm.newEventData[taxonomyId][$index]" ng-checked="vm.isTermPrechecked(taxonomyId, term.id, $index)" ng-disabled="vm.isTermPrechecked(taxonomyId, term.id, $index)"> {{term.label}}
               </label>
             </div>
