@@ -19,6 +19,12 @@ class UnicalApiTaxonomyResource extends \RestfulEntityBaseTaxonomyTerm {
 
     $public_fields = parent::publicFieldsInfo();
 
+    if (field_info_field('field_hide_from_submission')) {
+      $public_fields['hidden_for_submit'] = array(
+        'property' => 'field_hide_from_submission',
+      );
+    }
+
     return $public_fields;
   }
 

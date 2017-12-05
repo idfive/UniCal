@@ -589,6 +589,34 @@ function unical_features_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_hide_from_submission'.
+  $field_bases['field_hide_from_submission'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hide_from_submission',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_how_to_rsvp'.
   $field_bases['field_how_to_rsvp'] = array(
     'active' => 1,
