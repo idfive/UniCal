@@ -276,7 +276,7 @@
 
       <section ng-show="vm.page == 7">
         <form name="eventRsvp" ng-submit="vm.nextPage(1)">
-          <h4>RSVP Information</h4>
+          <h4>How to Register</h4>
           <p class="mini-text underline"><em>What do people have to do to indicate that they're attending this event? If there’s a website to purchase tickets, include it below.</em></p>
           <!-- Start: Validation messages -->
           <div ng-messages="eventRsvp.rsvpEmail.$error" ng-if="eventRsvp.rsvpEmail.$touched" role="alert" class="unical-calendar__error">
@@ -291,7 +291,7 @@
             <input ng-model="vm.newEventData.rsvp_phone" name="rsvpPhone" placeholder="Phone" type="text" class="form-col-2 first-col" />
             <input ng-model="vm.newEventData.rsvp_email" name="rsvpEmail" placeholder="Email" type="email" class="form-col-2 last-col" />
           </div>
-          <p class="mini-text"><em>Url to purchase tickets (optional)</em></p>
+          <p class="mini-text"><em>Url to purchase tickets/register (optional)</em></p>
           <input ng-model="vm.newEventData.rsvp_ticket.url" name="rsvpUrl" placeholder="URL" type="url" http-prefix />
           <div class="unical-calendar__submit-form-controls">
             <a ng-click="vm.prevPage(1)" class="unical-calendar__buttoon">Back</a>
