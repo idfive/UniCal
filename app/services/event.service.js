@@ -5,12 +5,9 @@
     .module('calendar')
     .factory('eventService', eventService);
 
-  eventService.$inject = ['$http', '$window', '$q', 'utilityService', 'taxonomyService', 'siteService', 'dateService', '$route', '$location'];
+  eventService.$inject = ['$http', '$window', '$q', 'utilityService', 'taxonomyService', 'siteService', 'dateService'];
 
-  function eventService($http, $window, $q, utilityService, taxonomyService, siteService, dateService, $route, $location) {
-
-    //Check for external hooks, or set null.
-    window.UniCal = window.UniCal || [];
+  function eventService($http, $window, $q, utilityService, taxonomyService, siteService, dateService) {
 
     //Service setup
     var service = {
@@ -51,9 +48,9 @@
       newEventDataRaw: {},
       newEventProgress: {},
       processEventResults: processEventResults,
+      reserve:[],
       resetFilterOptions: resetFilterOptions,
       searchTerm: '',
-      setFiltersFromUrl: setFiltersFromUrl
     };
 
     return service;
@@ -81,32 +78,27 @@
      * Filter search results
      *
      */
-     function filterSearchResults(results) {
+    function filterSearchResults(results) {
 
-       var filteredResults = [];
+      var filteredResults = [];
 
-       angular.forEach(results, function(result, index) {
-         var excludeCount = 0;
-         if(result.date[0]) {
-           if(result.date[0].end_unix < moment().unix()) { //Removes past events
-             excludeCount++;
-           }
-         }
-         if(!result.date[0]) { //Removes past events where repeating dates have been removed via cron
-           excludeCount++;
-         }
-         if(siteService.settings.main_calendar_site) { //Removes excluded events (if this is the main calendar)
-           if(result.exclude_from_main_calendar == 1) {
-             excludeCount++;
-           }
-         }
-         if(excludeCount <= 0) { //If exclude count is 0 or less, this event can be shown
-           filteredResults.push(result);
-         }
-       });
+      angular.forEach(results, function(result, index) {
+        var excludeCount = 0;
+        if(result.date[0].start_unix < moment().unix()) { //Removes past events
+          excludeCount++;
+        }
+        if(siteService.settings.main_calendar_site) { //Removes excluded events (if this is the main calendar)
+          if(result.exclude_from_main_calendar == 1) {
+            excludeCount++;
+          }
+        }
+        if(excludeCount <= 0) { //If exclude count is 0 or less, this event can be shown
+          filteredResults.push(result);
+        }
+      });
 
-       return filteredResults;
-     }
+      return filteredResults;
+    }
 
     /*
      * Code to execute when finished rendering events
@@ -134,34 +126,18 @@
       if(typeof $window.addthis !== 'undefined') {
         addthis.toolbox('.addthis_toolbox');
       }
-
-      //Look for any external eventsRendered JS hooks defined.
-      if (window.UniCal && typeof window.UniCal.eventsRendered === "function") {
-        window.UniCal.eventsRendered();
-      };
-
-      //Hide loading screen
-      utilityService.hideLoading();
-      
     }
 
     /*
-     * Code to execute when finished rendering featured events
+     * Code to execute when finished rendering events
      *
      */
     function finishRenderFeatured() {
-
-      //Init slider
       $window.swiftSlide.init({
         container: '.swift-slide',
         elements: 'li',
         showPrevNext: true
       });
-
-      //Look for any external eventsFeaturedRendered JS hooks defined.
-      if (window.UniCal && typeof window.UniCal.eventsFeaturedRendered === "function") {
-        window.UniCal.eventsFeaturedRendered();
-      };
     }
 
     /*
@@ -180,11 +156,27 @@
 
       //Get filter string
       var filterString = this.getFilterString({
-		  range: 1000,
-		  fields: 'id,clndrDate,date',
-	  });
+        range: 1000,
+        fields: 'id,clndrDate,date',
+	    });
 
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
+        // if more dates in the array add them as objects at the end of the response.data.data
+        // this get the repeating dates out of nodes
+        for(var x in response.data.data){
+          if(response.data.data[x].date.length > 1){
+            for(var y in response.data.data[x].date){
+              var d = new Date(response.data.data[x].date[y].start_unix * 1000);
+              response.data.data.push({id:response.data.data[x].id , date:[d] , clndrDate:d});
+            }
+          }
+          // if clndrEvent is null add one
+          if( !response.data.data[x].clndrDate ){
+            var d = new Date(response.data.data[x].date[0].start_unix * 1000);
+            response.data.data[x].clndrDate = d;
+          }
+        }
+
         service.clndrList = response.data.data;
         return response.data;
       });
@@ -213,25 +205,151 @@
       } else { //Reset page and empty the list
         service.page = 1;
         service.eventsList = [];
+        service.reserve = [];
       }
 
       //Add pagination query
       filterString = filterString + '&page=' + service.page;
 
-      /** DEBUG **/ window.console.log(filterString);
+      /** DEBUG **/ //window.console.log(filterString);
 
       //Reset next page var for next call
       service.nextPage = false;
 
       //Get the events
-      return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
-        service.eventsCount = response.data.count;
-        var events = service.processEventResults(response.data.data);
+      return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {   
+        var r;
+        var unix = dateService.dateNowUnix();
+        var replicate = false;
+        // if module to split repeated events into separate nodes is turned on
+        if(replicate == true){
+          r = replicateEnabled(response,unix);
+        }else{
+          r = splitNode(response,unix,filterString);
+        }
+
+        var events = service.processEventResults(r);
         service.eventsList = service.eventsList.concat(events);
-        //Hide loading screen
-        utilityService.hideLoading();
+
+        // controls first number in the Showing # of # events
+        service.eventsCount = parseInt(service.eventsList.length) + parseInt(service.reserve.length);  
+        response.data.data = r;
         return response.data;
       });
+    }
+
+    function splitNode(response,unix,filterString){
+      var filteredList = response.data;
+
+      // will contain all the events data
+      var data = {};
+      var z = 0;   //used to find the date index in the array 
+      // loop though events
+      for(var x in filteredList.data){
+        z = 0;
+        // if is or is not a repeating event
+        if(filteredList.data[x].date.length > 2){
+          // loop through the dates of the repeating events and pull out the object for it to loop of it with the index
+          filteredList.data[x].date.forEach(function(n){
+            // Check Start Date and End Date. Only needed for All filter
+            var start = new Date(filterString.split('filter[date][value][0]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
+            if( filterString.includes('filter[date][value][1]=') ){          
+              var end = new Date(filterString.split('filter[date][value][1]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
+              if(n.start_unix > start && n.end_unix < end){
+                var copy = Object.assign({}, filteredList.data[x]);  // make hard copy of this object
+                copy.item = z;     //give the index for the calendar
+                data[n.start_unix] = copy;     
+              } 
+            }else{
+              if(n.start_unix > start){    
+                var copy = Object.assign({}, filteredList.data[x]);
+                copy.item = z;
+                data[n.start_unix] = copy;  
+              }  
+            }  
+            z++;
+          });  
+        }else{
+          data[filteredList.data[x].date[0].start_unix] = filteredList.data[x];  // for dates that aren't repeating
+        }
+      }
+
+      var obj = {};
+      for(var x in data){
+          // if from split node
+        if(data[x].item){
+          // sort the responses based on start_unix. Push in object array
+          if( !obj[data[x].date[ data[x].item ].start_unix] ){  
+            obj[data[x].date[ data[x].item ].start_unix] = [];
+          }
+          if( data[x].date[data[x].item].start_unix > unix || ( data[x].date[data[x].item].start_addto.includes("12:00 AM") && data[x].date[data[x].item].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+            obj[data[x].date[ data[x].item ].start_unix].push(data[x]);   
+          }
+        }else{
+          // sort the responses based on start_unix. Push in object array
+          if( !obj[data[x].date[0].start_unix] ){  
+            obj[data[x].date[0].start_unix] = [];
+          }
+          if( data[x].date[0].start_unix > unix || ( data[x].date[0].start_addto.includes("12:00 AM") && data[x].date[0].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+            obj[data[x].date[0].start_unix].push(data[x]);   
+          }     
+        }
+      }
+
+      var n = 0;
+      var temp = [];
+      var r = [];
+      
+      // put reserved events into the show queue. Only put up to the number per page
+      for(var x in service.reserve){
+        // limit results and push into the current shown or reserve
+        if(n < siteService.settings.number_results_per_page ){
+          r.push(service.reserve[x]);
+        }else{
+          temp.push(service.reserve[x]);
+        }          
+        n++;
+      }
+
+      // update reserve array
+      service.reserve = temp;
+
+      // put new results into queue if amount put in is less than the number per page
+      for(var x in obj){
+        for(var y in obj[x]){
+          // limit results
+          if(n < siteService.settings.number_results_per_page ){
+            r.push(obj[x][y]);
+          }else{
+            service.reserve.push(obj[x][y]);
+          }          
+          n++;
+        }
+      }
+      return r;
+    }
+
+    function replicateEnabled(response,unix){
+      var r = [];
+      var obj = {};
+      for(var x in response.data.data){
+        if( response.data.data[x].date[0].start_unix > unix || ( response.data.data[x].date[0].start_addto.includes("12:00 AM") && response.data.data[x].date[0].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+          // sort the responses based on start_unix. Push in object array
+          if( !obj[response.data.data[x].date[0].start_unix] ){  
+            obj[response.data.data[x].date[0].start_unix] = [];
+          }
+          obj[response.data.data[x].date[0].start_unix].push(response.data.data[x]);            
+        }
+      }
+
+      // put result into normal array
+      for(var x in obj){
+        for(var y in obj[x]){
+          r.push(obj[x][y]);
+        }
+      }
+
+      return r;
     }
 
     /*
@@ -301,7 +419,7 @@
 
       //Default params
       var defaultParams = {
-        //fields: 'id,label,date.start_month,date.start_day,date.start_time,date.end_time,image.image_styles.large,image.alt,uri,body_trimmed,summary,clndrDate,timezone,venue_name',
+        fields: 'id,label,date,image,uri,address,body_trimmed,summary,clndrDate,timezone,venue_name',
         sort: 'date',
         range: siteService.settings.number_results_per_page
       };
@@ -335,7 +453,7 @@
 
       //Date range
       if(service.filters.range === 'all') { //ALL
-        var start = dateService.dateNow(),
+        var start = dateService.dateTodayStart(),
             end = null;
       } else if (service.filters.range === 'today') { //TODAY
         var start = dateService.dateTodayStart(),
@@ -376,7 +494,7 @@
           range = 3;
 
       //Fields
-      filters.push('fields=id,label,venue_name,date.start_month,date.start_day,date.start_time,date.end_time,uri,image.image_styles.large,image.alt');
+      filters.push('fields=id,label,venue_name,date,uri,image');
 
       //Range
       filters.push('range='+range);
@@ -403,9 +521,8 @@
 
       //Run the search
       return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr).then(function(response) {
-
         //Filter search results
-        var results = filterSearchResults(response.data.data[0]);
+        var results = filterSearchResults(response.data.data);
 
         //Update service vars
         service.eventsList = results;
@@ -422,14 +539,6 @@
      */
     function initEventsList() {
 
-      //Show loading screen
-      utilityService.showLoading();
-
-      //Look for any external eventsListInitialized JS hooks defined.
-      if (window.UniCal && typeof window.UniCal.eventsListInitialized === "function") {
-        window.UniCal.eventsListInitialized();
-      };
-
       //Get site settings if not already loaded
       if(typeof service.cachedPromises.site === 'undefined') {
         service.cachedPromises.site = siteService.getSite($window.site_id);
@@ -441,7 +550,6 @@
         //Get selected taxonomies
         if(typeof service.cachedPromises.selectedTaxonomies === 'undefined') {
           service.resetFilterOptions();
-          service.setFiltersFromUrl();
           service.cachedPromises.selectedTaxonomies = { processed: true };
         }
 
@@ -474,14 +582,6 @@
      *
      */
     function initEventDetail() {
-
-      //Show loading screen
-      utilityService.showLoading();
-
-      //Look for any external eventsListInitialized JS hooks defined.
-      if (window.UniCal && typeof window.UniCal.eventDetailInitialized === "function") {
-        window.UniCal.eventDetailInitialized();
-      };
 
       //Get site settings if not already loaded
       if(typeof service.cachedPromises.site === 'undefined') {
@@ -537,26 +637,6 @@
         endDate: null
       };
     }
-
-    /*
-     * Set filters from URL parameters
-     *
-     */
-    function setFiltersFromUrl() {
-
-      // Loop through each parameter in the URL to set filters
-      angular.forEach($route.current.params, function(paramVal, paramKey) {
-
-        service.filters.taxonomies[paramKey]['terms'][paramVal] = true;
-
-        // Unset URL parameter
-        $location.search(paramKey, null).replace();
-
-      });
-
-    }
-
-
 
   };
 
