@@ -161,22 +161,25 @@
 	    });
 
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
-        // if more dates in the array add them as objects at the end of the response.data.data
-        // this get the repeating dates out of nodes
-        for(var x in response.data.data){
-          if(response.data.data[x].date.length > 1){
-            for(var y in response.data.data[x].date){
-              var d = new Date(response.data.data[x].date[y].start_unix * 1000);
-              response.data.data.push({id:response.data.data[x].id , date:[d] , clndrDate:d});
+        var replicate = false;
+        // if module to split repeated events into separate nodes is turned on
+        if(replicate == false){
+          // if more dates in the array add them as objects at the end of the response.data.data
+          // this get the repeating dates out of nodes
+          for(var x in response.data.data){
+            if(response.data.data[x].date.length > 1){
+              for(var y in response.data.data[x].date){
+                var d = new Date(response.data.data[x].date[y].start_unix * 1000);
+                response.data.data.push({id:response.data.data[x].id , date:[d] , clndrDate:d});
+              }
+            }
+            // if clndrEvent is null add one
+            if( !response.data.data[x].clndrDate ){
+              var d = new Date(response.data.data[x].date[0].start_unix * 1000);
+              response.data.data[x].clndrDate = d;
             }
           }
-          // if clndrEvent is null add one
-          if( !response.data.data[x].clndrDate ){
-            var d = new Date(response.data.data[x].date[0].start_unix * 1000);
-            response.data.data[x].clndrDate = d;
-          }
         }
-
         service.clndrList = response.data.data;
         return response.data;
       });
