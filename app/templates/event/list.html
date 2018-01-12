@@ -181,10 +181,12 @@
     </div>
   </div>
 
-  <div class="unical-calendar__event" ng-repeat="event in vm.events" on-finish-render="vm.finishRenderEvents()">
+  <div class="unical-calendar__event" ng-repeat="(key,event) in vm.events track by $index" on-finish-render="vm.finishRenderEvents()">
     <div class="unical-calendar__event-date">
-      <span class="unical-calendar__month">{{event.date[0].start_month}}</span>
-      <span class="unical-calendar__day">{{event.date[0].start_day}}</span>
+      <span class="unical-calendar__month" ng-if="event.date.length > 2">{{event.date[event.item].start_month}}</span>
+      <span class="unical-calendar__day" ng-if="event.date.length > 2">{{event.date[event.item].start_day}}</span>
+      <span class="unical-calendar__month" ng-if="event.date.length < 2">{{event.date[0].start_month}}</span>      
+      <span class="unical-calendar__day" ng-if="event.date.length < 2">{{event.date[0].start_day}}</span>
     </div>
     <div class="unical-calendar__event-main">
       <div class="unical-calendar__event-media" ng-if="event.image.image_styles.large || vm.siteSettings.default_event_image.image_styles.large">
@@ -195,9 +197,9 @@
         <h2 class="unical-calendar__event-title"><a href="event/{{event.id}}/{{event.uri}}">{{event.label}}</a></h2>
         <p>
           <span ng-show="event.venue_name">{{event.venue_name}} |</span>
-          <span ng-switch="event.date[0].start_time === '12:00 AM' && event.date[0].end_time === '11:59 PM'">
+          <span ng-switch="event.date[$index].start_time === '12:00 AM' && event.date[$index].end_time === '11:59 PM'">
             <span ng-switch-when="true">All Day</span>
-            <span ng-switch-default>{{event.date[0].start_time}}</span>
+            <span ng-switch-default>{{event.date[$index].start_time}}</span>
           </span>
           <span ng-if="event.date.length > 1">(Multiple Dates)</span>
 		    </p>
