@@ -51,6 +51,7 @@
       newEventDataRaw: {},
       newEventProgress: {},
       processEventResults: processEventResults,
+      replicate:false,
       reserve:[],
       resetFilterOptions: resetFilterOptions,
       searchTerm: '',
@@ -186,9 +187,8 @@
       });
 
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
-        var replicate = false;
         // if module to split repeated events into separate nodes is turned on
-        if(replicate == false){
+        if(service.replicate == false){
           // if more dates in the array add them as objects at the end of the response.data.data
           // this get the repeating dates out of nodes
           for(var x in response.data.data){
@@ -247,9 +247,8 @@
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
         var r;
         var unix = dateService.dateNowUnix();
-        var replicate = false;
         // if module to split repeated events into separate nodes is turned on
-        if(replicate == false){
+        if(service.replicate  == false){
           r = splitNode(response,unix,filterString);        
         }else{
           r = replicateEnabled(response,unix);
