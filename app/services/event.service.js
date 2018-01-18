@@ -233,6 +233,7 @@
       } else { //Reset page and empty the list
         service.page = 1;
         service.eventsList = [];
+        service.reserve = "";
       }
 
       //Add pagination query
