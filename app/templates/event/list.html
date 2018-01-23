@@ -183,8 +183,8 @@
 
   <div class="unical-calendar__event" ng-repeat="(key,event) in vm.events track by $index" on-finish-render="vm.finishRenderEvents()">
     <div class="unical-calendar__event-date">
-      <span class="unical-calendar__month" ng-if="event.date.length > 2">{{event.date[event.item].start_month}}</span>
-      <span class="unical-calendar__day" ng-if="event.date.length > 2">{{event.date[event.item].start_day}}</span>
+      <span class="unical-calendar__month" ng-if="event.date.length >= 2">{{event.date[event.item].start_month}}</span>
+      <span class="unical-calendar__day" ng-if="event.date.length >= 2">{{event.date[event.item].start_day}}</span>
       <span class="unical-calendar__month" ng-if="event.date.length < 2">{{event.date[0].start_month}}</span>      
       <span class="unical-calendar__day" ng-if="event.date.length < 2">{{event.date[0].start_day}}</span>
     </div>
