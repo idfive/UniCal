@@ -281,7 +281,7 @@
       for(var x in filteredList.data){
         z = 0;
         // if is or is not a repeating event
-        if(filteredList.data[x].date.length > 2){
+        if(filteredList.data[x].date.length > 1){
           // loop through the dates of the repeating events and pull out the object for it to loop of it with the index
           filteredList.data[x].date.forEach(function(n){
             // Check Start Date and End Date. Only needed for All filter
