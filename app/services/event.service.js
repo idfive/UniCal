@@ -19,6 +19,7 @@
       nextPage: false,
       eventsCount: 0,
       eventsList: [],
+      clndrList: [],
       clearFilters: clearFilters,
       filters: {},
       createNewEvent: createNewEvent,
@@ -169,6 +170,25 @@
     function finishRenderFilters() {
       $window.UnicalApiBehaviors.filterToggle();
     }
+
+    /*
+     * Get mini calendar events
+     *
+     */
+    function getClndrEvents() {
+
+      //Get filter string
+      var filterString = this.getFilterString({
+      range: 1000,
+      fields: 'id,clndrDate,date',
+    });
+
+      return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
+        service.clndrList = response.data.data;
+        return response.data;
+      });
+    }
+
 
     /*
      * Get event by id
@@ -432,6 +452,11 @@
         //Get events
         if(typeof service.cachedPromises.events === 'undefined') {
           service.cachedPromises.events = service.getEvents();
+        }
+
+        //Get Clndr Events
+        if(typeof service.cachedPromises.clndrEvents === 'undefined') {
+          service.cachedPromises.clndrEvents = service.getClndrEvents();
         }
 
         //Return the data to the controller
