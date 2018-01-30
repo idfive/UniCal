@@ -26,7 +26,6 @@
       finishRenderEvents: finishRenderEvents,
       finishRenderFeatured: finishRenderFeatured,
       finishRenderFilters: finishRenderFilters,
-      getClndrEvents: getClndrEvents,
       getEvent: getEvent,
       getEvents: getEvents,
       getEventsByDate: getEventsByDate,
