@@ -19,7 +19,7 @@
       },
       dateParameter: 'clndrDate'
     };
-    vm.clndrEvents = eventService.clndrList;
+
     vm.currentMonth = eventService.currentMonth;
     vm.eventsCount = eventService.eventsCount;
     vm.events = eventService.eventsList;
