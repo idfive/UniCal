@@ -19,13 +19,17 @@
       nextPage: false,
       eventsCount: 0,
       eventsList: [],
+      clndrList: [],
       clearFilters: clearFilters,
       filters: {},
+      clndrFilters: {},
       createNewEvent: createNewEvent,
       filterSearchResults: filterSearchResults,
       finishRenderEvents: finishRenderEvents,
       finishRenderFeatured: finishRenderFeatured,
       finishRenderFilters: finishRenderFilters,
+      getClndrEvents: getClndrEvents,
+      getClndrEventsByMonth: getClndrEventsByMonth,
       getEvent: getEvent,
       getEvents: getEvents,
       getEventsByDate: getEventsByDate,
@@ -170,6 +174,40 @@
      */
     function finishRenderFilters() {
       $window.UnicalApiBehaviors.filterToggle();
+    }
+
+    /*
+     * Get mini calendar events
+     *
+     */
+    function getClndrEvents() {
+
+      // Set default dates if not present
+      if(!service.clndrFilters.startDate && !service.clndrFilters.endDate) {
+        service.clndrFilters.startDate = moment().startOf('month').format('YYYY-MM-DD HH:mm:ss');
+        service.clndrFilters.endDate = moment().endOf('month').format('YYYY-MM-DD HH:mm:ss');
+      }
+
+      //Set filter string
+      var filterString = '?filter[date][value][0]='+ service.clndrFilters.startDate +'&filter[date][operator][0]=">="';
+      filterString += '&filter[date][value][1]='+ service.clndrFilters.endDate +'&filter[date][operator][1]="<="';
+      filterString += '&fields=id,clndrDate,date';
+      filterString += '&range=1000&sort=-date';
+
+      return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
+        service.clndrList = response.data.data;
+        return response.data;
+      });
+    }
+
+    /*
+     * Get mini calendar events by month
+     *
+     */
+    function getClndrEventsByMonth(month, year) {
+      //Set filter to custom range for mini cal next/previous
+      service.clndrFilters.startDate = moment(new Date(month + ' 1,' + year)).startOf('month').format('YYYY-MM-DD HH:mm:ss');
+      service.clndrFilters.endDate = moment(new Date(month + ' 1,' + year)).endOf('month').format('YYYY-MM-DD HH:mm:ss');
     }
 
 
