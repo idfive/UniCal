@@ -72,7 +72,9 @@
       if(!vm.requestInProcess) {
         vm.requestInProcess = true;
         eventService.getEvents().then(function() {
-          vm.modelUpdated();
+          eventService.getClndrEvents().then(function() {
+            vm.modelUpdated();
+          });
         });
       }
     };
@@ -86,6 +88,7 @@
     //Show calendar events by month
     vm.getEventsByMonth = function(month, year) {
       eventService.getEventsByMonth(month, year);
+      eventService.getClndrEventsByMonth(month, year);
       vm.getEvents();
     };
 
@@ -114,6 +117,7 @@
       vm.searchTerm = eventService.searchTerm;
       vm.currentMonth = eventService.currentMonth;
       vm.eventsCount = eventService.eventsCount;
+      vm.clndrEvents = eventService.clndrList;
       vm.events = eventService.eventsList;
       vm.requestInProcess = false;
 

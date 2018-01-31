@@ -422,12 +422,7 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
   public function processClndrDate($data) {
 
     foreach ($data as $key => $date) {
-      $unix_start = strtotime($data[$key]['value']);
-
-      if ($unix_start >= time()) {
-        // If date is not in the past.
-        return $data[$key]['value'];
-      }
+      return $data[$key]['value'];
     }
   }
 
