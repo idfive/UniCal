@@ -187,20 +187,24 @@
       });
 
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
+        // console.log('clndr',response);
         // if module to split repeated events into separate nodes is turned on
         if(service.replicate == false){
           // if more dates in the array add them as objects at the end of the response.data.data
           // this get the repeating dates out of nodes
           for(var x in response.data.data){
+            // console.log(response.data.data[x].date.length);
             if(response.data.data[x].date.length > 1){
               for(var y in response.data.data[x].date){
                 var d = new Date(response.data.data[x].date[y].start_unix * 1000);
+                // console.log(d);
                 response.data.data.push({id:response.data.data[x].id , date:[d] , clndrDate:d});
               }
             }
             // if clndrEvent is null add one
             if( !response.data.data[x].clndrDate ){
               var d = new Date(response.data.data[x].date[0].start_unix * 1000);
+              // console.log(d);
               response.data.data[x].clndrDate = d;
             }
           }
@@ -248,6 +252,7 @@
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
         var r;
         var unix = dateService.dateNowUnix();
+        console.log(response.data);
         // if module to split repeated events into separate nodes is turned on
         if(service.replicate  == false){
           r = splitNode(response,unix,filterString);        
@@ -263,6 +268,8 @@
         response.data.data = r;
         //Hide loading screen
         utilityService.hideLoading();
+        console.log('listing',response.data.data);
+
         return response.data;
       });
     }
@@ -273,7 +280,11 @@
      */
     function splitNode(response,unix,filterString){
       var filteredList = response.data;
-
+      // Check Start Date and End Date. Only needed for All filter
+      var start = new Date(filterString.split('filter[date][value][0]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
+      if( filterString.includes('filter[date][value][1]=') ){          
+        var end = new Date(filterString.split('filter[date][value][1]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
+      }
       // will contain all the events data
       var data = {};
       var z = 0;   //used to find the date index in the array 
@@ -284,48 +295,48 @@
         if(filteredList.data[x].date.length > 1){
           // loop through the dates of the repeating events and pull out the object for it to loop of it with the index
           filteredList.data[x].date.forEach(function(n){
-            // Check Start Date and End Date. Only needed for All filter
-            var start = new Date(filterString.split('filter[date][value][0]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
-            if( filterString.includes('filter[date][value][1]=') ){          
-              var end = new Date(filterString.split('filter[date][value][1]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
-              if(n.start_unix > start && n.end_unix < end){
+            if(!data[n.start_unix]){
+              data[n.start_unix] = [];
+            }
+            // if there is an end date and started and hasn't ended
+            if( filterString.includes('filter[date][value][1]=') && n.start_unix > start && n.end_unix < end){
                 var copy = Object.assign({}, filteredList.data[x]);  // make hard copy of this object
                 copy.item = z;     //give the index for the calendar
-                data[n.start_unix] = copy;     
-              } 
-            }else{
-              if(n.start_unix > start){    
-                var copy = Object.assign({}, filteredList.data[x]);
-                copy.item = z;
-                data[n.start_unix] = copy;  
-              }  
+                data[n.start_unix].push(copy);     
+            // if has started
+            }else if(n.start_unix > start){    
+              var copy = Object.assign({}, filteredList.data[x]);
+              copy.item = z;
+              data[n.start_unix].push(copy);  
             }  
             z++;
           });  
-        }else{
-          data[filteredList.data[x].date[0].start_unix] = filteredList.data[x];  // for dates that aren't repeating
+        }else if(!!filteredList.data[x].date){
+          filteredList.data[x].item = 0;
+          data[filteredList.data[x].date[0].start_unix] = [filteredList.data[x]];  // for dates that aren't repeating
         }
       }
 
       var obj = {};
       for(var x in data){
-          // if from split node
-        if(data[x].item){
-          // sort the responses based on start_unix. Push in object array
-          if( !obj[data[x].date[ data[x].item ].start_unix] ){  
-            obj[data[x].date[ data[x].item ].start_unix] = [];
+        for(var y in data[x]){
+          if(data[x][y].item){
+            // sort the responses based on start_unix. Push in object array
+            if( !obj[data[x][y].date[ data[x][y].item ].start_unix] ){  
+              obj[data[x][y].date[ data[x][y].item ].start_unix] = [];
+            }
+            if( data[x][y].date[data[x][y].item].start_unix > unix || ( data[x][y].date[data[x][y].item].start_addto.includes("12:00 AM") && data[x][y].date[data[x][y].item].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+              obj[data[x][y].date[ data[x][y].item ].start_unix].push(data[x][y]);   
+            }
+          }else{
+            // sort the responses based on start_unix. Push in object array
+            if( !obj[data[x][y].date[0].start_unix] ){  
+              obj[data[x][y].date[0].start_unix] = [];
+            }
+            if( data[x][y].date[0].start_unix > unix || ( data[x][y].date[0].start_addto.includes("12:00 AM") && data[x][y].date[0].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+              obj[data[x][y].date[0].start_unix].push(data[x][y]);   
+            }     
           }
-          if( data[x].date[data[x].item].start_unix > unix || ( data[x].date[data[x].item].start_addto.includes("12:00 AM") && data[x].date[data[x].item].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
-            obj[data[x].date[ data[x].item ].start_unix].push(data[x]);   
-          }
-        }else{
-          // sort the responses based on start_unix. Push in object array
-          if( !obj[data[x].date[0].start_unix] ){  
-            obj[data[x].date[0].start_unix] = [];
-          }
-          if( data[x].date[0].start_unix > unix || ( data[x].date[0].start_addto.includes("12:00 AM") && data[x].date[0].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
-            obj[data[x].date[0].start_unix].push(data[x]);   
-          }     
         }
       }
 
