@@ -5,7 +5,7 @@
  * Defines events REST resource.
  */
 
-require 'UnicalApiEventsFields.class.php';
+require_once 'UnicalApiEventsFields.class.php';
 
 /**
  * Extend fields.
