@@ -427,7 +427,7 @@ use Drupal\restful\Plugin\resource\ResourceNode;
 
     }
 
-    // exit;
+
     // Return dates
     return $dates;
   }
@@ -436,7 +436,7 @@ use Drupal\restful\Plugin\resource\ResourceNode;
    * Process the date for the clndr feature.
    */
   public function processClndrDate($data) {
-
+    
     foreach ($data as $key => $date) {
         return $data[$key]['value'];
     }

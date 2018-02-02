@@ -20,7 +20,7 @@
     <div class="unical-calendar__calendar">
       <tien-clndr class="unical-calendar__calendar-block" tien-clndr-object="clndr" tien-clndr-events="vm.clndrEvents" tien-clndr-options="vm.clndrOptions">
         <div class="unical-calendar__calendar-controls">
-          <div class="unical-calendar__calendar-previous-button" ng-class="{disabled: vm.isCurrentMonth(month, year) }" ng-click="vm.requestInProcess || clndr.back(); vm.getEventsByMonth(month, year);">
+          <div class="unical-calendar__calendar-previous-button" ng-click="vm.requestInProcess || clndr.back(); vm.getEventsByMonth(month, year);">
             <i class="fa fa-angle-left"></i>
           </div>
           <div class="month">

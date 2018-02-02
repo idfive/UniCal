@@ -22,12 +22,14 @@
       clndrList: [],
       clearFilters: clearFilters,
       filters: {},
+      clndrFilters: {},
       createNewEvent: createNewEvent,
       filterSearchResults: filterSearchResults,
       finishRenderEvents: finishRenderEvents,
       finishRenderFeatured: finishRenderFeatured,
       finishRenderFilters: finishRenderFilters,
       getClndrEvents: getClndrEvents,
+      getClndrEventsByMonth: getClndrEventsByMonth,
       getEvent: getEvent,
       getEvents: getEvents,
       getEventsByDate: getEventsByDate,
@@ -180,31 +182,33 @@
      */
     function getClndrEvents() {
 
-      //Get filter string
-      var filterString = this.getFilterString({
-        range: 1000,
-        fields: 'id,clndrDate,date',
-      });
+      // Set default dates if not present
+      if(!service.clndrFilters.startDate && !service.clndrFilters.endDate) {
+        service.clndrFilters.startDate = moment().startOf('month').format('YYYY-MM-DD HH:mm:ss');
+        service.clndrFilters.endDate = moment().endOf('month').format('YYYY-MM-DD HH:mm:ss');
+      }
 
-      return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
-        // console.log('clndr',response);
+      //Set filter string
+      var filterString = '?filter[date][value][0]='+ service.clndrFilters.startDate +'&filter[date][operator][0]=">="';
+      filterString += '&filter[date][value][1]='+ service.clndrFilters.endDate +'&filter[date][operator][1]="<="';
+      // filterString += '&fields=id,clndrDate,date'; // breaking the date array
+      filterString += '&range=1000&sort=-date';
+
+      return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {        
         // if module to split repeated events into separate nodes is turned on
         if(service.replicate == false){
           // if more dates in the array add them as objects at the end of the response.data.data
           // this get the repeating dates out of nodes
-          for(var x in response.data.data){
-            // console.log(response.data.data[x].date.length);
+          for(var x in response.data.data){            
             if(response.data.data[x].date.length > 1){
               for(var y in response.data.data[x].date){
-                var d = new Date(response.data.data[x].date[y].start_unix * 1000);
-                // console.log(d);
+                var d = new Date(response.data.data[x].date[y].start_unix * 1000);                
                 response.data.data.push({id:response.data.data[x].id , date:[d] , clndrDate:d});
               }
             }
             // if clndrEvent is null add one
             if( !response.data.data[x].clndrDate ){
-              var d = new Date(response.data.data[x].date[0].start_unix * 1000);
-              // console.log(d);
+              var d = new Date(response.data.data[x].date[0].start_unix * 1000);              
               response.data.data[x].clndrDate = d;
             }
           }
@@ -212,6 +216,16 @@
         service.clndrList = response.data.data;
         return response.data;
       });
+    }
+
+    /*
+     * Get mini calendar events by month
+     *
+     */
+    function getClndrEventsByMonth(month, year) {
+      //Set filter to custom range for mini cal next/previous
+      service.clndrFilters.startDate = moment(new Date(month + ' 1,' + year)).startOf('month').format('YYYY-MM-DD HH:mm:ss');
+      service.clndrFilters.endDate = moment(new Date(month + ' 1,' + year)).endOf('month').format('YYYY-MM-DD HH:mm:ss');
     }
 
     /*
@@ -243,16 +257,16 @@
       //Add pagination query
       filterString = filterString + '&page=' + service.page;
 
-      /** DEBUG **/ window.console.log(filterString);
+      /** DEBUG  window.console.log(filterString);**/
 
       //Reset next page var for next call
       service.nextPage = false;
 
       //Get the events
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
+        console.log('events',response);
         var r;
         var unix = dateService.dateNowUnix();
-        console.log(response.data);
         // if module to split repeated events into separate nodes is turned on
         if(service.replicate  == false){
           r = splitNode(response,unix,filterString);        
@@ -268,8 +282,6 @@
         response.data.data = r;
         //Hide loading screen
         utilityService.hideLoading();
-        console.log('listing',response.data.data);
-
         return response.data;
       });
     }
