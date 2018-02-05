@@ -385,8 +385,7 @@ use Drupal\restful\Plugin\resource\ResourceNode;
         // The to date passed to the filter
         $to_date = false;
         $exclude_date = false;
-        $query = drupal_get_query_parameters();
-
+        
         // Check that we have a filter
         if(isset($request['filter']) && isset($request['filter']['date'])) {
           $filter_date = $request['filter']['date'];
