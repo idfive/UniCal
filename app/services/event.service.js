@@ -264,7 +264,6 @@
 
       //Get the events
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
-        console.log('events',response);
         var r;
         var unix = dateService.dateNowUnix();
         // if module to split repeated events into separate nodes is turned on
