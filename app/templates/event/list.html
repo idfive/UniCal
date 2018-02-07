@@ -87,7 +87,7 @@
             <label>{{taxonomy.label}}<input type="checkbox" ng-model="vm.filters.taxonomies[taxonomy.id].expanded"/></label>
           </h3>
           <div class="unical-calendar__filters" ng-show="vm.filters.taxonomies[taxonomy.id].expanded">
-            <label ng-repeat="term in taxonomy.terms">
+            <label ng-repeat="term in taxonomy.terms" class="taxonomy_label--{{term.id}}">
               <input type="checkbox" ng-model="vm.filters.taxonomies[taxonomy.id].terms[term.id]" ng-click="vm.getEvents()"> {{term.label}}
             </label>
           </div>
@@ -181,7 +181,7 @@
     </div>
   </div>
 
-  <div class="unical-calendar__event" ng-repeat="(key,event) in vm.events track by $index" on-finish-render="vm.finishRenderEvents()">
+  <div ng-repeat="(key,event) in vm.events track by $index" on-finish-render="vm.finishRenderEvents()" class="unical-calendar__event {{event.taxonomyClass}}">
     <div class="unical-calendar__event-date">
       <span class="unical-calendar__month">{{event.date[event.item].start_month}}</span>
       <span class="unical-calendar__day">{{event.date[event.item].start_day}}</span>

@@ -266,6 +266,27 @@
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
         var r;
         var unix = dateService.dateNowUnix();
+        var data = response.data.data;
+        for(var x in data){
+          data[x].taxonomyClass = [];
+          // flip through all the taxonomies. Change here for number 
+          for(var y = 1; y < 12; y++){
+            if(data[x]['taxonomy_' + y]){
+              // add taxonomy number to the taxonomy
+              for(var z in data[x]['taxonomy_' + y]){
+                data[x]['taxonomy_' + y][z] = 'taxonomy_' + y + "_" + data[x]['taxonomy_' + y][z];
+              };
+              data[x]['taxonomy_' + y].push('taxonomy_' + y);
+              
+              // join all the taxonomies under that number
+              data[x].taxonomyClass.push(data[x]['taxonomy_' + y].join(" "));
+            } 
+          }
+        }  
+        // join all the taxonomies for each event
+        for(var x in data){
+          data[x].taxonomyClass = data[x].taxonomyClass.join(" ");
+        }
         // if module to split repeated events into separate nodes is turned on
         if(service.replicate  == false){
           r = splitNode(response,unix,filterString);        
@@ -310,16 +331,14 @@
               data[n.start_unix] = [];
             }
             // if there is an end date and started and hasn't ended
-            if( filterString.includes('filter[date][value][1]=') && n.start_unix > start && n.end_unix < end){
+            if( (filterString.includes('filter[date][value][1]=') && n.start_unix > start && n.end_unix < end) ||
+                n.start_unix > start 
+            ){
                 var copy = Object.assign({}, filteredList.data[x]);  // make hard copy of this object
                 copy.item = z;     //give the index for the calendar
                 data[n.start_unix].push(copy);     
             // if has started
-            }else if(n.start_unix > start){    
-              var copy = Object.assign({}, filteredList.data[x]);
-              copy.item = z;
-              data[n.start_unix].push(copy);  
-            }  
+            }
             z++;
           });  
         }else if(!!filteredList.data[x].date){
