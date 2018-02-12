@@ -43,7 +43,13 @@ class Taxonomy_2 extends ResourceEntity implements ResourceInterface {
         'property' => 'field_hide_from_submission',
       );
     }
-
+    // Hide from fiilter
+    if (field_info_field('field_hide_from_filter')) {
+      $public_fields['hide_from_filter'] = array(
+        'property' => 'field_hide_from_filter',
+      );
+    }
+  
     return $public_fields;
   }
 
