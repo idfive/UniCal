@@ -624,7 +624,7 @@
 
         var results;
         if(service.replicate){
-          results = splitNode({data:{data:response.data.data[0]}},dateService.dateNowUnix(),service.getFilterString(),true);
+          results = replicateEnabled({data:{data:response.data.data[0]}},dateService.dateNowUnix());
         }else{
           results = splitNode({data:{data:response.data.data[0]}},dateService.dateNowUnix(),service.getFilterString(),false);
         }
