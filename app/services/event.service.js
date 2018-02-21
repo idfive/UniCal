@@ -289,7 +289,7 @@
         }
         // if module to split repeated events into separate nodes is turned on
         if(service.replicate  == false){
-          r = splitNode(response,unix,filterString);        
+          r = splitNode(response,unix,filterString,true);        
         }else{
           r = replicateEnabled(response,unix);
         }
@@ -310,26 +310,45 @@
      * Extract dates within nodes and create new nodes and check if they are all day events
      *
      */
-    function splitNode(response,unix,filterString){
+    function splitNode(response,unix,filterString,push){
       var filteredList = response.data;
+
       // Check Start Date and End Date. Only needed for All filter
       var start = new Date(filterString.split('filter[date][value][0]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
+
+      if(push){
+        start = unix;
+      }
+
       if( filterString.includes('filter[date][value][1]=') ){          
         var end = new Date(filterString.split('filter[date][value][1]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
       }
+
       // will contain all the events data
       var data = {};
       var z = 0;   //used to find the date index in the array 
+
       // loop though events
       for(var x in filteredList.data){
         z = 0;
         // if is or is not a repeating event
         if(filteredList.data[x].date.length > 1){
+
           // loop through the dates of the repeating events and pull out the object for it to loop of it with the index
           filteredList.data[x].date.forEach(function(n){
+            if(!n.start_unix){
+              var d = new Date(n.value);
+              n.start_unix = d.getTime() / 1000
+              n.start_month =  moment().month(d.getMonth()).format('MMM');
+              n.start_day = d.getDate();
+              n.start_addto = n.value;
+              n.end_addto = n.value2;
+            }
+
             if(!data[n.start_unix]){
               data[n.start_unix] = [];
             }
+
             // if there is an end date and started and hasn't ended
             if( (filterString.includes('filter[date][value][1]=') && n.start_unix > start && n.end_unix < end) ||
                 n.start_unix > start 
@@ -374,16 +393,19 @@
       var temp = [];
       var r = [];
       
-      // put reserved events into the show queue. Only put up to the number per page
-      for(var x in service.reserve){
-        // limit results and push into the current shown or reserve
-        if(n < siteService.settings.number_results_per_page ){
-          r.push(service.reserve[x]);
-        }else{
-          temp.push(service.reserve[x]);
-        }          
-        n++;
+      if(push){
+        // put reserved events into the show queue. Only put up to the number per page
+        for(var x in service.reserve){
+          // limit results and push into the current shown or reserve
+          if(n < siteService.settings.number_results_per_page ){
+            r.push(service.reserve[x]);
+          }else{
+            temp.push(service.reserve[x]);
+          }          
+          n++;
+        }        
       }
+
 
       // update reserve array
       service.reserve = temp;
@@ -600,8 +622,12 @@
       //Run the search
       return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr).then(function(response) {
 
-        //Filter search results
-        var results = filterSearchResults(response.data.data[0]);
+        var results;
+        if(service.replicate){
+          results = replicateEnabled({data:{data:response.data.data[0]}},dateService.dateNowUnix());
+        }else{
+          results = splitNode({data:{data:response.data.data[0]}},dateService.dateNowUnix(),service.getFilterString(),false);
+        }
 
         //Update service vars
         service.eventsList = results;
