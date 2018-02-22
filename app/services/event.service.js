@@ -557,7 +557,7 @@
       var searchStr = sanitizedStr.replace(' ', '%20');
 
       //Run the search
-      return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr).then(function(response) {
+      return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr + '?sort=date').then(function(response) {
 
         //Filter search results
         var results = filterSearchResults(response.data.data[0]);
