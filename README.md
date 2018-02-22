@@ -128,20 +128,39 @@ You will need to modify your .htaccess (or make a similar mod on non apache serv
 In order to be able to go directly to non-hashbang url's in the app. This is because
 we are using html5 mode in the angular application,
 
-.htaccess MODS:
+REDIRECT MODS:
 --------------
 Some modifications are necessary to both re-route social bots the actual node
-page (php) of the main site, in order for bots to be able to scrape event information, and another
-to allow use of non-hashbang urls. The second is necessary to tell/trick drupal into not looking for
-a page at that path, but rather redirect to the calendar, and let it take the url from there. Necessary
-in order to go directly to an event page/etc. The following rules assume that your events are in the
-standard UniCal format of /event/NID/TITLE.
+page (php) of the main site. This script works, by directing bots to the stock
+drupal events view, rather than the angular application.
+
+settings.php (New preffered Method):
+
+  ```
+  if(isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/facebookexternalhit\/[0-9]|Twitterbot|Pinterest|Google.*snippet/i', $_SERVER['HTTP_USER_AGENT'])) { 
+    if(preg_match('/^\/calendar\/event\/[0-9][0-9][0-9][0-9]\/[aA-zZ].+/', $_SERVER['REQUEST_URI'])) {
+      $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+      $uri_segments = explode('/', $uri_path); header('HTTP/1.0 301 Moved Permanently');
+      header('Location: /node/' . $uri_segments[3]);
+      exit();
+    }
+  }
+  ```
+  .htaccess (Legacy Method):
 
   ```
   # Allow social media crawlers to work by redirecting them to a server-rendered static version on the page
   RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
   RewriteRule event/(.*)/(.*) %{HTTP_HOST}/node/$1 [P]
+  ```
 
+  For some sites (server and path specific), a second .htaccess mod may be needed
+  to allow use of non-hashbang urls. The second is necessary to tell/trick drupal into not looking for
+  a page at that path, but rather redirect to the calendar, and let it take the url from there. Necessary
+  in order to go directly to an event page/etc. The following rules assume that your events are in the
+  standard UniCal format of /event/NID/TITLE.
+
+  ```
   # Workaround to be able to use non # url in the calendar
   RewriteCond %{HTTP_USER_AGENT} !(facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
   RewriteCond %{REQUEST_URI} !^/admin
