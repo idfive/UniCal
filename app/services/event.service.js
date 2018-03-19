@@ -351,9 +351,10 @@
             if( ( (filterString.indexOf('filter[date][value][1]=') > -1 )&& n.start_unix > start && n.end_unix < end) ||
                 n.start_unix > start 
             ){
-                var copy = Object.assign({}, filteredList.data[x]);  // make hard copy of this object
-                copy.item = z;     //give the index for the calendar
-                allEventData[n.start_unix].push(copy);     
+              var copy = {};
+              jQuery.extend( true, copy ,filteredList.data[x] );
+              copy.item = z;  //give the index for the calendar
+              allEventData[n.start_unix].push(copy);     
             // if has started
             }
             z++;
