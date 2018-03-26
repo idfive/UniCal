@@ -286,7 +286,7 @@
           data[x].taxonomyClass = data[x].taxonomyClass.join(" ");
         }
         // if module to split repeated events into separate nodes is turned on
-        if(service.replicate  == false){
+        if(!service.replicate){
           r = splitNode(response,unix,filterString,true);        
         }else{
           r = replicateEnabled(response,unix);
