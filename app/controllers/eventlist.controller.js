@@ -19,7 +19,6 @@
       },
       dateParameter: 'clndrDate'
     };
-    
     vm.clndrEvents = eventService.clndrList;
     vm.currentMonth = eventService.currentMonth;
     vm.eventsCount = eventService.eventsCount;
@@ -105,6 +104,11 @@
         .success(function(events) {
           vm.featuredEvents = events.data;
         });
+    };
+
+    //Returns true if month and year is the current month and year
+    vm.isCurrentMonth = function(month, year) {
+      return (month == dateService.dateMonthCurrent() && year == dateService.dateYearCurrent()) ? true : false;
     };
 
     //Let view know that the model was updated

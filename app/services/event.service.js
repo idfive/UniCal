@@ -196,7 +196,7 @@
 
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {        
         // if module to split repeated events into separate nodes is turned on
-        if(service.replicate == false){
+        if(!service.replicate){
           // if more dates in the array add them as objects at the end of the response.data.data
           // this get the repeating dates out of nodes
           for(var x in response.data.data){            
@@ -257,8 +257,6 @@
       //Add pagination query
       filterString = filterString + '&page=' + service.page;
 
-      /** DEBUG  window.console.log(filterString);**/
-
       //Reset next page var for next call
       service.nextPage = false;
 
@@ -288,7 +286,7 @@
           data[x].taxonomyClass = data[x].taxonomyClass.join(" ");
         }
         // if module to split repeated events into separate nodes is turned on
-        if(service.replicate  == false){
+        if(!service.replicate){
           r = splitNode(response,unix,filterString,true);        
         }else{
           r = replicateEnabled(response,unix);
@@ -311,8 +309,6 @@
      *
      */
     function splitNode(response,unix,filterString,push){
-      var filteredList = response.data;
-
       // Check Start Date and End Date. Only needed for All filter
       var start = new Date(filterString.split('filter[date][value][0]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
 
@@ -320,20 +316,19 @@
         start = unix;
       }
 
-      if( filterString.includes('filter[date][value][1]=') ){          
+      if( filterString.indexOf('filter[date][value][1]=') > -1 ){          
         var end = new Date(filterString.split('filter[date][value][1]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
       }
 
       // will contain all the events data
-      var data = {};
+      var allEventData = {};
       var z = 0;   //used to find the date index in the array 
-
+      var filteredList = response.data;
       // loop though events
       for(var x in filteredList.data){
         z = 0;
         // if is or is not a repeating event
         if(filteredList.data[x].date.length > 1){
-
           // loop through the dates of the repeating events and pull out the object for it to loop of it with the index
           filteredList.data[x].date.forEach(function(n){
             if(!n.start_unix){
@@ -345,45 +340,46 @@
               n.end_addto = n.value2;
             }
 
-            if(!data[n.start_unix]){
-              data[n.start_unix] = [];
+            if(!allEventData[n.start_unix]){
+              allEventData[n.start_unix] = [];
             }
 
             // if there is an end date and started and hasn't ended
-            if( (filterString.includes('filter[date][value][1]=') && n.start_unix > start && n.end_unix < end) ||
+            if( ( (filterString.indexOf('filter[date][value][1]=') > -1 )&& n.start_unix > start && n.end_unix < end) ||
                 n.start_unix > start 
             ){
-                var copy = Object.assign({}, filteredList.data[x]);  // make hard copy of this object
-                copy.item = z;     //give the index for the calendar
-                data[n.start_unix].push(copy);     
+              var copy = {};
+              jQuery.extend( true, copy ,filteredList.data[x] );
+              copy.item = z;  //give the index for the calendar
+              allEventData[n.start_unix].push(copy);     
             // if has started
             }
             z++;
           });  
-        }else if(!!filteredList.data[x].date){
+        }else if(filteredList.data[x].date.length){
           filteredList.data[x].item = 0;
-          data[filteredList.data[x].date[0].start_unix] = [filteredList.data[x]];  // for dates that aren't repeating
+          allEventData[filteredList.data[x].date[0].start_unix] = [filteredList.data[x]];  // for dates that aren't repeating
         }
       }
 
       var obj = {};
-      for(var x in data){
-        for(var y in data[x]){
-          if(data[x][y].item){
+      for(var x in allEventData){
+        for(var y in allEventData[x]){
+          if(allEventData[x][y].item){
             // sort the responses based on start_unix. Push in object array
-            if( !obj[data[x][y].date[ data[x][y].item ].start_unix] ){  
-              obj[data[x][y].date[ data[x][y].item ].start_unix] = [];
+            if( !obj[allEventData[x][y].date[ allEventData[x][y].item ].start_unix] ){  
+              obj[allEventData[x][y].date[ allEventData[x][y].item ].start_unix] = [];
             }
-            if( data[x][y].date[data[x][y].item].start_unix > unix || ( data[x][y].date[data[x][y].item].start_addto.includes("12:00 AM") && data[x][y].date[data[x][y].item].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
-              obj[data[x][y].date[ data[x][y].item ].start_unix].push(data[x][y]);   
+            if( allEventData[x][y].date[allEventData[x][y].item].start_unix > unix || ( (allEventData[x][y].date[allEventData[x][y].item].start_addto.indexOf("12:00 AM") > -1 ) && ( allEventData[x][y].date[allEventData[x][y].item].end_addto.indexOf("11:59 PM") > -1 ) )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+              obj[allEventData[x][y].date[ allEventData[x][y].item ].start_unix].push(allEventData[x][y]);   
             }
           }else{
             // sort the responses based on start_unix. Push in object array
-            if( !obj[data[x][y].date[0].start_unix] ){  
-              obj[data[x][y].date[0].start_unix] = [];
+            if( !obj[allEventData[x][y].date[0].start_unix] ){  
+              obj[allEventData[x][y].date[0].start_unix] = [];
             }
-            if( data[x][y].date[0].start_unix > unix || ( data[x][y].date[0].start_addto.includes("12:00 AM") && data[x][y].date[0].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
-              obj[data[x][y].date[0].start_unix].push(data[x][y]);   
+            if( allEventData[x][y].date[0].start_unix > unix || ( (allEventData[x][y].date[0].start_addto.indexOf("12:00 AM") > -1 ) && ( allEventData[x][y].date[0].end_addto.indexOf("11:59 PM") > -1 ) )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+              obj[allEventData[x][y].date[0].start_unix].push(allEventData[x][y]);   
             }     
           }
         }
@@ -406,7 +402,6 @@
         }        
       }
 
-
       // update reserve array
       service.reserve = temp;
 
@@ -418,7 +413,7 @@
             r.push(obj[x][y]);
           }else{
             service.reserve.push(obj[x][y]);
-          }          
+          }
           n++;
         }
       }
@@ -433,7 +428,7 @@
       var r = [];
       var obj = {};
       for(var x in response.data.data){
-        if( response.data.data[x].date[0].start_unix > unix || ( response.data.data[x].date[0].start_addto.includes("12:00 AM") && response.data.data[x].date[0].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+        if( response.data.data[x].date[0].start_unix > unix || ( (response.data.data[x].date[0].start_addto.indexOf("12:00 AM") > -1 ) && ( response.data.data[x].date[0].end_addto.indexOf("11:59 PM") > -1 ) )  ){   // removed times that have passed. Dont exclude All Day events that have that time
           // sort the responses based on start_unix. Push in object array
           if( !obj[response.data.data[x].date[0].start_unix] ){  
             obj[response.data.data[x].date[0].start_unix] = [];
@@ -464,11 +459,11 @@
       if(month == dateService.dateMonthCurrent() && year == dateService.dateYearCurrent()) {
         service.filters.startDate = dateService.dateNow();
       } else {
-        service.filters.startDate = moment(month + ' 1,' + year).format('YYYY-MM-DD');
+        service.filters.startDate = moment(new Date(month + ' 1,' + year)).format('YYYY-MM-DD');
       }
 
       //Set end date
-      service.filters.endDate = moment(month + ' 1,' + year).endOf('month').format('YYYY-MM-DD');
+      service.filters.endDate = moment(new Date(month + ' 1,' + year)).endOf('month').format('YYYY-MM-DD');
     }
 
     /*
@@ -626,9 +621,8 @@
         if(service.replicate){
           results = replicateEnabled({data:{data:response.data.data[0]}},dateService.dateNowUnix());
         }else{
-          results = splitNode({data:{data:response.data.data[0]}},dateService.dateNowUnix(),service.getFilterString(),false);
+          results = splitNode({data:{data:response.data.data}},dateService.dateNowUnix(),service.getFilterString(),false);
         }
-
         //Update service vars
         service.eventsList = results;
         service.eventsCount = results.length;
@@ -777,8 +771,6 @@
       });
 
     }
-
-
 
   };
 
