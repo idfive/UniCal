@@ -146,7 +146,7 @@
 
       //Hide loading screen
       utilityService.hideLoading();
-
+      
     }
 
     /*
@@ -191,10 +191,28 @@
       //Set filter string
       var filterString = '?filter[date][value][0]='+ service.clndrFilters.startDate +'&filter[date][operator][0]=">="';
       filterString += '&filter[date][value][1]='+ service.clndrFilters.endDate +'&filter[date][operator][1]="<="';
-      filterString += '&fields=id,clndrDate,date';
+      // filterString += '&fields=id,clndrDate,date'; // breaking the date array
       filterString += '&range=1000&sort=-date';
 
-      return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
+      return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {        
+        // if module to split repeated events into separate nodes is turned on
+        if(!service.replicate){
+          // if more dates in the array add them as objects at the end of the response.data.data
+          // this get the repeating dates out of nodes
+          for(var x in response.data.data){            
+            if(response.data.data[x].date.length > 1){
+              for(var y in response.data.data[x].date){
+                var d = new Date(response.data.data[x].date[y].start_unix * 1000);                
+                response.data.data.push({id:response.data.data[x].id , date:[d] , clndrDate:d});
+              }
+            }
+            // if clndrEvent is null add one
+            if( !response.data.data[x].clndrDate ){
+              var d = new Date(response.data.data[x].date[0].start_unix * 1000);              
+              response.data.data[x].clndrDate = d;
+            }
+          }
+        }
         service.clndrList = response.data.data;
         return response.data;
       });
@@ -209,7 +227,6 @@
       service.clndrFilters.startDate = moment(new Date(month + ' 1,' + year)).startOf('month').format('YYYY-MM-DD HH:mm:ss');
       service.clndrFilters.endDate = moment(new Date(month + ' 1,' + year)).endOf('month').format('YYYY-MM-DD HH:mm:ss');
     }
-
 
     /*
      * Get event by id
@@ -234,12 +251,11 @@
       } else { //Reset page and empty the list
         service.page = 1;
         service.eventsList = [];
+        service.reserve = "";
       }
 
       //Add pagination query
       filterString = filterString + '&page=' + service.page;
-
-      /** DEBUG **/ window.console.log(filterString);
 
       //Reset next page var for next call
       service.nextPage = false;
@@ -248,9 +264,29 @@
       return $http.get(utilityService.getBaseUrl() + 'events' + filterString).then(function(response) {
         var r;
         var unix = dateService.dateNowUnix();
+        var data = response.data.data;
+        for(var x in data){
+          data[x].taxonomyClass = [];
+          // flip through all the taxonomies. Change here for number 
+          for(var y = 1; y < 12; y++){
+            if(data[x]['taxonomy_' + y]){
+              // add taxonomy number to the taxonomy
+              for(var z in data[x]['taxonomy_' + y]){
+                data[x]['taxonomy_' + y][z] = 'taxonomy_' + y + "_" + data[x]['taxonomy_' + y][z];
+              };
+              data[x]['taxonomy_' + y].push('taxonomy_' + y);
+              
+              // join all the taxonomies under that number
+              data[x].taxonomyClass.push(data[x]['taxonomy_' + y].join(" "));
+            } 
+          }
+          // join all the taxonomies for each event
+          data[x].taxonomyClass = data[x].taxonomyClass.join(" ");
+        }  
+
         // if module to split repeated events into separate nodes is turned on
-        if(service.replicate  == false){
-          r = splitNode(response,unix,filterString);
+        if(!service.replicate){
+          r = splitNode(response,unix,filterString,true);        
         }else{
           r = replicateEnabled(response,unix);
         }
@@ -259,7 +295,7 @@
         service.eventsList = service.eventsList.concat(events);
 
         // controls first number in the Showing # of # events
-        service.eventsCount = parseInt(service.eventsList.length) + parseInt(service.reserve.length);
+        service.eventsCount = parseInt(service.eventsList.length) + parseInt(service.reserve.length);  
         response.data.data = r;
         //Hide loading screen
         utilityService.hideLoading();
@@ -271,60 +307,79 @@
      * Extract dates within nodes and create new nodes and check if they are all day events
      *
      */
-    function splitNode(response,unix,filterString){
-      var filteredList = response.data;
+    function splitNode(response,unix,filterString,push){
+      // Check Start Date and End Date. Only needed for All filter
+      var start = new Date(filterString.split('filter[date][value][0]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
+
+      if(push){
+        start = unix;
+      }
+
+      if( filterString.indexOf('filter[date][value][1]=') > -1 ){          
+        var end = new Date(filterString.split('filter[date][value][1]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
+      }
 
       // will contain all the events data
-      var data = {};
-      var z = 0;   //used to find the date index in the array
+      var allEventData = {};
+      var z = 0;   //used to find the date index in the array 
+      var filteredList = response.data;
       // loop though events
       for(var x in filteredList.data){
         z = 0;
         // if is or is not a repeating event
-        if(filteredList.data[x].date.length > 2){
+        if(filteredList.data[x].date.length > 1){
           // loop through the dates of the repeating events and pull out the object for it to loop of it with the index
           filteredList.data[x].date.forEach(function(n){
-            // Check Start Date and End Date. Only needed for All filter
-            var start = new Date(filterString.split('filter[date][value][0]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
-            if( filterString.includes('filter[date][value][1]=') ){
-              var end = new Date(filterString.split('filter[date][value][1]=')[1].split('&')[0].split(' ')[0]).getTime() / 1000;
-              if(n.start_unix > start && n.end_unix < end){
-                var copy = Object.assign({}, filteredList.data[x]);  // make hard copy of this object
-                copy.item = z;     //give the index for the calendar
-                data[n.start_unix] = copy;
-              }
-            }else{
-              if(n.start_unix > start){
-                var copy = Object.assign({}, filteredList.data[x]);
-                copy.item = z;
-                data[n.start_unix] = copy;
-              }
+            if(!n.start_unix){
+              var d = new Date(n.value);
+              n.start_unix = d.getTime() / 1000
+              n.start_month =  moment().month(d.getMonth()).format('MMM');
+              n.start_day = d.getDate();
+              n.start_addto = n.value;
+              n.end_addto = n.value2;
+            }
+
+            if(!allEventData[n.start_unix]){
+              allEventData[n.start_unix] = [];
+            }
+
+            // if there is an end date and started and hasn't ended
+            if( ( (filterString.indexOf('filter[date][value][1]=') > -1 )&& n.start_unix > start && n.end_unix < end) ||
+                n.start_unix > start 
+            ){
+              var copy = {};
+              jQuery.extend( true, copy ,filteredList.data[x] );
+              copy.item = z;  //give the index for the calendar
+              allEventData[n.start_unix].push(copy);     
+            // if has started
             }
             z++;
-          });
-        }else{
-          data[filteredList.data[x].date[0].start_unix] = filteredList.data[x];  // for dates that aren't repeating
+          });  
+        }else if(filteredList.data[x].date.length){
+          filteredList.data[x].item = 0;
+          allEventData[filteredList.data[x].date[0].start_unix] = [filteredList.data[x]];  // for dates that aren't repeating
         }
       }
 
       var obj = {};
-      for(var x in data){
-          // if from split node
-        if(data[x].item){
-          // sort the responses based on start_unix. Push in object array
-          if( !obj[data[x].date[ data[x].item ].start_unix] ){
-            obj[data[x].date[ data[x].item ].start_unix] = [];
-          }
-          if( data[x].date[data[x].item].start_unix > unix || ( data[x].date[data[x].item].start_addto.includes("12:00 AM") && data[x].date[data[x].item].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
-            obj[data[x].date[ data[x].item ].start_unix].push(data[x]);
-          }
-        }else{
-          // sort the responses based on start_unix. Push in object array
-          if( !obj[data[x].date[0].start_unix] ){
-            obj[data[x].date[0].start_unix] = [];
-          }
-          if( data[x].date[0].start_unix > unix || ( data[x].date[0].start_addto.includes("12:00 AM") && data[x].date[0].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
-            obj[data[x].date[0].start_unix].push(data[x]);
+      for(var x in allEventData){
+        for(var y in allEventData[x]){
+          if(allEventData[x][y].item){
+            // sort the responses based on start_unix. Push in object array
+            if( !obj[allEventData[x][y].date[ allEventData[x][y].item ].start_unix] ){  
+              obj[allEventData[x][y].date[ allEventData[x][y].item ].start_unix] = [];
+            }
+            if( allEventData[x][y].date[allEventData[x][y].item].start_unix > unix || ( (allEventData[x][y].date[allEventData[x][y].item].start_addto.indexOf("12:00 AM") > -1 ) && ( allEventData[x][y].date[allEventData[x][y].item].end_addto.indexOf("11:59 PM") > -1 ) )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+              obj[allEventData[x][y].date[ allEventData[x][y].item ].start_unix].push(allEventData[x][y]);   
+            }
+          }else{
+            // sort the responses based on start_unix. Push in object array
+            if( !obj[allEventData[x][y].date[0].start_unix] ){  
+              obj[allEventData[x][y].date[0].start_unix] = [];
+            }
+            if( allEventData[x][y].date[0].start_unix > unix || ( (allEventData[x][y].date[0].start_addto.indexOf("12:00 AM") > -1 ) && ( allEventData[x][y].date[0].end_addto.indexOf("11:59 PM") > -1 ) )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+              obj[allEventData[x][y].date[0].start_unix].push(allEventData[x][y]);   
+            }     
           }
         }
       }
@@ -332,16 +387,18 @@
       var n = 0;
       var temp = [];
       var r = [];
-
-      // put reserved events into the show queue. Only put up to the number per page
-      for(var x in service.reserve){
-        // limit results and push into the current shown or reserve
-        if(n < siteService.settings.number_results_per_page ){
-          r.push(service.reserve[x]);
-        }else{
-          temp.push(service.reserve[x]);
-        }
-        n++;
+      
+      if(push){
+        // put reserved events into the show queue. Only put up to the number per page
+        for(var x in service.reserve){
+          // limit results and push into the current shown or reserve
+          if(n < siteService.settings.number_results_per_page ){
+            r.push(service.reserve[x]);
+          }else{
+            temp.push(service.reserve[x]);
+          }          
+          n++;
+        }        
       }
 
       // update reserve array
@@ -370,12 +427,12 @@
       var r = [];
       var obj = {};
       for(var x in response.data.data){
-        if( response.data.data[x].date[0].start_unix > unix || ( response.data.data[x].date[0].start_addto.includes("12:00 AM") && response.data.data[x].date[0].end_addto.includes("11:59 PM") )  ){   // removed times that have passed. Dont exclude All Day events that have that time
+        if( response.data.data[x].date[0].start_unix > unix || ( (response.data.data[x].date[0].start_addto.indexOf("12:00 AM") > -1 ) && ( response.data.data[x].date[0].end_addto.indexOf("11:59 PM") > -1 ) )  ){   // removed times that have passed. Dont exclude All Day events that have that time
           // sort the responses based on start_unix. Push in object array
-          if( !obj[response.data.data[x].date[0].start_unix] ){
+          if( !obj[response.data.data[x].date[0].start_unix] ){  
             obj[response.data.data[x].date[0].start_unix] = [];
           }
-          obj[response.data.data[x].date[0].start_unix].push(response.data.data[x]);
+          obj[response.data.data[x].date[0].start_unix].push(response.data.data[x]);            
         }
       }
 
@@ -401,11 +458,11 @@
       if(month == dateService.dateMonthCurrent() && year == dateService.dateYearCurrent()) {
         service.filters.startDate = dateService.dateNow();
       } else {
-        service.filters.startDate = moment(month + ' 1,' + year).format('YYYY-MM-DD');
+        service.filters.startDate = moment(new Date(month + ' 1,' + year)).format('YYYY-MM-DD');
       }
 
       //Set end date
-      service.filters.endDate = moment(month + ' 1,' + year).endOf('month').format('YYYY-MM-DD');
+      service.filters.endDate = moment(new Date(month + ' 1,' + year)).endOf('month').format('YYYY-MM-DD');
     }
 
     /*
@@ -557,11 +614,14 @@
       var searchStr = sanitizedStr.replace(' ', '%20');
 
       //Run the search
-      return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr + '?sort=date').then(function(response) {
+      return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr).then(function(response) {
 
-        //Filter search results
-        var results = filterSearchResults(response.data.data[0]);
-
+        var results;
+        if(service.replicate){
+          results = replicateEnabled({data:{data:response.data.data[0]}},dateService.dateNowUnix());
+        }else{
+          results = splitNode({data:{data:response.data.data}},dateService.dateNowUnix(),service.getFilterString(),false);
+        }
         //Update service vars
         service.eventsList = results;
         service.eventsCount = results.length;
@@ -710,8 +770,6 @@
       });
 
     }
-
-
 
   };
 
