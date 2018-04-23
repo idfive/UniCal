@@ -55,6 +55,29 @@
   }
 
  /**
+  * Implements preprocess_page().
+  */
+  function unical_client_preprocess_page(&$vars) {
+
+    // Reroute any attempt at viewing a stock event node to the calendar instead.
+    // Except for search/social bots which need to crawl the stock page.
+    if (($node = menu_get_object()) && $node->type) {
+      // Check if is type event, and is not edit/revisions/etc. Ie, view only node/{{nid}}
+      if($node->type == 'event' && arg(2) == '') {
+        if(isset($_SERVER['HTTP_USER_AGENT'])
+        && !preg_match('/facebookexternalhit\/[0-9]|Twitterbot|Pinterest|Google.*snippet/i', $_SERVER['HTTP_USER_AGENT'])) {
+          $uri = drupal_get_path_alias('node/' . $node->nid);
+          $uri_parts = explode("/", $uri);
+          $title = end($uri_parts);
+          header('HTTP/1.0 301 Moved Permanently');
+          header('Location: /calendar/event/' . $node->nid . '/' . $title);
+          exit();
+        }
+      }
+    }
+  }
+
+ /**
   * Implements hook_ctools_plugin_directory().
   */
   function unical_ctools_plugin_directory($module, $plugin) {
