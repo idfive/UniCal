@@ -615,12 +615,11 @@
 
       //Run the search
       return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr).then(function(response) {
-
         var results;
         if(service.replicate){
           results = replicateEnabled({data:{data:response.data.data[0]}},dateService.dateNowUnix());
         }else{
-          results = splitNode({data:{data:response.data.data}},dateService.dateNowUnix(),service.getFilterString(),false);
+          results = splitNode({data:{data:response.data.data[0]}},dateService.dateNowUnix(),service.getFilterString(),false);
         }
         //Update service vars
         service.eventsList = results;
