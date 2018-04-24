@@ -57,16 +57,14 @@
 
       angular.forEach(results, function(result, index) {
         var excludeCount = 0;
-        if(result.date[0]) {
-          if(result.date[0].start_unix > moment().unix()) { //Removes future events
-            excludeCount++;
-          }
+        if(result.date[0] && result.date[0].start_unix > moment().unix()) { //Removes future events
+          excludeCount++;
         }
-        if(siteService.settings.main_calendar_site) { //Removes excluded events (if this is the main calendar)
-          if(result.exclude_from_main_calendar == 1) {
-            excludeCount++;
-          }
+
+        if(siteService.settings.main_calendar_site && result.exclude_from_main_calendar == 1) { //Removes excluded events (if this is the main calendar)
+          excludeCount++;
         }
+        
         if(excludeCount <= 0) { //If exclude count is 0 or less, this event can be shown
           filteredResults.push(result);
         }

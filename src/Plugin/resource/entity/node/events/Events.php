@@ -370,7 +370,8 @@ use Drupal\restful\Plugin\resource\ResourceNode;
     if(sizeof($data) > 1) {
 
       //Get Request (so we can access filters)
-      $request = $this->getRequest();
+      // $request = $this->getRequest();
+      $request = drupal_get_query_parameters();
 
       // Loop through each date
       foreach ($data as $date) {
@@ -384,11 +385,10 @@ use Drupal\restful\Plugin\resource\ResourceNode;
         // The to date passed to the filter
         $to_date = false;
         $exclude_date = false;
-
+        
         // Check that we have a filter
-        if(isset($request->filter) && isset($request->filter->date)) {
-
-          $filter_date = $request->filter->date;
+        if(isset($request['filter']) && isset($request['filter']['date'])) {
+          $filter_date = $request['filter']['date'];
 
           if(isset($filter_date['value'][0])) {
             $from_date = strtotime($filter_date['value'][0]);
@@ -434,7 +434,6 @@ use Drupal\restful\Plugin\resource\ResourceNode;
    * Process the date for the clndr feature.
    */
   public function processClndrDate($data) {
-
     foreach ($data as $key => $date) {
         return $data[$key]['value'];
     }
