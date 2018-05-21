@@ -54,10 +54,11 @@
     }
   }
 
-/**
- * Implements preprocess_page().
- */
- function unical_client_preprocess_page(&$vars) {
+ /**
+  * Implements preprocess_page().
+  */
+  function unical_client_preprocess_page(&$vars) {
+
     // Reroute any attempt at viewing a stock event node to the calendar instead.
     // Except for search/social bots which need to crawl the stock page.
     if (($node = menu_get_object()) && $node->type) {
@@ -76,7 +77,7 @@
     }
   }
 
-/**
+ /**
   * Implements hook_ctools_plugin_directory().
   */
   function unical_ctools_plugin_directory($module, $plugin) {
@@ -127,10 +128,19 @@
     // Get nid from url, as we dont have access to $node.
     $node_path = explode('/', $_SERVER["REQUEST_URI"]);
     $nid = $node_path[2];
+    $unical_path = variable_get('unical_client_settings_unical_path');
 
+  // Unical API JS.
+  // Add custom UniCal Js path if is set.
+  if( variable_get('unical_client_settings_unical_path') ){
+    $embed_code = htmlspecialchars('<link rel="stylesheet" href="' . $url . '/' . drupal_get_path('module', 'unical') . '/assets/css/styles.css"><link rel="stylesheet" href="' . $url . '/' . drupal_get_path('module', 'unical_styles') . '/style.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <div ng-app="calendar" class="unical-calendar"><h1>Calendar of Events</h1><div ng-view autoscroll="true"></div></div><script>var site_url = "' . $url . '/api/";
+  var site_id =' . $nid . ';</script><script src="' . $unical_path . '"></script>');
+  }else{
     $embed_code = htmlspecialchars('<link rel="stylesheet" href="' . $url . '/' . drupal_get_path('module', 'unical') . '/assets/css/styles.css"><link rel="stylesheet" href="' . $url . '/' . drupal_get_path('module', 'unical_styles') . '/style.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <div ng-app="calendar" class="unical-calendar"><h1>Calendar of Events</h1><div ng-view autoscroll="true"></div></div><script>var site_url = "' . $url . '/api/";
   var site_id =' . $nid . ';</script><script src="' . $url . '/' . drupal_get_path('module', 'unical') . '/app/build/unical.js"></script>');
+  }
 
     $embed_text = "
   <h1>Embed/Install Instructions</h1>
@@ -216,9 +226,9 @@ function _unical_expire_repeating_events() {
  *
  */
 function unical_cron() {
-
-  _unical_expire_repeating_events();
-
+  if( variable_get('unical_client_settings_unical_cron') ){
+    _unical_expire_repeating_events();
+  }
 }
 
 /**
