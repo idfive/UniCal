@@ -37,6 +37,9 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
     $public_fields['summary'] = array(
       'property' => 'body',
       'sub_property' => 'summary',
+      'process_callbacks' => array(
+        array($this, 'processSummary'),
+      ),
     );
 
     $public_fields['image'] = array(
@@ -472,6 +475,13 @@ class UnicalApiEventsFields extends RestfulEntityBaseNode {
   public function processBody($data) {
 
     return text_summary(drupal_html_to_text($data, array('<strong>', '<em>')), NULL, 250);
+  }
+
+  /**
+   * Process the Summary.
+   */
+  public function processSummary($data) {
+    return text_summary(drupal_html_to_text($data, array('<strong>', '<em>')), NULL, 400);
   }
 
 }
