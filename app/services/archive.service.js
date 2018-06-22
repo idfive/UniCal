@@ -57,8 +57,10 @@
 
       angular.forEach(results, function(result, index) {
         var excludeCount = 0;
-        if(result.date[0].start_unix > moment().unix()) { //Removes future events
-          excludeCount++;
+        if(result.date[0]) {
+          if(result.date[0].start_unix > moment().unix()) { //Removes future events
+            excludeCount++;
+          }
         }
         if(siteService.settings.main_calendar_site) { //Removes excluded events (if this is the main calendar)
           if(result.exclude_from_main_calendar == 1) {
@@ -165,7 +167,7 @@
 
       //Default params
       var defaultParams = {
-        fields: 'id,label,date,image,uri,address,body_trimmed,clndrDate,timezone,venue_name',
+        fields: 'id,label,date.start_month,date.start_day,image.image_styles.large,image.alt,uri,body_trimmed,summary,clndrDate,timezone,venue_name',
         sort: '-date',
         range: siteService.settings.number_results_per_page
       };
@@ -247,7 +249,7 @@
       //Run the search
       return $http.get(utilityService.getBaseUrl() + 'eventsearch/' + searchStr).then(function(response) {
         //Filter search results
-        var results = filterSearchResults(response.data.data);
+        var results = filterSearchResults(response.data.data[0]);
 
         //Update service vars
         service.eventsList = results;

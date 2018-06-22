@@ -22,6 +22,10 @@
     vm.getEvent = function(id) {
       eventService.getEvent(id)
         .success(function(events) {
+          var currentStartDate = window.location.href.split("evnt=")[1];
+          events.data[0].date = events.data[0].date.filter(function(d){
+            return currentStartDate == d.start_unix;
+          });
           vm.events = events.data;
         });
     };
