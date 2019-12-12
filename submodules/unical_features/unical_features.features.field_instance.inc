@@ -479,7 +479,7 @@ function unical_features_field_default_field_instances() {
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
-      'type' => 'date_select',
+      'type' => 'date_popup',
       'weight' => 5,
     ),
     'workbench_access_field' => 0,
@@ -3750,6 +3750,44 @@ function unical_features_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_1-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_1-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_1',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Removes the term from a frontend filter list.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
   // 'taxonomy_term-calendar_taxonomy_1-field_hide_from_submission'.
   $field_instances['taxonomy_term-calendar_taxonomy_1-field_hide_from_submission'] = array(
     'bundle' => 'calendar_taxonomy_1',
@@ -3786,6 +3824,44 @@ function unical_features_field_default_field_instances() {
       'weight' => 1,
     ),
     'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_10-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_10-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_10',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
   );
 
   // Exported field_instance:
@@ -3828,6 +3904,44 @@ function unical_features_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_11-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_11-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_11',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
   // 'taxonomy_term-calendar_taxonomy_11-field_hide_from_submission'.
   $field_instances['taxonomy_term-calendar_taxonomy_11-field_hide_from_submission'] = array(
     'bundle' => 'calendar_taxonomy_11',
@@ -3864,6 +3978,44 @@ function unical_features_field_default_field_instances() {
       'weight' => 1,
     ),
     'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_2-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_2-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_2',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
   );
 
   // Exported field_instance:
@@ -3906,6 +4058,44 @@ function unical_features_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_3-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_3-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_3',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
   // 'taxonomy_term-calendar_taxonomy_3-field_hide_from_submission'.
   $field_instances['taxonomy_term-calendar_taxonomy_3-field_hide_from_submission'] = array(
     'bundle' => 'calendar_taxonomy_3',
@@ -3942,6 +4132,44 @@ function unical_features_field_default_field_instances() {
       'weight' => 1,
     ),
     'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_4-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_4-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_4',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
   );
 
   // Exported field_instance:
@@ -3984,6 +4212,44 @@ function unical_features_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_5-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_5-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_5',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
   // 'taxonomy_term-calendar_taxonomy_5-field_hide_from_submission'.
   $field_instances['taxonomy_term-calendar_taxonomy_5-field_hide_from_submission'] = array(
     'bundle' => 'calendar_taxonomy_5',
@@ -4020,6 +4286,44 @@ function unical_features_field_default_field_instances() {
       'weight' => 1,
     ),
     'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_6-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_6-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_6',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
   );
 
   // Exported field_instance:
@@ -4097,6 +4401,44 @@ function unical_features_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_8-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_8-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_8',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
   // 'taxonomy_term-calendar_taxonomy_8-field_hide_from_submission'.
   $field_instances['taxonomy_term-calendar_taxonomy_8-field_hide_from_submission'] = array(
     'bundle' => 'calendar_taxonomy_8',
@@ -4133,6 +4475,44 @@ function unical_features_field_default_field_instances() {
       'weight' => 1,
     ),
     'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-calendar_taxonomy_9-field_hide_from_filter'.
+  $field_instances['taxonomy_term-calendar_taxonomy_9-field_hide_from_filter'] = array(
+    'bundle' => 'calendar_taxonomy_9',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hide_from_filter',
+    'label' => 'Hide from Filter',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
   );
 
   // Exported field_instance:
@@ -4202,6 +4582,8 @@ function unical_features_field_default_field_instances() {
   t('Feature throughout site');
   t('Free Event');
   t('Google Maps API Key');
+  t('Hide From Submission');
+  t('Hide from Filter');
   t('How to RSVP');
   t('If you wish to add a link to a page that contains help for the calendar function, do so here. Link will display along with the add to calendar popup.');
   t('If you wish to add a location by latitude/longitude, add latitude here.');
@@ -4232,8 +4614,10 @@ function unical_features_field_default_field_instances() {
   t('RSVP Email');
   t('RSVP Phone');
   t('RSVP Text');
+  t('Removes the term from a frontend filter list.');
   t('Repeating date description');
   t('Same as Event Submitter');
+  t('Should this term be hidden from the unical event submission screen?');
   t('Submitter Email');
   t('Submitter Name');
   t('Submitter Phone');
