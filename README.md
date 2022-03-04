@@ -2,8 +2,7 @@ INTRODUCTION
 ============
 UniCal stands for either Universal Calendar or University Calendar. Dealer’s
 choice. It is an Angular.js-based events calendar application, based on the
-headless/decoupled Drupal approach, and the COPE principle.  For more information
-see the project homepage at http://unical.idfive.com.
+headless/decoupled Drupal approach, and the COPE principle.
 
 This app/module is collaboratively designed and maintained by idfive and Howard
 University. It serves a sortable list/calendar of events that can be embedded as
